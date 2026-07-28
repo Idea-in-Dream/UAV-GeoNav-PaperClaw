@@ -2,6 +2,39 @@
 
 最近三天日报（最新在前）：
 
+# [20260725](./202607/20260725.md)
+## 📌 今日概况
+
+今日共检索候选论文 11 篇；关键词+LLM 智能匹配遥感交叉论文 4 篇；最终纳入日报 4 篇。
+
+今日遥感AI研究聚焦于SAR基础模型预训练、轻量化地物分割、高光谱融合边缘部署及SAR图像生成。SARATR-X-v2提出尺度感知结构预训练方法，PriSAR利用3D几何先验引导扩散模型生成可控SAR图像，轻量CNN在DeepGlobe上验证了高效分割潜力，高光谱融合在树莓派上实现优化部署。
+
+## ✨ 今日亮点
+
+- SARATR-X-v2提出尺度感知结构预训练，提升SAR基础模型性能。
+- PriSAR利用3D几何先验引导扩散模型，实现参数可控SAR图像生成。
+- 轻量CNN在DeepGlobe上验证了高效地物分割的可行性。
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260725] SARATR-X-v2: Scale-Aware Structural Pre-Training for SAR Foundation Models | Li Weijie, Song Yafei, Liu Yongxiang, Peng Bowen, Zhou Jie, Xia Jingyuan, Yang Wei, Liu Tianpeng, Liu Zhen, Liu Li | College of Electronic Science and Technology, National University of Defense Technology, Changsha, China ( | SARATR-X-v2提出尺度感知结构预训练方法，用于SAR基础模型。 | [#964](https://github.com/thinson/RS-PaperClaw/issues/964) |
+| [20260725] Optimized Embedded Implementation of Hyperspectral-Multispectral Image Fusion on Raspberry Pi | Salah Eddine Brezini, Bekhelifi Okba, Mezouar Oussama, Chams Eddine Choucha, Boukhacheba Sarra, Fethi Abdelatif Dali | Intelligent Systems Research Intelligent Systems Research Intelligent Systems Research；Laboratory (Laresi) Laboratory (Laresi) Laboratory (Laresi)；University of Science and University of Science and University of Science and；Advanced Data Science and Intelligent Systems Research Intelligent Systems Research；Cognitive Applications Laboratory Laboratory (Laresi) Laboratory (Laresi) | 高光谱与多光谱图像融合算法在树莓派上实现优化嵌入式部署。 | [#965](https://github.com/thinson/RS-PaperClaw/issues/965) |
+| [20260725] When Less Is More: A Controlled Benchmark of Lightweight CNNs for Satellite Land-Cover Segmentation on DeepGlobe | Atiq Ur Rehman, Joseph Michael Donovan | University of South Dakota, Vermillion, USA；of Economics & Decision Sciences, University of South Dakota, Vermillion, SD, USA | 轻量CNN在DeepGlobe卫星图像地物分割任务中表现高效。 | [#966](https://github.com/thinson/RS-PaperClaw/issues/966) |
+| [20260725] PriSAR: 3D Geometric-Prior-Guided Diffusion for Parameter-Controlled SAR Image Generation | Zhang Fan, Wu Xuanting, Ma Fei, Yin Qiang, Hu Yuxin | College of Information Science and Technology, Beijing University of Chemical Technology, Beijing 100029, China；Aerospace Information Research Institute, Chinese Academy of Sciences, Beijing 100190, China | PriSAR利用3D几何先验引导扩散模型生成参数可控SAR图像。 | [#967](https://github.com/thinson/RS-PaperClaw/issues/967) |
+
+## 🔎 观察
+
+- SAR基础模型预训练正从通用掩码建模向尺度感知结构提取演进。
+- 边缘计算与轻量化模型成为遥感应用落地的重要趋势。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260724](./202607/20260724.md)
 ## 📌 今日概况
 
@@ -60,41 +93,6 @@ Powered by OpenClaw🦞
 
 - 高光谱遥感从分类向显著目标检测等细粒度任务拓展
 - 大模型安全性与视角泛化能力成为遥感AI研究新焦点
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260722](./202607/20260722.md)
-## 📌 今日概况
-
-今日共检索候选论文 9 篇；关键词+LLM 智能匹配遥感交叉论文 6 篇；最终纳入日报 6 篇。
-
-今日遥感AI研究呈现两大热点：一是多模态大语言模型在遥感领域的应用深化，包括通用与专用模型对比、小目标理解及图像编辑推理；二是无人机视觉定位与地理定位技术取得新进展，通过检索匹配、大偏视角基准等方案提升跨域定位精度。此外，物理感知的复值状态空间模型为极化SAR分类提供了新思路。
-
-## ✨ 今日亮点
-
-- 多模态大模型在遥感理解中通用与专用之争成焦点。
-- 无人机跨域视觉定位与地理定位基准研究活跃。
-- 物理感知深度学习推动极化SAR分类精度提升。
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260722] Multimodal Large Language Models for Remote Sensing Image Understanding: Domain-Specific or General-Purpose? | Ma Qiwei, Qiu Chunping, Cheng Xinjun, Zhang Xiaoyu, Duan Puhong, Yang Ke, Kang Xudong, Li Shutao | School of Artificial Intelligence and Robotics, Hunan University；Intelligent Game and Decision Lab (IGDL)；Yuelushan Center for Industrial Innovation | 探讨多模态大模型用于遥感图像理解时通用与专用模型的优劣。 | [#928](https://github.com/thinson/RS-PaperClaw/issues/928) |
-| [20260722] RS-RIE-Bench: Benchmarking Reasoning-Guided Remote Sensing Image Editing | Qin Zihan, Xu Boao, Dong Zhao, Sun Yingping, Jiao Ziheng, Wang Junying, Wang Hongwei | School of Artificial Intelligence, Optics and Electronics (iOPEN), Northwestern Polytechnical University；Xi’an Modern Control Technology Research Institute, Xi’an 710065, China；Lanzhou Institute of Physics, Lanzhou 730000, China；Fudan University and Shanghai Artificial Intelligence Laboratory, Shanghai 200000, China | 提出推理引导的遥感图像编辑基准，涵盖时序与因果推理。 | [#949](https://github.com/thinson/RS-PaperClaw/issues/949) |
-| [20260722] RIM: A Retrieval-In-Matching Framework for Cross-Domain Global Visual Localization of UAVs | Li Xin, Duan Siyuan, Wang Shang, Mao Zhimin, Hu Bingliang, Zhang Geng | Key Laboratory of Spectral Imaging Technology CAS, Xi’an Institute of Optics and；Precision Mechanics, Chinese Academy of Sciences, Xi’an, 710119, China；University of Chinese Academy of Sciences, Beijing, 100049, China | 提出检索匹配框架，实现无人机跨域全局视觉定位。 | [#950](https://github.com/thinson/RS-PaperClaw/issues/950) |
-| [20260722] OffNadirLoc: Benchmark and Framework for Challenging UAV-to-Satellite Geo-Localization under Large Off-Nadir Views | Qiao Qian, Liu Wenye, Liu Ting, Shu Jiuhe, Wang Peng | School of Computer Science, Northwestern Polytechnical University | 构建大偏视角下无人机对卫星地理定位的基准与框架。 | [#951](https://github.com/thinson/RS-PaperClaw/issues/951) |
-| [20260722] Memory-Augmented Multimodal Large Language Models for Small Object Understanding in Streaming Aerial Videos | Sun Penglei, Huang Yehua, Tao Zhuoli, Li Xiang, Guan Runwei, Song Yaoxian, Zhao Kaiyong, Ding Henghui, Han Bo, Yang Yang, Chu Xiaowen | Information Hub, The Hong Kong University of Science and Technology (Guangzhou), Guangzhou, China；University of Freiburg, Freiburg, German；Hangzhou City University, Hangzhou, China；Fudan University, Shanghai, China；Department of Computer Science, Hong Kong Baptist University, Hong Kong, China | 提出记忆增强多模态大模型，用于流式航拍视频小目标理解。 | [#952](https://github.com/thinson/RS-PaperClaw/issues/952) |
-| [20260722] Physics-Aware Complex-Valued State Space Model with Scattering-Prior Feature Modulation for PolSAR Image Classification | Zhang Fangyan, Zhang Fan, Zhou Shiqi, Ni Jun, López-Martínez Carlos, Yin Qiang | College of Information Science and Technology, Beijing University of Chemical Technology；School of Information Science and Engineering, Yunnan University；Department of Signal Theory and Communications, Polytechnic University of Catalonia；School of Information and Cyberspace Security, Ningxia University | 提出物理感知复值状态空间模型，用于极化SAR图像分类。 | [#953](https://github.com/thinson/RS-PaperClaw/issues/953) |
-
-## 🔎 观察
-
-- 多模态大模型正从通用对话向遥感垂直任务快速渗透。
-- 无人机定位研究聚焦于大视角差异与跨域匹配的鲁棒性。
 
 ---
 
