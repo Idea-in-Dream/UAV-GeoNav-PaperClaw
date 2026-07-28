@@ -2,6 +2,41 @@
 
 最近三天日报（最新在前）：
 
+# [20260727](./202607/20260727.md)
+## 📌 今日概况
+
+今日共检索候选论文 13 篇；关键词+LLM 智能匹配遥感交叉论文 6 篇；最终纳入日报 6 篇。
+
+今日遥感研究聚焦于大规模地球观测产品的最佳实践、多无人机协同遥感、高光谱成像在光伏质量监测中的应用、基于SAR时序的无监督震后城市恢复监测、融合树与神经网络的植被分类，以及利用嵌入向量进行全球作物类型参考数据集清洗。整体趋势显示，机器学习与遥感深度融合，注重实际应用与数据质量。
+
+## ✨ 今日亮点
+
+- 提出大规模EO产品制图最佳实践指南
+- 分布式多无人机协同用于光伏巡检
+- 嵌入向量异常检测清洗全球作物数据集
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260727] From Machine Learning to Large-Scale EO Products: Best Practices for Making Maps | Sialelli Ghjulia, Young Robin, Jiang Yuchang, Aybar Cesar, Scheibenreif Linus, Robert Damien, Mosig Clemens, Adam J. Stewart, Jan D. Wegner, Pirinen Aleksis, Mogren Olof, Schindler Konrad | ETH AI Center, Zurich, Switzerland；Dept. of Computer Science and Technology, University of Cambridge, UK；Land Change Science, Swiss Federal Research Institute WSL, Switzerland；EcoVision Lab, University of Zurich, Switzerland；Inst. for Earth System Science and Remote Sensing, Leipzig University, Germany；RISE Research Institutes of Sweden · Climes, Swedish Centre for Impacts of；ETH AI Center through an ETH AI Center doctoral fellowship to Ghjulia Sialelli | 综述从机器学习到大规模地球观测产品制图的最佳实践。 | [#975](https://github.com/thinson/RS-PaperClaw/issues/975) |
+| [20260727] Distributed Coordination for Resilient Multi-UAV Remote Sensing: A Photovoltaic Inspection Case Study | GP-Lenza Guillermo, Fernandez-Cortizas Miguel, Molina Martin, Campoy Pascual | Centre for Automation and Robotics C.A.R, (UPM-CSIC), Universidad Polit\'ecnica de Madrid, Spain；Department of Artificial Intelligence, Universidad Polit\'ecnica de Madrid,, Spain；Automation and Robotics Group (ARG-SnT), University of Luxembourg - SnT, Luxembourg | 提出分布式协调框架实现弹性多无人机遥感光伏巡检。 | [#976](https://github.com/thinson/RS-PaperClaw/issues/976) |
+| [20260727] Hyperspectral imaging for inline quality monitoring of roll-to-roll slot-die coated organic photovoltaic active layers | Mammeri Abdelouadoud, Søren Alkærsig Jensen, Søren AR Kynde, Astrid Tranum Rømer, Korhonen Raimo, Ciambezi Matteo, Espindola Moises, Jens Wenzel Andreasen | Department of Energy, Technical University of Denmark Danish Fundamental Metrology A/S；Independent Researcher F.Junckers Industrier；Department of Energy, Technical University of Denmark | 高光谱成像用于卷对卷涂布有机光伏活性层在线质量监测。 | [#977](https://github.com/thinson/RS-PaperClaw/issues/977) |
+| [20260727] Monitoring Post-Disaster Urban Recovery Using High-Resolution SAR Time Series and Unsupervised Learning: Evidence from the 2023 Türkiye-Syria Earthquake | Russo Luigi, Tapete Deodato, Silvia Liberata Ullo, Gamba Paolo | Department of Electrical, Computer and Biomedical Engineering, University of Pavia, Pavia, Italy (；Department of Engineering, University of Sannio, Benevento, Italy ( | 利用高分辨率SAR时序与无监督学习监测震后城市恢复。 | [#978](https://github.com/thinson/RS-PaperClaw/issues/978) |
+| [20260727] Calibrated Tree-Neural Fusion for Fine-Grained Vegetation Community Classification | Datta Dristi, Md Khalid Hasan Sakib, Paul Manoranjan | School of Information Technology and Engineering, Sydney Metropolitan Institute of Technology (SydneyMet)；Department of Electrical \& Electronic Engineering, Rajshahi University of Engineering \& Technology；School of Computing, Mathematics and Engineering, Charles Sturt University | 提出校准的树-神经融合方法进行细粒度植被群落分类。 | [#979](https://github.com/thinson/RS-PaperClaw/issues/979) |
+| [20260727] Embeddings based Anomaly Detection for Cleaning Global Crop Type Reference Datasets | Syed Roshaan Ali Shah, Kristof Van Tricht, Butsko Christina, Degerickx Jeroen, Szantoi Zoltan | VITO Remote Sensing；European Space Agency (ESA) | 基于嵌入向量的异常检测方法用于清洗全球作物类型参考数据集。 | [#980](https://github.com/thinson/RS-PaperClaw/issues/980) |
+
+## 🔎 观察
+
+- 机器学习方法正从模型开发转向大规模产品生成与质量控制。
+- 多源数据融合（如LiDAR与高光谱）与无监督学习成为提升遥感应用精度的关键路径。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260726](./202607/20260726.md)
 ## 📌 今日概况
 
@@ -71,38 +106,6 @@ Powered by OpenClaw🦞
 
 - SAR基础模型预训练正从通用掩码建模向尺度感知结构提取演进。
 - 边缘计算与轻量化模型成为遥感应用落地的重要趋势。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260724](./202607/20260724.md)
-## 📌 今日概况
-
-今日共检索候选论文 9 篇；关键词+LLM 智能匹配遥感交叉论文 3 篇；最终纳入日报 3 篇。
-
-今日遥感AI研究聚焦于红外多帧超分、高光谱特征提取及遥感多模态大模型后训练。红外超分领域提出新基准与轻量化状态空间模型；高光谱分类引入整体多变量分解方法；多模态大模型则通过能力差距驱动后训练实现场景专业化，三者均注重效率与实用性。
-
-## ✨ 今日亮点
-
-- 红外多帧超分新基准与轻量化模型发布
-- 高光谱图像整体多变量分解特征提取方法
-- 能力差距驱动的遥感多模态大模型后训练
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260724] IR275K: A Benchmark for Infrared Multi-Frame Super-Resolution Toward Efficient Remote Sensing | Deng Jie, Wang Heyang, Wang Changxin, Shen Junkai, Chen Hongyi, He Zhiping, Qi Hongxing, Zhang Xudong, Wang Jianyu | Hangzhou Institute for Advanced Study, Hangzhou；Shanghai Institute of Technical Physics of the Chinese Academy of Sciences, Shanghai；University of Chinese Academy of Sciences, Beijing | 提出IR275K红外多帧超分基准及轻量化状态空间模型 | [#960](https://github.com/thinson/RS-PaperClaw/issues/960) |
-| [20260724] Efficient Spatial-Spectral Feature Extraction in Hyperspectral Images via Holistic Multivariance Decomposition | Tuna Süha | \.Istanbul Technical University, \.Istanbul 34469, Türkiye | 整体多变量分解高效提取高光谱空间-光谱特征 | [#961](https://github.com/thinson/RS-PaperClaw/issues/961) |
-| [20260724] Filling Before Advancing: Capability-Gap-Driven Post-Training for Scenario-Specialized Remote Sensing MLLMs | Zong Yuheng, Wang Minghua, Zhao Xin, Zhan Zhi-Hui, Plaza Antonio, Jon Atli Benediktsson | Institute of Robotics and Automatic Information System (IRAIS), the Tianjin Key Laboratory of Intelligent Robotics；(tjKLIR), Nankai University, Tianjin 300071, China；Hyperspectral Computing Laboratory, Department of Technology of Computers and Communications, Escuela Politécnica；University of Extremadura, Cáceres, Spain；Faculty of Electrical and Computer Engineering, University of Iceland, Reykjavík, Iceland | 能力差距驱动后训练实现遥感多模态大模型场景专业化 | [#962](https://github.com/thinson/RS-PaperClaw/issues/962) |
-
-## 🔎 观察
-
-- 红外与高光谱领域均追求轻量化与高效特征提取
-- 多模态大模型后训练正从通用向场景专业化演进
 
 ---
 
