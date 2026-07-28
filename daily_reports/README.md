@@ -2,6 +2,49 @@
 
 最近三天日报（最新在前）：
 
+# [20260726](./202607/20260726.md)
+## 📌 今日概况
+
+今日共检索候选论文 13 篇；关键词+LLM 智能匹配遥感交叉论文 6 篇；最终纳入日报 5 篇。
+
+今日遥感AI研究聚焦于多模态与安全合规性，涵盖无人机智能体基准、空地平台行人跟踪、越野导航规划、遥感图像生成及极化SAR分类。趋势显示，自监督学习、对比学习及新型架构（如Mamba）正推动遥感智能体在复杂环境下的感知与决策能力提升。
+
+## ✨ 今日亮点
+
+- 多模态无人机智能体安全策略基准发布
+- 空地平台行人跟踪多线索融合框架提出
+- 方向自适应Mamba用于极化SAR分类
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260726] MulRobBench: A Decision-Level Benchmark for Safe and Security-Policy-Compliant Multimodal UAV Agents | Belal S. Alsinglawi, Wang Weizheng, Wu Junyi, Jiang Yi, Lin Lianhai, Debbah Merouane, Alsmadi Izzat | College of Technological Innovation, Zayed University, Abu Dhabi, United Arab Emirates (；School of Computer Science and Information Technology, The University of Adelaide, Adelaide, SA, Australia (；School of Computer Science and Engineering, University of Emergency Management, Beijing, China (e-mails；Department of Computer and Information Engineering, College of Computing and Mathematical Sciences, Khalifa University, Abu Dhabi, United Arab Emirates ( | 提出MulRobBench基准，评估多模态无人机智能体安全策略合规性。 | [#969](https://github.com/thinson/RS-PaperClaw/issues/969) |
+| [20260726] Beyond Appearance: A Multi-cue Framework and Large-scale Benchmark for Pedestrian Association and Tracking on Mobile Aerial-Ground Platforms | Wu Ruiqi, Jiao Bingliang, Han Ruize, Yu Hangzheng, Jiang Xunkai, Wang Shining, Hu Yuanqi, Wang Wenxuan, Wang Peng | School of Computer Science, Northwestern Polytechnical University, Xi'an, China; Ningbo Institute, Northwestern Polytechnical University, Ningbo, China; and National Engineering Laboratory for Integrated Aero-Space-Ground-Ocean Big Data Application Technology, Xi'an, China (；the Shenzhen University of Advanced Technology, Shenzhen, China ( | 构建多线索框架与大规模基准，实现空地平台行人关联与跟踪。 | [#970](https://github.com/thinson/RS-PaperClaw/issues/970) |
+| [20260726] Learning Traversability-Aware Global Planners for Long Horizon Off-Road Navigation | Viswanath Kasi, Jason M. Gregory, Kolhe Shaunak, Saripalli Srikanth | This research was developed with funding from the Defense Advanced；Research Projects Agency (DARPA) and DEVCOM Army Research Labo-；Texas A&M University, College Station, TX 77840, USA kasiv；DEVCOM Army Research laboratory, Adelphi, MD, USA | 自监督学习可通行性感知全局规划器，用于长时越野导航。 | [#971](https://github.com/thinson/RS-PaperClaw/issues/971) |
+| [20260726] Contrastive Parameter Disentanglement for Multi-modal Remote Sensing Image Generation | Zhang Yu, Zhao Wenda, Tang Haojun, Wang Haipeng | School of Information and Communication Engineering, Dalian University of Technology, Dalian, China ( | 对比参数解耦方法，提升多模态遥感图像生成质量。 | [#972](https://github.com/thinson/RS-PaperClaw/issues/972) |
+| [20260726] Direction-adaptive Mamba: Spatial-Frequency Dual-Domain Collaborative Learning for PolSAR Image Classification | Shi Junfei, Cheng Yu, Zhang Haojia, Hua Wenqiang, Li Junhuai, Gong Maoguo | Xidian University | 方向自适应Mamba实现空间-频率双域协同极化SAR分类。 | [#973](https://github.com/thinson/RS-PaperClaw/issues/973) |
+
+## ⚠️ 未纳入日报的匹配论文
+
+以下论文通过关键词/LLM 筛选，但在处理过程中失败未纳入日报。点击 arXiv 链接可查看原文。
+
+| 标题 | arXiv | 失败原因 |
+|------|-------|----------|
+| WGDnet: Wishart-guided Geometric-aware Deep Network for PolSAR Image Classification | [2607.23638v1](https://arxiv.org/abs/2607.23638v1) | 质检未通过: 单位为空或无效 |
+
+
+## 🔎 观察
+
+- 多模态与安全合规性成为无人机智能体研究新焦点
+- 自监督与对比学习在遥感导航和图像生成中应用增多
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260725](./202607/20260725.md)
 ## 📌 今日概况
 
@@ -60,39 +103,6 @@ Powered by OpenClaw🦞
 
 - 红外与高光谱领域均追求轻量化与高效特征提取
 - 多模态大模型后训练正从通用向场景专业化演进
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260723](./202607/20260723.md)
-## 📌 今日概况
-
-今日共检索候选论文 8 篇；关键词+LLM 智能匹配遥感交叉论文 4 篇；最终纳入日报 4 篇。
-
-今日遥感AI研究聚焦于多模态与多任务融合，涵盖无人机单目深度估计、高光谱影像分类基准、大模型对抗攻击及显著目标检测。深度估计强调视角泛化，高光谱领域推出大规模基准数据集，同时大模型安全性与光谱-空间协同网络成为新热点。
-
-## ✨ 今日亮点
-
-- 无人机单目深度估计实现任意高度、俯仰、翻滚及视场角泛化
-- 发布大规模高空间分辨率高光谱影像分类基准数据集
-- 提出针对遥感大语言模型的可迁移定向对抗攻击方法
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260723] DAPM: UAV Monocular Depth Estimation from Any Height, Pitch, Roll and FOV | Ling Tong, Diao Wenhui, Feng Yingchao, Bi Hanbo, Hou Zhongyan, Sun Xian | Accordingly, research on low-altitude remote sensing imagery；mation Research Institute, Chinese Academy of Sciences, Beijing 100190；China, also with the School of Electronic, Electrical and Communication；Engineering, University of Chinese Academy of Sciences, Beijing 100190；China, also with the University of Chinese Academy of Sciences, Beijing；China, and also with the Key Laboratory of Target Cognition；stitute, Chinese Academy of Sciences, Beijing 100190, China ( | 提出DAPM方法，实现无人机任意视角下的单目深度估计 | [#955](https://github.com/thinson/RS-PaperClaw/issues/955) |
-| [20260723] HyperImageNet: A Large-Scale High-Spatial Resolution Hyperspectral Imagery Classification Benchmark | Zeng Chuguang, Li Jingtao, Liu Yinhe, Zhong Yanfei | Wuhan University Wuhan University Wuhan University Wuhan University | HyperImageNet发布大规模高空间分辨率高光谱分类基准 | [#956](https://github.com/thinson/RS-PaperClaw/issues/956) |
-| [20260723] GeoThreat: Transferable Targeted Adversarial Attacks on Large Vision-Language Models for Remote Sensing Image Interpretation | Fu Yimin, Bai Yuefeng, Pan Baicheng, Liu Zhunga, Michael K. Ng | Department of Mathematics, Hong Kong Baptist University, Hong Kong, China (；School of Automation, Northwestern Polytechnical University, Xi'an,, China ( | GeoThreat实现针对遥感大模型的可迁移定向对抗攻击 | [#957](https://github.com/thinson/RS-PaperClaw/issues/957) |
-| [20260723] Spectral-Spatial Synergistic Guided Network for Hyperspectral Salient Object Detection | Peng Yanyan, Xu Tingfa, Xiao Yao, Liu Peifu, Bai Shuyan, Xu Fengxiang, Li Jianan | Chongqing Innovation Center, Beijing Institute of Technology, Chongqing, China；School of Optics and Photonics, Beijing Institute of Technology, Beijing, China (；School of Optics and Photonics, Beijing Institute of Technology, Beijing, China；the Key Laboratory of Photoelectronic Imaging Technology and System, Ministry of Education of China, Beijing, China ( | 提出光谱-空间协同引导网络用于高光谱显著目标检测 | [#958](https://github.com/thinson/RS-PaperClaw/issues/958) |
-
-## 🔎 观察
-
-- 高光谱遥感从分类向显著目标检测等细粒度任务拓展
-- 大模型安全性与视角泛化能力成为遥感AI研究新焦点
 
 ---
 
