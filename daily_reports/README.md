@@ -2,6 +2,52 @@
 
 最近三天日报（最新在前）：
 
+# [20260728](./202607/20260728.md)
+## 📌 今日概况
+
+今日共检索候选论文 14 篇；关键词+LLM 智能匹配遥感交叉论文 9 篇；最终纳入日报 6 篇。
+
+今日遥感研究聚焦于多工具视觉推理、频域自回归变化检测、开放词汇少样本分割、跨视角鲁棒定位、人机协同地雷检测及倾斜影像几何校正。多篇工作引入新基准与范式，推动遥感智能向高分辨率、鲁棒性与泛化性发展。
+
+## ✨ 今日亮点
+
+- 提出多工具视觉推理框架，应对超高分辨率遥感分析。
+- 频域自回归建模用于变化检测，提升时序特征捕捉能力。
+- 发布倾斜影像屋顶到地面投影位移校正基准与基线方法。
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260728] Beyond Zooming: Learning Multi-Tool Visual Reasoning for Ultra-High-Resolution Remote Sensing | Wang Fengxiang, Huang Jiangnan, Chen Mingshuo, Li Yueying, Shi Yang, Luo Junwei, Wang Haoyu, Li Yansheng, Zhang Jing, Zhao Haiyan, Yang Wenjing | National University of Defense Technology；Wuhan University；Tsinghua University | 提出多工具视觉推理框架，用于超高分辨率遥感图像分析。 | [#982](https://github.com/thinson/RS-PaperClaw/issues/982) |
+| [20260728] Freq-RemoteVAR: Next-Frequency Autoregressive Modeling for Remote Sensing Change Detection | Gong Luqi, Xu Rui, Chen Yue, Li Chao, Hong Jingqi, Zhao Xuefeng | the Research Center for Space Computing System, Zhejiang Lab, Hangzhou, China；State Key Laboratory of Networking and Switching Technology, Beijing University of Posts and Telecommunications, Beijing, China (；Changsha University of Science and Technology, Changsha, Hunan, China (；the Research Center for Space Computing System, Zhejiang Lab, Hangzhou, China (；the Faculty of Humanities, The Education University of Hong Kong, 10 Lo Ping Road, Tai Po, New Territories, Hong Kong (；College of Economics and Management, South China Agricultural University, Guangzhou, China ( | 提出频域自回归建模方法，用于遥感变化检测任务。 | [#983](https://github.com/thinson/RS-PaperClaw/issues/983) |
+| [20260728] Few-Shot Open-Vocabulary Remote Sensing Segmentation via Textual Inversion | Heo Junhyuk, Park Junghwan | TelePIX | 利用文本反演实现遥感图像的少样本开放词汇分割。 | [#984](https://github.com/thinson/RS-PaperClaw/issues/984) |
+| [20260728] ReLATE: Reliability-Guided Evidence Fusion for Robust UAV--Satellite cross-view Geo-Localization | Jiang Haochen, Pan Jialei, Sun Yuzhe, Dong Zhe, Ren Lecheng, Gu Yanfeng, Liu Tianzhu | a School of Electronics and Information Engineering, Harbin Institute of Technology, Harbin, 150001, Heilongjiang, China；b National Key Laboratory of Radar Detection and Sensing, Nanjing Research Institute of Electronics Technology；c School of Electrical and Electronic Engineering, University of Manchester, Manchester, United Kingdom；University-1652-Deg and SUES-200-Deg. UAVSat-Deg covers 27 corruption types, including 19 core and 8 compound | 提出可靠性引导融合方法，增强无人机-卫星跨视角定位鲁棒性。 | [#985](https://github.com/thinson/RS-PaperClaw/issues/985) |
+| [20260728] Human-in-the-Loop Signature Bootstrapping for UAV Hyperspectral PFM-1 Mine Detection | Lekhak Sagar, Prasanna Reddy Pulakurthi, Emmett J. Ientilucci | Rochester Institute of Technology, Rochester, NY 14623, USA | 采用人机协同签名自举方法，用于无人机高光谱地雷检测。 | [#986](https://github.com/thinson/RS-PaperClaw/issues/986) |
+| [20260728] ObliCity: A Benchmark and Baseline for Roof-to-Ground Projection Displacement Correction | Li Kai, Deng Yupeng, Deng Ligao, Xi Zhihao, Wang Chenhao, Zhang Jierui, Ji Yingrui, Meng Yu, Zhao Xiangyu | a School of Electronic, Electrical and Communication Engineering, University of Chinese Academy of Sciences；b College of Computing, Department of Data Science, City University of Hong Kong, Kowloon Tong, Hong Kong, 999077, China；c Aerospace Information Research Institute, Chinese Academy of Sciences；d Department of Electrical and Computer Engineering, The University of Hong Kong, Pokfulam, Hong Kong, 999077, China；and height estimation are two of the most prominent research | 发布倾斜影像屋顶到地面投影位移校正基准与基线方法。 | [#987](https://github.com/thinson/RS-PaperClaw/issues/987) |
+
+## ⚠️ 未纳入日报的匹配论文
+
+以下论文通过关键词/LLM 筛选，但在处理过程中失败未纳入日报。点击 arXiv 链接可查看原文。
+
+| 标题 | arXiv | 失败原因 |
+|------|-------|----------|
+| A Unified Benchmark and Modality-Adaptive Network for Day-and-Night Drone-View Geo-Localization | [2607.25778v1](https://arxiv.org/abs/2607.25778v1) | 质检未通过: 摘要为空或无效 |
+| Hyperspectral Intrinsic Decomposition: Joint Recovery of Reflectance and Photometric Components for Non-Lambertian Scenes | [2607.25371v1](https://arxiv.org/abs/2607.25371v1) | 质检未通过: 摘要为空或无效 |
+| Dual-Domain Manifold Modeling for Hyperspectral Image Fusion | [2607.25338v1](https://arxiv.org/abs/2607.25338v1) | 质检未通过: 摘要为空或无效 |
+
+
+## 🔎 观察
+
+- 频域建模与文本反演等跨模态技术正成为遥感变化检测与分割的新趋势。
+- 鲁棒性基准与校正数据集增多，反映遥感应用对实际部署可靠性的重视。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260727](./202607/20260727.md)
 ## 📌 今日概况
 
@@ -73,39 +119,6 @@ Powered by OpenClaw🦞
 
 - 多模态与安全合规性成为无人机智能体研究新焦点
 - 自监督与对比学习在遥感导航和图像生成中应用增多
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260725](./202607/20260725.md)
-## 📌 今日概况
-
-今日共检索候选论文 11 篇；关键词+LLM 智能匹配遥感交叉论文 4 篇；最终纳入日报 4 篇。
-
-今日遥感AI研究聚焦于SAR基础模型预训练、轻量化地物分割、高光谱融合边缘部署及SAR图像生成。SARATR-X-v2提出尺度感知结构预训练方法，PriSAR利用3D几何先验引导扩散模型生成可控SAR图像，轻量CNN在DeepGlobe上验证了高效分割潜力，高光谱融合在树莓派上实现优化部署。
-
-## ✨ 今日亮点
-
-- SARATR-X-v2提出尺度感知结构预训练，提升SAR基础模型性能。
-- PriSAR利用3D几何先验引导扩散模型，实现参数可控SAR图像生成。
-- 轻量CNN在DeepGlobe上验证了高效地物分割的可行性。
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260725] SARATR-X-v2: Scale-Aware Structural Pre-Training for SAR Foundation Models | Li Weijie, Song Yafei, Liu Yongxiang, Peng Bowen, Zhou Jie, Xia Jingyuan, Yang Wei, Liu Tianpeng, Liu Zhen, Liu Li | College of Electronic Science and Technology, National University of Defense Technology, Changsha, China ( | SARATR-X-v2提出尺度感知结构预训练方法，用于SAR基础模型。 | [#964](https://github.com/thinson/RS-PaperClaw/issues/964) |
-| [20260725] Optimized Embedded Implementation of Hyperspectral-Multispectral Image Fusion on Raspberry Pi | Salah Eddine Brezini, Bekhelifi Okba, Mezouar Oussama, Chams Eddine Choucha, Boukhacheba Sarra, Fethi Abdelatif Dali | Intelligent Systems Research Intelligent Systems Research Intelligent Systems Research；Laboratory (Laresi) Laboratory (Laresi) Laboratory (Laresi)；University of Science and University of Science and University of Science and；Advanced Data Science and Intelligent Systems Research Intelligent Systems Research；Cognitive Applications Laboratory Laboratory (Laresi) Laboratory (Laresi) | 高光谱与多光谱图像融合算法在树莓派上实现优化嵌入式部署。 | [#965](https://github.com/thinson/RS-PaperClaw/issues/965) |
-| [20260725] When Less Is More: A Controlled Benchmark of Lightweight CNNs for Satellite Land-Cover Segmentation on DeepGlobe | Atiq Ur Rehman, Joseph Michael Donovan | University of South Dakota, Vermillion, USA；of Economics & Decision Sciences, University of South Dakota, Vermillion, SD, USA | 轻量CNN在DeepGlobe卫星图像地物分割任务中表现高效。 | [#966](https://github.com/thinson/RS-PaperClaw/issues/966) |
-| [20260725] PriSAR: 3D Geometric-Prior-Guided Diffusion for Parameter-Controlled SAR Image Generation | Zhang Fan, Wu Xuanting, Ma Fei, Yin Qiang, Hu Yuxin | College of Information Science and Technology, Beijing University of Chemical Technology, Beijing 100029, China；Aerospace Information Research Institute, Chinese Academy of Sciences, Beijing 100190, China | PriSAR利用3D几何先验引导扩散模型生成参数可控SAR图像。 | [#967](https://github.com/thinson/RS-PaperClaw/issues/967) |
-
-## 🔎 观察
-
-- SAR基础模型预训练正从通用掩码建模向尺度感知结构提取演进。
-- 边缘计算与轻量化模型成为遥感应用落地的重要趋势。
 
 ---
 
