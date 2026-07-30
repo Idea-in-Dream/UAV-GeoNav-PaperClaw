@@ -213,4 +213,10 @@ python3 scripts/cli.py reconcile --date 20260317 --dry-run
 
 ## ⭐ Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=thinson/RS-PaperClaw&type=Date)](https://star-history.com/#thinson/RS-PaperClaw&Date)
+<a href="https://www.star-history.com/?type=date&repos=thinson%2FRS-PaperClaw">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=thinson/RS-PaperClaw&type=date&theme=dark&legend=top-left&sealed_token=TPh0wjcAG0zhstZquIv1wvD6ZO1ivBkIRyORY5OUIRQD1lfuCh65I6haCnVJoiF_Z7-GDb3ODMxbK1o3ivKSESpjV0mybC699l_sooqQQhlv8RV3WyrF9CDWMtIux-43aSlWBVZpPIStDaG8MbtK06ZpL7-9hkdfuUcFYn8dWv5kj-ChOskm_TRssKEn" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=thinson/RS-PaperClaw&type=date&legend=top-left&sealed_token=TPh0wjcAG0zhstZquIv1wvD6ZO1ivBkIRyORY5OUIRQD1lfuCh65I6haCnVJoiF_Z7-GDb3ODMxbK1o3ivKSESpjV0mybC699l_sooqQQhlv8RV3WyrF9CDWMtIux-43aSlWBVZpPIStDaG8MbtK06ZpL7-9hkdfuUcFYn8dWv5kj-ChOskm_TRssKEn" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=thinson/RS-PaperClaw&type=date&legend=top-left&sealed_token=TPh0wjcAG0zhstZquIv1wvD6ZO1ivBkIRyORY5OUIRQD1lfuCh65I6haCnVJoiF_Z7-GDb3ODMxbK1o3ivKSESpjV0mybC699l_sooqQQhlv8RV3WyrF9CDWMtIux-43aSlWBVZpPIStDaG8MbtK06ZpL7-9hkdfuUcFYn8dWv5kj-ChOskm_TRssKEn" />
+ </picture>
+</a>
