@@ -2,6 +2,42 @@
 
 最近三天日报（最新在前）：
 
+# [20260729](./202607/20260729.md)
+## 📌 今日概况
+
+今日共检索候选论文 7 篇；关键词+LLM 智能匹配遥感交叉论文 7 篇；最终纳入日报 7 篇。
+
+今日遥感AI研究聚焦多时相卫星影像的鲁棒匹配与三维重建，以及无人机系统的智能控制与感知。多篇工作利用生成式AI和季节不变特征提升跨时相立体匹配与光束法平差精度。同时，无人机领域涌现出面向6G定位、集群协同、非合作目标监控及反无人机跟踪等前沿方法，体现了遥感与通信、控制技术的深度融合趋势。
+
+## ✨ 今日亮点
+
+- 生成式AI提升多时相卫星立体匹配鲁棒性
+- 季节不变特征优化多时相卫星光束法平差
+- 无人机集群协同感知与通信一体化研究活跃
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260729] SeasonStereo: Robust Dense Stereo Matching for Multi-Date Satellite Imagery via Generative AI | Díaz-Laureano Álvaro, Marí Roger, Masquil Elías, Arias Pablo, Facciolo Gabriele | Dept. of Engineering, Universitat Pompeu Fabra, Barcelona, Spain；Université Paris-Saclay, CNRS, ENS Paris-Saclay, Centre Borelli, France；Institut Universitaire de France | 提出SeasonStereo，利用生成式AI实现多时相卫星影像的鲁棒密集立体匹配。 | [#989](https://github.com/thinson/RS-PaperClaw/issues/989) |
+| [20260729] Robust RPC Bundle Adjustment for Multi-Date Satellite Imagery with Season-Invariant Correspondences | Marí Roger, Masquil Elías, Bou Xavier, Ehret Thibaud, Facciolo Gabriele | Institut Universitaire de France；Université Paris-Saclay, CNRS, ENS Paris-Saclay, Centre Borelli, France | 提出鲁棒RPC光束法平差方法，利用季节不变对应点提升多时相卫星影像精度。 | [#990](https://github.com/thinson/RS-PaperClaw/issues/990) |
+| [20260729] Network Verified NTN Positioning for 6G A Standards Oriented Survey of Hybrid TN NTN Localization | Wang Donglin, Fang Zexing, Zhou Qiuheng, Hans D. Schotten | Rhineland-Palatinate Technical University of Kaiserslautern-Landau, Germany；German Research Center for Artificial Intelligence (DFKI GmbH), Kaiserslautern, Germany | 综述面向6G标准的混合地面与非地面网络定位技术，聚焦网络验证定位。 | [#991](https://github.com/thinson/RS-PaperClaw/issues/991) |
+| [20260729] Global Sensitive-Based Input Shaping for UAV-Payload Precision Motion Control | Baker Karan, Maharjan Sanjay, Hlayel Tariq, Ogunbodede Oladapo, Dunphy Dutch, Stein Adrian | Department of Mechanical and Industrial Engineering, Louisiana State University, LA, USA. ( | 提出基于全局敏感性的输入整形方法，提升无人机-负载系统的精密运动控制鲁棒性。 | [#992](https://github.com/thinson/RS-PaperClaw/issues/992) |
+| [20260729] UAV Swarming for Air-Ground ISAC via Cross-Region Cooperation | Miao Linghui, Gao Shijian | The Hong Kong University of Science and Technology (Guangzhou), China | 提出跨区域合作的无人机集群空中-地面一体化感知与通信方法。 | [#993](https://github.com/thinson/RS-PaperClaw/issues/993) |
+| [20260729] Online Monitoring and Risk Assessment of Non-Cooperative UAVs via STL-Aware Adaptive Fusion Kalman Filtering | Yan Xinhao, Yang Ruige, Peng Chao, Huang Hailong | Department of Aeronautical and Aviation Engineering, The Hong Kong Polytechnic University, Kowloon, Hong Kong ( | 提出基于信号时序逻辑的自适应融合卡尔曼滤波，用于非合作无人机在线监控与风险评估。 | [#994](https://github.com/thinson/RS-PaperClaw/issues/994) |
+| [20260729] Semantic-Aware Temporal Adaptation for UAV Anti-UAV Tracking | Qiao Xiaozhen, Zhang Da, Guo Yubin, Gao Junyu, Zhao Zhiyuan, Li Xuelong | School of Information Science and Technology, University of Science and Technology of China, Hefei, China；Northwestern Polytechnical University, Xi’an recent-frame estimates with training-time statistics, allowing, China；University of Science and Technology of China, Hefei, China；Institute of Artificial Intelligence (TeleAI), China targets both identity drift and video-specific feature shifts in Telecom, P；Institute of Artificial Intelligence (TeleAI), China Telecom, P | 提出语义感知时序自适应方法，解决反无人机跟踪中的身份漂移与特征偏移问题。 | [#995](https://github.com/thinson/RS-PaperClaw/issues/995) |
+
+## 🔎 观察
+
+- 多时相卫星影像处理正从几何校正向语义鲁棒匹配演进，生成式AI成为关键工具。
+- 无人机研究从单机控制向集群协同、非合作目标监控及反制等复杂场景拓展，智能化程度显著提升。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260728](./202607/20260728.md)
 ## 📌 今日概况
 
@@ -76,49 +112,6 @@ Powered by OpenClaw🦞
 
 - 机器学习方法正从模型开发转向大规模产品生成与质量控制。
 - 多源数据融合（如LiDAR与高光谱）与无监督学习成为提升遥感应用精度的关键路径。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260726](./202607/20260726.md)
-## 📌 今日概况
-
-今日共检索候选论文 13 篇；关键词+LLM 智能匹配遥感交叉论文 6 篇；最终纳入日报 5 篇。
-
-今日遥感AI研究聚焦于多模态与安全合规性，涵盖无人机智能体基准、空地平台行人跟踪、越野导航规划、遥感图像生成及极化SAR分类。趋势显示，自监督学习、对比学习及新型架构（如Mamba）正推动遥感智能体在复杂环境下的感知与决策能力提升。
-
-## ✨ 今日亮点
-
-- 多模态无人机智能体安全策略基准发布
-- 空地平台行人跟踪多线索融合框架提出
-- 方向自适应Mamba用于极化SAR分类
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260726] MulRobBench: A Decision-Level Benchmark for Safe and Security-Policy-Compliant Multimodal UAV Agents | Belal S. Alsinglawi, Wang Weizheng, Wu Junyi, Jiang Yi, Lin Lianhai, Debbah Merouane, Alsmadi Izzat | College of Technological Innovation, Zayed University, Abu Dhabi, United Arab Emirates (；School of Computer Science and Information Technology, The University of Adelaide, Adelaide, SA, Australia (；School of Computer Science and Engineering, University of Emergency Management, Beijing, China (e-mails；Department of Computer and Information Engineering, College of Computing and Mathematical Sciences, Khalifa University, Abu Dhabi, United Arab Emirates ( | 提出MulRobBench基准，评估多模态无人机智能体安全策略合规性。 | [#969](https://github.com/thinson/RS-PaperClaw/issues/969) |
-| [20260726] Beyond Appearance: A Multi-cue Framework and Large-scale Benchmark for Pedestrian Association and Tracking on Mobile Aerial-Ground Platforms | Wu Ruiqi, Jiao Bingliang, Han Ruize, Yu Hangzheng, Jiang Xunkai, Wang Shining, Hu Yuanqi, Wang Wenxuan, Wang Peng | School of Computer Science, Northwestern Polytechnical University, Xi'an, China; Ningbo Institute, Northwestern Polytechnical University, Ningbo, China; and National Engineering Laboratory for Integrated Aero-Space-Ground-Ocean Big Data Application Technology, Xi'an, China (；the Shenzhen University of Advanced Technology, Shenzhen, China ( | 构建多线索框架与大规模基准，实现空地平台行人关联与跟踪。 | [#970](https://github.com/thinson/RS-PaperClaw/issues/970) |
-| [20260726] Learning Traversability-Aware Global Planners for Long Horizon Off-Road Navigation | Viswanath Kasi, Jason M. Gregory, Kolhe Shaunak, Saripalli Srikanth | This research was developed with funding from the Defense Advanced；Research Projects Agency (DARPA) and DEVCOM Army Research Labo-；Texas A&M University, College Station, TX 77840, USA kasiv；DEVCOM Army Research laboratory, Adelphi, MD, USA | 自监督学习可通行性感知全局规划器，用于长时越野导航。 | [#971](https://github.com/thinson/RS-PaperClaw/issues/971) |
-| [20260726] Contrastive Parameter Disentanglement for Multi-modal Remote Sensing Image Generation | Zhang Yu, Zhao Wenda, Tang Haojun, Wang Haipeng | School of Information and Communication Engineering, Dalian University of Technology, Dalian, China ( | 对比参数解耦方法，提升多模态遥感图像生成质量。 | [#972](https://github.com/thinson/RS-PaperClaw/issues/972) |
-| [20260726] Direction-adaptive Mamba: Spatial-Frequency Dual-Domain Collaborative Learning for PolSAR Image Classification | Shi Junfei, Cheng Yu, Zhang Haojia, Hua Wenqiang, Li Junhuai, Gong Maoguo | Xidian University | 方向自适应Mamba实现空间-频率双域协同极化SAR分类。 | [#973](https://github.com/thinson/RS-PaperClaw/issues/973) |
-
-## ⚠️ 未纳入日报的匹配论文
-
-以下论文通过关键词/LLM 筛选，但在处理过程中失败未纳入日报。点击 arXiv 链接可查看原文。
-
-| 标题 | arXiv | 失败原因 |
-|------|-------|----------|
-| WGDnet: Wishart-guided Geometric-aware Deep Network for PolSAR Image Classification | [2607.23638v1](https://arxiv.org/abs/2607.23638v1) | 质检未通过: 单位为空或无效 |
-
-
-## 🔎 观察
-
-- 多模态与安全合规性成为无人机智能体研究新焦点
-- 自监督与对比学习在遥感导航和图像生成中应用增多
 
 ---
 
