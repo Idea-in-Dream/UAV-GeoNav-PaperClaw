@@ -2,6 +2,47 @@
 
 最近三天日报（最新在前）：
 
+# [20260730](./202607/20260730.md)
+## 📌 今日概况
+
+今日共检索候选论文 15 篇；关键词+LLM 智能匹配遥感交叉论文 12 篇；最终纳入日报 12 篇。
+
+今日研究聚焦多模态融合与高效特征学习，涵盖洪水监测、农田分割、图像复原等应用。CLIP与SAR结合提升变化检测效率，Mamba与多尺度卷积推动高光谱分类，4D重建与无人机感知拓展动态场景理解。整体趋势强调跨模态协同与轻量化设计，以应对复杂遥感任务。
+
+## ✨ 今日亮点
+
+- 多模态融合成主流，文本-图像、SAR-光学协同应用广泛
+- 高效特征学习受关注，Mamba与低秩专家网络兴起
+- 动态场景理解深化，4D重建与状态转移模型涌现
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260730] Finding Change in Satellite Archives from Text: How to Combine Before-and-After Images Efficiently | Roy Simon, Bong Mark, Beltrame Giovanni | Polytechnique Montréal | 利用文本检索卫星影像变化，提出高效前后时相融合方法 | [#997](https://github.com/thinson/RS-PaperClaw/issues/997) |
+| [20260730] Large scale cross-regional remote sensing flood monitoring framework for operative mapping and impact analysis | Novikov Ilya, Illarionova Svetlana, Dzharkinov Ruslan, Smirnova Maria, Abdullin Ayrat, Korotkova Anna, Ulianova Mariia, Shadrin Dmitrii, Burnaev Evgeny | Skolkovo Institute of Science and Technology, Moscow, 121205, Russia；Trofimuk Institute of Petroleum Geology and Geophysics SB RAS；King Fahd University of Petroleum and Minerals, Dhahran, 31261；Tyumen Industrial University, Tyumen, 625000, Russia；Huawei Russian Research Institute, Moscow, Russia | 构建跨区域SAR洪水监测框架，实现快速制图与影响分析 | [#998](https://github.com/thinson/RS-PaperClaw/issues/998) |
+| [20260730] AdaAnchor4D: Anchor-Conditioned Spatiotemporal Feature Aggregation for Monocular UAV 4D Reconstruction | Xu Peiyi, Zhang Junpeng, Li Guanbin, Shang Ronghua, Feng Mingtao, Dong Le, Dong Weisheng, Shi Guangming, Feng Jie | Xidian University, Xi’an, China；Sun Yat-sen University, Guangzhou, China | 提出锚点条件时空聚合，提升单目无人机4D重建精度 | [#999](https://github.com/thinson/RS-PaperClaw/issues/999) |
+| [20260730] MSCM-net: A hyperspectral image classiffcation method based on multi-scale convolution and Mamba | Chen Jianjun, Wang Linlin, Chang Lifang, Huo Limin, Song Shujiang, Zhao Yanjia, Shao Mingwei | Research highlight 1；Research highlight 2；Research highlight 3；Research highlight 4；Research highlight 5 | 结合多尺度卷积与Mamba，增强高光谱图像分类性能 | [#1000](https://github.com/thinson/RS-PaperClaw/issues/1000) |
+| [20260730] Space2Ground 2.0: A Multi-Source Dataset and Framework for Agricultural Monitoring through Fusion of Street-Level and Satellite Imagery | Tsardanidis Iason, Koukos Alkiviadis, Choumos George, Sitokontantinou Vasileios, Kontoes Charalampos | Operational Unit BEYOND Centre, IAASARS, National Observatory of Athens, Athens, Greece；Artificial Intelligence Group, Wageningen University \& Research, The Netherlands – | 融合街景与卫星影像，构建农业监测多源数据集与框架 | [#1001](https://github.com/thinson/RS-PaperClaw/issues/1001) |
+| [20260730] Think with Extra-Image: A Farmland Segmentation Agent Driven by Spatio-Temporal Information Gain | Wu Haiyang, Mu Weiliang, Du Zhuofei, Zhong Dandan, Shi Kaijie, Li Haifeng, Tao Chao | Central South University, Changsha, China | 利用时空信息增益驱动智能体，优化农田分割决策 | [#1002](https://github.com/thinson/RS-PaperClaw/issues/1002) |
+| [20260730] Meteosat Third Generation imagery improves CNN-based SSI retrieval | Pribõtkin Gordei, Post Piia, Toll Velle | Institute of Computer Science；University of Tartu；Centre for Climate Research, Institute of Physics | 第三代气象卫星影像提升CNN太阳辐照度反演精度 | [#1003](https://github.com/thinson/RS-PaperClaw/issues/1003) |
+| [20260730] FootprintNet: State-Transition-Guided Dynamic Footprint Learning for Multi-temporal Remote Sensing Change Detection | Zhang Haotian, Chen Hao, Guo Han, Zou Zhengxia, Shi Zhenwei | Beihang University 1, Shanghai Artificial Intelligence Laboratory 2 | 状态转移引导足迹学习，改善多时相建筑变化检测 | [#1004](https://github.com/thinson/RS-PaperClaw/issues/1004) |
+| [20260730] CoRE-UIR: Prior-guided common and residual experts for efficient all-in-one remote sensing image restoration | Zhang Zaiyan, Yuan Qiangqiang, Li Jie, Lihe Ziyang, Wan Yu, Chen Yuzeng, Su Xin, Zhang Liangpei | a School of Geodesy and Geomatics, Wuhan University, Wuhan 430079, Hubei, China；b School of Artificial Intelligence, Wuhan University, Wuhan 430072, Hubei, China；c State Key Laboratory of Information Engineering in Surveying, Mapping and Remote Sensing, Wuhan University, Wuhan 430079, Hubei, China；Universal Image Restoration), a prior-guided global-local framework centered on the Common-and- | 先验引导的通用与残差专家网络，实现高效一体化复原 | [#1005](https://github.com/thinson/RS-PaperClaw/issues/1005) |
+| [20260730] Learning to Understand Body Language from Flight through Robust 3D Avatar Placing | Costea Dragos, Marcu Alina, Lazar Cristina, Leordeanu Marius | National University of Science and Technology “Politehnica” Bucharest, Romania；“Simion Stoilow” Institute of Mathematics of the Romanian Academy；NORCE Norwegian Research Centre AS | 通过3D虚拟人放置，从飞行中学习理解人体动作意图 | [#1006](https://github.com/thinson/RS-PaperClaw/issues/1006) |
+| [20260730] Arm2Air: Cross-Embodiment Skeleton Transfer for 3D Relay Formation | Lee Dohun, Yoo Kyeonghyun, Kim Seokmin, Lee Byongho, Oh Seungjoo, Kim Hwangnam | Department of Electrical and Electronic Engineering, Korea University, Seoul, Republic of Korea；Department of Smart Mobility Engineering, Inha University, Incheon, Republic of Korea | 跨实体骨架迁移，实现无人机中继编队3D协同规划 | [#1007](https://github.com/thinson/RS-PaperClaw/issues/1007) |
+| [20260730] A Systems Engineering Framework for Vision-Language-Enabled UAV Triage and Disaster Response | Saha Swapnil, Bhuvan Rajanasiriyur Jagadeesha, Patnaik Karishma, Majumdar Neelakshi | University of Arkansas, Fayetteville, Arkansas, 72701, USA；University of Michigan-Dearborn, Dearborn, Michigan, 48128, USA；Graduate Research Assistant, Department of Mechanical Engineering；Graduate Research Assistant, Department of Electrical and Computer Engineering；Assistant Professor, Department of Electrical and Computer Engineering；Assistant Professor, Department of Mechanical Engineering | 系统工程框架集成视觉语言模型，支持无人机灾后响应 | [#1008](https://github.com/thinson/RS-PaperClaw/issues/1008) |
+
+## 🔎 观察
+
+- 多模态融合从数据级向任务级演进，文本与SAR等异构信息协同增强解译能力
+- 轻量化与高效架构（如Mamba、低秩）成为遥感深度学习新趋势，平衡精度与计算
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260729](./202607/20260729.md)
 ## 📌 今日概况
 
@@ -77,41 +118,6 @@ Powered by OpenClaw🦞
 
 - 频域建模与文本反演等跨模态技术正成为遥感变化检测与分割的新趋势。
 - 鲁棒性基准与校正数据集增多，反映遥感应用对实际部署可靠性的重视。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260727](./202607/20260727.md)
-## 📌 今日概况
-
-今日共检索候选论文 13 篇；关键词+LLM 智能匹配遥感交叉论文 6 篇；最终纳入日报 6 篇。
-
-今日遥感研究聚焦于大规模地球观测产品的最佳实践、多无人机协同遥感、高光谱成像在光伏质量监测中的应用、基于SAR时序的无监督震后城市恢复监测、融合树与神经网络的植被分类，以及利用嵌入向量进行全球作物类型参考数据集清洗。整体趋势显示，机器学习与遥感深度融合，注重实际应用与数据质量。
-
-## ✨ 今日亮点
-
-- 提出大规模EO产品制图最佳实践指南
-- 分布式多无人机协同用于光伏巡检
-- 嵌入向量异常检测清洗全球作物数据集
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260727] From Machine Learning to Large-Scale EO Products: Best Practices for Making Maps | Sialelli Ghjulia, Young Robin, Jiang Yuchang, Aybar Cesar, Scheibenreif Linus, Robert Damien, Mosig Clemens, Adam J. Stewart, Jan D. Wegner, Pirinen Aleksis, Mogren Olof, Schindler Konrad | ETH AI Center, Zurich, Switzerland；Dept. of Computer Science and Technology, University of Cambridge, UK；Land Change Science, Swiss Federal Research Institute WSL, Switzerland；EcoVision Lab, University of Zurich, Switzerland；Inst. for Earth System Science and Remote Sensing, Leipzig University, Germany；RISE Research Institutes of Sweden · Climes, Swedish Centre for Impacts of；ETH AI Center through an ETH AI Center doctoral fellowship to Ghjulia Sialelli | 综述从机器学习到大规模地球观测产品制图的最佳实践。 | [#975](https://github.com/thinson/RS-PaperClaw/issues/975) |
-| [20260727] Distributed Coordination for Resilient Multi-UAV Remote Sensing: A Photovoltaic Inspection Case Study | GP-Lenza Guillermo, Fernandez-Cortizas Miguel, Molina Martin, Campoy Pascual | Centre for Automation and Robotics C.A.R, (UPM-CSIC), Universidad Polit\'ecnica de Madrid, Spain；Department of Artificial Intelligence, Universidad Polit\'ecnica de Madrid,, Spain；Automation and Robotics Group (ARG-SnT), University of Luxembourg - SnT, Luxembourg | 提出分布式协调框架实现弹性多无人机遥感光伏巡检。 | [#976](https://github.com/thinson/RS-PaperClaw/issues/976) |
-| [20260727] Hyperspectral imaging for inline quality monitoring of roll-to-roll slot-die coated organic photovoltaic active layers | Mammeri Abdelouadoud, Søren Alkærsig Jensen, Søren AR Kynde, Astrid Tranum Rømer, Korhonen Raimo, Ciambezi Matteo, Espindola Moises, Jens Wenzel Andreasen | Department of Energy, Technical University of Denmark Danish Fundamental Metrology A/S；Independent Researcher F.Junckers Industrier；Department of Energy, Technical University of Denmark | 高光谱成像用于卷对卷涂布有机光伏活性层在线质量监测。 | [#977](https://github.com/thinson/RS-PaperClaw/issues/977) |
-| [20260727] Monitoring Post-Disaster Urban Recovery Using High-Resolution SAR Time Series and Unsupervised Learning: Evidence from the 2023 Türkiye-Syria Earthquake | Russo Luigi, Tapete Deodato, Silvia Liberata Ullo, Gamba Paolo | Department of Electrical, Computer and Biomedical Engineering, University of Pavia, Pavia, Italy (；Department of Engineering, University of Sannio, Benevento, Italy ( | 利用高分辨率SAR时序与无监督学习监测震后城市恢复。 | [#978](https://github.com/thinson/RS-PaperClaw/issues/978) |
-| [20260727] Calibrated Tree-Neural Fusion for Fine-Grained Vegetation Community Classification | Datta Dristi, Md Khalid Hasan Sakib, Paul Manoranjan | School of Information Technology and Engineering, Sydney Metropolitan Institute of Technology (SydneyMet)；Department of Electrical \& Electronic Engineering, Rajshahi University of Engineering \& Technology；School of Computing, Mathematics and Engineering, Charles Sturt University | 提出校准的树-神经融合方法进行细粒度植被群落分类。 | [#979](https://github.com/thinson/RS-PaperClaw/issues/979) |
-| [20260727] Embeddings based Anomaly Detection for Cleaning Global Crop Type Reference Datasets | Syed Roshaan Ali Shah, Kristof Van Tricht, Butsko Christina, Degerickx Jeroen, Szantoi Zoltan | VITO Remote Sensing；European Space Agency (ESA) | 基于嵌入向量的异常检测方法用于清洗全球作物类型参考数据集。 | [#980](https://github.com/thinson/RS-PaperClaw/issues/980) |
-
-## 🔎 观察
-
-- 机器学习方法正从模型开发转向大规模产品生成与质量控制。
-- 多源数据融合（如LiDAR与高光谱）与无监督学习成为提升遥感应用精度的关键路径。
 
 ---
 
