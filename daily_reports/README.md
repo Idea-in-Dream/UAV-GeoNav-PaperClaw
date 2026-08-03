@@ -2,6 +2,40 @@
 
 最近三天日报（最新在前）：
 
+# [20260731](./202607/20260731.md)
+## 📌 今日概况
+
+今日共检索候选论文 9 篇；关键词+LLM 智能匹配遥感交叉论文 5 篇；最终纳入日报 5 篇。
+
+今日遥感AI研究聚焦于少样本学习与图像编辑两大方向。少样本分割与场景分类方法不断涌现，旨在降低标注成本并提升泛化能力。同时，基于视觉语言模型的卫星图像编辑、无人机地雷检测数据集及高光谱分类的量子启发方法也取得进展，展示了多模态融合与跨域适应在遥感应用中的潜力。
+
+## ✨ 今日亮点
+
+- 少样本遥感分割与分类方法成热点，强调训练自由与局部一致性。
+- 视觉语言模型引入卫星图像编辑，实现掩码条件化编辑。
+- 高光谱分类探索量子态表示，创新密度矩阵学习框架。
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260731] SatEdit: Mask-Conditioned Image Editing via VLM-Guided Segment Annotation | Talha Muhammad, Muhammad Ahmed Amer | Independent Researcher | SatEdit利用视觉语言模型生成掩码，实现卫星图像的掩码条件化编辑。 | [#1010](https://github.com/thinson/RS-PaperClaw/issues/1010) |
+| [20260731] Training-Free Entity-Level Few-Shot Segmentation of Remote Sensing Images with Advection Refinement | Bai Xueting, Ni Huan | School of Remote Sensing and Geomatics Engineering, Nanjing University of Information Science and Technology | 提出无需训练的地物级少样本分割方法，结合平流细化提升精度。 | [#1011](https://github.com/thinson/RS-PaperClaw/issues/1011) |
+| [20260731] Locally Consistent Transductive Information Maximization for Few-Shot Remote Sensing Scene Classification | Karim El Khoury, Gérin Benoît, Macq Benoît, Christophe De Vleeschouwer | ICTEAM, UCLouvain, Louvain-la-Neuve, Belgium | 采用局部一致转导信息最大化，改进少样本遥感场景分类性能。 | [#1012](https://github.com/thinson/RS-PaperClaw/issues/1012) |
+| [20260731] SULAND v2: A Refined RGB Dataset and Deep Learning Object Detection Benchmark for UAV/UGV-Based SUrface LANDmine Detection Under Domain Shift | Lekhak Sagar, Prasanna Reddy Pulakurthi, Joshi Lalit, Bhatta Ramesh, Emmett J. Ientilucci | the Rochester Institute of Technology, Rochester, NY, USA；Thapathali Campus, Institute of Engineering, Tribhuvan University, Kathmandu, Nepal | 发布SULAND v2数据集，用于无人机/地面机器人地雷检测的域偏移基准。 | [#1013](https://github.com/thinson/RS-PaperClaw/issues/1013) |
+| [20260731] LegoQ: Density-Matrix Representation Learning with Spectral-Spatial State Transitions for Hyperspectral Classification | Cao Weijia, Yang Xiaofei, Wang Fu, Zhou Yicong, Zhou Xiang | Sun Yat-sen University；University of Macau | LegoQ通过密度矩阵表示学习光谱-空间状态转换，实现高光谱分类。 | [#1014](https://github.com/thinson/RS-PaperClaw/issues/1014) |
+
+## 🔎 观察
+
+- 少样本学习在遥感领域持续深化，从分类扩展到分割，且强调无需训练。
+- 量子启发模型开始应用于高光谱分类，显示跨学科融合趋势。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260730](./202607/20260730.md)
 ## 📌 今日概况
 
@@ -72,52 +106,6 @@ Powered by OpenClaw🦞
 
 - 多时相卫星影像处理正从几何校正向语义鲁棒匹配演进，生成式AI成为关键工具。
 - 无人机研究从单机控制向集群协同、非合作目标监控及反制等复杂场景拓展，智能化程度显著提升。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260728](./202607/20260728.md)
-## 📌 今日概况
-
-今日共检索候选论文 14 篇；关键词+LLM 智能匹配遥感交叉论文 9 篇；最终纳入日报 6 篇。
-
-今日遥感研究聚焦于多工具视觉推理、频域自回归变化检测、开放词汇少样本分割、跨视角鲁棒定位、人机协同地雷检测及倾斜影像几何校正。多篇工作引入新基准与范式，推动遥感智能向高分辨率、鲁棒性与泛化性发展。
-
-## ✨ 今日亮点
-
-- 提出多工具视觉推理框架，应对超高分辨率遥感分析。
-- 频域自回归建模用于变化检测，提升时序特征捕捉能力。
-- 发布倾斜影像屋顶到地面投影位移校正基准与基线方法。
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260728] Beyond Zooming: Learning Multi-Tool Visual Reasoning for Ultra-High-Resolution Remote Sensing | Wang Fengxiang, Huang Jiangnan, Chen Mingshuo, Li Yueying, Shi Yang, Luo Junwei, Wang Haoyu, Li Yansheng, Zhang Jing, Zhao Haiyan, Yang Wenjing | National University of Defense Technology；Wuhan University；Tsinghua University | 提出多工具视觉推理框架，用于超高分辨率遥感图像分析。 | [#982](https://github.com/thinson/RS-PaperClaw/issues/982) |
-| [20260728] Freq-RemoteVAR: Next-Frequency Autoregressive Modeling for Remote Sensing Change Detection | Gong Luqi, Xu Rui, Chen Yue, Li Chao, Hong Jingqi, Zhao Xuefeng | the Research Center for Space Computing System, Zhejiang Lab, Hangzhou, China；State Key Laboratory of Networking and Switching Technology, Beijing University of Posts and Telecommunications, Beijing, China (；Changsha University of Science and Technology, Changsha, Hunan, China (；the Research Center for Space Computing System, Zhejiang Lab, Hangzhou, China (；the Faculty of Humanities, The Education University of Hong Kong, 10 Lo Ping Road, Tai Po, New Territories, Hong Kong (；College of Economics and Management, South China Agricultural University, Guangzhou, China ( | 提出频域自回归建模方法，用于遥感变化检测任务。 | [#983](https://github.com/thinson/RS-PaperClaw/issues/983) |
-| [20260728] Few-Shot Open-Vocabulary Remote Sensing Segmentation via Textual Inversion | Heo Junhyuk, Park Junghwan | TelePIX | 利用文本反演实现遥感图像的少样本开放词汇分割。 | [#984](https://github.com/thinson/RS-PaperClaw/issues/984) |
-| [20260728] ReLATE: Reliability-Guided Evidence Fusion for Robust UAV--Satellite cross-view Geo-Localization | Jiang Haochen, Pan Jialei, Sun Yuzhe, Dong Zhe, Ren Lecheng, Gu Yanfeng, Liu Tianzhu | a School of Electronics and Information Engineering, Harbin Institute of Technology, Harbin, 150001, Heilongjiang, China；b National Key Laboratory of Radar Detection and Sensing, Nanjing Research Institute of Electronics Technology；c School of Electrical and Electronic Engineering, University of Manchester, Manchester, United Kingdom；University-1652-Deg and SUES-200-Deg. UAVSat-Deg covers 27 corruption types, including 19 core and 8 compound | 提出可靠性引导融合方法，增强无人机-卫星跨视角定位鲁棒性。 | [#985](https://github.com/thinson/RS-PaperClaw/issues/985) |
-| [20260728] Human-in-the-Loop Signature Bootstrapping for UAV Hyperspectral PFM-1 Mine Detection | Lekhak Sagar, Prasanna Reddy Pulakurthi, Emmett J. Ientilucci | Rochester Institute of Technology, Rochester, NY 14623, USA | 采用人机协同签名自举方法，用于无人机高光谱地雷检测。 | [#986](https://github.com/thinson/RS-PaperClaw/issues/986) |
-| [20260728] ObliCity: A Benchmark and Baseline for Roof-to-Ground Projection Displacement Correction | Li Kai, Deng Yupeng, Deng Ligao, Xi Zhihao, Wang Chenhao, Zhang Jierui, Ji Yingrui, Meng Yu, Zhao Xiangyu | a School of Electronic, Electrical and Communication Engineering, University of Chinese Academy of Sciences；b College of Computing, Department of Data Science, City University of Hong Kong, Kowloon Tong, Hong Kong, 999077, China；c Aerospace Information Research Institute, Chinese Academy of Sciences；d Department of Electrical and Computer Engineering, The University of Hong Kong, Pokfulam, Hong Kong, 999077, China；and height estimation are two of the most prominent research | 发布倾斜影像屋顶到地面投影位移校正基准与基线方法。 | [#987](https://github.com/thinson/RS-PaperClaw/issues/987) |
-
-## ⚠️ 未纳入日报的匹配论文
-
-以下论文通过关键词/LLM 筛选，但在处理过程中失败未纳入日报。点击 arXiv 链接可查看原文。
-
-| 标题 | arXiv | 失败原因 |
-|------|-------|----------|
-| A Unified Benchmark and Modality-Adaptive Network for Day-and-Night Drone-View Geo-Localization | [2607.25778v1](https://arxiv.org/abs/2607.25778v1) | 质检未通过: 摘要为空或无效 |
-| Hyperspectral Intrinsic Decomposition: Joint Recovery of Reflectance and Photometric Components for Non-Lambertian Scenes | [2607.25371v1](https://arxiv.org/abs/2607.25371v1) | 质检未通过: 摘要为空或无效 |
-| Dual-Domain Manifold Modeling for Hyperspectral Image Fusion | [2607.25338v1](https://arxiv.org/abs/2607.25338v1) | 质检未通过: 摘要为空或无效 |
-
-
-## 🔎 观察
-
-- 频域建模与文本反演等跨模态技术正成为遥感变化检测与分割的新趋势。
-- 鲁棒性基准与校正数据集增多，反映遥感应用对实际部署可靠性的重视。
 
 ---
 
