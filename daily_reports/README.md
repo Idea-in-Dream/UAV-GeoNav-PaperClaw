@@ -2,6 +2,50 @@
 
 最近三天日报（最新在前）：
 
+# [20260803](./202608/20260803.md)
+## 📌 今日概况
+
+今日共检索候选论文 17 篇；关键词+LLM 智能匹配遥感交叉论文 15 篇；最终纳入日报 15 篇。
+
+今日遥感AI研究聚焦于高光谱图像分类与超分辨率、遥感视频理解、灾害监测及基础模型微调。多篇论文引入Mamba架构、扩散模型及自监督学习，推动模型效率与泛化能力提升。同时，新发布多个基准数据集（如GEOID-Flood、RSVideo、OSSDD），促进多模态与视频理解研究。整体趋势显示，遥感AI正从单一任务向跨模态、生成式及基础模型方向发展。
+
+## ✨ 今日亮点
+
+- Mamba架构在高光谱分类与超分辨率中表现突出
+- 多模态基准数据集推动灾害监测与视频理解研究
+- 基础模型微调与生成式模型成为遥感AI新热点
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260803] Fermat Active Laplace Learning for Semi-Supervised Hyperspectral Image Classification | Buranasiri Vutichart, James M. Murphy | Department of Mathematics；Tufts University | 提出Fermat主动拉普拉斯学习，提升半监督高光谱图像分类性能 | [#1025](https://github.com/thinson/RS-PaperClaw/issues/1025) |
+| [20260803] ISRS-DETR: Detection-Guided Click Propagation for Remote Sensing Interactive Segmentation | Thanh Duc Pham, Nguyen Anh, Duong Duc Hieu, Pham Minh-Tan | FPT Software AI Center, Vietnam；Department of Computer Science, University of Liverpool, UK；IRISA, Université Bretagne Sud, UMR 6074 | ISRS-DETR利用检测引导点击传播，改进遥感交互式分割 | [#1026](https://github.com/thinson/RS-PaperClaw/issues/1026) |
+| [20260803] UAV-Based Environmental Monitoring of Rip-Current Indicators Using Wavelet-Derived Texture Features | Yonatan Ben Avraham, Binyaminov Baruch, Aperstein Yehudit | Intelligent Systems, Afeka Academic College of Engineering, Tel Aviv 6998812, Israel | 基于小波纹理特征，无人机监测离岸流指示物 | [#1027](https://github.com/thinson/RS-PaperClaw/issues/1027) |
+| [20260803] USP-Mamba: Unmixing-Derived Spectral and Structural Prompting for Hyperspectral Image Super-Resolution | Chen Shi, Zhang Jie, Zhou Yicong | Department of Computer Science, University of Macau, Macau, China | USP-Mamba结合光谱解混与提示，实现高光谱超分辨率 | [#1028](https://github.com/thinson/RS-PaperClaw/issues/1028) |
+| [20260803] Global-Scale Self-Supervised Spatiotemporal Learning for NDVI Time-Series Reconstruction | Li Ang, Jiang Menghui, Guan Xiaobin, Chu Dong, Shen Huanfeng | School of Geography and Tourism, Anhui Normal University, Wuhu 241002, China；Key Laboratory of Earth Surface Processes and Regional Response in the Yangtze River；Key Laboratory of Geographic Information System of Ministry of Education, Wuhan 430079；Key Laboratory of Digital Cartography and Land Information Application of the Ministry of | 全球尺度自监督时空学习，重建NDVI时间序列 | [#1029](https://github.com/thinson/RS-PaperClaw/issues/1029) |
+| [20260803] GEOID-Flood: A Large-Scale Multi-Modal Benchmark Dataset for Flood Segmentation | Chiriaco Gaetano, Barco Luca, Bragagnolo Andrea, Rossi Claudio, Arnaudo Edoardo | Fondazione LINKS；Politecnico di Torino | GEOID-Flood提供多模态洪水分割基准数据集 | [#1030](https://github.com/thinson/RS-PaperClaw/issues/1030) |
+| [20260803] Mapping melliferous tree species in Kenya via one-class classification with hyperspectral unsupervised domain adaptation | Luo Zhaozhi, Heiskanen Janne, Vuorinne Ilja, Ocholla Ian, Zhang Shiqi, Järvinen Saana, Wang Xinyu, Zhong Yanfei, Pellikka Petri | School of Emergency Management, Xihua University；School of Remote Sensing and Information Engineering, Wuhan University；State Key Laboratory of Information Engineering in Surveying, Mapping and Remote Sensing, Wuhan University | 无监督域适应用于肯尼亚蜜源树种制图 | [#1031](https://github.com/thinson/RS-PaperClaw/issues/1031) |
+| [20260803] RSVideo: Are Your Vision-Language Models Ready for Remote Sensing Videos? | Zhou Hongjie, Wang Shiqin, Chen Haoyang, Guo Haonan, Wang Di, Liu Juhua, Lin Fu, Luo Yong | Wuhan University；Zhongguancun Academy | RSVideo基准评估视觉语言模型在遥感视频理解能力 | [#1032](https://github.com/thinson/RS-PaperClaw/issues/1032) |
+| [20260803] OSSDD - a New Open Dataset for Sentinel-1 Ship Detection | Hammer Horst, Hochstuhl Sylvia, Thiele Antje, Brosch Tobias, Davidson Padraig, Remiger Tim, Teutsch Michael | Fraunhofer Institute of Optronics, System Technologies and Image Exploitation - IOSB；Karlsruhe Institute of Technology - KIT | OSSDD发布开放Sentinel-1舰船检测数据集 | [#1033](https://github.com/thinson/RS-PaperClaw/issues/1033) |
+| [20260803] PNEC-Mamba: Prototype-Guided Positive-Negative Evidence Calibration for Hyperspectral Image Classification | Xu Mingzhen, Xu Can, Wang Di, Guo Haonan, Du Bo | Wuhan University | PNEC-Mamba通过原型引导证据校准，提升高光谱分类 | [#1034](https://github.com/thinson/RS-PaperClaw/issues/1034) |
+| [20260803] Assessing the Benefits of Combining Advanced Deep Learning Techniques for Post-Disaster Building Damage Assessment from UAV Imagery | Huy Quang Ung, Habault Guillaume, Legaspi Roberto, Niu Hao, Cao Lian, Taya Masato | KDDI Research, Inc., Fujimino, Japan | 结合深度学习技术，评估无人机影像建筑损毁 | [#1035](https://github.com/thinson/RS-PaperClaw/issues/1035) |
+| [20260803] GeoCore-9B: Towards Geo-Aware Generative Foundation Models in Earth Observation | Do Jeonghyeok, Kim Munchurl | Information \& Electronics Research Institute；School of Electrical Engineering | GeoCore-9B构建地理感知生成式基础模型 | [#1036](https://github.com/thinson/RS-PaperClaw/issues/1036) |
+| [20260803] EchoChange: A Diffusion Language Model with Dual Pass Remasking for Factual Remote Sensing Disaster Change Captioning | Sun Dongwei, Yao Bowen, Zhang Yujie, Liu Pei, Yao Jing, Cao Xiangyong | School of Computer Science and Technology and the Ministry of Education Key Lab for Intelligent Networks and Network；Security, Xi’an Jiaotong University, 710049, China；School of Computer Science and Technology, Faculty of Electronic and Information Engineering, Xi’an Jiaotong University；State Key Laboratory of Remote Sensing and Digital Earth, Aerospace Information Research Institute, Chinese Academy of | EchoChange用扩散语言模型实现灾害变化描述 | [#1037](https://github.com/thinson/RS-PaperClaw/issues/1037) |
+| [20260803] CoNav-UAV: Cooperative Dual-Altitude Aerial Navigation via Stackelberg Learning | Song Junru, Zhang Wenhao, Yang Yang, Qiu Xuekai, Wang Feifei, Zhou Weien, Jiang Tingsong, Wen Ying, Li Yang, Yao Wen | Shanghai Jiao Tong University；Intelligent Game and Decision Laboratory；Renmin University of China；Shanghai Innovation Institute | CoNav-UAV基于Stackelberg学习实现双高度协同导航 | [#1038](https://github.com/thinson/RS-PaperClaw/issues/1038) |
+| [20260803] SPECTRA: Band-Routed Embedding and Stage-Wise LoRA for Cross-Sensor Fine-Tuning of Geospatial Foundation Models | Li Xingyan, Jordan A. Caraballo-Vega, Gong Jie, Mark L. Carroll, Wang Jianwu | University of Maryland, Baltimore County Baltimore Maryland USA；NASA Goddard Space Flight Center Greenbelt Maryland USA；Univ. of Maryland, Baltimore County Baltimore Maryland USA | SPECTRA通过带路由嵌入与LoRA实现跨传感器微调 | [#1039](https://github.com/thinson/RS-PaperClaw/issues/1039) |
+
+## 🔎 观察
+
+- Mamba架构正快速渗透高光谱图像处理，成为Transformer的强有力替代方案
+- 遥感基础模型研究从判别式向生成式演进，同时注重参数高效微调
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260802](./202608/20260802.md)
 ## 📌 今日概况
 
@@ -60,40 +104,6 @@ Powered by OpenClaw🦞
 
 - 基础模型（如SAM）在遥感时序分析中应用增多，但免训练策略仍依赖物候先验。
 - 统计业务与遥感AI结合，强调算法可解释性与负责任部署，或成未来重要方向。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260731](./202607/20260731.md)
-## 📌 今日概况
-
-今日共检索候选论文 9 篇；关键词+LLM 智能匹配遥感交叉论文 5 篇；最终纳入日报 5 篇。
-
-今日遥感AI研究聚焦于少样本学习与图像编辑两大方向。少样本分割与场景分类方法不断涌现，旨在降低标注成本并提升泛化能力。同时，基于视觉语言模型的卫星图像编辑、无人机地雷检测数据集及高光谱分类的量子启发方法也取得进展，展示了多模态融合与跨域适应在遥感应用中的潜力。
-
-## ✨ 今日亮点
-
-- 少样本遥感分割与分类方法成热点，强调训练自由与局部一致性。
-- 视觉语言模型引入卫星图像编辑，实现掩码条件化编辑。
-- 高光谱分类探索量子态表示，创新密度矩阵学习框架。
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260731] SatEdit: Mask-Conditioned Image Editing via VLM-Guided Segment Annotation | Talha Muhammad, Muhammad Ahmed Amer | Independent Researcher | SatEdit利用视觉语言模型生成掩码，实现卫星图像的掩码条件化编辑。 | [#1010](https://github.com/thinson/RS-PaperClaw/issues/1010) |
-| [20260731] Training-Free Entity-Level Few-Shot Segmentation of Remote Sensing Images with Advection Refinement | Bai Xueting, Ni Huan | School of Remote Sensing and Geomatics Engineering, Nanjing University of Information Science and Technology | 提出无需训练的地物级少样本分割方法，结合平流细化提升精度。 | [#1011](https://github.com/thinson/RS-PaperClaw/issues/1011) |
-| [20260731] Locally Consistent Transductive Information Maximization for Few-Shot Remote Sensing Scene Classification | Karim El Khoury, Gérin Benoît, Macq Benoît, Christophe De Vleeschouwer | ICTEAM, UCLouvain, Louvain-la-Neuve, Belgium | 采用局部一致转导信息最大化，改进少样本遥感场景分类性能。 | [#1012](https://github.com/thinson/RS-PaperClaw/issues/1012) |
-| [20260731] SULAND v2: A Refined RGB Dataset and Deep Learning Object Detection Benchmark for UAV/UGV-Based SUrface LANDmine Detection Under Domain Shift | Lekhak Sagar, Prasanna Reddy Pulakurthi, Joshi Lalit, Bhatta Ramesh, Emmett J. Ientilucci | the Rochester Institute of Technology, Rochester, NY, USA；Thapathali Campus, Institute of Engineering, Tribhuvan University, Kathmandu, Nepal | 发布SULAND v2数据集，用于无人机/地面机器人地雷检测的域偏移基准。 | [#1013](https://github.com/thinson/RS-PaperClaw/issues/1013) |
-| [20260731] LegoQ: Density-Matrix Representation Learning with Spectral-Spatial State Transitions for Hyperspectral Classification | Cao Weijia, Yang Xiaofei, Wang Fu, Zhou Yicong, Zhou Xiang | Sun Yat-sen University；University of Macau | LegoQ通过密度矩阵表示学习光谱-空间状态转换，实现高光谱分类。 | [#1014](https://github.com/thinson/RS-PaperClaw/issues/1014) |
-
-## 🔎 观察
-
-- 少样本学习在遥感领域持续深化，从分类扩展到分割，且强调无需训练。
-- 量子启发模型开始应用于高光谱分类，显示跨学科融合趋势。
 
 ---
 
