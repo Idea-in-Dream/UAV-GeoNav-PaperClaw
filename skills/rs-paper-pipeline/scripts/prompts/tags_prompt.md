@@ -1,18 +1,16 @@
-# 标签提取 Prompt
+# 无人机定位论文标签 Prompt
 
-你是一个学术专家。请从以下论文信息中提取关键词标签。
+根据论文标题和摘要选择标签。只允许从下列标签中选择：
 
-## 规则
+UAV-Satellite, Orthophoto-Registration, DSM-DEM-TDOM, 3D-Map-Registration, 3DGS-NeRF, Map-Aided-VIO, GNSS-Denied, Cross-View-Retrieval, Fine-Registration, Target-Geolocation, Thermal-Localization, Dataset-Benchmark, Code-Available, Reproducible
 
-1. 从论文标题和摘要中提取
-2. 返回 3-8 个标签，用逗号分隔
-3. 标签使用英文首字母大写
-4. 只返回标签列表，不要其他内容
+规则：
 
-## 论文信息
+1. 只输出逗号分隔的标签，不要解释；
+2. 仅在标题或摘要有直接证据时选择；
+3. 最多选择 6 个标签；
+4. 无法判断时输出空字符串。
 
 标题：{title}
 
 摘要：{abstract}
-
-## 标签列表

@@ -1,0 +1,18 @@
+{
+  "UAV-Satellite": {"color": "1D76DB", "description": "无人机影像与卫星地图匹配"},
+  "Orthophoto-Registration": {"color": "0E8A16", "description": "正射影像或正射地图配准"},
+  "DSM-DEM-TDOM": {"color": "5319E7", "description": "使用 DSM、DEM 或 TDOM 的定位"},
+  "3D-Map-Registration": {"color": "006B75", "description": "无人机影像到三维地理地图配准"},
+  "3DGS-NeRF": {"color": "7057FF", "description": "使用 3DGS 或 NeRF 地图定位"},
+  "Map-Aided-VIO": {"color": "BFDADC", "description": "地图观测辅助 VIO、SLAM 或惯导"},
+  "GNSS-Denied": {"color": "D93F0B", "description": "GNSS 拒止环境下的定位与导航"},
+  "Cross-View-Retrieval": {"color": "C5DEF5", "description": "跨视角图像检索与粗定位"},
+  "Fine-Registration": {"color": "FBCA04", "description": "像素级、特征级或几何精配准"},
+  "Target-Geolocation": {"color": "B60205", "description": "无人机目标经纬度或三维地理坐标估计"},
+  "Thermal-Localization": {"color": "E99695", "description": "热红外无人机跨模态地图定位"},
+  "Dataset-Benchmark": {"color": "D4C5F9", "description": "直接相关的数据集或评测基准"},
+  "Code-Available": {"color": "0E8A16", "description": "论文提供公开代码或模型"},
+  "Reproducible": {"color": "2CBE4E", "description": "具备较完整的复现条件"},
+  "Needs-Review": {"color": "F9D0C4", "description": "相关性或结构化信息需要人工复核"},
+  "日报": {"color": "0052CC", "description": "自动生成的每日论文汇总"}
+}

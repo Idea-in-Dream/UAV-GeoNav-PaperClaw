@@ -11,6 +11,7 @@ import reconcile_daily_issue_set
 import run_rs_daily_workday
 import sync_daily_reports_to_repo
 from services.issue_index import rebuild_index, save_index
+from services.labels import ensure_all_static_labels
 from pipeline_config import get_repo, load_config
 
 
@@ -60,6 +61,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     rebuild_parser = subparsers.add_parser("rebuild-index", help="重建 issue 索引")
     rebuild_parser.set_defaults(func=rebuild_index_command)
+
+    labels_parser = subparsers.add_parser("setup-labels", help="创建无人机定位论文所需标签")
+    labels_parser.set_defaults(func=setup_labels_command)
 
     return parser
 
@@ -112,6 +116,13 @@ def rebuild_index_command(args) -> None:
     index = rebuild_index(repo)
     save_index(repo, index)
     print(f"Done. {len(index)} entries written to papers/issue_index.json")
+
+
+def setup_labels_command(args) -> None:
+    cfg = load_config()
+    repo = get_repo(cfg)
+    ensure_all_static_labels(repo)
+    print("Done. Static issue labels are ready.")
 
 
 def main() -> int:

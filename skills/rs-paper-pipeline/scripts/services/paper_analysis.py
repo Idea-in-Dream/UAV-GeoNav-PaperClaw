@@ -8,6 +8,24 @@ import gzip
 from pathlib import Path
 
 from clients.llm_client import call_llm, load_prompt
+from services.labels import normalize_paper_labels
+
+
+ANALYSIS_QUESTIONS = {
+    1: "任务类型？",
+    2: "地图类型？",
+    3: "输入传感器？",
+    4: "定位输出？",
+    5: "核心方法？",
+    6: "实验精度？",
+    7: "运行速度与硬件？",
+    8: "代码链接与开放资源？",
+    9: "是否融合 VIO/IMU？",
+    10: "复现难度？",
+    11: "与 GeoVINS / NGPS / PiLoT v2 的关系？",
+    12: "对当前无人机定位项目的价值？",
+    13: "局限与风险？",
+}
 
 
 def has_bad_placeholder(text: str) -> bool:
@@ -98,7 +116,7 @@ def quality_gate(info: dict, analysis: dict, abstract_zh: str, uploaded_images: 
         errors.append("摘要为空或无效")
     if uploaded_images < 1:
         errors.append("图片数量不足（至少1张）")
-    for i in range(1, 11):
+    for i in ANALYSIS_QUESTIONS:
         answer = analysis.get(f"q{i}", "")
         if not answer or has_bad_placeholder(answer):
             errors.append(f"Q{i} 未通过质检")
@@ -117,12 +135,8 @@ def extract_tags(title: str, abstract: str) -> list[str]:
     prompt = template.replace("{title}", title).replace("{abstract}", abstract[:1000])
     result = call_llm(prompt, max_tokens=200, timeout=30)
 
-    tags = []
-    for tag in result.split(","):
-        tag = tag.strip()
-        if tag and len(tag) > 1:
-            tags.append(tag)
-    return tags[:8]
+    raw_tags = re.split(r"[,，\n]", result)
+    return normalize_paper_labels(raw_tags)[:6]
 
 
 def generate_tldr(title: str, abstract_en: str) -> str:
@@ -739,26 +753,29 @@ def summarize_paper(title: str, authors: str, abstract_en: str, pdf_text: str, r
     format_spec = """
 请按以下格式输出（纯文本，不要 JSON，不要代码块）：
 摘要翻译: <中文摘要>
-A1: <回答>
-A2: <回答>
-A3: <回答>
-A4: <回答>
-A5: <回答>
-A6: <回答>
-A7: <回答>
-A8: <回答>
-A9: <回答>
-A10: <回答>
+A1: <任务类型>
+A2: <地图类型>
+A3: <输入传感器>
+A4: <定位输出>
+A5: <核心方法>
+A6: <实验精度>
+A7: <运行速度与硬件>
+A8: <代码链接与开放资源>
+A9: <是否融合 VIO/IMU>
+A10: <复现难度>
+A11: <与 GeoVINS / NGPS / PiLoT v2 的关系>
+A12: <对当前无人机定位项目的价值>
+A13: <局限与风险>
 要求：
-1) A1-A10 每项必须非空，禁止“待提取/未知/分析中/N/A/Unknown”；
+1) A1-A13 每项必须非空，禁止“待提取/未知/分析中/N/A/Unknown”；
 2) 每项用结构化 Markdown 输出，优先采用：
    - 🎯 结论：1 句
    - 📌 要点：3-5 条 bullet
-3) 同一项内不要重复表达；尤其 A2（前人技术路线）必须是互不重复的路线清单。
+3) 同一项内不要重复表达；没有论文证据的数值、硬件和链接必须明确说明未报告，禁止猜测。
 """
     result = call_llm(base_prompt + "\n\n" + format_spec, max_tokens=6000, timeout=400)
 
-    missing_markers = [i for i in range(1, 11) if not re.search(rf"\bA{i}[:：]", result)]
+    missing_markers = [i for i in ANALYSIS_QUESTIONS if not re.search(rf"\bA{i}[:：]", result)]
     if missing_markers:
         if retry_logger:
             retry_logger("STEP-4", "RETRY", f"缺少标记 A{missing_markers}")
@@ -775,10 +792,10 @@ A10: <回答>
         match = re.search(rf"\n?A{index}[:：]\s*([\s\S]*?)(?=\nA{index+1}[:：]|$)", text)
         return match.group(1).strip() if match else ""
 
-    for i in range(1, 11):
+    for i in ANALYSIS_QUESTIONS:
         analysis[f"q{i}"] = extract_answer(i, result)
 
-    for i in range(1, 11):
+    for i in ANALYSIS_QUESTIONS:
         answer = analysis.get(f"q{i}", "")
         if answer and not has_bad_placeholder(answer):
             continue
@@ -787,8 +804,7 @@ A10: <回答>
         for _ in range(2):
             repair_prompt = (
                 f"基于以下论文信息，仅回答A{i}对应问题，120-220字，中文，不要编号前缀，不要占位词。\n"
-                f"Q{i}问题："
-                f"{'本文主要解决什么问题？' if i==1 else '前人技术路线？' if i==2 else '前人方案的局限性？' if i==3 else '核心思路？' if i==4 else '方法亮点？' if i==5 else '主要贡献？' if i==6 else '实验数据集？' if i==7 else '代码开源？' if i==8 else '客观评价？' if i==9 else '批判审视？'}\n"
+                f"Q{i}问题：{ANALYSIS_QUESTIONS[i]}\n"
                 f"标题：{title}\n作者：{authors}\n摘要：{abstract_en[:1500]}\n正文片段：{pdf_text[:4000]}"
             )
             repaired = call_llm(repair_prompt, max_tokens=600, timeout=150).strip()

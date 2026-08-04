@@ -16,9 +16,14 @@ from clients.github_ops import upsert_repo_file
 INDEX_PATH = "papers/issue_index.json"
 
 
+def canonical_arxiv_id(arxiv_id: str) -> str:
+    """Normalize arXiv versions so v1/v2/vN can never create duplicate issues."""
+    return re.sub(r"v\d+$", "", (arxiv_id or "").strip(), flags=re.IGNORECASE)
+
+
 def _extract_arxiv_id(body: str) -> str | None:
     match = re.search(r"arxiv\.org/abs/([^\)\s]+)", body or "")
-    return match.group(1).strip() if match else None
+    return canonical_arxiv_id(match.group(1)) if match else None
 
 
 def load_index(repo) -> dict[str, dict]:
@@ -26,7 +31,14 @@ def load_index(repo) -> dict[str, dict]:
     try:
         content = repo.get_contents(INDEX_PATH)
         data = json.loads(content.decoded_content.decode("utf-8"))
-        return data if isinstance(data, dict) else {}
+        if not isinstance(data, dict):
+            return {}
+        normalized: dict[str, dict] = {}
+        for arxiv_id, entry in data.items():
+            key = canonical_arxiv_id(arxiv_id)
+            if key and isinstance(entry, dict):
+                normalized[key] = entry
+        return normalized
     except Exception:
         return {}
 
@@ -45,7 +57,7 @@ def rebuild_index(repo) -> dict[str, dict]:
         arxiv_id = _extract_arxiv_id(body)
         if not arxiv_id:
             continue
-        index[arxiv_id] = {
+        index[canonical_arxiv_id(arxiv_id)] = {
             "number": issue.number,
             "updated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         }
@@ -65,7 +77,7 @@ def ensure_index(repo) -> dict[str, dict]:
 
 def lookup_issue(repo, index: dict[str, dict], arxiv_id: str):
     """Fetch a single issue by number from the index. Returns None if not found."""
-    entry = index.get(arxiv_id)
+    entry = index.get(canonical_arxiv_id(arxiv_id))
     if not entry:
         return None
     try:
@@ -78,7 +90,7 @@ def update_index_from_issue(index: dict[str, dict], arxiv_id: str, issue) -> boo
     """Update index entry for an arxiv_id. Returns True if index changed."""
     if not arxiv_id:
         return False
-    index[arxiv_id] = {
+    index[canonical_arxiv_id(arxiv_id)] = {
         "number": issue.number,
         "updated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
     }

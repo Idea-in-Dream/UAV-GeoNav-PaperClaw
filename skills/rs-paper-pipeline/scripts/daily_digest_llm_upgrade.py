@@ -9,6 +9,7 @@ from pathlib import Path
 from pipeline_config import get_repo, load_config
 from services.digest_builder import build_digest_with_llm, extract_paper_date, validate_papers_for_digest
 from services.issue_index import ensure_index, lookup_issue
+from services.labels import ensure_repo_labels
 
 CONFIG = load_config()
 
@@ -150,6 +151,7 @@ def main(target_date: str | None = None, stats_json: str | None = None):
 
         title = f"日报 {date}"
         labels = [date, "日报"]
+        ensure_repo_labels(repo, labels)
         if date in digest_issue_by_date:
             digest_issue_by_date[date].edit(body=md, title=title, labels=labels)
             print(f"UPDATED digest issue {date} -> #{digest_issue_by_date[date].number}")

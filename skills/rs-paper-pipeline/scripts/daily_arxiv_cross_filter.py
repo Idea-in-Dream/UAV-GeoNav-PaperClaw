@@ -18,7 +18,8 @@ from paper_processor import process_paper
 from pipeline_config import get_repo, load_config
 from services.filter_assets import load_ai_signal_patterns, render_filter_prompt
 from services.digest_builder import extract_author, extract_institution, is_invalid_digest_field, is_invalid_digest_institution
-from services.issue_index import ensure_index, lookup_issue, update_index_from_issue, save_index
+from services.issue_index import canonical_arxiv_id, ensure_index, lookup_issue, update_index_from_issue, save_index
+from services.labels import normalize_paper_labels
 
 CONFIG = load_config()
 AI_MATCH_PATTERNS = load_ai_signal_patterns()
@@ -28,44 +29,103 @@ def has_ai_signal(text: str) -> bool:
     return any(pattern.search(text) for pattern in AI_MATCH_PATTERNS)
 
 
-def _parse_llm_ids(raw_output: str) -> set[str] | None:
-    """Extract arxiv IDs from LLM output. Returns None on parse failure."""
+def keyword_fallback(candidates, reason: str):
+    """Conservative title+abstract fallback used when LLM is unavailable."""
+    out_items = []
+    for candidate in candidates:
+        text = f"{candidate['title']}\n{candidate['abstract']}"
+        if not (has_remote_sensing_signal(text) and has_ai_signal(text)):
+            continue
+        enriched = dict(candidate)
+        enriched["filter_status"] = "needs_review"
+        enriched["filter_labels"] = ["Needs-Review"]
+        enriched["filter_reason"] = reason
+        out_items.append(enriched)
+    return out_items
+
+
+def _extract_json_payload(raw_output: str):
     code_block = re.search(r"```(?:json)?\s*([\s\S]*?)\s*```", raw_output)
     if code_block:
         json_str = code_block.group(1).strip()
     else:
-        match = re.search(r"\[[\s\S]*\]", raw_output)
+        match = re.search(r"\{[\s\S]*\}|\[[\s\S]*\]", raw_output)
         json_str = match.group(0) if match else raw_output
-    arr = json.loads(json_str)
-    return {x.strip() for x in arr if isinstance(x, str)}
+    return json.loads(json_str)
+
+
+def _parse_decision_items(items, default_status: str) -> dict[str, dict]:
+    decisions: dict[str, dict] = {}
+    if not isinstance(items, list):
+        return decisions
+    for item in items:
+        if isinstance(item, str):
+            arxiv_id = item.strip()
+            labels: list[str] = []
+            reason = ""
+        elif isinstance(item, dict):
+            arxiv_id = str(item.get("arxiv_id", "")).strip()
+            labels = normalize_paper_labels(item.get("labels") or [])
+            reason = str(item.get("reason", "")).strip()
+        else:
+            continue
+        if not arxiv_id:
+            continue
+        if default_status == "needs_review" and "Needs-Review" not in labels:
+            labels.append("Needs-Review")
+        decisions[arxiv_id] = {
+            "status": default_status,
+            "labels": labels,
+            "reason": reason,
+        }
+    return decisions
+
+
+def _parse_llm_decisions(raw_output: str) -> tuple[dict[str, dict], bool]:
+    """Parse structured decisions and retain compatibility with legacy ID arrays."""
+    payload = _extract_json_payload(raw_output)
+    if isinstance(payload, list):
+        return _parse_decision_items(payload, "keep"), True
+    if not isinstance(payload, dict):
+        raise ValueError("LLM output must be a JSON object or array")
+
+    decisions: dict[str, dict] = {}
+    for status in ("keep", "needs_review", "exclude"):
+        for arxiv_id, decision in _parse_decision_items(payload.get(status), status).items():
+            if arxiv_id in decisions:
+                raise ValueError(f"duplicate decision for {arxiv_id}")
+            decisions[arxiv_id] = decision
+    return decisions, False
 
 
 def _match_id(cid: str, keep_set: set[str]) -> bool:
-    if cid in keep_set:
-        return True
-    cid_base = cid.replace("v1", "").replace("v2", "").rstrip("v")
-    for k in keep_set:
-        k_base = k.replace("v1", "").replace("v2", "").rstrip("v")
-        if cid_base == k_base:
-            return True
-    return False
+    cid_base = canonical_arxiv_id(cid)
+    return any(cid_base == canonical_arxiv_id(item) for item in keep_set)
 
 
-def llm_cross_filter(candidates):
+def _find_decision(arxiv_id: str, decisions: dict[str, dict]) -> dict | None:
+    for decision_id, decision in decisions.items():
+        if _match_id(arxiv_id, {decision_id}):
+            return decision
+    return None
+
+
+def _llm_cross_filter_batch(candidates):
     if not candidates:
         return []
 
     payload = []
     for i, c in enumerate(candidates, 1):
-        payload.append(f"[{i}] id={c['arxiv_id']} | title={c['title']} | abstract={c['abstract'][:500]}")
+        payload.append(f"[{i}] id={c['arxiv_id']} | title={c['title']} | abstract={c['abstract'][:2400]}")
 
     prompt = render_filter_prompt(payload)
 
-    keep_ids = None
+    decisions = None
+    legacy_array = False
     for attempt in range(2):
-        out = call_llm(prompt, max_tokens=1200, timeout=180).strip()
+        out = call_llm(prompt, max_tokens=5000, timeout=240).strip()
         try:
-            keep_ids = _parse_llm_ids(out)
+            decisions, legacy_array = _parse_llm_decisions(out)
             break
         except Exception as exc:
             print(f"  [LLM 解析] 第 {attempt + 1} 次失败: {exc}")
@@ -73,28 +133,58 @@ def llm_cross_filter(candidates):
                 print(f"  [LLM 解析] 原始输出: {out[:200]}")
                 print("  [LLM 解析] 重试中...")
 
-    if keep_ids is not None:
-        selected = [c for c in candidates if _match_id(c["arxiv_id"], keep_ids)]
-        result = [c for c in selected if has_remote_sensing_signal(f"{c['title']}\n{c['abstract']}")]
+    if decisions is not None:
+        result = []
+        for candidate in candidates:
+            decision = _find_decision(candidate["arxiv_id"], decisions)
+            if decision is None:
+                if legacy_array:
+                    continue
+                decision = {
+                    "status": "needs_review",
+                    "labels": ["Needs-Review"],
+                    "reason": "LLM 未覆盖该候选，按保守策略保留待复核",
+                }
+            if decision["status"] == "exclude":
+                continue
+            text = f"{candidate['title']}\n{candidate['abstract']}"
+            if not has_remote_sensing_signal(text):
+                continue
+            enriched = dict(candidate)
+            enriched["filter_status"] = decision["status"]
+            enriched["filter_labels"] = normalize_paper_labels(decision.get("labels") or [])
+            enriched["filter_reason"] = decision.get("reason", "")
+            if decision["status"] == "needs_review" and "Needs-Review" not in enriched["filter_labels"]:
+                enriched["filter_labels"].append("Needs-Review")
+            result.append(enriched)
         print(f"  [LLM 解析] 成功，命中 {len(result)} 篇")
         return result
 
     # 两次都失败，降级到关键词交叉筛选
     print("  [LLM 解析] 两次均失败，降级为关键词交叉筛选")
-    out_items = []
-    for c in candidates:
-        text = f"{c['title']}\n{c['abstract']}"
-        if has_remote_sensing_signal(text) and has_ai_signal(text):
-            out_items.append(c)
+    out_items = keyword_fallback(candidates, "LLM 输出解析失败，关键词回退命中，需人工复核")
     print(f"  [关键词降级] 命中 {len(out_items)} 篇")
     return out_items
 
 
-def compact_item(item: dict[str, str]) -> dict[str, str]:
+def llm_cross_filter(candidates, batch_size: int = 20):
+    """Use title + abstract in bounded batches so every candidate can be classified."""
+    selected = []
+    for start in range(0, len(candidates), batch_size):
+        batch = candidates[start : start + batch_size]
+        print(f"  [LLM 批次] {start + 1}-{start + len(batch)}/{len(candidates)}")
+        selected.extend(_llm_cross_filter_batch(batch))
+    return selected
+
+
+def compact_item(item: dict[str, object]) -> dict[str, object]:
     return {
         "arxiv_id": item["arxiv_id"],
         "published": item["published"],
         "title": item["title"],
+        "filter_status": item.get("filter_status", ""),
+        "filter_labels": item.get("filter_labels", []),
+        "filter_reason": item.get("filter_reason", ""),
     }
 
 
@@ -119,13 +209,13 @@ def load_existing_issue_map(repo, index: dict[str, dict], arxiv_ids: list[str]) 
 
 
 def main(dry_run=False, days_back=2, stats_out: str | None = None, target_date: str | None = None):
-    if not CONFIG.github_token:
+    if not CONFIG.github_token and not dry_run:
         raise RuntimeError("Missing required environment variable: GITHUB_TOKEN")
-    if not CONFIG.llm_api_key:
+    if not CONFIG.llm_api_key and not dry_run:
         raise RuntimeError("Missing required environment variable: LLM_API_KEY")
 
-    repo = get_repo(CONFIG)
-    index = ensure_index(repo)
+    repo = get_repo(CONFIG) if CONFIG.github_token else None
+    index = ensure_index(repo) if repo is not None else {}
 
     if target_date:
         print(f"[1/5] 拉取指定日期 {target_date} 候选...")
@@ -137,13 +227,17 @@ def main(dry_run=False, days_back=2, stats_out: str | None = None, target_date: 
     print(f"  候选数: {cand_count}")
 
     print("[2/5] LLM 交叉筛选...")
-    selected = llm_cross_filter(cands)
+    if CONFIG.llm_api_key:
+        selected = llm_cross_filter(cands)
+    else:
+        print("  [DRY RUN] 未配置 LLM_API_KEY，使用标题+摘要关键词回退并统一标记 Needs-Review")
+        selected = keyword_fallback(cands, "dry-run 未配置 LLM，关键词回退命中，需人工复核")
     selected_count = len(selected)
     print(f"  入选数: {selected_count}")
 
     print("[3/5] 读取 issue 去重...")
     selected_arxiv_ids = [x["arxiv_id"] for x in selected]
-    existing_issue_map = load_existing_issue_map(repo, index, selected_arxiv_ids)
+    existing_issue_map = load_existing_issue_map(repo, index, selected_arxiv_ids) if repo is not None else {}
     todo = []
     keep = []
     refresh = []
@@ -209,7 +303,14 @@ def main(dry_run=False, days_back=2, stats_out: str | None = None, target_date: 
         aid = task["candidate"]["arxiv_id"]
         issue_number = task["issue_number"]
         print(f"  -> 处理 {aid} | issue={issue_number or '-'} | reason={task['reason']}")
-        result, error_msg = process_paper(aid, issue_number=issue_number, target_date=target_date)
+        candidate = task["candidate"]
+        result, error_msg = process_paper(
+            aid,
+            issue_number=issue_number,
+            target_date=target_date,
+            filter_labels=candidate.get("filter_labels"),
+            needs_review=candidate.get("filter_status") == "needs_review",
+        )
         if result is not None and hasattr(result, "number"):
             update_index_from_issue(index, aid, result)
         if result is None:

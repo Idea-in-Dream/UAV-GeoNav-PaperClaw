@@ -4,6 +4,7 @@ from __future__ import annotations
 import importlib
 import os
 import platform
+import re
 import shutil
 import sys
 
@@ -37,8 +38,8 @@ def main() -> int:
 
     checks.append(
         (
-            sys.version_info >= (3, 9),
-            check_mark("python", sys.version_info >= (3, 9), sys.version.split()[0]),
+            sys.version_info >= (3, 8),
+            check_mark("python", sys.version_info >= (3, 8), sys.version.split()[0]),
         )
     )
 
@@ -55,6 +56,9 @@ def main() -> int:
     for var_name in ("GITHUB_TOKEN", "LLM_API_KEY"):
         present = bool(os.environ.get(var_name))
         checks.append((present, check_mark(var_name, present, "set" if present else "missing")))
+
+    repo_ok = bool(re.fullmatch(r"[^/\s]+/[^/\s]+", CONFIG.github_repo)) and "your-github-name" not in CONFIG.github_repo
+    checks.append((repo_ok, check_mark("github-repo", repo_ok, CONFIG.github_repo)))
 
     try:
         importlib.import_module("github")

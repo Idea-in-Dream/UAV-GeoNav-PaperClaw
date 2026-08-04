@@ -1,4 +1,4 @@
-name: RS Pipeline Manual
+name: UAV GeoNav PaperClaw Manual
 
 on:
   workflow_dispatch:
@@ -27,11 +27,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     permissions:
-      contents: read
+      contents: write
+      issues: write
     env:
-      GITHUB_TOKEN: ${{ secrets.RS_GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.UAV_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
       LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
-      RS_GITHUB_REPO: ${{ vars.RS_GITHUB_REPO }}
+      RS_GITHUB_REPO: ${{ vars.RS_GITHUB_REPO || github.repository }}
       LLM_MODEL: ${{ vars.LLM_MODEL }}
       LLM_API_URL: ${{ vars.LLM_API_URL }}
       GITHUB_TIMEOUT: ${{ vars.GITHUB_TIMEOUT }}
@@ -73,6 +74,10 @@ jobs:
       - name: Doctor
         working-directory: skills/rs-paper-pipeline
         run: python3 scripts/cli.py doctor
+
+      - name: Ensure issue labels
+        working-directory: skills/rs-paper-pipeline
+        run: python3 scripts/cli.py setup-labels
 
       - name: Run manual command
         working-directory: skills/rs-paper-pipeline

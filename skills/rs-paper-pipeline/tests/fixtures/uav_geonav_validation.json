@@ -1,0 +1,72 @@
+{
+  "positive": [
+    {
+      "name": "GeoVINS",
+      "arxiv_id": "geovins-reference",
+      "title": "GeoVINS: Map-Aided Visual-Inertial Navigation for UAV Geo-Localization",
+      "abstract": "GeoVINS combines visual-inertial odometry with georeferenced satellite map matching to provide drift-free absolute UAV localization in GNSS-denied environments. Map observations constrain the VIO trajectory and recover global position and heading."
+    },
+    {
+      "name": "NGPS",
+      "arxiv_id": "2607.18936v1",
+      "title": "NGPS: GPS-Denied Aerial Geo-Localization and 2.5D Reconstruction via Deep Satellite Image Matching and Multi-Rate Sensor Fusion",
+      "abstract": "We present NGPS, a visual geo-localization framework for high-altitude UAVs that provides GPS-free absolute positioning by matching down-facing images to georeferenced satellite imagery. It fuses absolute position, VIO and IMU updates and enables georeferenced orthomosaic reconstruction."
+    },
+    {
+      "name": "PiLoT",
+      "arxiv_id": "2603.20778v3",
+      "title": "PiLoT: Neural Pixel-to-3D Registration for UAV-based Ego and Target Geo-localization",
+      "abstract": "PiLoT tackles UAV-based ego and target geo-localization by directly registering a live video stream against a geo-referenced 3D map. It estimates drift-free UAV pose and target geographic coordinates in GNSS-denied environments."
+    },
+    {
+      "name": "PiLoT v2",
+      "arxiv_id": "2606.31098v1",
+      "title": "PiLoT v2: Pixel-to-Orthogonal Map Alignment for Free-view UAV Geo-localization",
+      "abstract": "PiLoT v2 performs direct pixel-to-orthogonal map registration for free-view UAV geo-localization. It uses True Digital Orthophoto Maps and Digital Surface Models as the map substrate and integrates gravity and laser range priors into pose optimization."
+    },
+    {
+      "name": "AeroMap3D",
+      "arxiv_id": "2607.14009v1",
+      "title": "AeroMap3D: Anchoring Monocular UAV 6-DoF Localization to Visual-Geometric-Semantic Map Priors",
+      "abstract": "AeroMap3D anchors onboard UAV imagery to satellite maps, bare-earth digital elevation models and OpenStreetMap priors. Dense UAV-to-map correspondences are lifted onto DEM terrain for RANSAC-PnP 6-DoF pose estimation and fused with relative motion in a delayed-state EKF."
+    },
+    {
+      "name": "RIM",
+      "arxiv_id": "2607.20116v1",
+      "title": "RIM: A Retrieval-In-Matching Framework for Cross-Domain Global Visual Localization of UAVs",
+      "abstract": "Global visual localization of UAVs using remote-sensing reference maps is addressed through cross-view retrieval, local feature matching and geometric verification. Reference views sampled from Google 3D Tiles support robust six-degree-of-freedom pose estimation."
+    },
+    {
+      "name": "Bearing-UAV",
+      "arxiv_id": "2603.22153v3",
+      "title": "Beyond Matching to Tiles: Bridging Unaligned Aerial and Satellite Views for Vision-Only UAV Navigation",
+      "abstract": "Bearing-UAV is a purely vision-driven cross-view navigation method that jointly predicts UAV absolute location and heading from unaligned aerial and satellite views. Bearing-UAV-90k is a multi-city benchmark for cross-view localization and navigation."
+    },
+    {
+      "name": "OffNadirLoc",
+      "arxiv_id": "2607.19951v1",
+      "title": "OffNadirLoc: Benchmark and Framework for Challenging UAV-to-Satellite Geo-Localization under Large Off-Nadir Views",
+      "abstract": "OffNadirLoc is a benchmark and framework for large off-nadir UAV-to-satellite geo-localization. It learns view-invariant features across satellite images and corresponding UAV images and evaluates cross-view retrieval on multiple datasets."
+    },
+    {
+      "name": "Altitude-Adaptive Vision-Only Geo-Localization",
+      "arxiv_id": "2602.23872v4",
+      "title": "Altitude-Adaptive Vision-Only Geo-Localization for UAVs in GPS-Denied Environments",
+      "abstract": "The method matches downward-looking UAV images to georeferenced satellite or aerial map tiles. Relative altitude normalizes scale before visual place recognition and weighted coordinate estimation provides coarse map localization in GPS-denied environments."
+    }
+  ],
+  "negative": [
+    {
+      "name": "ordinary remote-sensing detection",
+      "arxiv_id": "negative.00001v1",
+      "title": "A Transformer for Small Vehicle Detection in High-Resolution Satellite Images",
+      "abstract": "This paper proposes an object detector for vehicles in satellite imagery and reports average precision on a remote sensing detection benchmark. It does not estimate camera pose or match UAV observations to a geographic map."
+    },
+    {
+      "name": "ordinary UAV tracking",
+      "arxiv_id": "negative.00002v1",
+      "title": "Real-Time Multi-Object Tracking from UAV Videos",
+      "abstract": "We improve pedestrian detection and tracking in drone video using a lightweight detector. The method does not use a georeferenced map and does not output absolute geographic position."
+    }
+  ]
+}

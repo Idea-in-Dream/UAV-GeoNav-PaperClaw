@@ -29,6 +29,8 @@ from services.paper_analysis import (
     summarize_paper,
     translate_text,
 )
+from services.issue_index import ensure_index, lookup_issue, save_index, update_index_from_issue
+from services.labels import ensure_repo_labels, normalize_paper_labels
 
 CONFIG = load_config()
 FIGURES_DIR = CONFIG.figures_dir
@@ -83,7 +85,15 @@ def handle_figures(arxiv_id: str, pdf_path: Path, repo=None) -> list:
 
 # ============ 主流程 ============
 
-def process_paper(arxiv_id: str, issue_number: int | None = None, dry_run: bool = False, output_dir: str | None = None, target_date: str | None = None):
+def process_paper(
+    arxiv_id: str,
+    issue_number: int | None = None,
+    dry_run: bool = False,
+    output_dir: str | None = None,
+    target_date: str | None = None,
+    filter_labels: list[str] | None = None,
+    needs_review: bool = False,
+):
     print(f"\n{'='*60}")
     print(f"处理论文: {arxiv_id}")
     print(f"{'='*60}")
@@ -164,8 +174,12 @@ def process_paper(arxiv_id: str, issue_number: int | None = None, dry_run: bool 
     log_step("STEP-2", "OK", f"abstract_len={len(abstract_zh)}")
 
     log_step("STEP-3", "RUNNING", "提取标签")
-    tags = extract_tags(info['title'], info['abstract_en'])[:5]
-    log_step("STEP-3", "OK", f"top5_tags={tags}")
+    tags = normalize_paper_labels((filter_labels or []) + extract_tags(info['title'], info['abstract_en']))
+    if needs_review and "Needs-Review" not in tags:
+        tags.append("Needs-Review")
+    if not tags:
+        tags = ["Needs-Review"]
+    log_step("STEP-3", "OK", f"labels={tags}")
 
     log_step("STEP-4", "RUNNING", "LLM 总结")
     
@@ -188,7 +202,7 @@ def process_paper(arxiv_id: str, issue_number: int | None = None, dry_run: bool 
     # 优先使用 target_date（pipeline 指定的业务日期），避免 arXiv API 日期漂移
     if target_date:
         title_date = target_date
-        date_str = f"{target_date[:4]}-{target_date[4:6]}-{target_date[6:]}"
+        date_str = info.get('date', f"{target_date[:4]}-{target_date[4:6]}-{target_date[6:]}")
     else:
         date_str = info.get('date', datetime.now().strftime("%Y-%m-%d"))
         title_date = date_str.replace("-", "")
@@ -209,7 +223,7 @@ def process_paper(arxiv_id: str, issue_number: int | None = None, dry_run: bool 
     abstract_short = abstract_zh[:400] + "..." if len(abstract_zh) > 400 else abstract_zh
 
     # Markdown 可读性优化
-    qa_md = {f"q{i}": format_answer_md(analysis.get(f"q{i}", "")) for i in range(1, 11)}
+    qa_md = {f"q{i}": format_answer_md(analysis.get(f"q{i}", "")) for i in range(1, 14)}
 
     report = f"""# [{title_date}] {info['title']}
 
@@ -217,11 +231,11 @@ def process_paper(arxiv_id: str, issue_number: int | None = None, dry_run: bool 
 
 | 项目 | 内容 |
 |------|------|
-| **标题** | {info['title']} |
+| **论文标题** | {info['title']} |
 | **作者** | {info['authors']} |
 | **单位** | {info['institutions']} |
-| **日期** | {date_str} |
-| **arXiv** | [abs](https://arxiv.org/abs/{arxiv_id}) \\| [pdf](https://arxiv.org/pdf/{arxiv_id}) |
+| **发表时间** | {date_str} |
+| **arXiv 链接** | [abs](https://arxiv.org/abs/{arxiv_id}) \\| [pdf](https://arxiv.org/pdf/{arxiv_id}) |
 | **TL;DR** | {tldr} |
 | **摘要** | {abstract_short} |
 | **标签** | {', '.join([title_date] + tags)} |
@@ -240,37 +254,46 @@ def process_paper(arxiv_id: str, issue_number: int | None = None, dry_run: bool 
 
 ---
 
-## ❓ 10 问题深度分析
+## 🧭 定位与地图匹配分析
 
-### Q1: 本文主要解决什么问题？
+### 任务类型
 {qa_md.get('q1', '分析中...')}
 
-### Q2: 前人技术路线？
+### 地图类型
 {qa_md.get('q2', '分析中...')}
 
-### Q3: 前人方案的局限性？
+### 输入传感器
 {qa_md.get('q3', '分析中...')}
 
-### Q4: 核心思路？
+### 定位输出
 {qa_md.get('q4', '分析中...')}
 
-### Q5: 方法亮点？
+### 核心方法
 {qa_md.get('q5', '分析中...')}
 
-### Q6: 主要贡献？
+### 实验精度
 {qa_md.get('q6', '分析中...')}
 
-### Q7: 实验数据集？
+### 运行速度与硬件
 {qa_md.get('q7', '分析中...')}
 
-### Q8: 代码开源？
+### 代码链接
 {qa_md.get('q8', '分析中...')}
 
-### Q9: 客观评价？
+### 是否融合 VIO/IMU
 {qa_md.get('q9', '分析中...')}
 
-### Q10: 批判审视？
+### 复现难度
 {qa_md.get('q10', '分析中...')}
+
+### 与 GeoVINS / NGPS / PiLoT v2 的关系
+{qa_md.get('q11', '分析中...')}
+
+### 对当前无人机定位项目的价值
+{qa_md.get('q12', '分析中...')}
+
+### 局限与风险
+{qa_md.get('q13', '分析中...')}
 
 ---
 
@@ -297,8 +320,9 @@ Powered by OpenClaw🦞
         log_step("ISSUE", "DRY_RUN", str(out_path))
         return payload, None
 
-    # 更新策略：指定 issue_number 时仅更新；未指定时仅匹配更新，不创建
+    # 更新策略：优先按规范化 arXiv ID 去重，再兼容旧的标题匹配。
     target_issue = None
+    index = ensure_index(repo)
     if issue_number is not None:
         try:
             target_issue = repo.get_issue(issue_number)
@@ -306,10 +330,12 @@ Powered by OpenClaw🦞
             log_step("ISSUE", "FAILED", f"指定 Issue 不存在: {issue_number}")
             return None, f"指定 Issue #{issue_number} 不存在"
     else:
-        for issue in repo.get_issues(state='all'):
-            if info['title'][:30] in issue.title:
-                target_issue = issue
-                break
+        target_issue = lookup_issue(repo, index, arxiv_id)
+        if target_issue is None:
+            for issue in repo.get_issues(state='all'):
+                if info['title'][:30] in issue.title:
+                    target_issue = issue
+                    break
 
     if target_issue is not None:
         # 保留现有 issue 的日期标签，避免 arXiv API 日期漂移导致日报引用错乱
@@ -324,21 +350,27 @@ Powered by OpenClaw🦞
                 existing_date_label = name
                 break
         final_date = existing_date_label or title_date
+        ensure_repo_labels(repo, [final_date] + tags)
         target_issue.edit(
             title=f"[{final_date}] {info['title'][:200]}",
             body=report,
             labels=[final_date] + tags,
         )
+        update_index_from_issue(index, arxiv_id, target_issue)
+        save_index(repo, index)
         log_step("ISSUE", "UPDATED", f"#{target_issue.number}")
         print(f"\n✅ 完成！")
         return target_issue, None
 
     # 未指定 issue_number 且未匹配到现有 issue -> 创建新 issue
+    ensure_repo_labels(repo, [title_date] + tags)
     new_issue = repo.create_issue(
         title=f"[{title_date}] {info['title'][:200]}",
         body=report,
         labels=[title_date] + tags,
     )
+    update_index_from_issue(index, arxiv_id, new_issue)
+    save_index(repo, index)
     log_step("ISSUE", "CREATED", f"#{new_issue.number}")
     print(f"\n✅ 完成！")
     return new_issue, None

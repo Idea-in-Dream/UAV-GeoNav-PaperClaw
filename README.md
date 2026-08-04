@@ -1,222 +1,244 @@
 <div align="center">
-  <img src="./docs/logo-220.png" alt="RS-PaperClaw Logo" width="120" />
+  <img src="./docs/logo-220.png" alt="UAV-GeoNav-PaperClaw" width="120" />
 
-# RS-PaperClaw🦞
+# UAV-GeoNav-PaperClaw
 
-### 遥感论文自动追踪与分析流水线
+面向无人机定位、地图匹配与 GNSS 拒止导航的论文自动追踪仓库
 
-[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](#)
-[![Status](https://img.shields.io/badge/Status-Active-2EA043)](#)
-[![Workflow](https://img.shields.io/badge/Workflow-arXiv%20%E2%86%92%20Issue%20%E2%86%92%20Digest-8A2BE2)](#)
-[![Pages](https://img.shields.io/badge/GitHub%20Pages-Live-b55f34)](https://thinson.github.io/RS-PaperClaw/)
-
-**arXiv → 单篇报告 Issue → 每日汇总日报 → 可视化阅读页面**
-
-English version: **[README_EN.md](./README_EN.md)**
+**arXiv → 标题/摘要初筛 → LLM 二次筛选 → 中文论文 Issue → 每日汇总 → GitHub Pages**
 
 </div>
 
----
+本项目基于 [thinson/RS-PaperClaw](https://github.com/thinson/RS-PaperClaw) 改造，保留其 Python 流水线、GitHub Issues、GitHub Actions、日报归档与 Pages 前端。上游许可证与版权信息保留在 [`skills/rs-paper-pipeline/LICENSE`](./skills/rs-paper-pipeline/LICENSE)。
 
-## 🌐 在线阅读入口
+## 项目用途
 
-- 项目主页（GitHub Pages）：**https://thinson.github.io/RS-PaperClaw/**
-- CVPR 2026 GeoAI 合集：**https://thinson.github.io/RS-PaperClaw/cvpr2026_geoai.html**
-- 日报归档目录：**[daily_reports/](./daily_reports/README.md)**
+系统在每个工作日自动从 arXiv 检索并分析以下方向：
 
-## 🖼️ 界面预览
+- 无人机视觉定位、绝对定位与全局重定位；
+- UAV-to-Satellite、跨视角检索、粗定位与精配准；
+- 正射影像、TDOM、DSM、DEM 和 GIS 地图配准；
+- 三维地理地图、3DGS、NeRF 地图定位；
+- 地图辅助 VIO、SLAM、惯性导航和 GNSS 拒止导航；
+- 无人机自身定位与目标地理定位；
+- 热红外无人机与卫星/地图的跨模态定位；
+- 直接相关的数据集、基准、尺度恢复和复现资源。
 
-| 电脑端 UI | 移动端 UI |
-|---|---|
-| <img src="./docs/screenshots/ui-desktop.jpg" alt="RS-PaperClaw Desktop UI" height="260" /> | <img src="./docs/screenshots/ui-mobile.jpg" alt="RS-PaperClaw Mobile UI" height="260" /> |
+普通遥感检测/分割/变化检测、纯 UAV 检测/跟踪/规划、无绝对地图约束的纯 VIO/SLAM，以及仅卫星影像之间的配准会被排除。不确定条目会保留并标记 `Needs-Review`。
 
----
+## 输出内容
 
-## 📰 News
+每篇入选论文对应一个中文 GitHub Issue，包含：
 
-- `2026-05-27`: 默认 LLM 已切换为 `deepseek-v4-flash`；同时支持其他 OpenAI-like Chat Completions 兼容模型，可通过 `LLM_MODEL` 与 `LLM_API_URL` 自定义。
-- `2026-04-24`: 新增 CVPR 2026 GeoAI 论文合集页面，收录 139 篇论文（9 Oral + 20 Highlight + 110 Poster），按主题标签分类浏览。
-- `2026-04-20`: README 补充项目进展时间线，便于快速了解当前维护状态。
-- `2026-04-19`: GitHub Pages 前端完成一轮集中修复，包括历史日报分页加载、日期深链跳转、`More` 交互合并，以及 Papers 表格显示问题修复。
-- `2026-04-17`: 单篇报告与日报已增加“单位”信息；作者展示规则同步更新，不再使用 `et al.`。
-- `2026-03-05`: 当前仓库内可追溯的最早日报归档日期为 `20260305`，标志着日报归档链路已开始持续积累。
+- 论文标题、arXiv 链接、发表时间、作者和单位；
+- 代码链接、任务类型、地图类型、输入传感器、定位输出；
+- 核心方法、实验精度、运行速度与硬件；
+- 是否融合 VIO/IMU、复现难度；
+- 与 GeoVINS / NGPS / PiLoT v2 的关系；
+- 对当前无人机定位项目的价值以及局限与风险。
 
----
+同一 arXiv ID 的不同版本（如 `v1`、`v2`）会归一到同一 Issue，不会重复创建。
 
-## ✨ 项目做什么
+## 部署步骤
 
-RS-PaperClaw 每天自动完成：
+### 1. 创建目标仓库
 
-- 🔎 拉取 arXiv 候选论文（遥感相关）
-- 🧠 关键词 + LLM 二级筛选
-- 📝 生成 / 更新单篇阅读报告（GitHub Issue）
-- 🗞️ 生成当天日报（GitHub Issue）
-- 🗂️ 同步日报到 `daily_reports/YYYYMM/YYYYMMDD.md`
-- 📮 推送摘要到钉钉/飞书
+推荐从本仓库复制或 fork，仓库名使用 `UAV-GeoNav-PaperClaw`，默认分支保持为 `main`。
 
----
+在仓库设置中确认：
 
-## 🎯 为什么以 Issue 为核心
+1. `Settings → Actions → General → Workflow permissions` 允许 GitHub Actions 读写仓库；
+2. `Settings → Pages → Source` 选择 **GitHub Actions**；
+3. Issues 功能已启用。
 
-- 🧭 **可追踪**：单论文单 Issue，历史与改动可回溯
-- 🤝 **易协作**：评论即讨论，补充即沉淀
-- ⚙️ **自动化友好**：增量流程可稳定更新同一条记录
-- 🗂️ **归档闭环**：Issue 动态协作 + Markdown 静态留档
+### 2. 配置 Secrets
 
----
+进入 `Settings → Secrets and variables → Actions → Secrets`：
 
-## 🧩 核心能力
+| 名称 | 必需 | 说明 |
+|---|---:|---|
+| `LLM_API_KEY` | 是 | OpenAI-compatible Chat Completions 接口密钥 |
+| `UAV_GITHUB_TOKEN` | 否 | 默认使用内置 `GITHUB_TOKEN`；若组织策略禁止 Issues/Contents 写入，可配置具有目标仓库 `issues:write`、`contents:write` 权限的细粒度 PAT |
+| `DINGTALK_WEBHOOK` | 否 | 钉钉通知 Webhook；不配置不影响论文追踪 |
 
-| 模块 | 输出 |
-|---|---|
-| 单篇报告 | 基础信息、TL;DR、中文摘要、标签、前三页预览图、10问分析 |
-| 日报生成 | 今日概况（含数量统计）、亮点、文章列表、观察 |
-| 质量控制 | 过滤占位内容，保障结构完整与可读性 |
-| 结果归档 | Issue + Markdown 双轨同步，便于追踪与回溯 |
-| 可视化页面 | 最近日报浏览、移动端卡片视图、Issue 深读弹层 |
+不要把 Token、Key、Webhook 或个人信息写入 `.env.example`、工作流或代码。
 
----
+### 3. 配置 Variables
 
-## 🗺️ 目录结构（main）
+进入 `Settings → Secrets and variables → Actions → Variables`：
 
-```text
-RS-PaperClaw/
-├── .github/workflows/                 # GitHub Actions（定时主跑 + 手动运维）
-├── docs/                             # GitHub Pages 静态页面
-│   ├── index.html
-│   └── logo-220.png
-├── daily_reports/                    # 日报归档（按年月）
-│   ├── README.md
-│   └── YYYYMM/YYYYMMDD.md
-├── papers/previews/                  # 论文预览图（用于 Issue 展示）
-├── skills/rs-paper-pipeline/         # 技能与脚本
-│   ├── README.md
-│   ├── SKILL.md
-│   ├── .env.example
-│   ├── RUNBOOK_RS_PIPELINE.md
-│   ├── AGENT_GUIDE_RS_PIPELINE.md
-│   └── scripts/
-│       ├── cli.py
-│       ├── clients/
-│       ├── services/
-│       ├── config/filter_keywords.json
-│       └── prompts/filter_cross_prompt.md
-└── README_EN.md
-```
+| 名称 | 必需 | 推荐值/说明 |
+|---|---:|---|
+| `RS_GITHUB_REPO` | 否 | 默认自动使用当前仓库；跨仓库写入时设为 `OWNER/UAV-GeoNav-PaperClaw` |
+| `LLM_MODEL` | 否 | 默认 `deepseek-v4-flash` |
+| `LLM_API_URL` | 否 | 默认 `https://api.deepseek.com/chat/completions`，也可使用兼容接口 |
+| `ARXIV_API_URL` | 否 | 默认 `https://export.arxiv.org/api/query` |
+| `ARXIV_USER_AGENT` | 否 | 建议包含仓库 URL 的自定义 User-Agent |
+| `GITHUB_TIMEOUT` | 否 | 默认 `15` 秒 |
+| `GITHUB_RETRY` | 否 | 默认 `2` 次 |
+| `FEISHU_TARGET` | 否 | 飞书通知目标，需要同时配置可用的 `OPENCLAW_BIN` |
+| `OPENCLAW_BIN` | 否 | OpenClaw 可执行文件路径，仅通知功能使用 |
 
----
+### 4. 初始化标签
 
-## 🚀 快速开始
-
-### 0) 克隆仓库
-
-仓库包含大量论文预览图（400MB+），如需跳过可使用轻量克隆：
+运行 `UAV GeoNav PaperClaw Manual` 工作流并选择 `doctor`，工作流会先自动创建所有静态标签。也可在本地执行：
 
 ```bash
-# 轻量克隆（跳过 papers/previews/ 图片，约 1MB）
-git clone --filter=blob:none --sparse https://github.com/thinson/RS-PaperClaw.git
-cd RS-PaperClaw
-git sparse-checkout set --no-cone '/*' '!papers/previews'
-
-# 完整克隆（含全部预览图，约 400MB）
-git clone https://github.com/thinson/RS-PaperClaw.git
+cd skills/rs-paper-pipeline
+python3 scripts/cli.py setup-labels
 ```
 
-### 1) 初始化
+### 5. 首次运行
+
+在 Actions 页面打开 `UAV GeoNav PaperClaw Manual`：
+
+1. 点击 `Run workflow`；
+2. `command` 选择 `run_no_notify`；
+3. `date` 可留空，或填 arXiv 业务日期 `YYYYMMDD`；
+4. 检查新建论文 Issues、`daily_reports/` 提交和 Pages 部署工作流。
+
+## 本地运行
+
+要求 Python 3.8+、`pdftoppm`、`pdftotext`；GitHub Actions 固定使用 Python 3.11。
 
 ```bash
 cd skills/rs-paper-pipeline
 ./bootstrap.sh
+cp .env.example .env
 ```
 
-### 2) 配置 `.env`
+编辑 `.env`，至少填写：
 
-至少填写：
-
-- `GITHUB_TOKEN`
-- `LLM_API_KEY`
-
-可选：
-
-- `LLM_MODEL`（默认：`deepseek-v4-flash`）
-- `LLM_API_URL`（默认：`https://api.deepseek.com/chat/completions`；支持其他 OpenAI-like Chat Completions 兼容接口）
-- `DINGTALK_WEBHOOK`
-- `FEISHU_TARGET`
-- `RS_GITHUB_REPO`
-
-### 3) 运行当天流程
-
-```bash
-cd skills/rs-paper-pipeline
-python3 scripts/cli.py run
+```dotenv
+GITHUB_TOKEN=YOUR_TOKEN
+LLM_API_KEY=YOUR_LLM_KEY
+RS_GITHUB_REPO=OWNER/UAV-GeoNav-PaperClaw
 ```
 
-### 4) 常用命令
+然后执行：
 
 ```bash
-cd skills/rs-paper-pipeline
 python3 scripts/cli.py doctor
-python3 scripts/cli.py filter --dry-run --date 20260317
-python3 scripts/cli.py run --date 20260317 --no-notify
-python3 scripts/cli.py reconcile --date 20260317 --dry-run
+python3 scripts/cli.py filter --dry-run --date 20260801
+python3 scripts/cli.py run --date 20260801 --no-notify
 ```
 
-### 5) 想定制成你自己的论文系统
+`filter --dry-run` 会真实访问 arXiv、LLM 和 GitHub，但不会创建/更新论文 Issue；`run --no-notify` 会创建或更新 Issues、日报和索引，只跳过通知。
 
-可以直接看：
+## 手动命令
 
-- `skills/rs-paper-pipeline/CUSTOMIZATION_GUIDE.md`
+```bash
+cd skills/rs-paper-pipeline
 
-这份文档专门说明：
+# 环境检查
+python3 scripts/cli.py doctor
 
-- 如何改关键词和 regex
-- 如何改筛选 prompt
-- 如何改 `.env` 配置项
-- 如何把目标仓库切到你自己的 repo
-- 如何用最小风险验证改动
+# 初始化标签
+python3 scripts/cli.py setup-labels
 
----
+# 只看筛选结果
+python3 scripts/cli.py filter --dry-run --date YYYYMMDD
 
-## ⏰ 定时任务（示例）
+# 完整运行且不通知
+python3 scripts/cli.py run --date YYYYMMDD --no-notify
 
-```cron
-推荐直接使用仓库内工作流：
+# 强制重跑已完成日期
+python3 scripts/cli.py run --date YYYYMMDD --no-notify --force
 
-- `.github/workflows/rs-pipeline-schedule.yml`
-- `.github/workflows/rs-pipeline-manual.yml`
+# 检查某天 Issue 集合差异
+python3 scripts/cli.py reconcile --date YYYYMMDD --dry-run
 
-它们会调用 `skills/rs-paper-pipeline/scripts/cli.py`，并使用仓库内的筛选配置文件。
+# 重建 arXiv ID → Issue 索引
+python3 scripts/cli.py rebuild-index
 ```
 
----
+## 定时任务
 
-## 📎 备注
+`.github/workflows/rs-pipeline-schedule.yml` 使用：
 
-- 默认文档语言为中文；英文请见 [README_EN.md](./README_EN.md)
-- 页面部署方式：`main` 分支 + `/docs`
-- 文章 list 筛选规则来自：
-  - `skills/rs-paper-pipeline/scripts/config/filter_keywords.json`
-  - `skills/rs-paper-pipeline/scripts/prompts/filter_cross_prompt.md`
+```text
+15 1 * * 1-5
+```
 
----
+即每周一至周五 UTC 01:15（北京时间 09:15）运行一次。工作流会依次：
 
-## ✅ TODO
-- 增加期刊来源：RSE（Remote Sensing of Environment）、ISPRS JPRS、IEEE 旗下相关期刊
+1. 安装 Python 与 Poppler；
+2. 检查环境并初始化标签；
+3. 从 arXiv 获取候选；
+4. 执行关键词初筛和 LLM 二次筛选；
+5. 创建或更新论文 Issue；
+6. 创建或更新日报 Issue；
+7. 同步 `daily_reports/YYYYMM/YYYYMMDD.md`；
+8. 由 `deploy-pages.yml` 更新 GitHub Pages。
 
----
+## 如何调整关键词
 
-## 🔗 Related Projects
+编辑：
 
-- **papers.cool**: https://papers.cool/
+```text
+skills/rs-paper-pipeline/scripts/config/filter_keywords.json
+```
 
----
+- `rs_query_terms`：发送给 arXiv 的检索词；
+- `rs_signal_patterns`：标题与摘要的主题初筛正则；
+- `ai_signal_patterns`：LLM 异常时的保守回退信号。
 
-## ⭐ Star History
+新增词后先运行指定日期 dry-run，避免检索面过宽。
 
-<a href="https://www.star-history.com/?type=date&repos=thinson%2FRS-PaperClaw">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=thinson/RS-PaperClaw&type=date&theme=dark&legend=top-left&sealed_token=0MxBU6_td-V1EzNAbnCRYKVXLAqwKtr5RKH-HgXo8QT7XJDEMeAc-yb7ISDKomfsK5rPEYmPuDywBcC-02-GKFvrThXHHdsXhPEmrVhNkpYX5fFLAwHt7HdecdjruzRiKUL6uxUeds8qm09ZJHCCO3m30-7zp7YBPnTTM0BzAvZwHG1tnFaXxtF3L5ns" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=thinson/RS-PaperClaw&type=date&legend=top-left&sealed_token=0MxBU6_td-V1EzNAbnCRYKVXLAqwKtr5RKH-HgXo8QT7XJDEMeAc-yb7ISDKomfsK5rPEYmPuDywBcC-02-GKFvrThXHHdsXhPEmrVhNkpYX5fFLAwHt7HdecdjruzRiKUL6uxUeds8qm09ZJHCCO3m30-7zp7YBPnTTM0BzAvZwHG1tnFaXxtF3L5ns" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=thinson/RS-PaperClaw&type=date&legend=top-left&sealed_token=0MxBU6_td-V1EzNAbnCRYKVXLAqwKtr5RKH-HgXo8QT7XJDEMeAc-yb7ISDKomfsK5rPEYmPuDywBcC-02-GKFvrThXHHdsXhPEmrVhNkpYX5fFLAwHt7HdecdjruzRiKUL6uxUeds8qm09ZJHCCO3m30-7zp7YBPnTTM0BzAvZwHG1tnFaXxtF3L5ns" />
- </picture>
-</a>
+## 如何调整筛选标准
+
+编辑：
+
+```text
+skills/rs-paper-pipeline/scripts/prompts/filter_cross_prompt.md
+```
+
+Prompt 要求 LLM 对每个候选返回 `keep`、`needs_review` 或 `exclude`，并只能使用配置好的无人机定位标签。筛选会把标题和摘要一起送给 LLM，不能只依赖标题关键词。
+
+Issue 分析字段位于：
+
+```text
+skills/rs-paper-pipeline/scripts/prompts/summarize_prompt.md
+```
+
+标签名称、颜色和描述位于：
+
+```text
+skills/rs-paper-pipeline/scripts/config/labels.json
+```
+
+## GitHub Pages
+
+`docs/index.html` 会在 GitHub Pages 环境中自动识别 `OWNER/REPO`，读取当前仓库的日报和 Issue。若在本地启动静态服务器，可显式传入仓库：
+
+```text
+http://localhost:8000/?repo=OWNER/UAV-GeoNav-PaperClaw
+```
+
+## 验证
+
+运行单元与回归测试：
+
+```bash
+cd skills/rs-paper-pipeline
+python3 -m unittest discover -s tests -v
+```
+
+回归集覆盖 GeoVINS、NGPS、PiLoT、PiLoT v2、AeroMap3D、RIM、Bearing-UAV、OffNadirLoc、Altitude-Adaptive Vision-Only Geo-Localization，并包含普通遥感目标检测负例。
+
+## 目录结构
+
+```text
+UAV-GeoNav-PaperClaw/
+├── .github/workflows/                # 手动、工作日定时与 Pages 部署
+├── docs/                             # GitHub Pages 前端
+├── daily_reports/                    # 每日 Markdown 汇总
+├── papers/issue_index.json           # arXiv ID 去重索引
+└── skills/rs-paper-pipeline/
+    ├── scripts/cli.py
+    ├── scripts/config/               # 关键词与标签
+    ├── scripts/prompts/              # 筛选与结构化分析 Prompt
+    ├── scripts/clients/              # arXiv、GitHub、LLM 客户端
+    ├── scripts/services/             # 去重、标签、日报等服务
+    └── tests/                        # 单元与目标论文回归测试
+```

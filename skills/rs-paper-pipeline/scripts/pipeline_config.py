@@ -124,7 +124,7 @@ class PipelineConfig:
 
 
 def load_config() -> PipelineConfig:
-    github_repo = _env("RS_GITHUB_REPO", "thinson/RS-PaperClaw")
+    github_repo = _env("RS_GITHUB_REPO") or _env("GITHUB_REPOSITORY") or "your-github-name/UAV-GeoNav-PaperClaw"
     temp_dir = Path(_env("RS_TEMP_DIR", "/tmp")).expanduser()
     root_dir, workspace_warning = resolve_workspace_root()
     return PipelineConfig(
@@ -148,7 +148,7 @@ def load_config() -> PipelineConfig:
         dingtalk_webhook=_env("DINGTALK_WEBHOOK"),
         raw_content_base=f"https://raw.githubusercontent.com/{github_repo}/main",
         arxiv_api=_env("ARXIV_API_URL", "https://export.arxiv.org/api/query"),
-        arxiv_user_agent=_env("ARXIV_USER_AGENT", f"RS-PaperClaw/1.0 (+https://github.com/{github_repo})"),
+        arxiv_user_agent=_env("ARXIV_USER_AGENT", f"UAV-GeoNav-PaperClaw/1.0 (+https://github.com/{github_repo})"),
         filter_keywords_path=Path(_env("RS_FILTER_KEYWORDS_FILE", str(root_dir / "scripts" / "config" / "filter_keywords.json"))).expanduser(),
         filter_prompt_path=Path(_env("RS_FILTER_PROMPT_FILE", str(root_dir / "scripts" / "prompts" / "filter_cross_prompt.md"))).expanduser(),
         workspace_warning=workspace_warning,

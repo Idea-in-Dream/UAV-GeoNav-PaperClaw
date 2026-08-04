@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RS-PaperClaw</title>
+    <title>UAV-GeoNav-PaperClaw</title>
     <style>
       :root {
         --bg: #f4efe7;
@@ -1166,29 +1166,28 @@
         <div class="hero-brand">
           <div class="hero-copy">
             <div class="hero-title-row">
-              <h1>RS-PaperClaw</h1>
+              <h1>UAV-GeoNav-PaperClaw</h1>
               <img
                 class="hero-logo"
                 src="./logo-220.png"
-                alt="RS-PaperClaw logo"
+                alt="UAV-GeoNav-PaperClaw logo"
                 width="208"
                 height="220"
                 decoding="async"
               />
             </div>
             <p>
-              Auto-tracks, auto-analyzes, and auto-digests remote sensing
-              papers.
+              自动追踪无人机定位、地图匹配与 GNSS 拒止导航论文。
             </p>
-            <a class="hero-news" href="./cvpr2026_geoai.html">
-              New Collection: CVPR 2026 GeoAI — 139 papers curated
-            </a>
+            <span class="hero-news">
+              UAV-to-Satellite · 3D Map · Map-Aided VIO · Target Geolocation
+            </span>
           </div>
         </div>
         <a
           id="repoLink"
           class="repo-link"
-          href="https://github.com/thinson/RS-PaperClaw"
+          href="#"
           target="_blank"
           rel="noreferrer"
         >
@@ -1266,20 +1265,34 @@
       const issueExternalLink = document.getElementById("issueExternalLink");
       const paperDetail = document.getElementById("paperDetail");
       const scrollTopButton = document.getElementById("scrollTopButton");
+      function detectRepository() {
+        const queryRepo = new URLSearchParams(window.location.search).get("repo");
+        if (queryRepo && /^[^/]+\/[^/]+$/.test(queryRepo)) return queryRepo;
+
+        const pagesHost = window.location.hostname.match(/^([^.]+)\.github\.io$/i);
+        const pathRepo = window.location.pathname.split("/").filter(Boolean)[0];
+        if (pagesHost && pathRepo) return `${pagesHost[1]}/${pathRepo}`;
+
+        return "your-github-name/UAV-GeoNav-PaperClaw";
+      }
+
+      const REPO_SLUG = detectRepository();
       const DEFAULT_REPORT_BASE =
-        "https://raw.githubusercontent.com/thinson/RS-PaperClaw/main/daily_reports";
+        `https://raw.githubusercontent.com/${REPO_SLUG}/main/daily_reports`;
       const LOOKBACK_DAYS = 8;
       const REPORT_BATCH_SIZE = 15;
+      const REPORT_START_DATE = "20260804";
       const issueCache = new Map();
       let allReports = [];
       let currentReportDate = "";
       let currentSummaryText = "";
       let visibleReportCount = REPORT_BATCH_SIZE;
       let overlayHistoryActive = false;
-      const REPO_API_URL = "https://api.github.com/repos/thinson/RS-PaperClaw";
-      const REPO_WEB_URL = "https://github.com/thinson/RS-PaperClaw";
+      const REPO_API_URL = `https://api.github.com/repos/${REPO_SLUG}`;
+      const REPO_WEB_URL = `https://github.com/${REPO_SLUG}`;
       const TREE_API_URL =
-        "https://api.github.com/repos/thinson/RS-PaperClaw/git/trees/main?recursive=1";
+        `${REPO_API_URL}/git/trees/main?recursive=1`;
+      document.getElementById("repoLink").href = REPO_WEB_URL;
 
       function normalizeReportBase(input) {
         const trimmed = input.trim();
@@ -1527,6 +1540,7 @@
             .map((path) => path.match(/^daily_reports\/\d{6}\/(\d{8})\.md$/))
             .filter(Boolean)
             .map((match) => match[1])
+            .filter((date) => date >= REPORT_START_DATE)
             .sort((left, right) => right.localeCompare(left));
 
           return [...new Set(dates)];
@@ -1654,7 +1668,10 @@
         const metadata = parseMetadataTable(extractSection(normalized, "📋 基础信息"));
         const tldr = parseListItems(extractSection(normalized, "🧠 TL;DR（速览）"));
         const previews = parseIssueImages(extractSection(normalized, "📸 论文概览"));
-        const analysis = parseAnalysisItems(extractSection(normalized, "❓ 10 问题深度分析"));
+        const analysisSection =
+          extractSection(normalized, "🧭 定位与地图匹配分析") ||
+          extractSection(normalized, "❓ 10 问题深度分析");
+        const analysis = parseAnalysisItems(analysisSection);
         const metadataMap = Object.fromEntries(metadata.map((item) => [item.key, item.value]));
 
         return {
@@ -1738,7 +1755,7 @@
       function renderIssueDetail(issue) {
         const parsed = parseIssueBody(issue.body || "");
         const abstractValue = parsed.metadataMap["摘要"] || "";
-        const arxivValue = parsed.metadataMap["arXiv"] || "";
+        const arxivValue = parsed.metadataMap["arXiv 链接"] || parsed.metadataMap["arXiv"] || "";
         const arxivLink = extractMarkdownLinks(arxivValue).find((item) =>
           /^(abs|arxiv)$/i.test(item.label)
         );
@@ -1984,7 +2001,7 @@
               ${
                 canLoadMore
                   ? 'id="loadMoreReports" type="button"'
-                  : 'href="https://github.com/thinson/RS-PaperClaw/tree/main/daily_reports" target="_blank" rel="noreferrer"'
+                  : `href="${REPO_WEB_URL}/tree/main/daily_reports" target="_blank" rel="noreferrer"`
               }
             >
               <strong>More</strong>

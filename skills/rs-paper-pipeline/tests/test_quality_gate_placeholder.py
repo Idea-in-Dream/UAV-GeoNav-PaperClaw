@@ -32,7 +32,7 @@ class QualityGatePlaceholderTest(unittest.TestCase):
         }
         analysis = {
             f"q{i}": "该回答围绕未知室内环境中的无人机自主探索，说明问题、方法和实验结论。"
-            for i in range(1, 11)
+            for i in range(1, 14)
         }
         analysis["q4"] = (
             "The core idea targets Unknown Indoor Environments by combining semantic mapping "

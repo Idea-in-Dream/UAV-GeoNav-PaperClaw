@@ -1,12 +1,13 @@
-name: RS Pipeline Schedule Reset
+name: UAV GeoNav PaperClaw Schedule
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 1,4,7 * * 1-5"
+    # GitHub cron 使用 UTC：01:15 对应北京时间 09:15，每个工作日一次。
+    - cron: "15 1 * * 1-5"
 
 concurrency:
-  group: rs-pipeline-schedule
+  group: uav-geonav-paperclaw-schedule
   cancel-in-progress: false
 
 jobs:
@@ -14,11 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     permissions:
-      contents: read
+      contents: write
+      issues: write
     env:
-      GITHUB_TOKEN: ${{ secrets.RS_GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.UAV_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
       LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
-      RS_GITHUB_REPO: ${{ vars.RS_GITHUB_REPO }}
+      RS_GITHUB_REPO: ${{ vars.RS_GITHUB_REPO || github.repository }}
       LLM_MODEL: ${{ vars.LLM_MODEL }}
       LLM_API_URL: ${{ vars.LLM_API_URL }}
       GITHUB_TIMEOUT: ${{ vars.GITHUB_TIMEOUT }}
@@ -33,7 +35,7 @@ jobs:
       PYTHONUNBUFFERED: "1"
 
     steps:
-      - name: Checkout (sparse)
+      - name: Checkout pipeline files
         uses: actions/checkout@v4
         with:
           sparse-checkout: |
@@ -61,15 +63,17 @@ jobs:
         working-directory: skills/rs-paper-pipeline
         run: python3 scripts/cli.py doctor
 
+      - name: Ensure issue labels
+        working-directory: skills/rs-paper-pipeline
+        run: python3 scripts/cli.py setup-labels
+
       - name: Run scheduled pipeline
         working-directory: skills/rs-paper-pipeline
         run: |
           set -euo pipefail
           if [[ -n "${DINGTALK_WEBHOOK:-}" || -n "${FEISHU_TARGET:-}" ]]; then
-            echo "MODE run"
             python3 scripts/cli.py run
           else
-            echo "MODE run --no-notify"
             python3 scripts/cli.py run --no-notify
           fi
 
@@ -90,6 +94,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: rs-pipeline-runtime-schedule
-          path: |
-            skills/rs-paper-pipeline/memory/
+          name: uav-geonav-paperclaw-runtime
+          path: skills/rs-paper-pipeline/memory/
+
