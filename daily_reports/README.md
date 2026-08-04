@@ -2,6 +2,38 @@
 
 最近三天日报（最新在前）：
 
+# [20260801](./202608/20260801.md)
+## 📌 今日概况
+
+今日共检索候选论文 9 篇；关键词+LLM 智能匹配遥感交叉论文 3 篇；最终纳入日报 3 篇。
+
+今日遥感AI研究聚焦于多领域交叉应用：统计部门探索负责任AI与算法采纳以优化方法论，农业遥感利用基础模型实现免训练作物制图，图像处理领域提出新型去阴影网络。整体趋势显示，AI技术正从单一任务向复杂场景、多模态融合及实际业务落地演进。
+
+## ✨ 今日亮点
+
+- 统计部门探索负责任AI与算法采纳，推动遥感数据融入官方统计。
+- 免训练作物制图方法结合SAM与物候信息，提升时空泛化能力。
+- 新型去阴影网络利用CIELAB统计，增强边界可靠性与色彩恢复。
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260801] Responsible AI and Algorithmic Adoption in Methodology Development for National Statistical Offices | Tam Siu-Ming | in methodology research and development, including harnessing big data, satellite imagery, and transactional sources to improve or redesign data collection instruments | 统计部门方法论开发中负责任AI与算法采纳，利用卫星影像等大数据改进数据采集。 | [#1016](https://github.com/thinson/RS-PaperClaw/issues/1016) |
+| [20260801] PhenoStitch: Training-Free Panoptic Crop Mapping from Satellite Image Time Series | Li Xuechen | University of Minnesota | PhenoStitch提出免训练泛在作物制图，结合SAM与物候信息实现时序影像全景分割。 | [#1017](https://github.com/thinson/RS-PaperClaw/issues/1017) |
+| [20260801] BRIC-Net: Boundary-Reliable Illumination-Color Interaction for Remote Sensing Image Deshadowing | Lu Wei, Liu Yi, Si-Bao | MOE Key Lab of ICSP, IMIS Lab of Anhui, Anhui Provincial Key Lab of Multimodal Cognitive Computation, Zenmorn-AHU；AI Joint Lab, School of Computer Science and Technology, Anhui University, Hefei 230601, China；derives reliability-aware guidance from CIELAB statistics | BRIC-Net通过边界可靠光照-颜色交互，提升遥感图像去阴影的亮度恢复与色彩校正。 | [#1018](https://github.com/thinson/RS-PaperClaw/issues/1018) |
+
+## 🔎 观察
+
+- 基础模型（如SAM）在遥感时序分析中应用增多，但免训练策略仍依赖物候先验。
+- 统计业务与遥感AI结合，强调算法可解释性与负责任部署，或成未来重要方向。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260731](./202607/20260731.md)
 ## 📌 今日概况
 
@@ -70,42 +102,6 @@ Powered by OpenClaw🦞
 
 - 多模态融合从数据级向任务级演进，文本与SAR等异构信息协同增强解译能力
 - 轻量化与高效架构（如Mamba、低秩）成为遥感深度学习新趋势，平衡精度与计算
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260729](./202607/20260729.md)
-## 📌 今日概况
-
-今日共检索候选论文 7 篇；关键词+LLM 智能匹配遥感交叉论文 7 篇；最终纳入日报 7 篇。
-
-今日遥感AI研究聚焦多时相卫星影像的鲁棒匹配与三维重建，以及无人机系统的智能控制与感知。多篇工作利用生成式AI和季节不变特征提升跨时相立体匹配与光束法平差精度。同时，无人机领域涌现出面向6G定位、集群协同、非合作目标监控及反无人机跟踪等前沿方法，体现了遥感与通信、控制技术的深度融合趋势。
-
-## ✨ 今日亮点
-
-- 生成式AI提升多时相卫星立体匹配鲁棒性
-- 季节不变特征优化多时相卫星光束法平差
-- 无人机集群协同感知与通信一体化研究活跃
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260729] SeasonStereo: Robust Dense Stereo Matching for Multi-Date Satellite Imagery via Generative AI | Díaz-Laureano Álvaro, Marí Roger, Masquil Elías, Arias Pablo, Facciolo Gabriele | Dept. of Engineering, Universitat Pompeu Fabra, Barcelona, Spain；Université Paris-Saclay, CNRS, ENS Paris-Saclay, Centre Borelli, France；Institut Universitaire de France | 提出SeasonStereo，利用生成式AI实现多时相卫星影像的鲁棒密集立体匹配。 | [#989](https://github.com/thinson/RS-PaperClaw/issues/989) |
-| [20260729] Robust RPC Bundle Adjustment for Multi-Date Satellite Imagery with Season-Invariant Correspondences | Marí Roger, Masquil Elías, Bou Xavier, Ehret Thibaud, Facciolo Gabriele | Institut Universitaire de France；Université Paris-Saclay, CNRS, ENS Paris-Saclay, Centre Borelli, France | 提出鲁棒RPC光束法平差方法，利用季节不变对应点提升多时相卫星影像精度。 | [#990](https://github.com/thinson/RS-PaperClaw/issues/990) |
-| [20260729] Network Verified NTN Positioning for 6G A Standards Oriented Survey of Hybrid TN NTN Localization | Wang Donglin, Fang Zexing, Zhou Qiuheng, Hans D. Schotten | Rhineland-Palatinate Technical University of Kaiserslautern-Landau, Germany；German Research Center for Artificial Intelligence (DFKI GmbH), Kaiserslautern, Germany | 综述面向6G标准的混合地面与非地面网络定位技术，聚焦网络验证定位。 | [#991](https://github.com/thinson/RS-PaperClaw/issues/991) |
-| [20260729] Global Sensitive-Based Input Shaping for UAV-Payload Precision Motion Control | Baker Karan, Maharjan Sanjay, Hlayel Tariq, Ogunbodede Oladapo, Dunphy Dutch, Stein Adrian | Department of Mechanical and Industrial Engineering, Louisiana State University, LA, USA. ( | 提出基于全局敏感性的输入整形方法，提升无人机-负载系统的精密运动控制鲁棒性。 | [#992](https://github.com/thinson/RS-PaperClaw/issues/992) |
-| [20260729] UAV Swarming for Air-Ground ISAC via Cross-Region Cooperation | Miao Linghui, Gao Shijian | The Hong Kong University of Science and Technology (Guangzhou), China | 提出跨区域合作的无人机集群空中-地面一体化感知与通信方法。 | [#993](https://github.com/thinson/RS-PaperClaw/issues/993) |
-| [20260729] Online Monitoring and Risk Assessment of Non-Cooperative UAVs via STL-Aware Adaptive Fusion Kalman Filtering | Yan Xinhao, Yang Ruige, Peng Chao, Huang Hailong | Department of Aeronautical and Aviation Engineering, The Hong Kong Polytechnic University, Kowloon, Hong Kong ( | 提出基于信号时序逻辑的自适应融合卡尔曼滤波，用于非合作无人机在线监控与风险评估。 | [#994](https://github.com/thinson/RS-PaperClaw/issues/994) |
-| [20260729] Semantic-Aware Temporal Adaptation for UAV Anti-UAV Tracking | Qiao Xiaozhen, Zhang Da, Guo Yubin, Gao Junyu, Zhao Zhiyuan, Li Xuelong | School of Information Science and Technology, University of Science and Technology of China, Hefei, China；Northwestern Polytechnical University, Xi’an recent-frame estimates with training-time statistics, allowing, China；University of Science and Technology of China, Hefei, China；Institute of Artificial Intelligence (TeleAI), China targets both identity drift and video-specific feature shifts in Telecom, P；Institute of Artificial Intelligence (TeleAI), China Telecom, P | 提出语义感知时序自适应方法，解决反无人机跟踪中的身份漂移与特征偏移问题。 | [#995](https://github.com/thinson/RS-PaperClaw/issues/995) |
-
-## 🔎 观察
-
-- 多时相卫星影像处理正从几何校正向语义鲁棒匹配演进，生成式AI成为关键工具。
-- 无人机研究从单机控制向集群协同、非合作目标监控及反制等复杂场景拓展，智能化程度显著提升。
 
 ---
 
