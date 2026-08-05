@@ -16,7 +16,11 @@ import re
 import subprocess
 from datetime import datetime, timedelta, timezone
 
-from clients.github_ops import daily_report_file_exists, get_today_digest_issue
+from clients.github_ops import (
+    daily_report_file_exists,
+    daily_report_matches_digest,
+    get_today_digest_issue,
+)
 from clients.notify_client import has_available_notify_channel, send_dingtalk_markdown, send_feishu_message
 from pipeline_config import build_runtime_env, get_repo, load_config
 
@@ -115,6 +119,9 @@ def _date_already_completed(date_str: str) -> tuple[bool, str]:
 
     if not daily_report_file_exists(repo, date_str):
         return False, "daily report file missing"
+
+    if not daily_report_matches_digest(repo, date_str, digest_issue):
+        return False, "daily report file does not match digest issue"
 
     linked_issue_numbers = _extract_digest_issue_numbers(digest_issue.body or "")
     if not linked_issue_numbers:
@@ -417,13 +424,24 @@ def _process_date(date_str: str, notify: bool, force: bool = False):
 
     _write_state(date_str, "sync", "running")
     max_sync_attempts = 3
+    report_synced = False
     try:
         for attempt in range(1, max_sync_attempts + 1):
             run(["python3", "scripts/sync_daily_reports_to_repo.py"])
-            if daily_report_file_exists(_get_repo(), date_str):
+            repo = _get_repo()
+            digest_issue = get_today_digest_issue(repo, date_str)
+            report_synced = bool(
+                digest_issue
+                and daily_report_matches_digest(repo, date_str, digest_issue)
+            )
+            if report_synced:
                 break
             if attempt < max_sync_attempts:
                 time.sleep(6)
+        if not report_synced:
+            raise RuntimeError(
+                f"daily report {date_str} was not synchronized with its digest issue"
+            )
     except Exception as exc:
         _write_state(
             date_str,
@@ -435,7 +453,16 @@ def _process_date(date_str: str, notify: bool, force: bool = False):
             },
         )
         raise
-    _write_state(date_str, "sync", "ok", {"sync_attempts": attempt, "daily_report_file": daily_report_file_exists(_get_repo(), date_str)})
+    _write_state(
+        date_str,
+        "sync",
+        "ok",
+        {
+            "sync_attempts": attempt,
+            "daily_report_file": True,
+            "daily_report_matches_digest": True,
+        },
+    )
 
     if notify:
         sent_channels: list[str] = []

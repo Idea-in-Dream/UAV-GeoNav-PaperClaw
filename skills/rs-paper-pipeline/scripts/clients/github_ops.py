@@ -36,6 +36,19 @@ def daily_report_file_exists(repo, date_str: str) -> bool:
         return False
 
 
+def daily_report_matches_digest(repo, date_str: str, digest_issue) -> bool:
+    """Return whether the committed Markdown is the current digest Issue body."""
+    ym = date_str[:6]
+    path = f"daily_reports/{ym}/{date_str}.md"
+    expected = (digest_issue.body or "").strip() + "\n"
+    try:
+        content = repo.get_contents(path)
+        actual = content.decoded_content.decode("utf-8")
+    except Exception:
+        return False
+    return actual == expected
+
+
 def load_existing_arxiv_ids(repo) -> set[str]:
     from services.issue_index import ensure_index
     index = ensure_index(repo)

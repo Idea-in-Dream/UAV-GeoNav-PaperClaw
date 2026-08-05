@@ -2,6 +2,7 @@ name: UAV GeoNav Deployment Smoke
 
 on:
   workflow_dispatch:
+  # Temporary push hook used for the live completion/idempotency regression.
   push:
     branches: [main]
     paths:

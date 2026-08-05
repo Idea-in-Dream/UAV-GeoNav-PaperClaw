@@ -8,6 +8,9 @@ from clients.llm_client import call_llm
 from services.paper_analysis import is_valid_institution_text
 
 
+UAV_GEONAV_REPORT_MARKER = "<!-- UAV_GEONAV_PAPERCLAW_REPORT -->"
+
+
 def extract_author(body: str) -> str:
     match = re.search(r"\| \*\*作者\*\* \|([^|]+)\|", body or "")
     return match.group(1).strip() if match else "-"
@@ -92,7 +95,16 @@ def build_digest_with_llm(date: str, papers: list, stats: dict | None = None, fa
         else:
             overview_text += "当日未检索到符合条件并纳入日报的论文。"
 
-        lines = [f"# 日报 {date}", "", "## 📌 今日概况", "", overview_text, ""]
+        lines = [
+            f"# 日报 {date}",
+            "",
+            UAV_GEONAV_REPORT_MARKER,
+            "",
+            "## 📌 今日概况",
+            "",
+            overview_text,
+            "",
+        ]
         append_failed_items(lines, failed_items)
         lines += [
             "## 🔎 观察",
@@ -148,7 +160,16 @@ def build_digest_with_llm(date: str, papers: list, stats: dict | None = None, fa
         f"最终纳入日报 {included_count} 篇。\n\n{overview_text}"
     )
 
-    lines = [f"# 日报 {date}", "", "## 📌 今日概况", "", overview_text, ""]
+    lines = [
+        f"# 日报 {date}",
+        "",
+        UAV_GEONAV_REPORT_MARKER,
+        "",
+        "## 📌 今日概况",
+        "",
+        overview_text,
+        "",
+    ]
 
     highlights = data.get("highlights") or []
     if highlights:

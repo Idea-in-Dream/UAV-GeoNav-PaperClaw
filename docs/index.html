@@ -1282,7 +1282,8 @@
         `https://raw.githubusercontent.com/${REPO_SLUG}/main/daily_reports`;
       const LOOKBACK_DAYS = 8;
       const REPORT_BATCH_SIZE = 15;
-      const REPORT_START_DATE = "20260805";
+      const REPORT_START_DATE = "20260722";
+      const REPORT_MARKER = "<!-- UAV_GEONAV_PAPERCLAW_REPORT -->";
       const issueCache = new Map();
       let allReports = [];
       let currentReportDate = "";
@@ -2197,6 +2198,9 @@
           }
 
           const markdown = await response.text();
+          if (!markdown.includes(REPORT_MARKER)) {
+            return { date, url, error: "not a UAV GeoNav report" };
+          }
           return {
             date,
             url,
