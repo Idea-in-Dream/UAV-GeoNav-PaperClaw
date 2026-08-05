@@ -1,6 +1,6 @@
 # UAV GeoNav Daily Reports
 
-此目录由流水线自动维护。新仓库从 `20260804` 起生成面向无人机定位与地图匹配的日报：
+此目录由流水线自动维护。新仓库从 `20260805` 起生成面向无人机定位与地图匹配的日报：
 
 ```text
 daily_reports/YYYYMM/YYYYMMDD.md
