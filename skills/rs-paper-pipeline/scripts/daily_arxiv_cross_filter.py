@@ -147,9 +147,6 @@ def _llm_cross_filter_batch(candidates):
                 }
             if decision["status"] == "exclude":
                 continue
-            text = f"{candidate['title']}\n{candidate['abstract']}"
-            if not has_remote_sensing_signal(text):
-                continue
             enriched = dict(candidate)
             enriched["filter_status"] = decision["status"]
             enriched["filter_labels"] = normalize_paper_labels(decision.get("labels") or [])
@@ -219,10 +216,10 @@ def main(dry_run=False, days_back=2, stats_out: str | None = None, target_date: 
 
     if target_date:
         print(f"[1/5] 拉取指定日期 {target_date} 候选...")
-        cands = fetch_recent_candidates(max_results=180, days_back=days_back, target_date=target_date)
+        cands = fetch_recent_candidates(max_results=500, days_back=days_back, target_date=target_date)
     else:
         print(f"[1/5] 拉取最近 {days_back} 天候选...")
-        cands = fetch_recent_candidates(max_results=180, days_back=days_back)
+        cands = fetch_recent_candidates(max_results=500, days_back=days_back)
     cand_count = len(cands)
     print(f"  候选数: {cand_count}")
 

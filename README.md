@@ -181,9 +181,11 @@ skills/rs-paper-pipeline/scripts/config/filter_keywords.json
 
 - `rs_query_terms`：发送给 arXiv 的检索词；
 - `rs_signal_patterns`：标题与摘要的主题初筛正则；
+- `candidate_priority_patterns`：候选超过上限时，优先保留定位与地图匹配强信号论文；
 - `ai_signal_patterns`：LLM 异常时的保守回退信号。
+- `candidate_limit_per_day`：每天送入 LLM 的候选上限，默认 50。
 
-新增词后先运行指定日期 dry-run，避免检索面过宽。
+候选层采用宽召回策略，目标是每天约 10–50 篇；LLM 会阅读标题和摘要，排除普通检测、分割、跟踪等论文，并将证据不足的条目标记为 `Needs-Review`。
 
 ## 如何调整筛选标准
 

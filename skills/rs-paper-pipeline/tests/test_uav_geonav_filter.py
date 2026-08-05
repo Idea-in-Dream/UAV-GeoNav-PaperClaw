@@ -8,7 +8,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from clients.arxiv_client import has_remote_sensing_signal
+from clients.arxiv_client import fetch_recent_candidates, has_remote_sensing_signal
 from daily_arxiv_cross_filter import has_ai_signal, llm_cross_filter
 from services.issue_index import canonical_arxiv_id
 from services.labels import allowed_paper_labels
@@ -29,13 +29,13 @@ class UAVGeoNavFilterTest(unittest.TestCase):
                 self.assertTrue(has_remote_sensing_signal(text))
                 self.assertTrue(has_ai_signal(text))
 
-    def test_ordinary_detection_and_tracking_are_not_prefiltered(self):
+    def test_broad_prefilter_defers_common_false_positives_to_llm(self):
         for paper in self.cases["negative"]:
             text = f"{paper['title']}\n{paper['abstract']}"
             with self.subTest(paper=paper["name"]):
-                self.assertFalse(has_remote_sensing_signal(text))
+                self.assertTrue(has_remote_sensing_signal(text))
 
-    def test_structured_llm_decisions_keep_required_cases_and_exclude_detection(self):
+    def test_structured_llm_decisions_keep_required_cases_and_exclude_common_false_positives(self):
         candidates = []
         for paper in self.cases["positive"] + self.cases["negative"]:
             candidates.append({
@@ -56,7 +56,7 @@ class UAVGeoNavFilterTest(unittest.TestCase):
             ],
             "needs_review": [],
             "exclude": [
-                {"arxiv_id": paper["arxiv_id"], "reason": "普通检测或跟踪"}
+                {"arxiv_id": paper["arxiv_id"], "reason": "普通检测、分割或跟踪"}
                 for paper in self.cases["negative"]
             ],
         }
@@ -113,8 +113,51 @@ class UAVGeoNavFilterTest(unittest.TestCase):
             "3DGS visual localization UAV", "map aided visual inertial navigation",
             "satellite aided VIO", "GNSS denied UAV localization",
             "UAV target geo-localization", "thermal UAV geo-localization",
+            "geolocation", "visual localization", "visual place recognition",
+            "camera relocalization", "absolute pose estimation", "aerial image retrieval",
+            "cross-domain localization", "terrain-relative navigation", "georeferenced imagery",
         }
         self.assertTrue(required.issubset(set(config["rs_query_terms"])))
+        self.assertEqual(config["candidate_limit_per_day"], 50)
+
+    def test_candidate_pool_is_capped_per_day(self):
+        entries = []
+        for index in range(60):
+            entries.append(
+                f"""
+                <entry>
+                  <id>https://arxiv.org/abs/2608.{index:05d}v1</id>
+                  <title>Object Detection in Aerial Imagery {index}</title>
+                  <summary>A detector processes satellite images for remote sensing benchmarks.</summary>
+                  <published>2026-08-01T12:00:00Z</published>
+                </entry>
+                """
+            )
+        entries.append(
+            """
+            <entry>
+              <id>https://arxiv.org/abs/2608.99999v1</id>
+              <title>UAV Geo-Localization against Satellite Maps</title>
+              <summary>A drone matches imagery to georeferenced orthophotos for absolute camera pose.</summary>
+              <published>2026-08-01T12:00:00Z</published>
+            </entry>
+            """
+        )
+        xml_text = '<feed xmlns="http://www.w3.org/2005/Atom">' + "".join(entries) + "</feed>"
+
+        with patch("clients.arxiv_client.fetch_url_with_retry", return_value=xml_text):
+            candidates = fetch_recent_candidates(
+                max_results=100,
+                target_date="20260801",
+                candidate_limit_per_day=50,
+            )
+
+        self.assertEqual(len(candidates), 50)
+        self.assertIn("2608.99999v1", {item["arxiv_id"] for item in candidates})
+
+    def test_candidate_limit_must_be_positive(self):
+        with self.assertRaises(ValueError):
+            fetch_recent_candidates(candidate_limit_per_day=0)
 
     def test_issue_prompt_and_renderer_cover_required_fields(self):
         prompt = (ROOT / "scripts" / "prompts" / "summarize_prompt.md").read_text(encoding="utf-8")

@@ -11,6 +11,7 @@ on:
         options:
           - run_no_notify
           - run_notify
+          - filter_dry_run
           - reconcile
           - doctor
       date:
@@ -98,6 +99,14 @@ jobs:
                 exit 1
               fi
               python3 scripts/cli.py reconcile --date "${DISPATCH_DATE}"
+              ;;
+            filter_dry_run)
+              if [[ -z "${DISPATCH_DATE:-}" ]]; then
+                echo "workflow_dispatch command=filter_dry_run requires date" >&2
+                exit 1
+              fi
+              python3 scripts/cli.py filter --dry-run --date "${DISPATCH_DATE}" \
+                --stats-out "memory/rs_daily_stats_${DISPATCH_DATE}.json"
               ;;
             run_notify)
               if [[ -n "${DISPATCH_DATE:-}" ]]; then

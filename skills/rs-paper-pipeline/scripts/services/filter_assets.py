@@ -34,13 +34,31 @@ def _load_string_list(data: dict, key: str, path: Path) -> list[str]:
     return [item.strip() for item in value]
 
 
+def _load_positive_int(data: dict, key: str, path: Path, default: int) -> int:
+    value = data.get(key, default)
+    if not isinstance(value, int) or isinstance(value, bool) or value <= 0:
+        raise RuntimeError(f"Invalid '{key}' in filter config: {path}")
+    return value
+
+
 @lru_cache(maxsize=1)
-def load_filter_keywords() -> dict[str, list[str]]:
+def load_filter_keywords() -> dict[str, object]:
     data = _read_json(CONFIG.filter_keywords_path)
     return {
         "rs_query_terms": _load_string_list(data, "rs_query_terms", CONFIG.filter_keywords_path),
         "rs_signal_patterns": _load_string_list(data, "rs_signal_patterns", CONFIG.filter_keywords_path),
+        "candidate_priority_patterns": _load_string_list(
+            data,
+            "candidate_priority_patterns",
+            CONFIG.filter_keywords_path,
+        ),
         "ai_signal_patterns": _load_string_list(data, "ai_signal_patterns", CONFIG.filter_keywords_path),
+        "candidate_limit_per_day": _load_positive_int(
+            data,
+            "candidate_limit_per_day",
+            CONFIG.filter_keywords_path,
+            default=50,
+        ),
     }
 
 
@@ -54,7 +72,7 @@ def load_filter_prompt_template() -> str:
 
 @lru_cache(maxsize=1)
 def load_rs_query_terms() -> list[str]:
-    return load_filter_keywords()["rs_query_terms"]
+    return list(load_filter_keywords()["rs_query_terms"])
 
 
 @lru_cache(maxsize=1)
@@ -65,6 +83,16 @@ def load_rs_signal_patterns() -> list[re.Pattern[str]]:
 @lru_cache(maxsize=1)
 def load_ai_signal_patterns() -> list[re.Pattern[str]]:
     return [re.compile(pattern) for pattern in load_filter_keywords()["ai_signal_patterns"]]
+
+
+@lru_cache(maxsize=1)
+def load_candidate_priority_patterns() -> list[re.Pattern[str]]:
+    return [re.compile(pattern) for pattern in load_filter_keywords()["candidate_priority_patterns"]]
+
+
+@lru_cache(maxsize=1)
+def load_candidate_limit_per_day() -> int:
+    return int(load_filter_keywords()["candidate_limit_per_day"])
 
 
 def render_filter_prompt(candidate_lines: list[str]) -> str:

@@ -53,6 +53,42 @@
       "arxiv_id": "2602.23872v4",
       "title": "Altitude-Adaptive Vision-Only Geo-Localization for UAVs in GPS-Denied Environments",
       "abstract": "The method matches downward-looking UAV images to georeferenced satellite or aerial map tiles. Relative altitude normalizes scale before visual place recognition and weighted coordinate estimation provides coarse map localization in GPS-denied environments."
+    },
+    {
+      "name": "broad visual place recognition wording",
+      "arxiv_id": "broad.00001v1",
+      "title": "Visual Place Recognition for Long-Range Aerial Navigation",
+      "abstract": "A drone retrieves its location from a large database of georeferenced orthophotos and uses the retrieved coordinates as a global navigation update."
+    },
+    {
+      "name": "broad georeferencing wording",
+      "arxiv_id": "broad.00002v1",
+      "title": "Automatic Georeferencing of UAV Imagery via Map Correspondence",
+      "abstract": "We align airborne camera frames with a geospatial base map to recover camera pose and geographic coordinates without GNSS."
+    },
+    {
+      "name": "broad terrain relative wording",
+      "arxiv_id": "broad.00003v1",
+      "title": "Learning Terrain-Relative Navigation from Monocular Aerial Images",
+      "abstract": "The aircraft matches onboard imagery to an elevation map and estimates global position and heading over long trajectories."
+    },
+    {
+      "name": "broad camera relocalization wording",
+      "arxiv_id": "broad.00004v1",
+      "title": "Camera Relocalization against Large-Scale Geospatial Maps",
+      "abstract": "Queries captured by an unmanned aerial vehicle are registered to a geo-referenced 3D city map for absolute pose estimation."
+    },
+    {
+      "name": "broad aerial image retrieval wording",
+      "arxiv_id": "broad.00005v1",
+      "title": "Cross-Domain Aerial Image Retrieval for Global Localization",
+      "abstract": "Drone observations are retrieved against overhead satellite images, followed by geometric verification and geographic coordinate estimation."
+    },
+    {
+      "name": "broad absolute pose wording",
+      "arxiv_id": "broad.00006v1",
+      "title": "Absolute Pose Estimation of Drones from Overhead Maps",
+      "abstract": "Our system establishes visual correspondences between UAV frames and a georeferenced map to solve the six degree-of-freedom camera pose."
     }
   ],
   "negative": [
@@ -67,6 +103,12 @@
       "arxiv_id": "negative.00002v1",
       "title": "Real-Time Multi-Object Tracking from UAV Videos",
       "abstract": "We improve pedestrian detection and tracking in drone video using a lightweight detector. The method does not use a georeferenced map and does not output absolute geographic position."
+    },
+    {
+      "name": "ordinary remote-sensing segmentation",
+      "arxiv_id": "negative.00003v1",
+      "title": "Semantic Segmentation of Buildings in Aerial Imagery",
+      "abstract": "A segmentation network predicts building masks in high-resolution overhead images. It performs land-cover mapping rather than camera localization or UAV-to-map registration."
     }
   ]
 }

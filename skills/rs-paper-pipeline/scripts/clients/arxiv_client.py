@@ -12,7 +12,12 @@ from urllib.error import HTTPError
 from pathlib import Path
 
 from pipeline_config import install_urllib_proxy, load_config
-from services.filter_assets import load_rs_query_terms, load_rs_signal_patterns
+from services.filter_assets import (
+    load_candidate_limit_per_day,
+    load_candidate_priority_patterns,
+    load_rs_query_terms,
+    load_rs_signal_patterns,
+)
 
 
 CONFIG = load_config()
@@ -20,6 +25,8 @@ install_urllib_proxy()
 RS_QUERY_TERMS = load_rs_query_terms()
 RS_KEYWORDS = RS_QUERY_TERMS
 RS_MATCH_PATTERNS = load_rs_signal_patterns()
+CANDIDATE_PRIORITY_PATTERNS = load_candidate_priority_patterns()
+CANDIDATE_LIMIT_PER_DAY = load_candidate_limit_per_day()
 ATOM_NAMESPACE = {
     "atom": "http://www.w3.org/2005/Atom",
     "arxiv": "http://arxiv.org/schemas/atom",
@@ -28,6 +35,30 @@ ATOM_NAMESPACE = {
 
 def has_remote_sensing_signal(text: str) -> bool:
     return any(pattern.search(text) for pattern in RS_MATCH_PATTERNS)
+
+
+def candidate_priority_score(text: str) -> int:
+    return sum(1 for pattern in CANDIDATE_PRIORITY_PATTERNS if pattern.search(text))
+
+
+def limit_candidates_per_day(items: list[dict[str, str]], per_day_limit: int) -> list[dict[str, str]]:
+    grouped: dict[str, list[dict[str, str]]] = {}
+    day_order: list[str] = []
+    for item in items:
+        day = item["published"]
+        if day not in grouped:
+            grouped[day] = []
+            day_order.append(day)
+        grouped[day].append(item)
+
+    limited: list[dict[str, str]] = []
+    for day in day_order:
+        ranked = sorted(
+            grouped[day],
+            key=lambda item: -candidate_priority_score(f"{item['title']}\n{item['abstract']}"),
+        )
+        limited.extend(ranked[:per_day_limit])
+    return limited
 
 
 def _retry_after_seconds(headers) -> int | None:
@@ -68,10 +99,14 @@ def fetch_url_with_retry(url: str, retries: int = 6, timeout: int = 90) -> str:
 
 
 def fetch_recent_candidates(
-    max_results: int = 180,
+    max_results: int = 500,
     days_back: int = 2,
     target_date: str | None = None,
+    candidate_limit_per_day: int | None = None,
 ) -> list[dict[str, str]]:
+    per_day_limit = CANDIDATE_LIMIT_PER_DAY if candidate_limit_per_day is None else candidate_limit_per_day
+    if per_day_limit <= 0:
+        raise ValueError("candidate_limit_per_day must be positive")
     query_parts = []
     for keyword in RS_QUERY_TERMS:
         if " " in keyword:
@@ -142,20 +177,19 @@ def fetch_recent_candidates(
                         "published": published[:10],
                     }
                 )
-
             if target_date and min_page_date and min_page_date < next(iter(valid_days)):
                 break
 
-        return items
+        return limit_candidates_per_day(items, per_day_limit)
 
     if target_date:
         scoped_query = f"({base_query}) AND submittedDate:[{target_date}0000 TO {target_date}2359]"
-        items = run_query(scoped_query, max_scan=max_results, page_size=min(max_results, 100))
+        items = run_query(scoped_query, max_scan=max_results, page_size=min(max_results, 200))
         if items:
             return items
         print("  [arXiv] 日期限定查询返回 0，回退到提交时间扫描")
 
-    return run_query(base_query, max_scan=3000, page_size=min(max_results, 100 if target_date else 200))
+    return run_query(base_query, max_scan=3000, page_size=min(max_results, 200))
 
 
 def download_pdf(arxiv_id: str) -> tuple[Path | None, bool]:
