@@ -2,7 +2,7 @@ name: UAV GeoNav Deployment Smoke
 
 on:
   workflow_dispatch:
-  # Temporary push hook used for the live completion/idempotency regression.
+  # Temporary push hook used for the second live idempotency check.
   push:
     branches: [main]
     paths:
@@ -69,6 +69,43 @@ jobs:
       - name: Run end-to-end smoke date
         working-directory: skills/rs-paper-pipeline
         run: python3 scripts/cli.py run --date 20260722 --no-notify
+
+      - name: Assert idempotent smoke result
+        working-directory: skills/rs-paper-pipeline
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          import sys
+
+          sys.path.insert(0, "scripts")
+
+          from clients.github_ops import extract_arxiv_id_from_issue
+          from pipeline_config import get_repo, load_config
+          from services.issue_index import canonical_arxiv_id
+
+          state = json.loads(Path("memory/pipeline_state/20260722.json").read_text(encoding="utf-8"))
+          assert state.get("status") == "skipped", state
+          assert "digest=#3 papers=2" in state.get("skip_reason", ""), state
+
+          repo = get_repo(load_config())
+          issues = list(repo.get_issues(state="all"))
+          expected_ids = {"2607.20116", "2607.19951"}
+          counts = {arxiv_id: 0 for arxiv_id in expected_ids}
+          digest_count = 0
+          for issue in issues:
+              if issue.title.strip() == "日报 20260722":
+                  digest_count += 1
+              arxiv_id = extract_arxiv_id_from_issue(issue)
+              if arxiv_id:
+                  canonical = canonical_arxiv_id(arxiv_id)
+                  if canonical in counts:
+                      counts[canonical] += 1
+
+          assert digest_count == 1, {"digest_count": digest_count}
+          assert counts == {"2607.20116": 1, "2607.19951": 1}, counts
+          print("IDEMPOTENCY_OK", counts, "digest_count=1")
+          PY
 
       - name: Upload runtime artifacts
         if: always()
