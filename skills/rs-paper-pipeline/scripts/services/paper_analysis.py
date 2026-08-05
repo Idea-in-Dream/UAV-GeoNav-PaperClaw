@@ -8,7 +8,11 @@ import gzip
 from pathlib import Path
 
 from clients.llm_client import call_llm, load_prompt
+from pipeline_config import load_config
 from services.labels import normalize_paper_labels
+
+
+CONFIG = load_config()
 
 
 ANALYSIS_QUESTIONS = {
@@ -144,13 +148,18 @@ def translate_text(text: str) -> str:
     if not text:
         return ""
     template = load_prompt("translate_prompt.md")
-    return call_llm(template.replace("{content}", text), max_tokens=2000, timeout=60)
+    return call_llm(
+        template.replace("{content}", text),
+        max_tokens=2000,
+        timeout=60,
+        thinking="disabled",
+    )
 
 
 def extract_tags(title: str, abstract: str) -> list[str]:
     template = load_prompt("tags_prompt.md")
     prompt = template.replace("{title}", title).replace("{abstract}", abstract[:1000])
-    result = call_llm(prompt, max_tokens=200, timeout=30)
+    result = call_llm(prompt, max_tokens=200, timeout=30, thinking="disabled")
 
     raw_tags = re.split(r"[,，\n]", result)
     return normalize_paper_labels(raw_tags)[:6]
@@ -162,7 +171,9 @@ def generate_tldr(title: str, abstract_en: str) -> str:
         f"标题：{title}\n"
         f"摘要：{abstract_en[:1200]}"
     )
-    output = (call_llm(prompt, max_tokens=120, timeout=60) or "").strip()
+    output = (
+        call_llm(prompt, max_tokens=120, timeout=60, thinking="disabled") or ""
+    ).strip()
     output = re.sub(r"\s+", " ", output)
     output = re.sub(r"^(TL;DR[:：]?\s*)", "", output, flags=re.IGNORECASE)
     return output or "面向遥感任务，提出可扩展的推理框架并验证有效性。"
@@ -676,7 +687,9 @@ def extract_institutions_from_first_page(title: str, authors: str, first_page_te
             f"作者：{authors}\n"
             f"首页全文：\n{context}"
         )
-        output = (call_llm(prompt, max_tokens=400, timeout=120) or "").strip()
+        output = (
+            call_llm(prompt, max_tokens=400, timeout=120, thinking="disabled") or ""
+        ).strip()
 
         match = re.search(r"\[[\s\S]*\]", output)
         if match:
@@ -734,7 +747,9 @@ def recover_metadata_from_pdf(title: str, authors: str, abstract_en: str, first_
         f"首页文本：\n{first_page_compact[:4000]}\n\n"
         f"正文片段：\n{(pdf_text or '')[:6000]}"
     )
-    output = (call_llm(prompt, max_tokens=800, timeout=120) or "").strip()
+    output = (
+        call_llm(prompt, max_tokens=800, timeout=120, thinking="disabled") or ""
+    ).strip()
     match = re.search(r"\{[\s\S]*\}", output)
     if not match:
         return recovered
@@ -789,13 +804,23 @@ A12: <局限与风险>
    - 📌 要点：3-5 条 bullet
 3) 同一项内不要重复表达；没有论文证据的数值、硬件和链接必须明确说明未报告，禁止猜测。
 """
-    result = call_llm(base_prompt + "\n\n" + format_spec, max_tokens=6000, timeout=400)
+    result = call_llm(
+        base_prompt + "\n\n" + format_spec,
+        max_tokens=6000,
+        timeout=400,
+        thinking=CONFIG.llm_thinking_mode,
+    )
 
     missing_markers = [i for i in ANALYSIS_QUESTIONS if not re.search(rf"\bA{i}[:：]", result)]
     if missing_markers:
         if retry_logger:
             retry_logger("STEP-4", "RETRY", f"缺少标记 A{missing_markers}")
-        retried = call_llm(base_prompt + "\n\n" + format_spec, max_tokens=6000, timeout=400)
+        retried = call_llm(
+            base_prompt + "\n\n" + format_spec,
+            max_tokens=6000,
+            timeout=400,
+            thinking=CONFIG.llm_thinking_mode,
+        )
         if retried:
             result = retried
 
@@ -823,7 +848,12 @@ A12: <局限与风险>
                 f"Q{i}问题：{ANALYSIS_QUESTIONS[i]}\n"
                 f"标题：{title}\n作者：{authors}\n摘要：{abstract_en[:1500]}\n正文片段：{pdf_text[:4000]}"
             )
-            repaired = call_llm(repair_prompt, max_tokens=600, timeout=150).strip()
+            repaired = call_llm(
+                repair_prompt,
+                max_tokens=600,
+                timeout=150,
+                thinking=CONFIG.llm_thinking_mode,
+            ).strip()
             if repaired and not has_bad_placeholder(repaired):
                 break
         analysis[f"q{i}"] = repaired if repaired else "该问题在论文中信息有限，基于摘要与正文可得出初步结论。"

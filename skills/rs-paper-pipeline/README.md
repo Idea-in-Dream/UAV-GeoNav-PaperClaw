@@ -50,6 +50,7 @@ Optional:
 - `FEISHU_TARGET`
 - `RS_GITHUB_REPO`
 - `LLM_MODEL`
+- `LLM_THINKING_MODE`（全文结构化分析默认 `enabled`）
 - `LLM_API_URL`
 
 ## Main commands

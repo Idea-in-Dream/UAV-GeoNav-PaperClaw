@@ -69,6 +69,7 @@ class UAVGeoNavFilterTest(unittest.TestCase):
         submitted_prompt = llm_mock.call_args.args[0]
         self.assertIn(self.cases["positive"][0]["title"], submitted_prompt)
         self.assertIn(self.cases["positive"][0]["abstract"], submitted_prompt)
+        self.assertEqual(llm_mock.call_args.kwargs["thinking"], "disabled")
 
     def test_unclassified_candidate_is_conservatively_marked_for_review(self):
         paper = self.cases["positive"][0]

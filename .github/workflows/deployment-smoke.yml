@@ -2,6 +2,11 @@ name: UAV GeoNav Deployment Smoke
 
 on:
   workflow_dispatch:
+  # Temporary hook for live hybrid-thinking validation.
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/deployment-smoke.yml"
 
 concurrency:
   group: uav-geonav-deployment-smoke
@@ -9,7 +14,7 @@ concurrency:
 
 jobs:
   end-to-end:
-    name: "Pipeline / ${{ vars.LLM_MODEL || 'deepseek-v4-flash' }}"
+    name: "Pipeline / ${{ vars.LLM_MODEL || 'deepseek-v4-flash' }} / thinking=${{ vars.LLM_THINKING_MODE || 'enabled' }}"
     runs-on: ubuntu-latest
     timeout-minutes: 120
     permissions:
@@ -20,6 +25,7 @@ jobs:
       LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
       RS_GITHUB_REPO: ${{ vars.RS_GITHUB_REPO || github.repository }}
       LLM_MODEL: ${{ vars.LLM_MODEL }}
+      LLM_THINKING_MODE: ${{ vars.LLM_THINKING_MODE }}
       LLM_API_URL: ${{ vars.LLM_API_URL }}
       GITHUB_TIMEOUT: ${{ vars.GITHUB_TIMEOUT }}
       GITHUB_RETRY: ${{ vars.GITHUB_RETRY }}

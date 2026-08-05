@@ -106,6 +106,7 @@ python3 scripts/cli.py doctor
 
 - `RS_GITHUB_REPO`
 - `LLM_MODEL`
+- `LLM_THINKING_MODE`
 - `LLM_API_URL`
 - `RS_PROXY_URL`
 - `RS_WORKSPACE`

@@ -129,7 +129,7 @@ def build_digest_with_llm(date: str, papers: list, stats: dict | None = None, fa
         "要求：中文、客观、不要编造细节。\n\n"
         f"日期: {date}\n候选: {json.dumps(items, ensure_ascii=False)}"
     )
-    output = call_llm(prompt, max_tokens=1800, timeout=240)
+    output = call_llm(prompt, max_tokens=1800, timeout=240, thinking="disabled")
     match = re.search(r"\{[\s\S]*\}", output)
     data = {"overview": "", "highlights": [], "one_liners": []}
     if match:

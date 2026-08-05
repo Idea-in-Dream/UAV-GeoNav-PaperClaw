@@ -16,6 +16,7 @@ Optional:
 - `FEISHU_TARGET`
 - `RS_GITHUB_REPO`
 - `LLM_MODEL`
+- `LLM_THINKING_MODE`
 - `LLM_API_URL`
 
 ## Entry points

@@ -161,6 +161,8 @@
   目标仓库，默认是 `thinson/RS-PaperClaw`
 - `LLM_MODEL`
   使用的模型名
+- `LLM_THINKING_MODE`
+  全文结构化分析的 thinking 模式，可设为 `enabled` 或 `disabled`；初筛、翻译和标签固定关闭
 - `LLM_API_URL`
   OpenAI-compatible Chat Completions 接口地址
 - `GITHUB_TIMEOUT`

@@ -70,6 +70,7 @@
 |---|---:|---|
 | `RS_GITHUB_REPO` | 否 | 默认自动使用当前仓库；跨仓库写入时设为 `OWNER/UAV-GeoNav-PaperClaw` |
 | `LLM_MODEL` | 否 | 默认 `deepseek-v4-flash`；这是 DeepSeek 官方正式 API 模型别名，不是 Preview，当前对应 `DeepSeek-V4-Flash-0731` |
+| `LLM_THINKING_MODE` | 否 | 全文结构化分析的 thinking 模式，`enabled`/`disabled`，默认 `enabled`；初筛、翻译、标签和日报始终关闭 |
 | `LLM_API_URL` | 否 | 默认 `https://api.deepseek.com/chat/completions`，也可使用兼容接口 |
 | `ARXIV_API_URL` | 否 | 默认 `https://export.arxiv.org/api/query` |
 | `ARXIV_USER_AGENT` | 否 | 建议包含仓库 URL 的自定义 User-Agent |

@@ -112,6 +112,7 @@ class PipelineConfig:
     llm_api_url: str
     llm_api_key: str | None
     llm_model: str
+    llm_thinking_mode: str
     openclaw_bin: str | None
     feishu_target: str | None
     dingtalk_webhook: str | None
@@ -127,6 +128,9 @@ def load_config() -> PipelineConfig:
     github_repo = _env("RS_GITHUB_REPO") or _env("GITHUB_REPOSITORY") or "your-github-name/UAV-GeoNav-PaperClaw"
     temp_dir = Path(_env("RS_TEMP_DIR", "/tmp")).expanduser()
     root_dir, workspace_warning = resolve_workspace_root()
+    llm_thinking_mode = (_env("LLM_THINKING_MODE", "enabled") or "enabled").strip().lower()
+    if llm_thinking_mode not in {"enabled", "disabled"}:
+        raise RuntimeError("LLM_THINKING_MODE must be 'enabled' or 'disabled'")
     return PipelineConfig(
         root_dir=root_dir,
         scripts_dir=root_dir / "scripts",
@@ -143,6 +147,7 @@ def load_config() -> PipelineConfig:
         llm_api_url=_env("LLM_API_URL", "https://api.deepseek.com/chat/completions"),
         llm_api_key=_env("LLM_API_KEY"),
         llm_model=_env("LLM_MODEL", "deepseek-v4-flash"),
+        llm_thinking_mode=llm_thinking_mode,
         openclaw_bin=_env("OPENCLAW_BIN"),
         feishu_target=_env("FEISHU_TARGET"),
         dingtalk_webhook=_env("DINGTALK_WEBHOOK"),

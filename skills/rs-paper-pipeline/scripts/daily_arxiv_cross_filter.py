@@ -123,7 +123,7 @@ def _llm_cross_filter_batch(candidates):
     decisions = None
     legacy_array = False
     for attempt in range(2):
-        out = call_llm(prompt, max_tokens=5000, timeout=240).strip()
+        out = call_llm(prompt, max_tokens=5000, timeout=240, thinking="disabled").strip()
         try:
             decisions, legacy_array = _parse_llm_decisions(out)
             break

@@ -22,6 +22,7 @@ jobs:
       LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
       RS_GITHUB_REPO: ${{ vars.RS_GITHUB_REPO || github.repository }}
       LLM_MODEL: ${{ vars.LLM_MODEL }}
+      LLM_THINKING_MODE: ${{ vars.LLM_THINKING_MODE }}
       LLM_API_URL: ${{ vars.LLM_API_URL }}
       GITHUB_TIMEOUT: ${{ vars.GITHUB_TIMEOUT }}
       GITHUB_RETRY: ${{ vars.GITHUB_RETRY }}
@@ -96,4 +97,3 @@ jobs:
         with:
           name: uav-geonav-paperclaw-runtime
           path: skills/rs-paper-pipeline/memory/
-

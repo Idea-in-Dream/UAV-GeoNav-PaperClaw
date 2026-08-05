@@ -139,6 +139,7 @@ pkill -f daily_arxiv_cross_filter.py
 - Secret: `DINGTALK_WEBHOOK`（如需通知）
 - Variable: `RS_GITHUB_REPO`
 - Variable: `LLM_MODEL`
+- Variable: `LLM_THINKING_MODE`（默认 `enabled`，仅控制全文结构化分析）
 - Variable: `LLM_API_URL`
 
 行为说明：

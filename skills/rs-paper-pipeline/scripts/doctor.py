@@ -63,6 +63,14 @@ def main() -> int:
     model_ok = bool(CONFIG.llm_model)
     checks.append((model_ok, check_mark("llm-model", model_ok, CONFIG.llm_model or "missing")))
 
+    thinking_ok = CONFIG.llm_thinking_mode in {"enabled", "disabled"}
+    checks.append(
+        (
+            thinking_ok,
+            check_mark("llm-thinking-mode", thinking_ok, CONFIG.llm_thinking_mode),
+        )
+    )
+
     try:
         importlib.import_module("github")
         github_ok = True
