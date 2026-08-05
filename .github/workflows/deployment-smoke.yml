@@ -1,0 +1,77 @@
+name: UAV GeoNav Deployment Smoke
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/deployment-smoke.yml"
+
+concurrency:
+  group: uav-geonav-deployment-smoke
+  cancel-in-progress: false
+
+jobs:
+  end-to-end:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: write
+      issues: write
+    env:
+      GITHUB_TOKEN: ${{ secrets.UAV_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
+      LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+      RS_GITHUB_REPO: ${{ vars.RS_GITHUB_REPO || github.repository }}
+      LLM_MODEL: ${{ vars.LLM_MODEL }}
+      LLM_API_URL: ${{ vars.LLM_API_URL }}
+      GITHUB_TIMEOUT: ${{ vars.GITHUB_TIMEOUT }}
+      GITHUB_RETRY: ${{ vars.GITHUB_RETRY }}
+      ARXIV_API_URL: ${{ vars.ARXIV_API_URL }}
+      ARXIV_USER_AGENT: ${{ vars.ARXIV_USER_AGENT }}
+      RS_FILTER_KEYWORDS_FILE: scripts/config/filter_keywords.json
+      RS_FILTER_PROMPT_FILE: scripts/prompts/filter_cross_prompt.md
+      PYTHONUNBUFFERED: "1"
+
+    steps:
+      - name: Checkout pipeline files
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            skills/rs-paper-pipeline
+            papers/issue_index.json
+          sparse-checkout-cone-mode: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
+
+      - name: Install Python dependencies
+        working-directory: skills/rs-paper-pipeline
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install -r requirements.txt
+
+      - name: Doctor
+        working-directory: skills/rs-paper-pipeline
+        run: python3 scripts/cli.py doctor
+
+      - name: Ensure issue labels
+        working-directory: skills/rs-paper-pipeline
+        run: python3 scripts/cli.py setup-labels
+
+      - name: Run end-to-end smoke date
+        working-directory: skills/rs-paper-pipeline
+        run: python3 scripts/cli.py run --date 20260722 --no-notify
+
+      - name: Upload runtime artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: uav-geonav-deployment-smoke-runtime
+          path: skills/rs-paper-pipeline/memory/
