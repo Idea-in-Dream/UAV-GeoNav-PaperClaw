@@ -31,10 +31,9 @@
 每篇入选论文对应一个中文 GitHub Issue，包含：
 
 - 论文标题、arXiv 链接、发表时间、作者和单位；
-- 代码链接、任务类型、地图类型、输入传感器、定位输出；
+- 公开代码与资源、任务类型、地图类型、输入传感器、定位输出；
 - 核心方法、实验精度、运行速度与硬件；
 - 是否融合 VIO/IMU、复现难度；
-- 与 GeoVINS / NGPS / PiLoT v2 的关系；
 - 对当前无人机定位项目的价值以及局限与风险。
 
 同一 arXiv ID 的不同版本（如 `v1`、`v2`）会归一到同一 Issue，不会重复创建。
@@ -70,7 +69,7 @@
 | 名称 | 必需 | 推荐值/说明 |
 |---|---:|---|
 | `RS_GITHUB_REPO` | 否 | 默认自动使用当前仓库；跨仓库写入时设为 `OWNER/UAV-GeoNav-PaperClaw` |
-| `LLM_MODEL` | 否 | 默认 `deepseek-v4-flash` |
+| `LLM_MODEL` | 否 | 默认 `deepseek-v4-flash`；这是 DeepSeek 官方正式 API 模型别名，不是 Preview，当前对应 `DeepSeek-V4-Flash-0731` |
 | `LLM_API_URL` | 否 | 默认 `https://api.deepseek.com/chat/completions`，也可使用兼容接口 |
 | `ARXIV_API_URL` | 否 | 默认 `https://export.arxiv.org/api/query` |
 | `ARXIV_USER_AGENT` | 否 | 建议包含仓库 URL 的自定义 User-Agent |

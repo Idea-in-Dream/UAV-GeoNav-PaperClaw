@@ -22,6 +22,7 @@ from services.paper_analysis import (
     extract_institutions_from_latex_source,
     extract_tags,
     format_answer_md,
+    format_resource_links_md,
     generate_tldr,
     is_valid_institution_text,
     quality_gate,
@@ -30,7 +31,7 @@ from services.paper_analysis import (
     translate_text,
 )
 from services.issue_index import ensure_index, lookup_issue, save_index, update_index_from_issue
-from services.labels import ensure_repo_labels, normalize_paper_labels
+from services.labels import ensure_repo_labels, normalize_paper_labels, normalize_resource_labels
 
 CONFIG = load_config()
 FIGURES_DIR = CONFIG.figures_dir
@@ -198,6 +199,9 @@ def process_paper(
         return None, f"质检未通过: {'; '.join(errors)}"
     log_step("GATE", "OK", "通过")
 
+    tags = normalize_resource_labels(tags, analysis.get("q8", ""))
+    log_step("STEP-4", "OK", f"verified_resource_labels={tags}")
+
     log_step("STEP-5", "RUNNING", "生成报告")
     # 优先使用 target_date（pipeline 指定的业务日期），避免 arXiv API 日期漂移
     if target_date:
@@ -223,7 +227,8 @@ def process_paper(
     abstract_short = abstract_zh[:400] + "..." if len(abstract_zh) > 400 else abstract_zh
 
     # Markdown 可读性优化
-    qa_md = {f"q{i}": format_answer_md(analysis.get(f"q{i}", "")) for i in range(1, 14)}
+    qa_md = {f"q{i}": format_answer_md(analysis.get(f"q{i}", "")) for i in range(1, 13)}
+    qa_md["q8"] = format_resource_links_md(qa_md.get("q8", ""))
 
     report = f"""# [{title_date}] {info['title']}
 
@@ -277,7 +282,7 @@ def process_paper(
 ### 运行速度与硬件
 {qa_md.get('q7', '分析中...')}
 
-### 代码链接
+### 公开代码与资源
 {qa_md.get('q8', '分析中...')}
 
 ### 是否融合 VIO/IMU
@@ -286,14 +291,11 @@ def process_paper(
 ### 复现难度
 {qa_md.get('q10', '分析中...')}
 
-### 与 GeoVINS / NGPS / PiLoT v2 的关系
+### 对当前无人机定位项目的价值
 {qa_md.get('q11', '分析中...')}
 
-### 对当前无人机定位项目的价值
-{qa_md.get('q12', '分析中...')}
-
 ### 局限与风险
-{qa_md.get('q13', '分析中...')}
+{qa_md.get('q12', '分析中...')}
 
 ---
 

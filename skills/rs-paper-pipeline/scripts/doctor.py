@@ -60,6 +60,9 @@ def main() -> int:
     repo_ok = bool(re.fullmatch(r"[^/\s]+/[^/\s]+", CONFIG.github_repo)) and "your-github-name" not in CONFIG.github_repo
     checks.append((repo_ok, check_mark("github-repo", repo_ok, CONFIG.github_repo)))
 
+    model_ok = bool(CONFIG.llm_model)
+    checks.append((model_ok, check_mark("llm-model", model_ok, CONFIG.llm_model or "missing")))
+
     try:
         importlib.import_module("github")
         github_ok = True

@@ -37,6 +37,39 @@ def normalize_paper_labels(labels: list[str] | tuple[str, ...] | None) -> list[s
     return normalized
 
 
+def has_confirmed_public_code(resource_answer: str) -> bool:
+    text = " ".join((resource_answer or "").split())
+    lowered = text.casefold()
+    negative_markers = (
+        "未发现公开代码",
+        "无公开代码",
+        "代码尚未公开",
+        "代码暂未公开",
+        "暂未发布",
+        "尚未发布",
+        "will be released",
+        "coming soon",
+        "占位地址",
+        "placeholder",
+    )
+    if any(marker in lowered for marker in negative_markers):
+        return False
+    return bool(
+        re.search(
+            r"https?://(?:www\.)?(?:github\.com|gitlab\.com|bitbucket\.org|gitee\.com)/[^\s<>()（）]+",
+            text,
+            re.IGNORECASE,
+        )
+    )
+
+
+def normalize_resource_labels(labels: list[str], resource_answer: str) -> list[str]:
+    normalized = list(dict.fromkeys(labels))
+    if not has_confirmed_public_code(resource_answer):
+        normalized = [label for label in normalized if label != "Code-Available"]
+    return normalized
+
+
 def _definition_for(name: str) -> dict[str, str]:
     configured = load_label_definitions().get(name)
     if configured:

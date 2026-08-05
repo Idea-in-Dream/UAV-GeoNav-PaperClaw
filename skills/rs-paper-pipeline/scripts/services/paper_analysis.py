@@ -19,12 +19,11 @@ ANALYSIS_QUESTIONS = {
     5: "核心方法？",
     6: "实验精度？",
     7: "运行速度与硬件？",
-    8: "代码链接与开放资源？",
+    8: "公开代码与资源？",
     9: "是否融合 VIO/IMU？",
     10: "复现难度？",
-    11: "与 GeoVINS / NGPS / PiLoT v2 的关系？",
-    12: "对当前无人机定位项目的价值？",
-    13: "局限与风险？",
+    11: "对当前无人机定位项目的价值？",
+    12: "局限与风险？",
 }
 
 
@@ -100,6 +99,24 @@ def format_answer_md(text: str) -> str:
         return dedupe_bullets("\n".join([f"- {part}。" for part in parts]))
 
     return stripped
+
+
+RESOURCE_URL_PATTERN = re.compile(
+    r"(?<![<(])https?://[^\s<>()（）\[\]{}，。；：！？“”]+",
+    re.IGNORECASE,
+)
+
+
+def format_resource_links_md(text: str) -> str:
+    """Wrap bare resource URLs so adjacent Chinese punctuation cannot corrupt links."""
+
+    def replace(match: re.Match) -> str:
+        value = match.group(0)
+        url = value.rstrip(".,;:!?")
+        suffix = value[len(url):]
+        return f"<{url}>{suffix}"
+
+    return RESOURCE_URL_PATTERN.sub(replace, text or "")
 
 
 def quality_gate(info: dict, analysis: dict, abstract_zh: str, uploaded_images: int) -> tuple[bool, list[str]]:
@@ -760,14 +777,13 @@ A4: <定位输出>
 A5: <核心方法>
 A6: <实验精度>
 A7: <运行速度与硬件>
-A8: <代码链接与开放资源>
+A8: <公开代码与资源>
 A9: <是否融合 VIO/IMU>
 A10: <复现难度>
-A11: <与 GeoVINS / NGPS / PiLoT v2 的关系>
-A12: <对当前无人机定位项目的价值>
-A13: <局限与风险>
+A11: <对当前无人机定位项目的价值>
+A12: <局限与风险>
 要求：
-1) A1-A13 每项必须非空，禁止“待提取/未知/分析中/N/A/Unknown”；
+1) A1-A12 每项必须非空，禁止“待提取/未知/分析中/N/A/Unknown”；
 2) 每项用结构化 Markdown 输出，优先采用：
    - 🎯 结论：1 句
    - 📌 要点：3-5 条 bullet

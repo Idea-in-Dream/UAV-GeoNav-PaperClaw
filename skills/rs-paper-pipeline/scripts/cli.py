@@ -8,6 +8,7 @@ import daily_digest_llm_upgrade
 import doctor
 import paper_processor
 import reconcile_daily_issue_set
+import repair_issue_format
 import run_rs_daily_workday
 import sync_daily_reports_to_repo
 from services.issue_index import rebuild_index, save_index
@@ -64,6 +65,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     labels_parser = subparsers.add_parser("setup-labels", help="创建无人机定位论文所需标签")
     labels_parser.set_defaults(func=setup_labels_command)
+
+    repair_parser = subparsers.add_parser("repair-issues", help="修复既有 Issue 字段、资源链接和标签")
+    repair_parser.set_defaults(func=lambda args: repair_issue_format.main())
 
     return parser
 

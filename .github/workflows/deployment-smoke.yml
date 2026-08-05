@@ -2,6 +2,11 @@ name: UAV GeoNav Deployment Smoke
 
 on:
   workflow_dispatch:
+  # Temporary hook for the one-time existing-Issue format migration.
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/deployment-smoke.yml"
 
 concurrency:
   group: uav-geonav-deployment-smoke
@@ -9,6 +14,7 @@ concurrency:
 
 jobs:
   end-to-end:
+    name: "Pipeline / ${{ vars.LLM_MODEL || 'deepseek-v4-flash' }}"
     runs-on: ubuntu-latest
     timeout-minutes: 120
     permissions:
@@ -52,6 +58,10 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install -r requirements.txt
+
+      - name: Repair existing issue format
+        working-directory: skills/rs-paper-pipeline
+        run: python3 scripts/cli.py repair-issues
 
       - name: Doctor
         working-directory: skills/rs-paper-pipeline

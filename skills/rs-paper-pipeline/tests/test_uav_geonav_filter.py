@@ -120,13 +120,15 @@ class UAVGeoNavFilterTest(unittest.TestCase):
         renderer = (ROOT / "scripts" / "paper_processor.py").read_text(encoding="utf-8")
         fields = [
             "任务类型", "地图类型", "输入传感器", "定位输出", "核心方法", "实验精度",
-            "运行速度与硬件", "代码链接", "是否融合 VIO/IMU", "复现难度",
-            "与 GeoVINS / NGPS / PiLoT v2 的关系", "对当前无人机定位项目的价值",
+            "运行速度与硬件", "公开代码与资源", "是否融合 VIO/IMU", "复现难度",
+            "对当前无人机定位项目的价值",
         ]
         for field in fields:
             with self.subTest(field=field):
                 self.assertIn(field, prompt)
                 self.assertIn(field, renderer)
+        self.assertNotIn("与 GeoVINS / NGPS / PiLoT v2 的关系", prompt)
+        self.assertNotIn("与 GeoVINS / NGPS / PiLoT v2 的关系", renderer)
 
 
 if __name__ == "__main__":
