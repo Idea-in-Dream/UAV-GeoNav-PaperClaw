@@ -2,11 +2,6 @@ name: UAV GeoNav Deployment Smoke
 
 on:
   workflow_dispatch:
-  # Temporary hook for live hybrid-thinking validation.
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/deployment-smoke.yml"
 
 concurrency:
   group: uav-geonav-deployment-smoke
