@@ -2,11 +2,6 @@ name: UAV GeoNav Deployment Smoke
 
 on:
   workflow_dispatch:
-  # Temporary push hook used for the second live idempotency check.
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/deployment-smoke.yml"
 
 concurrency:
   group: uav-geonav-deployment-smoke
