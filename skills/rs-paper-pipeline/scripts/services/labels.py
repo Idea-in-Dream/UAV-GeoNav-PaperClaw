@@ -67,6 +67,13 @@ def normalize_resource_labels(labels: list[str], resource_answer: str) -> list[s
     normalized = list(dict.fromkeys(labels))
     if not has_confirmed_public_code(resource_answer):
         normalized = [label for label in normalized if label != "Code-Available"]
+    no_reproducible_resources = (
+        "未提供可下载数据、代码或权重",
+        "未明确说明数据集或模型是否开源",
+        "未提供数据集下载链接",
+    )
+    if any(marker in (resource_answer or "") for marker in no_reproducible_resources):
+        normalized = [label for label in normalized if label != "Reproducible"]
     return normalized
 
 

@@ -4,7 +4,7 @@ from __future__ import annotations
 import re
 
 from pipeline_config import get_repo, load_config
-from services.labels import has_confirmed_public_code
+from services.labels import normalize_resource_labels
 from services.paper_analysis import format_resource_links_md
 
 
@@ -31,7 +31,7 @@ def _offnadirloc_resource_section() -> str:
             "- 数据集与模型：页面展示了数据集说明，但未提供可下载数据、代码或权重链接。",
             "",
         ]
-    )
+    ) + "\n"
 
 
 def repair_resource_section(title: str, body: str) -> str:
@@ -65,10 +65,15 @@ def repair_issue_body(title: str, body: str) -> str:
 
 
 def repaired_labels(label_names: list[str], body: str) -> list[str]:
-    labels = list(dict.fromkeys(label_names))
-    if not has_confirmed_public_code(extract_resource_section(body)):
-        labels = [label for label in labels if label != "Code-Available"]
-    return labels
+    return normalize_resource_labels(label_names, extract_resource_section(body))
+
+
+def update_embedded_label_row(body: str, label_names: list[str]) -> str:
+    date_labels = [label for label in label_names if re.fullmatch(r"\d{8}", label)]
+    other_labels = [label for label in label_names if label not in date_labels]
+    ordered = date_labels + other_labels
+    replacement = f"| **标签** | {', '.join(ordered)} |"
+    return re.sub(r"^\| \*\*标签\*\* \|.*\|$", replacement, body, count=1, flags=re.MULTILINE)
 
 
 def main() -> None:
@@ -81,6 +86,7 @@ def main() -> None:
         new_body = repair_issue_body(issue.title or "", old_body)
         old_labels = [label.name for label in issue.labels]
         new_labels = repaired_labels(old_labels, new_body)
+        new_body = update_embedded_label_row(new_body, new_labels)
         if new_body == old_body and new_labels == old_labels:
             print(f"UNCHANGED issue #{issue.number}")
             continue

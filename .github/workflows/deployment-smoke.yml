@@ -2,7 +2,7 @@ name: UAV GeoNav Deployment Smoke
 
 on:
   workflow_dispatch:
-  # Temporary hook for the one-time existing-Issue format migration.
+  # Temporary hook for the final existing-Issue metadata cleanup.
   push:
     branches: [main]
     paths:

@@ -6,7 +6,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from repair_issue_format import repair_issue_body, repaired_labels
+from repair_issue_format import repair_issue_body, repaired_labels, update_embedded_label_row
 from services.labels import has_confirmed_public_code
 from services.paper_analysis import format_resource_links_md
 
@@ -70,13 +70,22 @@ class IssueFormatRepairTest(unittest.TestCase):
         self.assertIn("[OffNadirLoc](https://montalario.github.io/offnadirloc/)", repaired)
         self.assertIn("代码：尚未发布", repaired)
         self.assertNotIn("Code-Available", labels)
+        self.assertNotIn("Reproducible", labels)
         self.assertFalse(has_confirmed_public_code(repaired))
+        self.assertIn("\n\n### 是否融合 VIO/IMU", repaired)
 
     def test_confirmed_repository_keeps_code_available(self):
         answer = "公开代码：[Repository](https://github.com/example/project)"
 
         self.assertTrue(has_confirmed_public_code(answer))
         self.assertIn("Code-Available", repaired_labels(["Code-Available"], "### 公开代码与资源\n" + answer))
+
+    def test_updates_embedded_label_row_to_match_github_labels(self):
+        body = "| **标签** | 20260722, Code-Available, Reproducible, UAV-Satellite |"
+
+        repaired = update_embedded_label_row(body, ["UAV-Satellite", "20260722"])
+
+        self.assertEqual(repaired, "| **标签** | 20260722, UAV-Satellite |")
 
 
 if __name__ == "__main__":
