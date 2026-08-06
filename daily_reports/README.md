@@ -29,27 +29,27 @@ Powered by OpenClaw🦞
 
 今日共检索候选论文 11 篇；关键词+LLM 智能匹配遥感交叉论文 4 篇；最终纳入日报 4 篇。
 
-今日遥感AI研究聚焦无人机视角地理定位，四篇论文均涉及跨视角检索与基准构建。研究趋势包括：引入几何感知适配器与边缘场蒸馏以提升持续学习能力；提出可靠性引导的证据融合以增强鲁棒性；构建昼夜统一基准并设计模态自适应网络；以及利用语义地图实现城市尺度定位。整体呈现从单一算法向系统化基准与鲁棒性设计发展的趋势。
+今日遥感AI研究聚焦无人机跨视角地理定位，四篇论文均针对该领域提出新方法或基准。研究趋势包括：引入几何感知适配器与边缘场蒸馏以应对持续学习场景；提出可靠性引导的证据融合以提升鲁棒性；构建昼夜统一基准并设计模态自适应网络；以及利用语义地图实现城市场景定位。这些工作共同推动了跨视角定位在复杂环境下的性能提升。
 
 ## ✨ 今日亮点
 
-- 持续学习与几何感知适配器结合，提升无人机定位泛化性。
-- 可靠性引导证据融合，增强无人机-卫星跨视角定位鲁棒性。
-- 昼夜统一基准与模态自适应网络，推动全天候定位研究。
+- 跨视角地理定位研究集中，四篇论文均聚焦该方向。
+- 持续学习与鲁棒性成为关注点，新方法强调适配器与融合。
+- 基准数据集扩展至昼夜及语义地图场景。
 
 ## 🗂 今日文章列表
 
 | 标题 | 作者 | 单位 | 一句话概括 | Issue |
 |---|---|---|---|---|
-| [20260728] GeoMFD: Continual Drone-View Geo-Localization with Geometry-Aware Adapter and Margin-Field Distillation | Chen Zhongwei, Rong Hai-jun, Zhang Tao, Nie Xianfeng, Zhang Xiangbao, Li Guoqi, Yang Zhao-Xu | School of Aerospace Engineering, Xi’an Jiaotong University；Institute of Automation, Chinese Academy of Sciences | 提出GeoMFD，用几何适配器和边缘场蒸馏实现无人机视角持续地理定位。 | [#40](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/40) |
-| [20260728] ReLATE: Reliability-Guided Evidence Fusion for Robust UAV--Satellite cross-view Geo-Localization | Jiang Haochen, Pan Jialei, Sun Yuzhe, Dong Zhe, Ren Lecheng, Gu Yanfeng, Liu Tianzhu | a School of Electronics and Information Engineering, Harbin Institute of Technology, Harbin, 150001, Heilongjiang, China；b National Key Laboratory of Radar Detection and Sensing, Nanjing Research Institute of Electronics Technology；c School of Electrical and Electronic Engineering, University of Manchester, Manchester, United Kingdom；University-1652-Deg and SUES-200-Deg. UAVSat-Deg covers 27 corruption types, including 19 core and 8 compound；gency response, urban management, and low-altitude UAV 10]. Datasets such as University-1652 and SUES-200 have | ReLATE通过可靠性引导证据融合，提升无人机-卫星跨视角定位鲁棒性。 | [#41](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/41) |
-| [20260728] A Unified Benchmark and Modality-Adaptive Network for Day-and-Night Drone-View Geo-Localization | Xu Songtianhao, Chen Zhongwei, Yang Zhao-Xu, Wang Weifeng | Zhongwei Chen, Zhao-Xu Yang are with the State Key Laboratory；Laboratory of Environment and Control for Flight Vehicle, School；of Aerospace Engineering, Xi’an Jiaotong University, Xi’an 710049；Songtianhao Xu, Weifeng Wang are Xi’an Institute of Optics and Precision；Mechanics, Chinese Academy of Sciences, Xi’an 710119, PR China (e- | 构建昼夜统一基准，提出模态自适应网络用于无人机地理定位。 | [#42](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/42) |
-| [20260728] Leveraging Semantic Maps for City-Scale Cross-View Localization | Fahnestock Ethan, Fuentes Erick, Philip R Osteen, Roy Nicholas | DEVCOM Army Research Laboratory (ARL) | 利用语义地图实现城市尺度跨视角定位，支持GNSS拒止环境。 | [#43](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/43) |
+| [20260728] GeoMFD: Continual Drone-View Geo-Localization with Geometry-Aware Adapter and Margin-Field Distillation | Chen Zhongwei, Rong Hai-jun, Zhang Tao, Nie Xianfeng, Zhang Xiangbao, Li Guoqi, Yang Zhao-Xu | School of Aerospace Engineering, Xi’an Jiaotong University；Institute of Automation, Chinese Academy of Sciences | 提出GeoMFD，用几何适配器与边缘场蒸馏实现无人机视角持续地理定位。 | [#40](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/40) |
+| [20260728] ReLATE: Reliability-Guided Evidence Fusion for Robust UAV--Satellite cross-view Geo-Localization | Jiang Haochen, Pan Jialei, Sun Yuzhe, Dong Zhe, Ren Lecheng, Gu Yanfeng, Liu Tianzhu | a School of Electronics and Information Engineering, Harbin Institute of Technology, Harbin, 150001, Heilongjiang, China；b National Key Laboratory of Radar Detection and Sensing, Nanjing Research Institute of Electronics Technology；c School of Electrical and Electronic Engineering, University of Manchester, Manchester, United Kingdom；University-1652-Deg and SUES-200-Deg. UAVSat-Deg covers 27 corruption types, including 19 core and 8 compound；gency response, urban management, and low-altitude UAV 10]. Datasets such as University-1652 and SUES-200 have | ReLATE方法通过可靠性引导证据融合，增强无人机-卫星跨视角定位鲁棒性。 | [#41](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/41) |
+| [20260728] A Unified Benchmark and Modality-Adaptive Network for Day-and-Night Drone-View Geo-Localization | Xu Songtianhao, Chen Zhongwei, Yang Zhao-Xu, Wang Weifeng | Zhongwei Chen, Zhao-Xu Yang are with the State Key Laboratory；Laboratory of Environment and Control for Flight Vehicle, School；of Aerospace Engineering, Xi’an Jiaotong University, Xi’an 710049；Songtianhao Xu, Weifeng Wang are Xi’an Institute of Optics and Precision；Mechanics, Chinese Academy of Sciences, Xi’an 710119, PR China (e- | 构建昼夜统一基准，提出模态自适应网络用于无人机视角地理定位。 | [#42](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/42) |
+| [20260728] Leveraging Semantic Maps for City-Scale Cross-View Localization | Fahnestock Ethan, Fuentes Erick, Philip R Osteen, Roy Nicholas | DEVCOM Army Research Laboratory (ARL) | 利用语义地图实现城市场景跨视角定位，支持GNSS拒止环境。 | [#43](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/43) |
 
 ## 🔎 观察
 
-- 跨视角定位研究正从单一算法转向基准与鲁棒性并重，强调实际部署。
-- 语义地图与可靠性机制成为提升定位精度和适应性的重要方向。
+- 跨视角定位研究正从单一视角匹配转向多模态融合与持续学习，以应对实际部署挑战。
+- 基准数据集设计趋于复杂化，覆盖昼夜、天气及语义信息，推动算法鲁棒性评估。
 
 ---
 
