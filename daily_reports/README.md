@@ -62,25 +62,25 @@ Powered by OpenClaw🦞
 
 今日共检索候选论文 6 篇；关键词+LLM 智能匹配遥感交叉论文 2 篇；最终纳入日报 2 篇。
 
-今日遥感AI研究聚焦无人机自主导航与低空感知。AeroMap3D提出融合视觉-几何-语义地图先验的单目6自由度定位方法，应对GNSS拒止环境；M3F-UAV则构建缺失模态多模态基础模型，提升低空无线感知鲁棒性。两项工作均强调跨视角检索与精细配准，推动无人机在复杂场景下的可靠定位与目标定位能力。
+今日遥感AI研究聚焦无人机在GNSS拒止环境下的定位与感知。AeroMap3D提出融合视觉、几何与语义地图先验的单目6自由度定位方法，提升跨视角检索与配准精度；M3F-UAV则构建缺失模态多模态基础模型，用于低空无线感知，并发布数据集与基准。两项工作均面向无人机自主导航，强调多源信息融合与鲁棒性，推动无卫星依赖的智能感知技术发展。
 
 ## ✨ 今日亮点
 
-- 无人机定位融合多源地图先验，提升GNSS拒止下精度
-- 缺失模态基础模型增强低空无线感知鲁棒性
-- 跨视角检索与精细配准成为定位关键技术
+- 无人机定位融合视觉-几何-语义先验，提升GNSS拒止下精度
+- 多模态基础模型应对缺失模态，增强低空无线感知鲁棒性
+- 两项研究均提供数据集或代码，促进可复现研究
 
 ## 🗂 今日文章列表
 
 | 标题 | 作者 | 单位 | 一句话概括 | Issue |
 |---|---|---|---|---|
-| [20260715] AeroMap3D: Anchoring Monocular UAV 6-DoF Localization to Visual-Geometric-Semantic Map Priors | Deng Zhiyun, Sentis Luis | University of Texas at Austin | 提出AeroMap3D，利用视觉-几何-语义地图先验实现单目无人机6自由度定位 | [#17](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/17) |
-| [20260715] M3F-UAV: A Missing-Modality Multimodal Foundation Model for Low-Altitude Wireless Sensing | Gao Pengxuan, Ying Kai, Wu Botao, Mo Jianhua, Wen Qingsong | School of Electronic Information and Electrical Engineering, Shanghai Jiao Tong University, Shanghai, China ( | 提出M3F-UAV，一种处理缺失模态的低空无线感知多模态基础模型 | [#18](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/18) |
+| [20260715] AeroMap3D: Anchoring Monocular UAV 6-DoF Localization to Visual-Geometric-Semantic Map Priors | Deng Zhiyun, Sentis Luis | University of Texas at Austin | 提出AeroMap3D，利用地图先验实现单目无人机6自由度定位，增强跨视角检索与配准 | [#17](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/17) |
+| [20260715] M3F-UAV: A Missing-Modality Multimodal Foundation Model for Low-Altitude Wireless Sensing | Gao Pengxuan, Ying Kai, Wu Botao, Mo Jianhua, Wen Qingsong | School of Electronic Information and Electrical Engineering, Shanghai Jiao Tong University, Shanghai, China ( | 构建M3F-UAV多模态基础模型，处理缺失模态场景，并发布低空无线感知数据集 | [#18](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/18) |
 
 ## 🔎 观察
 
-- 地图先验与多模态融合成为GNSS拒止定位的主流方向
-- 基础模型开始应用于低空感知，但需关注数据缺失场景
+- 研究趋势转向多源先验融合，以应对GNSS拒止下的高精度定位挑战
+- 缺失模态处理成为低空感知热点，反映实际部署中传感器受限的普遍性
 
 ---
 
