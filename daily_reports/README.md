@@ -62,24 +62,24 @@ Powered by OpenClaw🦞
 
 今日共检索候选论文 6 篇；关键词+LLM 智能匹配遥感交叉论文 1 篇；最终纳入日报 1 篇。
 
-今日研究聚焦于GNSS拒止环境下无人机语义地图定位。SASGeo框架提出稳定性感知的语义地图匹配方法，结合跨视角检索与精细配准，并引入合成概念验证。该工作强调可复现性，依托University-1652等数据集，旨在提升定位鲁棒性，但尚需评审。整体趋势显示，语义信息与多源融合正成为无GNSS定位的重要方向。
+今日遥感AI研究聚焦于GNSS拒止环境下的无人机定位问题。SASGeo框架提出一种稳定性感知的语义地图定位方法，结合跨视角检索与精细配准，旨在提升无卫星信号时的定位鲁棒性。研究基于University-1652等公开数据集进行概念验证，强调可复现性，并公开代码仓库。该工作反映了当前领域对多源融合定位与语义理解的持续关注。
 
 ## ✨ 今日亮点
 
 - 提出稳定性感知的语义地图定位框架，应对GNSS拒止环境。
 - 结合跨视角检索与精细配准，提升无人机定位鲁棒性。
-- 提供合成概念验证，强调可复现性与基准数据集支撑。
+- 基于公开数据集验证，并公开代码，强调可复现性。
 
 ## 🗂 今日文章列表
 
 | 标题 | 作者 | 单位 | 一句话概括 | Issue |
 |---|---|---|---|---|
-| [20260707] SASGeo: Stability-Aware Semantic Map Localization for GNSS-Denied UAVs -- A Framework and Synthetic Proof of Concept | Trukhina Natalia, Vashkelis Vadim | Embedded Intelligence Lab (emilab.org)；Learned cross-view retrieval has progressed through datasets 1652, SUES-200, and location-classification matching estabsuch as University-1652 and SUES-200 and practical UAV– | SASGeo框架利用稳定性感知语义匹配，实现GNSS拒止下无人机定位，并给出合成验证。 | [#6](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/6) |
+| [20260707] SASGeo: Stability-Aware Semantic Map Localization for GNSS-Denied UAVs -- A Framework and Synthetic Proof of Concept | Trukhina Natalia, Vashkelis Vadim | Embedded Intelligence Lab (emilab.org)；Learned cross-view retrieval has progressed through datasets 1652, SUES-200, and location-classification matching estabsuch as University-1652 and SUES-200 and practical UAV– | SASGeo框架利用语义地图和跨视角检索，实现GNSS拒止下无人机稳定定位。 | [#6](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/6) |
 
 ## 🔎 观察
 
-- 语义地图与跨视角检索结合，正成为无GNSS定位的主流技术路径。
-- 合成验证虽可行，但实际场景泛化能力仍需真实数据测试。
+- 今日仅一篇论文，研究焦点集中于GNSS拒止定位，但缺乏多源对比实验。
+- 跨视角检索与语义地图结合成为趋势，但实际场景验证仍需加强。
 
 ---
 
