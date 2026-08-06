@@ -9,27 +9,27 @@
 
 今日共检索候选论文 12 篇；关键词+LLM 智能匹配遥感交叉论文 3 篇；最终纳入日报 4 篇。
 
-今日遥感AI研究聚焦于基础模型与数据集的构建，涵盖全球尺度密集匹配、洪水合成、3D语义场景补全及地球嵌入表示。多篇论文强调可复现性并公开代码，推动领域标准化。研究趋势显示从单一任务向多模态、物理约束与地理先验融合的方向发展。
+今日遥感AI研究聚焦于全球尺度密集匹配基础模型、卫星洪水合成、3D语义场景补全及地球观测嵌入表示。多篇工作强调数据集构建与可复现性，推动遥感智能解译向精细化、多模态和物理感知方向发展。
 
 ## ✨ 今日亮点
 
 - 全球尺度密集匹配基础模型LoRetta发布，含大规模数据集。
-- FlowForm结合流体物理与拓扑一致性合成卫星洪水图像。
+- FlowForm结合流体物理与拓扑一致性合成卫星洪水影像。
 - Earth Embeddings探索地球观测数据的通用嵌入表示。
 
 ## 🗂 今日文章列表
 
 | 标题 | 作者 | 单位 | 一句话概括 | Issue |
 |---|---|---|---|---|
-| [20260804] LoRetta: A Foundation Model and Extensive Dataset for Global-Scale Remote Sensing Dense Image Matching | Yu Siwei, Guo Han, Shi Zhenwei, Zou Zhengxia | Department of Aerospace Intelligent Science and Technology, School of Astronautics, Beihang University, Beijing, China；the Key Laboratory of Spacecraft Design Optimization and Dynamic Simulation Technologies, Ministry of Education ( | LoRetta提出全球尺度遥感密集匹配基础模型及配套数据集，代码开源。 | [#53](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/53) |
-| [20260804] FlowForm: Synergizing Fluid Physics with Topological Consistency for Satellite Flood Synthesis | Weihui Zhang, Ruizhi Wang, Hongye Xu, Huiqiong Wang, Li Sun, Mingli Song | Zhejiang University, Zhejiang, China | FlowForm利用流体物理与拓扑一致性约束，提升卫星洪水图像合成质量。 | [#54](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/54) |
-| [20260804] Geospatial-Prior Guidance for 3D Semantic Scene Completion | Wang Meng, Zhang Shougao, He Wenzhe, Li Ruihui, Hu Nan, Tang Zhuo, Li Kenli | College of Computer Science and Electronic Engineering, Hunan University, Hunan, China | Geospatial-Prior Guidance利用地理先验引导3D语义场景补全，增强空间一致性。 | [#55](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/55) |
-| [20260804] Earth Embeddings | Adam J. Stewart, Fang Heng, Isaac A. Corley, Xiao Xiang Zhu | Chair of Data Science in Earth Observation, Technical University of Munich, Munich, Germany；KTH Royal Institute of Technology, Stockholm, Sweden | Earth Embeddings研究地球观测数据的嵌入方法，旨在提升下游任务泛化能力。 | [#56](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/56) |
+| [20260804] LoRetta: A Foundation Model and Extensive Dataset for Global-Scale Remote Sensing Dense Image Matching | Yu Siwei, Guo Han, Shi Zhenwei, Zou Zhengxia | Department of Aerospace Intelligent Science and Technology, School of Astronautics, Beihang University, Beijing, China；the Key Laboratory of Spacecraft Design Optimization and Dynamic Simulation Technologies, Ministry of Education ( | LoRetta提出全球尺度遥感密集匹配基础模型及配套数据集，支持无人机-卫星图像配准。 | [#53](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/53) |
+| [20260804] FlowForm: Synergizing Fluid Physics with Topological Consistency for Satellite Flood Synthesis | Weihui Zhang, Ruizhi Wang, Hongye Xu, Huiqiong Wang, Li Sun, Mingli Song | Zhejiang University, Zhejiang, China | FlowForm融合流体物理与拓扑一致性，用于生成逼真的卫星洪水合成影像。 | [#54](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/54) |
+| [20260804] Geospatial-Prior Guidance for 3D Semantic Scene Completion | Wang Meng, Zhang Shougao, He Wenzhe, Li Ruihui, Hu Nan, Tang Zhuo, Li Kenli | College of Computer Science and Electronic Engineering, Hunan University, Hunan, China | Geospatial-Prior Guidance利用地理空间先验引导3D语义场景补全，提升地图辅助定位精度。 | [#55](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/55) |
+| [20260804] Earth Embeddings | Adam J. Stewart, Fang Heng, Isaac A. Corley, Xiao Xiang Zhu | Chair of Data Science in Earth Observation, Technical University of Munich, Munich, Germany；KTH Royal Institute of Technology, Stockholm, Sweden | Earth Embeddings研究地球观测数据的嵌入表示，为下游遥感任务提供通用特征基础。 | [#56](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/56) |
 
 ## 🔎 观察
 
-- 今日论文多强调可复现性，公开代码与数据集成为标配，利于领域内比较与复现。
-- 物理模型与地理先验的引入，显示遥感AI正从纯数据驱动向知识融合方向演进。
+- 今日研究侧重基础模型与数据集构建，强调可复现性，预示遥感AI向标准化、规模化发展。
+- 物理先验与拓扑约束的引入，表明遥感合成与场景理解正从纯数据驱动转向物理感知融合。
 
 ---
 
