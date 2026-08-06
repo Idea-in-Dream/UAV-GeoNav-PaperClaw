@@ -7,7 +7,7 @@ on:
     - cron: "0 0 * * *"
 
 concurrency:
-  group: uav-geonav-paperclaw-schedule
+  group: uav-geonav-paperclaw-writer
   cancel-in-progress: false
 
 jobs:

@@ -30,6 +30,13 @@ def build_parser() -> argparse.ArgumentParser:
     run_parser.add_argument("--force", action="store_true", help="即使当天已成功也强制重跑")
     run_parser.set_defaults(func=run_command)
 
+    backfill_parser = subparsers.add_parser("backfill", help="按日期区间回填日报")
+    backfill_parser.add_argument("--start", required=True, help="开始日期，格式 YYYYMMDD")
+    backfill_parser.add_argument("--end", required=True, help="结束日期，格式 YYYYMMDD")
+    backfill_parser.add_argument("--notify", action="store_true", help="为每个回填日期发送通知")
+    backfill_parser.add_argument("--force", action="store_true", help="即使日期已完成也强制重跑")
+    backfill_parser.set_defaults(func=backfill_command)
+
     filter_parser = subparsers.add_parser("filter", help="抓取并筛选论文")
     filter_parser.add_argument("--dry-run", action="store_true")
     filter_parser.add_argument("--days", type=int, default=2, help="抓取最近 N 天的论文（默认2天）")
@@ -79,6 +86,15 @@ def run_command(args) -> None:
     if args.no_notify:
         notify = False
     run_rs_daily_workday.main(target_date=args.date, notify=notify, force=args.force)
+
+
+def backfill_command(args) -> None:
+    run_rs_daily_workday.backfill(
+        start_date=args.start,
+        end_date=args.end,
+        notify=args.notify,
+        force=args.force,
+    )
 
 
 def filter_command(args) -> None:

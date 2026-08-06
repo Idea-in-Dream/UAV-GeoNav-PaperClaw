@@ -39,7 +39,7 @@ def load_stats(stats_json: str, date_str: str) -> dict:
         raise RuntimeError(f"invalid stats json: {stats_json}")
     if obj.get("date") != date_str:
         raise RuntimeError(f"stats date mismatch: expected {date_str}, got {obj.get('date')}")
-    if not obj.get("selected_arxiv_ids"):
+    if not isinstance(obj.get("selected_arxiv_ids"), list):
         raise RuntimeError(
             f"stats file missing selected_arxiv_ids: {stats_json}. rerun filter first."
         )

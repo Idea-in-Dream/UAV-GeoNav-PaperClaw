@@ -145,6 +145,9 @@ python3 scripts/cli.py run --date YYYYMMDD --no-notify
 # 强制重跑已完成日期
 python3 scripts/cli.py run --date YYYYMMDD --no-notify --force
 
+# 回填日期区间；默认跳过已完成日期且不发送通知
+python3 scripts/cli.py backfill --start YYYYMMDD --end YYYYMMDD
+
 # 检查某天 Issue 集合差异
 python3 scripts/cli.py reconcile --date YYYYMMDD --dry-run
 
@@ -170,6 +173,8 @@ python3 scripts/cli.py rebuild-index
 6. 创建或更新日报 Issue；
 7. 同步 `daily_reports/YYYYMM/YYYYMMDD.md`；
 8. 由 `deploy-pages.yml` 更新 GitHub Pages。
+
+历史区间回填使用 `.github/workflows/rs-pipeline-backfill.yml`。回填与每日定时任务共享写入并发锁，避免同时更新 Issues、索引和日报。本次 2026-07-06 至 2026-08-05 回填会强制按最新筛选规则重新评估，并自动收口旧日期的 Issue 集合。
 
 ## 如何调整关键词
 

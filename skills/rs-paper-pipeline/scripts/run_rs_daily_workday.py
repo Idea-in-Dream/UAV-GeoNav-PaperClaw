@@ -125,6 +125,8 @@ def _date_already_completed(date_str: str) -> tuple[bool, str]:
 
     linked_issue_numbers = _extract_digest_issue_numbers(digest_issue.body or "")
     if not linked_issue_numbers:
+        if re.search(r"最终纳入日报\s*0\s*篇", digest_issue.body or ""):
+            return True, f"digest=#{digest_issue.number} papers=0"
         return False, "digest issue has no linked paper issues"
 
     return True, f"digest=#{digest_issue.number} papers={len(linked_issue_numbers)}"
@@ -379,6 +381,23 @@ def resolve_target_dates(today: datetime | None = None) -> list[str]:
     return [(now - timedelta(days=1)).strftime("%Y%m%d")]
 
 
+def resolve_date_range(start_date: str, end_date: str, max_days: int = 62) -> list[str]:
+    try:
+        start = datetime.strptime(start_date, "%Y%m%d").date()
+        end = datetime.strptime(end_date, "%Y%m%d").date()
+    except ValueError as exc:
+        raise ValueError("start/end must use YYYYMMDD format") from exc
+
+    if start > end:
+        raise ValueError("start date must not be after end date")
+
+    day_count = (end - start).days + 1
+    if day_count > max_days:
+        raise ValueError(f"backfill range exceeds {max_days} days")
+
+    return [(start + timedelta(days=offset)).strftime("%Y%m%d") for offset in range(day_count)]
+
+
 def _process_date(date_str: str, notify: bool, force: bool = False):
     if not force:
         already_done, reason = _date_already_completed(date_str)
@@ -453,6 +472,21 @@ def _process_date(date_str: str, notify: bool, force: bool = False):
         },
     )
 
+    if force:
+        _run_step(
+            date_str,
+            "reconcile",
+            [
+                "python3",
+                "scripts/cli.py",
+                "reconcile",
+                "--date",
+                date_str,
+                "--stats-json",
+                stats_path,
+            ],
+        )
+
     if notify:
         sent_channels: list[str] = []
         issue = get_today_digest_issue(_get_repo(), date_str)
@@ -485,20 +519,16 @@ def _process_date(date_str: str, notify: bool, force: bool = False):
     _write_state(date_str, "done", "ok")
 
 
-def main(target_date: str | None = None, notify: bool | None = None, force: bool = False):
+def _run_target_dates(
+    target_dates: list[str],
+    notify: bool,
+    force: bool,
+    continue_on_error: bool = False,
+) -> None:
     if not CONFIG.github_token:
         raise RuntimeError("Missing required environment variable: GITHUB_TOKEN")
     if not CONFIG.llm_api_key:
         raise RuntimeError("Missing required environment variable: LLM_API_KEY")
-
-    if target_date:
-        target_dates = [target_date]
-    else:
-        target_dates = resolve_target_dates()
-
-    # 默认仅“自动定时模式”发送通知；手动回放/追跑默认不通知
-    if notify is None:
-        notify = (target_date is None)
 
     LOCK_FILE.parent.mkdir(parents=True, exist_ok=True)
     with open(LOCK_FILE, "w", encoding="utf-8") as lf:
@@ -517,8 +547,42 @@ def main(target_date: str | None = None, notify: bool | None = None, force: bool
                     {"reason": "GitHub connectivity check failed"},
                 )
             raise RuntimeError("GitHub 连通性检查失败，请切换代理节点后重试")
+
+        failures: list[tuple[str, str]] = []
         for date_str in target_dates:
-            _process_date(date_str, notify, force=force)
+            try:
+                _process_date(date_str, notify, force=force)
+            except Exception as exc:
+                if not continue_on_error:
+                    raise
+                reason = _format_exc(exc)
+                failures.append((date_str, reason))
+                print(f"BACKFILL_FAILED {date_str} | {reason}")
+
+        if failures:
+            summary = "; ".join(f"{date}: {reason}" for date, reason in failures)
+            raise RuntimeError(f"backfill completed with {len(failures)} failed date(s): {summary}")
+
+
+def main(target_date: str | None = None, notify: bool | None = None, force: bool = False):
+    target_dates = [target_date] if target_date else resolve_target_dates()
+
+    # 默认仅“自动定时模式”发送通知；手动回放/追跑默认不通知
+    if notify is None:
+        notify = (target_date is None)
+
+    _run_target_dates(target_dates, notify=notify, force=force)
+
+
+def backfill(start_date: str, end_date: str, notify: bool = False, force: bool = False) -> None:
+    target_dates = resolve_date_range(start_date, end_date)
+    print(f"BACKFILL_RANGE {target_dates[0]}..{target_dates[-1]} | days={len(target_dates)}")
+    _run_target_dates(
+        target_dates,
+        notify=notify,
+        force=force,
+        continue_on_error=True,
+    )
 
 
 if __name__ == "__main__":

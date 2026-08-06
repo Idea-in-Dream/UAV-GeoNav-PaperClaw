@@ -68,6 +68,14 @@ python3 scripts/cli.py filter --days 2 --stats-out memory/rs_daily_stats_manual.
 python3 scripts/cli.py filter --date 20260312 --stats-out memory/rs_daily_stats_20260312.json
 ```
 
+## 4.1) 回填日期区间
+
+```bash
+python3 scripts/cli.py backfill --start 20260706 --end 20260805
+```
+
+默认不通知，并跳过已经完成且日报文件与 Digest Issue 一致的日期。失败日期会写入状态文件，其他日期继续执行；修复后可用同一命令恢复。
+
 ## 5) 只生成日报
 ```bash
 python3 scripts/cli.py digest --date 20260312 --stats-json memory/rs_daily_stats_20260312.json

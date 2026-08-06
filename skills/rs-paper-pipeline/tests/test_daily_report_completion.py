@@ -1,5 +1,7 @@
+import json
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 from unittest.mock import patch
 import sys
@@ -10,7 +12,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from clients.github_ops import daily_report_matches_digest
-from run_rs_daily_workday import _date_already_completed, resolve_target_dates
+from reconcile_daily_issue_set import load_stats
+from run_rs_daily_workday import _date_already_completed, resolve_date_range, resolve_target_dates
 from services.digest_builder import UAV_GEONAV_REPORT_MARKER, build_digest_with_llm
 
 
@@ -76,6 +79,21 @@ class DailyReportCompletionTest(unittest.TestCase):
         self.assertTrue(completed)
         self.assertEqual(reason, "digest=#3 papers=1")
 
+    def test_matching_empty_report_counts_as_completed(self):
+        body = build_digest_with_llm(
+            self.date,
+            [],
+            stats={"candidate_count": 10, "llm_selected_count": 0},
+        )
+        issue = SimpleNamespace(number=4, title=f"日报 {self.date}", body=body)
+        repo = FakeRepo(issue, body.strip() + "\n")
+
+        with patch("run_rs_daily_workday._get_repo", return_value=repo):
+            completed, reason = _date_already_completed(self.date)
+
+        self.assertTrue(completed)
+        self.assertEqual(reason, "digest=#4 papers=0")
+
     def test_every_day_processes_previous_calendar_day(self):
         beijing_tz = timezone(timedelta(hours=8))
         monday = datetime(2026, 8, 3, 8, 0, tzinfo=beijing_tz)
@@ -85,6 +103,29 @@ class DailyReportCompletionTest(unittest.TestCase):
             expected = (current - timedelta(days=1)).strftime("%Y%m%d")
             with self.subTest(day=current.strftime("%A")):
                 self.assertEqual(resolve_target_dates(current), [expected])
+
+    def test_backfill_date_range_is_inclusive(self):
+        self.assertEqual(
+            resolve_date_range("20260730", "20260802"),
+            ["20260730", "20260731", "20260801", "20260802"],
+        )
+
+    def test_backfill_date_range_rejects_invalid_ranges(self):
+        with self.assertRaises(ValueError):
+            resolve_date_range("20260802", "20260730")
+        with self.assertRaises(ValueError):
+            resolve_date_range("20260101", "20260401")
+
+    def test_reconcile_accepts_zero_selected_papers(self):
+        with TemporaryDirectory() as temp_dir:
+            path = Path(temp_dir) / "stats.json"
+            path.write_text(
+                json.dumps({"date": self.date, "selected_arxiv_ids": []}),
+                encoding="utf-8",
+            )
+            stats = load_stats(str(path), self.date)
+
+        self.assertEqual(stats["selected_arxiv_ids"], [])
 
 
 if __name__ == "__main__":

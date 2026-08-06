@@ -1,0 +1,137 @@
+name: UAV GeoNav PaperClaw Backfill
+
+on:
+  workflow_dispatch:
+    inputs:
+      start_date:
+        description: "Start date in YYYYMMDD"
+        required: true
+        type: string
+      end_date:
+        description: "End date in YYYYMMDD"
+        required: true
+        type: string
+      force:
+        description: "Re-run dates already completed"
+        required: true
+        default: false
+        type: boolean
+  push:
+    branches:
+      - main
+    paths:
+      - .github/backfill-request.json
+
+concurrency:
+  group: uav-geonav-paperclaw-writer
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    permissions:
+      contents: write
+      issues: write
+    env:
+      GITHUB_TOKEN: ${{ secrets.UAV_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
+      LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+      RS_GITHUB_REPO: ${{ vars.RS_GITHUB_REPO || github.repository }}
+      LLM_MODEL: ${{ vars.LLM_MODEL }}
+      LLM_THINKING_MODE: ${{ vars.LLM_THINKING_MODE }}
+      LLM_API_URL: ${{ vars.LLM_API_URL }}
+      GITHUB_TIMEOUT: ${{ vars.GITHUB_TIMEOUT }}
+      GITHUB_RETRY: ${{ vars.GITHUB_RETRY }}
+      ARXIV_API_URL: ${{ vars.ARXIV_API_URL }}
+      ARXIV_USER_AGENT: ${{ vars.ARXIV_USER_AGENT }}
+      OPENCLAW_BIN: ${{ vars.OPENCLAW_BIN }}
+      RS_FILTER_KEYWORDS_FILE: scripts/config/filter_keywords.json
+      RS_FILTER_PROMPT_FILE: scripts/prompts/filter_cross_prompt.md
+      PYTHONUNBUFFERED: "1"
+
+    steps:
+      - name: Checkout pipeline files
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            .github/backfill-request.json
+            skills/rs-paper-pipeline
+            papers/issue_index.json
+          sparse-checkout-cone-mode: false
+
+      - name: Resolve backfill request
+        id: request
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_START_DATE: ${{ inputs.start_date }}
+          INPUT_END_DATE: ${{ inputs.end_date }}
+          INPUT_FORCE: ${{ inputs.force }}
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          import os
+          import re
+          from pathlib import Path
+
+          if os.environ["EVENT_NAME"] == "workflow_dispatch":
+              start_date = os.environ.get("INPUT_START_DATE", "")
+              end_date = os.environ.get("INPUT_END_DATE", "")
+              force = os.environ.get("INPUT_FORCE", "false").lower() == "true"
+          else:
+              request = json.loads(Path(".github/backfill-request.json").read_text(encoding="utf-8"))
+              start_date = str(request.get("start_date", ""))
+              end_date = str(request.get("end_date", ""))
+              force = bool(request.get("force", False))
+
+          if not re.fullmatch(r"\d{8}", start_date) or not re.fullmatch(r"\d{8}", end_date):
+              raise SystemExit("backfill dates must use YYYYMMDD format")
+
+          print(f"start_date={start_date}")
+          print(f"end_date={end_date}")
+          print(f"force={'true' if force else 'false'}")
+          PY
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
+
+      - name: Install Python dependencies
+        working-directory: skills/rs-paper-pipeline
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install -r requirements.txt
+
+      - name: Doctor
+        working-directory: skills/rs-paper-pipeline
+        run: python3 scripts/cli.py doctor
+
+      - name: Ensure issue labels
+        working-directory: skills/rs-paper-pipeline
+        run: python3 scripts/cli.py setup-labels
+
+      - name: Backfill date range
+        working-directory: skills/rs-paper-pipeline
+        env:
+          START_DATE: ${{ steps.request.outputs.start_date }}
+          END_DATE: ${{ steps.request.outputs.end_date }}
+          FORCE_BACKFILL: ${{ steps.request.outputs.force }}
+        run: |
+          set -euo pipefail
+          args=(backfill --start "$START_DATE" --end "$END_DATE")
+          if [[ "$FORCE_BACKFILL" == "true" ]]; then
+            args+=(--force)
+          fi
+          python3 scripts/cli.py "${args[@]}"
+
+      - name: Upload runtime state
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rs-pipeline-backfill-${{ steps.request.outputs.start_date }}-${{ steps.request.outputs.end_date }}
+          path: skills/rs-paper-pipeline/memory/

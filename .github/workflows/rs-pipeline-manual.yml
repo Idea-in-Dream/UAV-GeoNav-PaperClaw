@@ -20,7 +20,7 @@ on:
         type: string
 
 concurrency:
-  group: rs-pipeline-manual
+  group: uav-geonav-paperclaw-writer
   cancel-in-progress: false
 
 jobs:
