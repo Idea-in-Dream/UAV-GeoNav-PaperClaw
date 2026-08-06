@@ -22,6 +22,41 @@ Powered by OpenClaw🦞
 
 ---
 
+# [20260728](./202607/20260728.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 11 篇；关键词+LLM 智能匹配遥感交叉论文 4 篇；最终纳入日报 4 篇。
+
+今日遥感AI研究聚焦无人机视角地理定位，四篇论文均涉及跨视角检索与基准构建。研究趋势包括：引入几何感知适配器与边缘场蒸馏以提升持续学习能力；提出可靠性引导的证据融合以增强鲁棒性；构建昼夜统一基准并设计模态自适应网络；以及利用语义地图实现城市尺度定位。整体呈现从单一算法向系统化基准与鲁棒性设计发展的趋势。
+
+## ✨ 今日亮点
+
+- 持续学习与几何感知适配器结合，提升无人机定位泛化性。
+- 可靠性引导证据融合，增强无人机-卫星跨视角定位鲁棒性。
+- 昼夜统一基准与模态自适应网络，推动全天候定位研究。
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260728] GeoMFD: Continual Drone-View Geo-Localization with Geometry-Aware Adapter and Margin-Field Distillation | Chen Zhongwei, Rong Hai-jun, Zhang Tao, Nie Xianfeng, Zhang Xiangbao, Li Guoqi, Yang Zhao-Xu | School of Aerospace Engineering, Xi’an Jiaotong University；Institute of Automation, Chinese Academy of Sciences | 提出GeoMFD，用几何适配器和边缘场蒸馏实现无人机视角持续地理定位。 | [#40](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/40) |
+| [20260728] ReLATE: Reliability-Guided Evidence Fusion for Robust UAV--Satellite cross-view Geo-Localization | Jiang Haochen, Pan Jialei, Sun Yuzhe, Dong Zhe, Ren Lecheng, Gu Yanfeng, Liu Tianzhu | a School of Electronics and Information Engineering, Harbin Institute of Technology, Harbin, 150001, Heilongjiang, China；b National Key Laboratory of Radar Detection and Sensing, Nanjing Research Institute of Electronics Technology；c School of Electrical and Electronic Engineering, University of Manchester, Manchester, United Kingdom；University-1652-Deg and SUES-200-Deg. UAVSat-Deg covers 27 corruption types, including 19 core and 8 compound；gency response, urban management, and low-altitude UAV 10]. Datasets such as University-1652 and SUES-200 have | ReLATE通过可靠性引导证据融合，提升无人机-卫星跨视角定位鲁棒性。 | [#41](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/41) |
+| [20260728] A Unified Benchmark and Modality-Adaptive Network for Day-and-Night Drone-View Geo-Localization | Xu Songtianhao, Chen Zhongwei, Yang Zhao-Xu, Wang Weifeng | Zhongwei Chen, Zhao-Xu Yang are with the State Key Laboratory；Laboratory of Environment and Control for Flight Vehicle, School；of Aerospace Engineering, Xi’an Jiaotong University, Xi’an 710049；Songtianhao Xu, Weifeng Wang are Xi’an Institute of Optics and Precision；Mechanics, Chinese Academy of Sciences, Xi’an 710119, PR China (e- | 构建昼夜统一基准，提出模态自适应网络用于无人机地理定位。 | [#42](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/42) |
+| [20260728] Leveraging Semantic Maps for City-Scale Cross-View Localization | Fahnestock Ethan, Fuentes Erick, Philip R Osteen, Roy Nicholas | DEVCOM Army Research Laboratory (ARL) | 利用语义地图实现城市尺度跨视角定位，支持GNSS拒止环境。 | [#43](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/43) |
+
+## 🔎 观察
+
+- 跨视角定位研究正从单一算法转向基准与鲁棒性并重，强调实际部署。
+- 语义地图与可靠性机制成为提升定位精度和适应性的重要方向。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260727](./202607/20260727.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -35,39 +70,6 @@ Powered by OpenClaw🦞
 
 - 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
 - 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260726](./202607/20260726.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 6 篇；关键词+LLM 智能匹配遥感交叉论文 2 篇；最终纳入日报 2 篇。
-
-今日遥感AI研究聚焦于灾害地理定位与越野导航两大方向。灾害地名消歧结合多模态大模型与跨视角地理定位，提升灾害信息提取精度；越野导航则关注可通行性感知的全局规划，面向长时域复杂地形。两者均强调数据集与基准构建，推动遥感与机器人技术的交叉应用。
-
-## ✨ 今日亮点
-
-- 多模态大模型用于灾害地名消歧，提升定位精度
-- 跨视角地理定位技术助力灾害场景理解
-- 可通行性感知全局规划器支持长时越野导航
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260726] DisasterTD: Disaster Toponym Disambiguation Using Multimodal LLMs and Cross-View Geolocalization | Yin Wenping, Liu Ziqi, Mou Naixia, Li Weijia, Hong Danfeng, Li Hao | College of Geodesy and Geomatics, Shandong University of Science and Technology, Qingdao, China；School of Environmental Science and Spatial Informatics, China University of Mining and Technology, Xuzhou, China (；State Key Laboratory of Information Engineering in Surveying, Mapping and Remote Sensing, Wuhan University, Wuhan, China (；College of Geodesy and Geomatics, Shandong University of Science and Technology, Qingdao, China (；the Tsinghua Shenzhen International Graduate School, Tsinghua University, Shenzhen, China. (；School of Automation, Southeast University, Nanjing, China (；Department of Geography, National University of Singapore, Singapore, Singapore ( | 提出DisasterTD方法，利用多模态大模型与跨视角地理定位解决灾害地名歧义问题。 | [#36](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/36) |
-| [20260726] Learning Traversability-Aware Global Planners for Long Horizon Off-Road Navigation | Viswanath Kasi, Jason M. Gregory, Kolhe Shaunak, Saripalli Srikanth | This research was developed with funding from the Defense Advanced；Research Projects Agency (DARPA) and DEVCOM Army Research Labo-；J. Mike Walker ’66 Department of Mechanical Engineering；Texas A&M University, College Station, TX 77840, USA kasiv；DEVCOM Army Research laboratory, Adelphi, MD, USA | 学习可通行性感知的全局规划器，用于长时域越野导航，提升复杂地形适应性。 | [#37](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/37) |
-
-## 🔎 观察
-
-- 灾害信息提取趋向多模态融合，结合大模型提升地理定位鲁棒性
-- 越野导航研究关注全局规划与可通行性学习，面向实际部署场景
 
 ---
 
