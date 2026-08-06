@@ -62,25 +62,25 @@ Powered by OpenClaw🦞
 
 今日共检索候选论文 5 篇；关键词+LLM 智能匹配遥感交叉论文 2 篇；最终纳入日报 2 篇。
 
-今日遥感AI研究聚焦无人机与卫星跨视角导航，两项工作分别提出稳定自训练框架与距离感知尺度恢复方法，均配套开源数据集与代码，强调在GNSS拒止环境下的可复现性与实用性。
+今日遥感AI研究聚焦无人机与卫星跨视角导航，两项工作分别从检索与定位角度推进。STEAM提出稳定自训练框架，结合弹性匹配与自适应净化，提升跨视角检索精度；RASR则面向GNSS拒止环境，通过距离感知尺度恢复实现度量级无人机导航。两者均公开代码与数据集，强调可复现性，反映出该领域对实用化与基准建设的重视。
 
 ## ✨ 今日亮点
 
-- 跨视角检索与精细配准结合，提升无人机定位鲁棒性
-- 距离感知尺度恢复，解决卫星辅助导航中的尺度模糊
-- 两项工作均开源，推动UAV导航基准发展
+- 跨视角检索与度量导航并进，强化无人机自主性
+- 两项工作均开源代码，推动可复现研究
+- GNSS拒止下尺度恢复成为导航关键突破点
 
 ## 🗂 今日文章列表
 
 | 标题 | 作者 | 单位 | 一句话概括 | Issue |
 |---|---|---|---|---|
-| [20260710] STEAM: Stable Self-Training with Elastic Matching and Adaptive Purification | Wang Shaoxiang, Zhang Kejia, Pan Haiwei, Zhang Lan | Harbin Engineering University, School of Computer Science and Technology；Northeast Forestry University, School of Computer and Artificial Intelligence | 提出STEAM自训练框架，结合弹性匹配与自适应净化，提升跨视角检索与配准精度 | [#10](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/10) |
-| [20260710] RASR: Range-Aware Scale Recovery for Metric UAV Navigation | Liang Hongtao, Shao Xinyu, Wang Chenxu, Wan Yiyao, Ji Jiahuan, Ye Fangwei, Zhou Fuhui, Wu Qihui | College of Electronic and Information Engineering, Nanjing University of Aeronautics and Astronautics, China；Shenzhen International Graduate School, Tsinghua University, China；Noah Ark Lab, Huawei, China；College of Automation Engineering, Nanjing University of Aeronautics and Astronautics, China；College of Artificial Intelligence, Nanjing University of Aeronautics and Astronautics, China；College of Computer Science and Technology, Nanjing University of Aeronautics and Astronautics, China | 提出RASR方法，利用距离感知尺度恢复，实现GNSS拒止下无人机米级定位 | [#11](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/11) |
+| [20260710] STEAM: Stable Self-Training with Elastic Matching and Adaptive Purification | Wang Shaoxiang, Zhang Kejia, Pan Haiwei, Zhang Lan | Harbin Engineering University, School of Computer Science and Technology；Northeast Forestry University, School of Computer and Artificial Intelligence | STEAM提出稳定自训练方法，结合弹性匹配与自适应净化，提升无人机-卫星跨视角检索性能。 | [#10](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/10) |
+| [20260710] RASR: Range-Aware Scale Recovery for Metric UAV Navigation | Liang Hongtao, Shao Xinyu, Wang Chenxu, Wan Yiyao, Ji Jiahuan, Ye Fangwei, Zhou Fuhui, Wu Qihui | College of Electronic and Information Engineering, Nanjing University of Aeronautics and Astronautics, China；Shenzhen International Graduate School, Tsinghua University, China；Noah Ark Lab, Huawei, China；College of Automation Engineering, Nanjing University of Aeronautics and Astronautics, China；College of Artificial Intelligence, Nanjing University of Aeronautics and Astronautics, China；College of Computer Science and Technology, Nanjing University of Aeronautics and Astronautics, China | RASR实现距离感知尺度恢复，支持GNSS拒止环境下无人机度量级导航与目标定位。 | [#11](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/11) |
 
 ## 🔎 观察
 
-- 研究趋势强调从单一算法创新转向系统级导航方案，注重GNSS拒止场景
-- 开源代码与数据集成为标配，推动遥感AI领域可复现性提升
+- 跨视角检索与度量导航结合，显示无人机定位从定性匹配向定量恢复演进。
+- 开源代码与基准数据集成为标配，利于领域内方法对比与快速迭代。
 
 ---
 
