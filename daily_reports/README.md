@@ -60,36 +60,26 @@ Powered by OpenClaw🦞
 
 ## 📌 今日概况
 
-今日共检索候选论文 5 篇；关键词+LLM 智能匹配遥感交叉论文 1 篇；最终纳入日报 2 篇。
+今日共检索候选论文 5 篇；关键词+LLM 智能匹配遥感交叉论文 1 篇；最终纳入日报 1 篇。
 
-今日遥感AI研究聚焦无人机与智能反射面（RIS）及无线感知技术的融合。两项工作分别探索了无人机搭载RIS的实时飞行控制，以及基于条件生成学习的无线点云成像用于目标感知与跟踪。研究均强调可复现性，并涉及GNSS拒止环境下的定位与目标地理定位，显示出无人机自主导航与感知技术的交叉发展趋势。
+今日遥感AI研究聚焦于无人机与卫星影像的跨视角地理定位任务。一项新工作提出轨迹感知方法，利用序列观测信息提升定位精度，并构建了相关基准数据集。该研究推动了动态场景下跨视角检索技术的发展，为无人机自主导航提供了新思路。
 
 ## ✨ 今日亮点
 
-- 无人机RIS实时控制提升通信可靠性
-- 条件生成学习实现无线点云感知
-- 两项研究均注重可复现性
+- 提出轨迹感知的跨视角地理定位方法
+- 利用序列观测增强定位鲁棒性
+- 构建无人机-卫星基准数据集
 
 ## 🗂 今日文章列表
 
 | 标题 | 作者 | 单位 | 一句话概括 | Issue |
 |---|---|---|---|---|
-| [20260716] LIVE-RIS: Real-Time In-Flight Actuation of UAV-Mounted RIS | Müller David, Weinberger Kevin, Sezgin Aydin, Mönnigmann Martin | the chair of Automatic Control and Systems Theory, Department of Mechanical Engineering, Ruhr-Universität Bochum,, Bochum, Germany；the chair of Digital Communication Systems, Department of Electrical Engineering, Ruhr-Universität Bochum,, Bochum, Germany | 提出LIVE-RIS系统，实现无人机搭载RIS的实时飞行驱动控制。 | [#21](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/21) |
-| [20260716] Conditional Generative Learning Enabled Wireless UAV Sensing and Tracking via Point Cloud Imaging | Dai Xinhong, Gao Yuan, Jiang Hao, Yuan Xiaojun, Wang Xin | Key Laboratory for Information Science of Electromagnetic Waves (MoE), College of Future Information Technology, Fudan University, Shanghai, China. (；the National Key Laboratory of Wireless Communications, the University of Electronic Science and Technology of China, Chengdu, China ( | 利用条件生成学习，通过点云成像实现无线无人机感知与跟踪。 | [#22](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/22) |
-
-## ⚠️ 未纳入日报的匹配论文
-
-以下论文通过关键词/LLM 筛选，但在处理过程中失败未纳入日报。点击 arXiv 链接可查看原文。
-
-| 标题 | arXiv | 失败原因 |
-|------|-------|----------|
-| Trajectory-aware Cross-view Geo-localization with Sequential Observations | [2607.15491v1](https://arxiv.org/abs/2607.15491v1) | 质检未通过: 单位为空或无效 |
-
+| [20260716] Trajectory-aware Cross-view Geo-localization with Sequential Observations | Gao Tianyi, Lin Jiayu, Beaulieu Danielle, Jacobs Nathan | Washington University in St. Louis, St. Louis, MO 63130, USA | 提出轨迹感知跨视角定位方法，利用序列观测提升无人机-卫星图像匹配精度。 | [#24](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/24) |
 
 ## 🔎 观察
 
-- 研究趋势偏向将硬件控制与AI感知结合，提升无人机在复杂环境下的自主性。
-- 可复现性成为重要考量，但两项工作均需进一步评审验证。
+- 跨视角定位研究正从单帧向序列轨迹扩展，以应对动态环境挑战。
+- 无人机-卫星基准数据集的构建成为该领域重要研究方向。
 
 ---
 
