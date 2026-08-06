@@ -24,7 +24,7 @@ on:
 
 concurrency:
   group: uav-geonav-paperclaw-writer
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   backfill:
