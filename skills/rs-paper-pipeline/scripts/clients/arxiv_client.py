@@ -13,8 +13,10 @@ from pathlib import Path
 
 from pipeline_config import install_urllib_proxy, load_config
 from services.filter_assets import (
+    load_arxiv_categories,
     load_candidate_limit_per_day,
     load_candidate_priority_patterns,
+    load_rs_context_query_terms,
     load_rs_query_terms,
     load_rs_signal_patterns,
 )
@@ -23,6 +25,8 @@ from services.filter_assets import (
 CONFIG = load_config()
 install_urllib_proxy()
 RS_QUERY_TERMS = load_rs_query_terms()
+RS_CONTEXT_QUERY_TERMS = load_rs_context_query_terms()
+ARXIV_CATEGORIES = load_arxiv_categories()
 RS_KEYWORDS = RS_QUERY_TERMS
 RS_MATCH_PATTERNS = load_rs_signal_patterns()
 CANDIDATE_PRIORITY_PATTERNS = load_candidate_priority_patterns()
@@ -59,6 +63,16 @@ def limit_candidates_per_day(items: list[dict[str, str]], per_day_limit: int) ->
         )
         limited.extend(ranked[:per_day_limit])
     return limited
+
+
+def build_terms_query(terms: list[str]) -> str:
+    parts = []
+    for term in terms:
+        if " " in term:
+            parts.append(f'all:"{term}"')
+        else:
+            parts.append(f"all:{term}")
+    return " OR ".join(parts)
 
 
 def _retry_after_seconds(headers) -> int | None:
@@ -107,13 +121,7 @@ def fetch_recent_candidates(
     per_day_limit = CANDIDATE_LIMIT_PER_DAY if candidate_limit_per_day is None else candidate_limit_per_day
     if per_day_limit <= 0:
         raise ValueError("candidate_limit_per_day must be positive")
-    query_parts = []
-    for keyword in RS_QUERY_TERMS:
-        if " " in keyword:
-            query_parts.append(f'all:"{keyword}"')
-        else:
-            query_parts.append(f"all:{keyword}")
-    base_query = " OR ".join(query_parts)
+    base_query = build_terms_query(RS_QUERY_TERMS)
     namespace = {"atom": "http://www.w3.org/2005/Atom"}
 
     if target_date:
@@ -183,7 +191,12 @@ def fetch_recent_candidates(
         return limit_candidates_per_day(items, per_day_limit)
 
     if target_date:
-        scoped_query = f"({base_query}) AND submittedDate:[{target_date}0000 TO {target_date}2359]"
+        category_query = " OR ".join(f"cat:{category}" for category in ARXIV_CATEGORIES)
+        context_query = build_terms_query(RS_CONTEXT_QUERY_TERMS)
+        scoped_query = (
+            f"({category_query}) AND ({context_query}) "
+            f"AND submittedDate:[{target_date}0000 TO {target_date}2359]"
+        )
         return run_query(scoped_query, max_scan=max_results, page_size=min(max_results, 200))
 
     return run_query(base_query, max_scan=3000, page_size=min(max_results, 200))

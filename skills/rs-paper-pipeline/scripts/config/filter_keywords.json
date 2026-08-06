@@ -66,6 +66,26 @@
     "geospatial imagery",
     "earth observation"
   ],
+  "rs_context_query_terms": [
+    "UAV",
+    "drone",
+    "aerial imagery",
+    "aerial images",
+    "satellite imagery",
+    "satellite images",
+    "remote sensing",
+    "overhead imagery",
+    "geospatial imagery",
+    "earth observation"
+  ],
+  "arxiv_categories": [
+    "cs.CV",
+    "cs.RO",
+    "cs.AI",
+    "cs.LG",
+    "eess.IV",
+    "eess.SP"
+  ],
   "candidate_limit_per_day": 50,
   "rs_signal_patterns": [
     "(?i)\\b(?:UAVs?|drones?|aerial)\\b.{0,120}\\b(?:geo[- ]?locali[sz]ation|global visual locali[sz]ation|global relocali[sz]ation|absolute locali[sz]ation|map matching|map registration|satellite matching|target geolocation)\\b",

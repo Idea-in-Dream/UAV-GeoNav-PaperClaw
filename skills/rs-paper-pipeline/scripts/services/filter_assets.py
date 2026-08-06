@@ -46,6 +46,12 @@ def load_filter_keywords() -> dict[str, object]:
     data = _read_json(CONFIG.filter_keywords_path)
     return {
         "rs_query_terms": _load_string_list(data, "rs_query_terms", CONFIG.filter_keywords_path),
+        "rs_context_query_terms": _load_string_list(
+            data,
+            "rs_context_query_terms",
+            CONFIG.filter_keywords_path,
+        ),
+        "arxiv_categories": _load_string_list(data, "arxiv_categories", CONFIG.filter_keywords_path),
         "rs_signal_patterns": _load_string_list(data, "rs_signal_patterns", CONFIG.filter_keywords_path),
         "candidate_priority_patterns": _load_string_list(
             data,
@@ -73,6 +79,16 @@ def load_filter_prompt_template() -> str:
 @lru_cache(maxsize=1)
 def load_rs_query_terms() -> list[str]:
     return list(load_filter_keywords()["rs_query_terms"])
+
+
+@lru_cache(maxsize=1)
+def load_rs_context_query_terms() -> list[str]:
+    return list(load_filter_keywords()["rs_context_query_terms"])
+
+
+@lru_cache(maxsize=1)
+def load_arxiv_categories() -> list[str]:
+    return list(load_filter_keywords()["arxiv_categories"])
 
 
 @lru_cache(maxsize=1)

@@ -3,6 +3,7 @@ from unittest.mock import patch
 import json
 import sys
 import unittest
+import urllib.parse
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -118,6 +119,14 @@ class UAVGeoNavFilterTest(unittest.TestCase):
             "cross-domain localization", "terrain-relative navigation", "georeferenced imagery",
         }
         self.assertTrue(required.issubset(set(config["rs_query_terms"])))
+        self.assertTrue(
+            {"UAV", "drone", "remote sensing", "satellite imagery"}.issubset(
+                set(config["rs_context_query_terms"])
+            )
+        )
+        self.assertTrue(
+            {"cs.CV", "cs.RO", "eess.IV"}.issubset(set(config["arxiv_categories"]))
+        )
         self.assertEqual(config["candidate_limit_per_day"], 50)
 
     def test_candidate_pool_is_capped_per_day(self):
@@ -145,7 +154,7 @@ class UAVGeoNavFilterTest(unittest.TestCase):
         )
         xml_text = '<feed xmlns="http://www.w3.org/2005/Atom">' + "".join(entries) + "</feed>"
 
-        with patch("clients.arxiv_client.fetch_url_with_retry", return_value=xml_text):
+        with patch("clients.arxiv_client.fetch_url_with_retry", return_value=xml_text) as fetch_mock:
             candidates = fetch_recent_candidates(
                 max_results=100,
                 target_date="20260801",
@@ -154,6 +163,10 @@ class UAVGeoNavFilterTest(unittest.TestCase):
 
         self.assertEqual(len(candidates), 50)
         self.assertIn("2608.99999v1", {item["arxiv_id"] for item in candidates})
+        requested_url = fetch_mock.call_args.args[0]
+        decoded_query = urllib.parse.unquote(requested_url)
+        self.assertIn("cat:cs.CV", decoded_query)
+        self.assertIn("all:UAV", decoded_query)
 
     def test_candidate_limit_must_be_positive(self):
         with self.assertRaises(ValueError):
