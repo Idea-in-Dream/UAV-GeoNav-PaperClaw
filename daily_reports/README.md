@@ -29,25 +29,25 @@ Powered by OpenClaw🦞
 
 今日共检索候选论文 4 篇；关键词+LLM 智能匹配遥感交叉论文 2 篇；最终纳入日报 2 篇。
 
-今日遥感AI研究聚焦跨视角地理定位与高精地图构建。两项工作分别从在线地图生成与高效跨尺度检索切入，前者模仿人类驾驶行为提升地图构建的实时性，后者利用稀疏混合专家模型处理多尺度查询，均致力于提升视觉定位的精度与效率，并配套发布相关数据集与基准。
+今日遥感AI研究聚焦跨视角地理定位与高精地图构建。两项工作分别提出模仿人类驾驶的在线高精地图构建方法，以及基于稀疏混合专家的多尺度跨视角定位框架，均注重效率与精度平衡，推动无人机-卫星匹配及自动驾驶应用。
 
 ## ✨ 今日亮点
 
-- 跨视角定位研究向多尺度、高效检索方向发展。
-- 高精地图构建引入模仿学习，提升在线实时性。
-- 两项工作均注重数据集与基准的构建。
+- 跨视角定位与高精地图构建成热点
+- 稀疏混合专家提升多尺度检索效率
+- 模仿驾驶行为优化在线地图生成
 
 ## 🗂 今日文章列表
 
 | 标题 | 作者 | 单位 | 一句话概括 | Issue |
 |---|---|---|---|---|
-| [20260802] Driver2Map: Imitating Human Driving for Online High-Definition Map Construction | Yin Pan, Xia Runtian, Kuang Weisong, Li Kaiyu, Zhao Cong, Cao Xiangyong | Xi’an Jiaotong University | 提出Driver2Map，模仿人类驾驶行为实现在线高精地图构建。 | [#49](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/49) |
-| [20260802] One Query, Many Scales: Sparse Mixture-of-Experts for Efficient Hierarchical Cross-View Geo-Localization | Fan Ruijie, Ye Junyan, Zhu Qi, Li Weijia | Tsinghua Shenzhen International Graduate School, Tsinghua University；School of Geospatial Engineering and Science, Sun Yat-sen University | 提出稀疏混合专家模型，实现高效多尺度跨视角地理定位。 | [#50](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/50) |
+| [20260802] Driver2Map: Imitating Human Driving for Online High-Definition Map Construction | Yin Pan, Xia Runtian, Kuang Weisong, Li Kaiyu, Zhao Cong, Cao Xiangyong | Xi’an Jiaotong University | Driver2Map通过模仿人类驾驶行为，实现高效在线高精地图构建。 | [#49](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/49) |
+| [20260802] One Query, Many Scales: Sparse Mixture-of-Experts for Efficient Hierarchical Cross-View Geo-Localization | Fan Ruijie, Ye Junyan, Zhu Qi, Li Weijia | Tsinghua Shenzhen International Graduate School, Tsinghua University；School of Geospatial Engineering and Science, Sun Yat-sen University | 提出稀疏混合专家模型，实现多尺度高效跨视角地理定位。 | [#50](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/50) |
 
 ## 🔎 观察
 
-- 研究趋势从单一尺度匹配转向多尺度融合，以应对视角差异。
-- 在线地图构建与跨视角检索结合，推动实时定位应用发展。
+- 研究趋向于将驾驶认知融入地图生成，提升实时性。
+- 稀疏专家机制在跨视角检索中展现计算效率优势。
 
 ---
 
