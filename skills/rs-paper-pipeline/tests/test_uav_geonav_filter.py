@@ -96,6 +96,33 @@ class UAVGeoNavFilterTest(unittest.TestCase):
         self.assertEqual(selected[0]["filter_status"], "needs_review")
         self.assertIn("Needs-Review", selected[0]["filter_labels"])
 
+    def test_safety_gate_rejects_pure_uav_tracking_even_if_llm_keeps_it(self):
+        candidate = {
+            "arxiv_id": "2607.15004v1",
+            "title": "CosFly-VLA: A Spatially Aware Vision-Language-Action Model for UAV Tracking",
+            "abstract": (
+                "The model tracks a dynamic target through occlusion, estimates target visibility and a 2D box, "
+                "and generates continuous flight actions in urban scenes."
+            ),
+            "published": "2026-07-16",
+        }
+        output = {
+            "keep": [
+                {
+                    "arxiv_id": candidate["arxiv_id"],
+                    "labels": ["Target-Geolocation"],
+                    "reason": "incorrect optimistic decision",
+                }
+            ],
+            "needs_review": [],
+            "exclude": [],
+        }
+
+        with patch("daily_arxiv_cross_filter.call_llm", return_value=json.dumps(output)):
+            selected = llm_cross_filter([candidate])
+
+        self.assertEqual(selected, [])
+
     def test_arxiv_versions_share_one_canonical_id(self):
         self.assertEqual(canonical_arxiv_id("2603.20778v1"), "2603.20778")
         self.assertEqual(canonical_arxiv_id("2603.20778v12"), "2603.20778")

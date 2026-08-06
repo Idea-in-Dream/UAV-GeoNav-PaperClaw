@@ -23,10 +23,38 @@ from services.labels import normalize_paper_labels
 
 CONFIG = load_config()
 AI_MATCH_PATTERNS = load_ai_signal_patterns()
+OBVIOUS_EXCLUSION_PATTERNS = [
+    re.compile(r"(?i)\b(?:multi[- ]object|single[- ]object|visual object|target|UAV|drone) tracking\b"),
+    re.compile(r"(?i)\b(?:object|vehicle|building|ship|pedestrian|change) detection\b"),
+    re.compile(r"(?i)\b(?:semantic|instance|panoptic|referring|image) segmentation\b"),
+    re.compile(r"(?i)\b(?:path|trajectory|motion) planning\b"),
+    re.compile(r"(?i)\b(?:obstacle|collision) avoidance\b"),
+]
+EXPLICIT_GEO_OUTPUT_PATTERNS = [
+    re.compile(r"(?i)\b(?:geo[- ]?locali[sz]ation|geolocation|cross[- ]view locali[sz]ation)\b"),
+    re.compile(r"(?i)\b(?:map matching|map registration|map alignment|UAV[- ]to[- ]satellite)\b"),
+    re.compile(r"(?i)\b(?:absolute|global) (?:position|pose|locali[sz]ation)\b"),
+    re.compile(r"(?i)\b(?:latitude|longitude|geographic coordinates?)\b"),
+    re.compile(r"(?i)\b(?:6[- ]?DoF|camera pose)\b.{0,100}\b(?:map|satellite|georeferenced)\b"),
+]
 
 
 def has_ai_signal(text: str) -> bool:
     return any(pattern.search(text) for pattern in AI_MATCH_PATTERNS)
+
+
+def obvious_common_false_positive(candidate: dict) -> str | None:
+    text = f"{candidate['title']}\n{candidate['abstract']}"
+    matched_task = None
+    for pattern in OBVIOUS_EXCLUSION_PATTERNS:
+        matched_task = pattern.search(text)
+        if matched_task:
+            break
+    if not matched_task:
+        return None
+    if any(pattern.search(text) for pattern in EXPLICIT_GEO_OUTPUT_PATTERNS):
+        return None
+    return f"明显属于普通{matched_task.group(0)}，且标题摘要没有地图绝对定位或地理坐标输出证据"
 
 
 def keyword_fallback(candidates, reason: str):
@@ -146,6 +174,10 @@ def _llm_cross_filter_batch(candidates):
                     "reason": "LLM 未覆盖该候选，按保守策略保留待复核",
                 }
             if decision["status"] == "exclude":
+                continue
+            safety_reason = obvious_common_false_positive(candidate)
+            if safety_reason:
+                print(f"  [安全门禁] 排除 {candidate['arxiv_id']}: {safety_reason}")
                 continue
             enriched = dict(candidate)
             enriched["filter_status"] = decision["status"]

@@ -20,6 +20,8 @@
 - 仅卫星影像之间的配准；
 - 与 UAV 地图定位没有直接关系的通用遥感论文。
 
+候选标题若明确是 tracking、object detection、segmentation、path planning 或 obstacle avoidance，默认必须放入 exclude。只有摘要明确输出地图约束的绝对位置/位姿、经纬度、地理坐标或 UAV-to-map 对应关系时，才允许保留；“定位目标框”“估计目标可见性”“生成飞行动作”不属于地理定位证据。
+
 ## 不确定项
 
 标题和摘要证据不足、但可能与目标方向直接相关时，放入 needs_review，不要静默丢弃。needs_review 条目会被加上 `Needs-Review` 标签。
