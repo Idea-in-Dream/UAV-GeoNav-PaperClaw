@@ -37,16 +37,15 @@ RS_FILTER_KEYWORDS_FILE=scripts/config/filter_keywords.json
 RS_FILTER_PROMPT_FILE=scripts/prompts/filter_cross_prompt.md
 ```
 
-## 1) 跑当天（默认会推送）
+## 1) 运行默认日报（默认会推送）
 ```bash
 python3 scripts/cli.py run
 ```
 
 默认日期规则：
 
-- 周一：跑上周五
-- 周二：顺序跑周六、周日、周一
-- 其他日期：跑昨天
+- 每周 7 天运行
+- 每次处理前一个自然日
 
 ## 2) 跑指定日期（默认不推送，适合追跑）
 ```bash
@@ -144,7 +143,7 @@ pkill -f daily_arxiv_cross_filter.py
 
 行为说明：
 
-- `rs-pipeline-schedule.yml`：北京时间工作日 09:10 定时触发
+- `rs-pipeline-schedule.yml`：北京时间每天 08:00 定时触发
 - `rs-pipeline-manual.yml`：手动支持 `run / reconcile / doctor`
 - 若无可用通知通道，定时任务会自动退到 `--no-notify`
 - Actions 也会读取仓库内的筛选配置文件，不再把关键词和 prompt 写死在代码里

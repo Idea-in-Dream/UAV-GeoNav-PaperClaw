@@ -2,10 +2,10 @@
 from __future__ import annotations
 
 """
-工作日 09:05 自动执行：
-1) 抓取并筛选“当天”遥感xAI论文，生成/更新单篇 issue
-2) 生成当天日报 issue
-3) 推送日报到 Feishu 私聊
+每天北京时间 08:00 自动执行：
+1) 抓取并筛选前一个自然日的论文，生成/更新单篇 issue
+2) 生成对应日期的日报 issue
+3) 按配置推送日报通知
 """
 
 import os
@@ -374,20 +374,9 @@ def _run_step(date_str: str, step: str, cmd: list[str], ok_extra: dict | None = 
 
 def resolve_target_dates(today: datetime | None = None) -> list[str]:
     now = today or datetime.now(BEIJING_TZ)
-    weekday = now.weekday()  # Monday=0
 
-    # 默认按北京时间日期回溯抓取：
-    # - 周一：回溯到上周五（-3天）
-    # - 周二：顺序补跑周六、周日、周一（-3/-2/-1天）
-    # - 其他日期：回溯昨日（-1天）
-    # 说明：arXiv published 为 UTC 时间，这里用“工作日日报”的业务口径。
-    if weekday == 0:
-        deltas = [3]
-    elif weekday == 1:
-        deltas = [3, 2, 1]
-    else:
-        deltas = [1]
-    return [(now - timedelta(days=delta)).strftime("%Y%m%d") for delta in deltas]
+    # 每周 7 天运行，每次处理前一个自然日，避免周末重复补跑或漏跑。
+    return [(now - timedelta(days=1)).strftime("%Y%m%d")]
 
 
 def _process_date(date_str: str, notify: bool, force: bool = False):
@@ -535,7 +524,7 @@ def main(target_date: str | None = None, notify: bool | None = None, force: bool
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("--date", dest="date", help="指定日期，格式 YYYYMMDD，默认为今天")
+    parser.add_argument("--date", dest="date", help="指定日期，格式 YYYYMMDD，默认处理前一个自然日")
     parser.add_argument("--notify", action="store_true", help="强制发送通知")
     parser.add_argument("--no-notify", action="store_true", help="禁止发送Feishu通知")
     parser.add_argument("--force", action="store_true", help="即使当天已成功也强制重跑")

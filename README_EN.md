@@ -25,7 +25,7 @@ Each retained paper becomes a structured Chinese GitHub Issue containing its map
 5. Set GitHub Pages source to **GitHub Actions**.
 6. Run the `UAV GeoNav PaperClaw Manual` workflow with `run_no_notify`.
 
-The scheduled workflow runs once every weekday at 01:15 UTC (09:15 Asia/Shanghai).
+The scheduled workflow runs seven days a week at 00:00 UTC (08:00 Asia/Shanghai) and processes the previous calendar day. GitHub Actions may start slightly later when runners are queued.
 
 ## Local validation
 

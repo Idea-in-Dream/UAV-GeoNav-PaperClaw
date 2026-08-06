@@ -80,7 +80,7 @@ python3 scripts/cli.py sync
 
 ## 4. 标准运行方式
 
-### 4.1 跑当天
+### 4.1 运行默认日报
 
 ```bash
 python3 scripts/cli.py run
@@ -88,10 +88,8 @@ python3 scripts/cli.py run
 
 默认行为：
 
-- 如果不传 `--date`，脚本会按“工作日日报口径”回溯
-- 周一默认回溯到上周五
-- 周二默认顺序补跑周六、周日、周一
-- 其他日期默认回溯到昨天
+- 如果不传 `--date`，脚本默认处理前一个自然日
+- 定时任务每周 7 天运行，因此周末不再集中到周二补跑
 - 自动模式默认允许通知
 
 ### 4.2 追跑历史日期
@@ -272,7 +270,7 @@ python3 scripts/cli.py reconcile --date YYYYMMDD
 
 默认策略：
 
-- `rs-pipeline-schedule.yml` 在北京时间工作日 09:10 触发
+- `rs-pipeline-schedule.yml` 在北京时间每天 08:00 触发
 - `rs-pipeline-manual.yml` 只负责手动运维
 - 两个 workflow 都调用统一 CLI，不额外复制 Python 业务逻辑
 - 默认走仓库内的筛选配置文件

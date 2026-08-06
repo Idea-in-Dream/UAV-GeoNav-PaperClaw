@@ -13,7 +13,7 @@
 
 ## 项目用途
 
-系统在每个工作日自动从 arXiv 检索并分析以下方向：
+系统每天自动从 arXiv 检索并分析以下方向：
 
 - 无人机视觉定位、绝对定位与全局重定位；
 - UAV-to-Satellite、跨视角检索、粗定位与精配准；
@@ -157,10 +157,10 @@ python3 scripts/cli.py rebuild-index
 `.github/workflows/rs-pipeline-schedule.yml` 使用：
 
 ```text
-15 1 * * 1-5
+0 0 * * *
 ```
 
-即每周一至周五 UTC 01:15（北京时间 09:15）运行一次。工作流会依次：
+即每周 7 天 UTC 00:00（北京时间 08:00）运行一次，每次处理前一个自然日。GitHub Actions 可能因平台排队略有延迟。工作流会依次：
 
 1. 安装 Python 与 Poppler；
 2. 检查环境并初始化标签；
@@ -232,7 +232,7 @@ python3 -m unittest discover -s tests -v
 
 ```text
 UAV-GeoNav-PaperClaw/
-├── .github/workflows/                # 手动、工作日定时与 Pages 部署
+├── .github/workflows/                # 手动、每日定时与 Pages 部署
 ├── docs/                             # GitHub Pages 前端
 ├── daily_reports/                    # 每日 Markdown 汇总
 ├── papers/issue_index.json           # arXiv ID 去重索引

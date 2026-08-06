@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
@@ -9,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from clients.github_ops import daily_report_matches_digest
-from run_rs_daily_workday import _date_already_completed
+from run_rs_daily_workday import _date_already_completed, resolve_target_dates
 from services.digest_builder import UAV_GEONAV_REPORT_MARKER, build_digest_with_llm
 
 
@@ -74,6 +75,16 @@ class DailyReportCompletionTest(unittest.TestCase):
 
         self.assertTrue(completed)
         self.assertEqual(reason, "digest=#3 papers=1")
+
+    def test_every_day_processes_previous_calendar_day(self):
+        beijing_tz = timezone(timedelta(hours=8))
+        monday = datetime(2026, 8, 3, 8, 0, tzinfo=beijing_tz)
+
+        for offset in range(7):
+            current = monday + timedelta(days=offset)
+            expected = (current - timedelta(days=1)).strftime("%Y%m%d")
+            with self.subTest(day=current.strftime("%A")):
+                self.assertEqual(resolve_target_dates(current), [expected])
 
 
 if __name__ == "__main__":

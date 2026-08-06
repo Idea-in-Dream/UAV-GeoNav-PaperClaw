@@ -23,7 +23,7 @@ def build_parser() -> argparse.ArgumentParser:
     doctor_parser = subparsers.add_parser("doctor", help="检查运行环境")
     doctor_parser.set_defaults(func=lambda args: doctor.main())
 
-    run_parser = subparsers.add_parser("run", help="运行工作日日报主流程")
+    run_parser = subparsers.add_parser("run", help="运行每日日报主流程")
     run_parser.add_argument("--date", dest="date", help="指定日期，格式 YYYYMMDD")
     run_parser.add_argument("--notify", action="store_true", help="强制发送通知")
     run_parser.add_argument("--no-notify", action="store_true", help="禁止发送通知")
