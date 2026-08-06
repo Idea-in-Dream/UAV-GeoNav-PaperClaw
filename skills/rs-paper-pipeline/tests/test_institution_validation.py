@@ -10,6 +10,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from services.digest_builder import build_digest_with_llm, is_invalid_digest_institution
 from services.paper_analysis import (
+    extract_institutions_from_arxiv_html,
     extract_institutions_from_first_page,
     extract_institutions_from_latex_source,
     is_valid_institution_text,
@@ -17,6 +18,26 @@ from services.paper_analysis import (
 
 
 class InstitutionValidationTest(unittest.TestCase):
+    def test_extracts_latexml_institutetext_from_arxiv_html(self):
+        html = """
+        <article class="ltx_document">
+          <span class="ltx_note ltx_role_institutetext">
+            <span class="ltx_note_type">institutetext: </span>
+            Washington University in St. Louis, St. Louis, MO 63130, USA
+            <br>
+            <span class="ltx_note ltx_role_email">
+              <sup>1</sup><span><sup>1</sup><span class="ltx_note_type">email: </span>{authors}@wustl.edu</span>
+            </span>
+          </span>
+          <h1 class="ltx_title ltx_title_document">Trajectory-aware Geo-localization</h1>
+        </article>
+        """
+
+        self.assertEqual(
+            extract_institutions_from_arxiv_html(html),
+            "Washington University in St. Louis, St. Louis, MO 63130, USA",
+        )
+
     def test_rejects_body_text_bleed_in_institution(self):
         value = (
             "Shen Yuan Honors College, Beihang University；"
@@ -31,6 +52,12 @@ class InstitutionValidationTest(unittest.TestCase):
             "Faculty of Applied Sciences, Macao Polytechnic University；"
             "Pazhou Lab (Huangpu)；Macao Polytechnic University"
         )
+
+        self.assertTrue(is_valid_institution_text(value))
+        self.assertFalse(is_invalid_digest_institution(value))
+
+    def test_accepts_city_abbreviation_in_affiliation(self):
+        value = "Washington University in St. Louis, St. Louis, MO 63130, USA"
 
         self.assertTrue(is_valid_institution_text(value))
         self.assertFalse(is_invalid_digest_institution(value))

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import html
 import re
 import tarfile
 import gzip
@@ -257,7 +258,7 @@ def is_valid_institution_text(text: str) -> bool:
             return False
         if domain_prose_pattern.search(part) and not INSTITUTION_KEYWORD_PATTERN.search(part):
             return False
-        if re.search(r"\.\s+[A-Z][a-z]+", part):
+        if re.search(r"\b[A-Za-z]{5,}\.\s+[A-Z][a-z]+", part):
             return False
     return True
 
@@ -649,6 +650,35 @@ def extract_institutions_from_latex_source(source_path: Path | None) -> str:
 
         if institutions:
             break
+
+    return "；".join(_dedupe_institutions(institutions))
+
+
+def extract_institutions_from_arxiv_html(html_text: str) -> str:
+    """Extract LaTeXML ``institutetext`` metadata from arXiv HTML."""
+    header_match = re.search(
+        r'(?is)<article\b[^>]*>([\s\S]*?)<h1\b[^>]*class="[^"]*\bltx_title\b',
+        html_text or "",
+    )
+    if not header_match:
+        return ""
+
+    plain = re.sub(r"(?is)<(?:script|style)\b[^>]*>[\s\S]*?</(?:script|style)>", " ", header_match.group(1))
+    plain = re.sub(r"(?is)<br\b[^>]*>", "\n", plain)
+    plain = html.unescape(re.sub(r"(?is)<[^>]+>", " ", plain))
+    plain = re.sub(r"[ \t]+", " ", plain)
+
+    institutions: list[str] = []
+    parts = re.split(r"(?i)\binstitutetext\s*:\s*", plain)
+    for part in parts[1:]:
+        candidate = re.split(
+            r"(?i)\b(?:institutetext|email)\s*:\s*",
+            part,
+            maxsplit=1,
+        )[0]
+        candidate = re.sub(r"^\s*(?:\d+\s*)+", "", candidate)
+        candidate = re.sub(r"(?:\s+\d+)+\s*$", "", candidate)
+        _append_institution_candidate(institutions, candidate)
 
     return "；".join(_dedupe_institutions(institutions))
 

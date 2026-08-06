@@ -302,6 +302,20 @@ def download_source(arxiv_id: str) -> Path | None:
     return None
 
 
+def fetch_arxiv_html(arxiv_id: str) -> str:
+    """Fetch the public HTML rendering used as an affiliation fallback."""
+    urls = [
+        f"https://arxiv.org/html/{arxiv_id}",
+        f"https://ar5iv.labs.arxiv.org/html/{arxiv_id}",
+    ]
+    for url in urls:
+        try:
+            return fetch_url_with_retry(url, retries=2, timeout=60)
+        except Exception:
+            continue
+    return ""
+
+
 def normalize_author_name(name: str) -> str:
     normalized = re.sub(r"\s+", " ", name or "").strip()
     if not normalized:

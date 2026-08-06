@@ -15,10 +15,11 @@ from pathlib import Path
 from datetime import datetime
 import json
 
-from clients.arxiv_client import download_pdf, download_source, extract_abs_info
+from clients.arxiv_client import download_pdf, download_source, extract_abs_info, fetch_arxiv_html
 from pipeline_config import get_repo, load_config
 from services.paper_analysis import (
     extract_institutions_from_first_page,
+    extract_institutions_from_arxiv_html,
     extract_institutions_from_latex_source,
     extract_tags,
     format_answer_md,
@@ -164,6 +165,11 @@ def process_paper(
         info["institutions"] = source_institutions
     elif is_valid_institution_text(pdf_institutions):
         info["institutions"] = pdf_institutions
+
+    if not is_valid_institution_text(info.get("institutions", "")):
+        html_institutions = extract_institutions_from_arxiv_html(fetch_arxiv_html(arxiv_id))
+        if is_valid_institution_text(html_institutions):
+            info["institutions"] = html_institutions
     log_step("STEP-1", "OK", f"institutions={info['institutions'][:60] if info['institutions'] else 'EMPTY'}")
 
     # 1.3 处理图片（PDF前三页转JPG并上传）
