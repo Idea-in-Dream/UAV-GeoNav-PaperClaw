@@ -60,23 +60,23 @@ Powered by OpenClaw🦞
 
 ## 📌 今日概况
 
-今日共检索候选论文 5 篇；关键词+LLM 智能匹配遥感交叉论文 4 篇；最终纳入日报 3 篇。
+今日共检索候选论文 5 篇；关键词+LLM 智能匹配遥感交叉论文 3 篇；最终纳入日报 3 篇。
 
-今日遥感AI研究聚焦无人机（UAV）与卫星协同感知，共3篇论文。方向涵盖视觉-语言-动作模型用于UAV目标跟踪、机载RIS实时控制以及条件生成学习实现无线点云成像感知。研究强调在GNSS拒止环境下的目标定位与可复现性，推动UAV自主导航与感知技术发展。
+今日遥感AI研究聚焦无人机（UAV）自主导航与感知，共3篇论文。趋势上，多篇工作强调在GNSS拒止环境下实现目标定位与跟踪，结合视觉-语言-动作模型、可重构智能表面（RIS）及条件生成学习等技术。同时，研究注重实时性与可复现性，并公开代码或数据集，推动领域实用化发展。
 
 ## ✨ 今日亮点
 
-- UAV视觉-语言-动作模型提升空间感知与跟踪能力
-- 机载RIS实时控制实现飞行中动态调控
-- 条件生成学习用于无线点云成像感知与跟踪
+- 无人机视觉-语言-动作模型实现空间感知跟踪
+- 机载RIS实时驱动提升通信与感知能力
+- 条件生成学习用于无线点云成像与跟踪
 
 ## 🗂 今日文章列表
 
 | 标题 | 作者 | 单位 | 一句话概括 | Issue |
 |---|---|---|---|---|
-| [20260716] CosFly-VLA: A Spatially Aware Vision-Language-Action Model for UAV Tracking | Ren Ruilong, Cheng Songsheng, Zhou Yunpeng, Chen Hanxuan, Wang Xiangyue, Zeng Tianle, Yuan Shuai, Li Binbo, Guo Hanzhong, Pei Ji, Zhang Da, Wang Kangli | Northeast Normal University；Southern University of Science and Technology；Peking University；University of Hong Kong | 提出CosFly-VLA模型，结合视觉语言动作实现UAV空间感知跟踪 | [#20](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/20) |
-| [20260716] LIVE-RIS: Real-Time In-Flight Actuation of UAV-Mounted RIS | Müller David, Weinberger Kevin, Sezgin Aydin, Mönnigmann Martin | the chair of Automatic Control and Systems Theory, Department of Mechanical Engineering, Ruhr-Universität Bochum,, Bochum, Germany；the chair of Digital Communication Systems, Department of Electrical Engineering, Ruhr-Universität Bochum,, Bochum, Germany | LIVE-RIS系统实现UAV搭载RIS的飞行中实时驱动控制 | [#21](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/21) |
-| [20260716] Conditional Generative Learning Enabled Wireless UAV Sensing and Tracking via Point Cloud Imaging | Dai Xinhong, Gao Yuan, Jiang Hao, Yuan Xiaojun, Wang Xin | Key Laboratory for Information Science of Electromagnetic Waves (MoE), College of Future Information Technology, Fudan University, Shanghai, China. (；the National Key Laboratory of Wireless Communications, the University of Electronic Science and Technology of China, Chengdu, China ( | 利用条件生成学习通过点云成像增强无线UAV感知跟踪 | [#22](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/22) |
+| [20260716] CosFly-VLA: A Spatially Aware Vision-Language-Action Model for UAV Tracking | Ren Ruilong, Cheng Songsheng, Zhou Yunpeng, Chen Hanxuan, Wang Xiangyue, Zeng Tianle, Yuan Shuai, Li Binbo, Guo Hanzhong, Pei Ji, Zhang Da, Wang Kangli | Northeast Normal University；Southern University of Science and Technology；Peking University；University of Hong Kong | 提出CosFly-VLA模型，结合视觉语言与动作，实现GNSS拒止下无人机目标跟踪与定位。 | [#20](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/20) |
+| [20260716] LIVE-RIS: Real-Time In-Flight Actuation of UAV-Mounted RIS | Müller David, Weinberger Kevin, Sezgin Aydin, Mönnigmann Martin | the chair of Automatic Control and Systems Theory, Department of Mechanical Engineering, Ruhr-Universität Bochum,, Bochum, Germany；the chair of Digital Communication Systems, Department of Electrical Engineering, Ruhr-Universität Bochum,, Bochum, Germany | LIVE-RIS系统实现无人机载可重构智能表面的实时飞行驱动，增强通信性能。 | [#21](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/21) |
+| [20260716] Conditional Generative Learning Enabled Wireless UAV Sensing and Tracking via Point Cloud Imaging | Dai Xinhong, Gao Yuan, Jiang Hao, Yuan Xiaojun, Wang Xin | Key Laboratory for Information Science of Electromagnetic Waves (MoE), College of Future Information Technology, Fudan University, Shanghai, China. (；the National Key Laboratory of Wireless Communications, the University of Electronic Science and Technology of China, Chengdu, China ( | 利用条件生成学习，通过点云成像实现无线无人机感知与目标跟踪。 | [#22](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/22) |
 
 ## ⚠️ 未纳入日报的匹配论文
 
@@ -89,8 +89,8 @@ Powered by OpenClaw🦞
 
 ## 🔎 观察
 
-- 研究集中于UAV自主性提升，应对GNSS拒止环境
-- 可复现性成为共同关注点，推动算法实际部署
+- 研究集中于GNSS拒止环境，体现对复杂战场或城市峡谷应用的重视。
+- 多篇论文公开代码或强调可复现性，显示领域对开放科学的认可。
 
 ---
 
