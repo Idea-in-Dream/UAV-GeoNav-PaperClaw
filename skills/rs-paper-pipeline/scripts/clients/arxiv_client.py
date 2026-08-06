@@ -82,17 +82,29 @@ def _retry_after_seconds(headers) -> int | None:
     return None
 
 
+def build_arxiv_proxy_url(url: str, proxy_prefix: str | None) -> str | None:
+    if not proxy_prefix:
+        return None
+    return f"{proxy_prefix}{urllib.parse.quote(url, safe='')}"
+
+
 def fetch_url_with_retry(url: str, retries: int = 6, timeout: int = 90) -> str:
     backoff = [5, 15, 30, 60, 120, 240]
     rate_limit_backoff = [60, 120, 240, 360, 600, 900]
     last_err = None
+    proxy_url = build_arxiv_proxy_url(url, CONFIG.arxiv_api_proxy_prefix)
+    active_url = url
     for i in range(retries):
         try:
-            req = urllib.request.Request(url, headers={"User-Agent": CONFIG.arxiv_user_agent})
+            req = urllib.request.Request(active_url, headers={"User-Agent": CONFIG.arxiv_user_agent})
             with urllib.request.urlopen(req, timeout=timeout) as response:
                 return response.read().decode("utf-8", errors="ignore")
         except HTTPError as exc:
             last_err = exc
+            if exc.code in (429, 503) and proxy_url and active_url != proxy_url:
+                active_url = proxy_url
+                print(f"  [arXiv] HTTP {exc.code}, switching to configured read-only proxy")
+                continue
             if exc.code in (429, 503):
                 wait_s = max(
                     _retry_after_seconds(exc.headers) or 0,

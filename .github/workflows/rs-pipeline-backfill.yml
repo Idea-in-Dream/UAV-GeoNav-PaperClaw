@@ -43,6 +43,7 @@ jobs:
       GITHUB_TIMEOUT: ${{ vars.GITHUB_TIMEOUT }}
       GITHUB_RETRY: ${{ vars.GITHUB_RETRY }}
       ARXIV_API_URL: ${{ vars.ARXIV_API_URL }}
+      ARXIV_API_PROXY_PREFIX: ${{ vars.ARXIV_API_PROXY_PREFIX || 'https://api.allorigins.win/raw?url=' }}
       ARXIV_USER_AGENT: ${{ vars.ARXIV_USER_AGENT }}
       OPENCLAW_BIN: ${{ vars.OPENCLAW_BIN }}
       RS_FILTER_KEYWORDS_FILE: scripts/config/filter_keywords.json

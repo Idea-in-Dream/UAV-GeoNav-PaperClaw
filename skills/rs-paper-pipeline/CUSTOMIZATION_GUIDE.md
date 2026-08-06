@@ -177,6 +177,8 @@
   GitHub API 重试次数
 - `ARXIV_API_URL`
   arXiv API 地址
+- `ARXIV_API_PROXY_PREFIX`
+  可选的只读代理前缀，仅当官方 arXiv API 返回 429/503 时切换；GitHub Actions 默认使用 AllOrigins，代理内容只有公开检索参数
 - `ARXIV_USER_AGENT`
   请求 arXiv 时使用的 User-Agent
 

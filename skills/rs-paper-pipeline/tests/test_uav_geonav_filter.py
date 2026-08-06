@@ -9,7 +9,7 @@ import urllib.parse
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from clients.arxiv_client import fetch_recent_candidates, has_remote_sensing_signal
+from clients.arxiv_client import build_arxiv_proxy_url, fetch_recent_candidates, has_remote_sensing_signal
 from daily_arxiv_cross_filter import has_ai_signal, llm_cross_filter
 from services.issue_index import canonical_arxiv_id
 from services.labels import allowed_paper_labels
@@ -179,6 +179,15 @@ class UAVGeoNavFilterTest(unittest.TestCase):
 
         self.assertEqual(candidates, [])
         self.assertEqual(fetch_mock.call_count, 1)
+
+    def test_arxiv_proxy_url_encodes_the_original_query(self):
+        original = "https://export.arxiv.org/api/query?search_query=cat:cs.CV&max_results=10"
+        proxied = build_arxiv_proxy_url(original, "https://api.allorigins.win/raw?url=")
+
+        self.assertEqual(
+            proxied,
+            "https://api.allorigins.win/raw?url=" + urllib.parse.quote(original, safe=""),
+        )
 
     def test_issue_prompt_and_renderer_cover_required_fields(self):
         prompt = (ROOT / "scripts" / "prompts" / "summarize_prompt.md").read_text(encoding="utf-8")

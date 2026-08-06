@@ -118,6 +118,7 @@ class PipelineConfig:
     dingtalk_webhook: str | None
     raw_content_base: str
     arxiv_api: str
+    arxiv_api_proxy_prefix: str | None
     arxiv_user_agent: str
     filter_keywords_path: Path
     filter_prompt_path: Path
@@ -153,6 +154,7 @@ def load_config() -> PipelineConfig:
         dingtalk_webhook=_env("DINGTALK_WEBHOOK"),
         raw_content_base=f"https://raw.githubusercontent.com/{github_repo}/main",
         arxiv_api=_env("ARXIV_API_URL", "https://export.arxiv.org/api/query"),
+        arxiv_api_proxy_prefix=_env("ARXIV_API_PROXY_PREFIX"),
         arxiv_user_agent=_env("ARXIV_USER_AGENT", f"UAV-GeoNav-PaperClaw/1.0 (+https://github.com/{github_repo})"),
         filter_keywords_path=Path(_env("RS_FILTER_KEYWORDS_FILE", str(root_dir / "scripts" / "config" / "filter_keywords.json"))).expanduser(),
         filter_prompt_path=Path(_env("RS_FILTER_PROMPT_FILE", str(root_dir / "scripts" / "prompts" / "filter_cross_prompt.md"))).expanduser(),

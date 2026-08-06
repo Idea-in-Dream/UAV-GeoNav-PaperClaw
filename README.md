@@ -73,6 +73,7 @@
 | `LLM_THINKING_MODE` | 否 | 全文结构化分析的 thinking 模式，`enabled`/`disabled`，默认 `enabled`；初筛、翻译、标签和日报始终关闭 |
 | `LLM_API_URL` | 否 | 默认 `https://api.deepseek.com/chat/completions`，也可使用兼容接口 |
 | `ARXIV_API_URL` | 否 | 默认 `https://export.arxiv.org/api/query` |
+| `ARXIV_API_PROXY_PREFIX` | 否 | arXiv 返回 429/503 时使用的只读代理前缀；Actions 默认使用 AllOrigins |
 | `ARXIV_USER_AGENT` | 否 | 建议包含仓库 URL 的自定义 User-Agent |
 | `GITHUB_TIMEOUT` | 否 | 默认 `15` 秒 |
 | `GITHUB_RETRY` | 否 | 默认 `2` 次 |
