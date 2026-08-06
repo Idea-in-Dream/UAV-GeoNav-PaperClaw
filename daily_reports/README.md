@@ -2,6 +2,38 @@
 
 最近三天日报（最新在前）：
 
+# [20260805](./202608/20260805.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 9 篇；关键词+LLM 智能匹配遥感交叉论文 0 篇；最终纳入日报 1 篇。
+
+今日遥感AI研究聚焦于无人机视觉导航，提出一种视觉引导的空间推理方法，以应对GNSS拒止环境下的目标定位与到达任务。该方法结合跨视角检索与精细配准，旨在解决直接映射范式中的连续锚定与定位精度问题，并配套构建了数据集与基准。研究趋势显示，无人机自主导航正从单一感知向多阶段推理与空间认知方向发展，强调在复杂环境中的鲁棒性与可靠性。
+
+## ✨ 今日亮点
+
+- 提出视觉引导空间推理，提升无人机导航精度。
+- 构建新数据集与基准，推动GNSS拒止导航研究。
+- 结合跨视角检索与精细配准，解决目标连续锚定。
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260805] Deliberate Before You Fly: Vision-Guided Spatial Deliberation for UAV See-and-Reach Navigation | Xue Fanfu, Yu En, Liu Bohang, Wang Hongjun, Yang Yang, Wang Xindi, Sun Jiande | School of Information Science and Engineering, Shandong University；Faculty of Engineering and Information Technology, University of Technology Sydney；School of Artificial Intelligence, Shandong University；School of Computer Science and Artificial Intelligence, Shandong Normal University；This setting centers on two closely coupled challenges: how The direct mapping paradigm gives rise to two major limto continuously anchor the target and perform appropriate | 论文提出视觉引导的空间推理方法，用于无人机在GNSS拒止环境下的见即达导航。 | [#57](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/57) |
+
+## 🔎 观察
+
+- 无人机导航研究正从端到端映射转向显式空间推理，以增强可解释性与鲁棒性。
+- 跨视角检索与精细配准的结合成为GNSS拒止环境下目标定位的关键技术路径。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260804](./202608/20260804.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -50,39 +82,6 @@ Powered by OpenClaw🦞
 
 - 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
 - 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260802](./202608/20260802.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 4 篇；关键词+LLM 智能匹配遥感交叉论文 2 篇；最终纳入日报 2 篇。
-
-今日遥感AI研究聚焦跨视角地理定位与高精地图构建。两项工作分别提出模仿人类驾驶的在线高精地图构建方法，以及基于稀疏混合专家的多尺度跨视角定位框架，均注重效率与精度平衡，推动无人机-卫星匹配及自动驾驶应用。
-
-## ✨ 今日亮点
-
-- 跨视角定位与高精地图构建成热点
-- 稀疏混合专家提升多尺度检索效率
-- 模仿驾驶行为优化在线地图生成
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260802] Driver2Map: Imitating Human Driving for Online High-Definition Map Construction | Yin Pan, Xia Runtian, Kuang Weisong, Li Kaiyu, Zhao Cong, Cao Xiangyong | Xi’an Jiaotong University | Driver2Map通过模仿人类驾驶行为，实现高效在线高精地图构建。 | [#49](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/49) |
-| [20260802] One Query, Many Scales: Sparse Mixture-of-Experts for Efficient Hierarchical Cross-View Geo-Localization | Fan Ruijie, Ye Junyan, Zhu Qi, Li Weijia | Tsinghua Shenzhen International Graduate School, Tsinghua University；School of Geospatial Engineering and Science, Sun Yat-sen University | 提出稀疏混合专家模型，实现多尺度高效跨视角地理定位。 | [#50](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/50) |
-
-## 🔎 观察
-
-- 研究趋向于将驾驶认知融入地图生成，提升实时性。
-- 稀疏专家机制在跨视角检索中展现计算效率优势。
 
 ---
 
