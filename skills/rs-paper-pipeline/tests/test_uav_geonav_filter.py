@@ -131,6 +131,17 @@ class UAVGeoNavFilterTest(unittest.TestCase):
 
         self.assertIsNotNone(obvious_common_false_positive(candidate))
 
+    def test_safety_gate_rejects_language_conditioned_uav_segmentation(self):
+        candidate = {
+            "title": "SkyVLaM: Multimodal Large Language Model for UAV Video Understanding",
+            "abstract": (
+                "The model performs language-conditioned segmentation and referring video object "
+                "segmentation in UAV videos, producing pixel masks and grounded dialogue."
+            ),
+        }
+
+        self.assertIsNotNone(obvious_common_false_positive(candidate))
+
     def test_arxiv_versions_share_one_canonical_id(self):
         self.assertEqual(canonical_arxiv_id("2603.20778v1"), "2603.20778")
         self.assertEqual(canonical_arxiv_id("2603.20778v12"), "2603.20778")

@@ -25,8 +25,8 @@ CONFIG = load_config()
 AI_MATCH_PATTERNS = load_ai_signal_patterns()
 OBVIOUS_EXCLUSION_PATTERNS = [
     re.compile(r"(?i)\btracking\b"),
-    re.compile(r"(?i)\b(?:object|vehicle|building|ship|pedestrian|change) detection\b"),
-    re.compile(r"(?i)\b(?:semantic|instance|panoptic|referring|image) segmentation\b"),
+    re.compile(r"(?i)\bdetection\b"),
+    re.compile(r"(?i)\bsegmentation\b"),
     re.compile(r"(?i)\b(?:path|trajectory|motion) planning\b"),
     re.compile(r"(?i)\b(?:obstacle|collision) avoidance\b"),
     re.compile(r"(?i)\b(?:in[- ]flight actuation|reconfigurable intelligent surface|wireless beamforming)\b"),
