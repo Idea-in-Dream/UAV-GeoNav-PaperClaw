@@ -159,6 +159,14 @@ class UAVGeoNavFilterTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             fetch_recent_candidates(candidate_limit_per_day=0)
 
+    def test_empty_target_date_does_not_fall_back_to_unbounded_scan(self):
+        empty_feed = '<feed xmlns="http://www.w3.org/2005/Atom"></feed>'
+        with patch("clients.arxiv_client.fetch_url_with_retry", return_value=empty_feed) as fetch_mock:
+            candidates = fetch_recent_candidates(max_results=100, target_date="20260802")
+
+        self.assertEqual(candidates, [])
+        self.assertEqual(fetch_mock.call_count, 1)
+
     def test_issue_prompt_and_renderer_cover_required_fields(self):
         prompt = (ROOT / "scripts" / "prompts" / "summarize_prompt.md").read_text(encoding="utf-8")
         renderer = (ROOT / "scripts" / "paper_processor.py").read_text(encoding="utf-8")

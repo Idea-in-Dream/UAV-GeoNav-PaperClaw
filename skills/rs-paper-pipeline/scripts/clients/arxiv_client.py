@@ -184,10 +184,7 @@ def fetch_recent_candidates(
 
     if target_date:
         scoped_query = f"({base_query}) AND submittedDate:[{target_date}0000 TO {target_date}2359]"
-        items = run_query(scoped_query, max_scan=max_results, page_size=min(max_results, 200))
-        if items:
-            return items
-        print("  [arXiv] 日期限定查询返回 0，回退到提交时间扫描")
+        return run_query(scoped_query, max_scan=max_results, page_size=min(max_results, 200))
 
     return run_query(base_query, max_scan=3000, page_size=min(max_results, 200))
 
