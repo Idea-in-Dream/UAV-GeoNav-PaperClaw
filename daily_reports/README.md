@@ -55,19 +55,32 @@ Powered by OpenClaw🦞
 
 ---
 
-# [20260714](./202607/20260714.md)
+# [20260715](./202607/20260715.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
 ## 📌 今日概况
 
-今日共检索候选论文 9 篇；关键词+LLM 智能匹配遥感交叉论文 0 篇；最终纳入日报 0 篇。
+今日共检索候选论文 6 篇；关键词+LLM 智能匹配遥感交叉论文 2 篇；最终纳入日报 2 篇。
 
-当日未检索到符合条件并纳入日报的论文。
+今日遥感AI研究聚焦无人机自主导航与低空感知。AeroMap3D提出融合视觉-几何-语义地图先验的单目6自由度定位方法，应对GNSS拒止环境；M3F-UAV则构建缺失模态多模态基础模型，提升低空无线感知鲁棒性。两项工作均强调跨视角检索与精细配准，推动无人机在复杂场景下的可靠定位与目标定位能力。
+
+## ✨ 今日亮点
+
+- 无人机定位融合多源地图先验，提升GNSS拒止下精度
+- 缺失模态基础模型增强低空无线感知鲁棒性
+- 跨视角检索与精细配准成为定位关键技术
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260715] AeroMap3D: Anchoring Monocular UAV 6-DoF Localization to Visual-Geometric-Semantic Map Priors | Deng Zhiyun, Sentis Luis | University of Texas at Austin | 提出AeroMap3D，利用视觉-几何-语义地图先验实现单目无人机6自由度定位 | [#17](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/17) |
+| [20260715] M3F-UAV: A Missing-Modality Multimodal Foundation Model for Low-Altitude Wireless Sensing | Gao Pengxuan, Ying Kai, Wu Botao, Mo Jianhua, Wen Qingsong | School of Electronic Information and Electrical Engineering, Shanghai Jiao Tong University, Shanghai, China ( | 提出M3F-UAV，一种处理缺失模态的低空无线感知多模态基础模型 | [#18](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/18) |
 
 ## 🔎 观察
 
-- 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
-- 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
+- 地图先验与多模态融合成为GNSS拒止定位的主流方向
+- 基础模型开始应用于低空感知，但需关注数据缺失场景
 
 ---
 
