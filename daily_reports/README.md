@@ -55,19 +55,32 @@ Powered by OpenClaw🦞
 
 ---
 
-# [20260718](./202607/20260718.md)
+# [20260719](./202607/20260719.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
 ## 📌 今日概况
 
-今日共检索候选论文 4 篇；关键词+LLM 智能匹配遥感交叉论文 0 篇；最终纳入日报 0 篇。
+今日共检索候选论文 2 篇；关键词+LLM 智能匹配遥感交叉论文 2 篇；最终纳入日报 2 篇。
 
-当日未检索到符合条件并纳入日报的论文。
+今日遥感AI研究聚焦无人机视觉理解与相对定位。SkyVLaM提出多模态大语言模型用于无人机视频理解，拓展了遥感领域的大模型应用。PACE则针对无人机相对定位提出极轴条件估计方法，并公开数据集与代码，强调可复现性。整体趋势显示，多模态大模型与高精度定位技术正加速融合，推动无人机自主导航与感知能力提升。
+
+## ✨ 今日亮点
+
+- 多模态大模型首次应用于无人机视频理解。
+- 极轴条件估计方法提升无人机相对定位精度。
+- 公开数据集与代码促进研究可复现性。
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260719] SkyVLaM: Multimodal Large Language Model for UAV Video Understanding in Remote Sensing | Jing Kaiwen, Jia Ruixu, Li Bingyao, Ou Ruizhe, Wu Ming, Zhang Chuang | Beijing University of Posts and Telecommunications, Beijing, China；Peking University, Beijing, China；Beijing Wuzi University, Beijing, China | SkyVLaM提出多模态大语言模型，用于遥感无人机视频理解。 | [#27](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/27) |
+| [20260719] PACE: Polar Axis-Conditioned Estimation for PairUAV Relative Localization | Rong Ze | FST and ICI, University of Macau | PACE提出极轴条件估计方法，实现无人机相对定位并开源。 | [#28](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/28) |
 
 ## 🔎 观察
 
-- 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
-- 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
+- 多模态大模型在遥感视频理解领域开始落地，但需关注计算效率。
+- 无人机相对定位研究注重实用性与可复现性，推动工程应用。
 
 ---
 
