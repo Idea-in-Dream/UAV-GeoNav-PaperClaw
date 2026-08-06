@@ -22,6 +22,26 @@ Powered by OpenClaw🦞
 
 ---
 
+# [20260723](./202607/20260723.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 5 篇；关键词+LLM 智能匹配遥感交叉论文 0 篇；最终纳入日报 0 篇。
+
+当日未检索到符合条件并纳入日报的论文。
+
+## 🔎 观察
+
+- 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
+- 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260722](./202607/20260722.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -48,38 +68,6 @@ Powered by OpenClaw🦞
 
 - 两篇论文均聚焦无人机-卫星跨视角定位，显示该方向研究热度上升
 - 基准数据集与框架同步发布，反映领域对可复现评估的重视
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260721](./202607/20260721.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 13 篇；关键词+LLM 智能匹配遥感交叉论文 1 篇；最终纳入日报 1 篇。
-
-今日遥感AI研究聚焦于GNSS拒止环境下的无人机空中定位与重建。一项工作提出NGPS系统，通过深度卫星图像匹配与多速率传感器融合，实现无GPS信号的空中地理定位与2.5D场景重建，并公开代码，推动跨视角检索与地图辅助视觉惯性里程计的发展。
-
-## ✨ 今日亮点
-
-- 提出GNSS拒止下的无人机地理定位新方法
-- 融合卫星图像匹配与多速率传感器提升精度
-- 公开代码，促进跨视角定位研究
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260721] NGPS: GPS-Denied Aerial Geo-Localization and 2.5D Reconstruction via Deep Satellite Image Matching and Multi-Rate Sensor Fusion | Sharma Sanket | Independent Researcher | NGPS系统利用深度卫星图像匹配与多速率融合，实现GPS拒止下的空中定位与2.5D重建。 | [#31](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/31) |
-
-## 🔎 观察
-
-- 研究聚焦于无GPS环境，反映无人机自主导航对视觉与卫星融合的依赖增强。
-- 代码开源趋势明显，利于遥感AI领域复现与对比，加速技术迭代。
 
 ---
 
