@@ -16,7 +16,7 @@ from clients.arxiv_client import (
     fetch_url_with_retry,
     has_remote_sensing_signal,
 )
-from daily_arxiv_cross_filter import has_ai_signal, llm_cross_filter
+from daily_arxiv_cross_filter import has_ai_signal, llm_cross_filter, obvious_common_false_positive
 from services.issue_index import canonical_arxiv_id
 from services.labels import allowed_paper_labels
 
@@ -123,6 +123,14 @@ class UAVGeoNavFilterTest(unittest.TestCase):
 
         self.assertEqual(selected, [])
 
+    def test_safety_gate_rejects_ris_actuation_without_geo_output(self):
+        candidate = {
+            "title": "LIVE-RIS: Real-Time In-Flight Actuation of UAV-Mounted RIS",
+            "abstract": "The system controls a reconfigurable intelligent surface for wireless links during flight.",
+        }
+
+        self.assertIsNotNone(obvious_common_false_positive(candidate))
+
     def test_arxiv_versions_share_one_canonical_id(self):
         self.assertEqual(canonical_arxiv_id("2603.20778v1"), "2603.20778")
         self.assertEqual(canonical_arxiv_id("2603.20778v12"), "2603.20778")
@@ -227,6 +235,7 @@ class UAVGeoNavFilterTest(unittest.TestCase):
         response.__enter__.return_value.read.return_value = b"<feed/>"
         config = SimpleNamespace(
             arxiv_api_proxy_prefix="https://api.allorigins.win/raw?url=",
+            arxiv_api_force_proxy=False,
             arxiv_user_agent="test-agent",
         )
         original = "https://export.arxiv.org/api/query?search_query=cat:cs.CV"
@@ -240,6 +249,26 @@ class UAVGeoNavFilterTest(unittest.TestCase):
         self.assertEqual(output, "<feed/>")
         second_request = urlopen_mock.call_args_list[1].args[0]
         self.assertTrue(second_request.full_url.startswith(config.arxiv_api_proxy_prefix))
+
+    def test_arxiv_force_proxy_skips_the_official_endpoint(self):
+        response = MagicMock()
+        response.__enter__.return_value.read.return_value = b"<feed/>"
+        config = SimpleNamespace(
+            arxiv_api_proxy_prefix="https://api.allorigins.win/raw?url=",
+            arxiv_api_force_proxy=True,
+            arxiv_user_agent="test-agent",
+        )
+        original = "https://export.arxiv.org/api/query?search_query=cat:cs.CV"
+
+        with patch("clients.arxiv_client.CONFIG", config), patch(
+                "clients.arxiv_client.urllib.request.urlopen",
+                return_value=response,
+            ) as urlopen_mock:
+            output = fetch_url_with_retry(original, retries=1, timeout=1)
+
+        self.assertEqual(output, "<feed/>")
+        request = urlopen_mock.call_args.args[0]
+        self.assertTrue(request.full_url.startswith(config.arxiv_api_proxy_prefix))
 
     def test_issue_prompt_and_renderer_cover_required_fields(self):
         prompt = (ROOT / "scripts" / "prompts" / "summarize_prompt.md").read_text(encoding="utf-8")

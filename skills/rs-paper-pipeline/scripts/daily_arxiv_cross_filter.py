@@ -24,11 +24,12 @@ from services.labels import normalize_paper_labels
 CONFIG = load_config()
 AI_MATCH_PATTERNS = load_ai_signal_patterns()
 OBVIOUS_EXCLUSION_PATTERNS = [
-    re.compile(r"(?i)\b(?:multi[- ]object|single[- ]object|visual object|target|UAV|drone) tracking\b"),
+    re.compile(r"(?i)\btracking\b"),
     re.compile(r"(?i)\b(?:object|vehicle|building|ship|pedestrian|change) detection\b"),
     re.compile(r"(?i)\b(?:semantic|instance|panoptic|referring|image) segmentation\b"),
     re.compile(r"(?i)\b(?:path|trajectory|motion) planning\b"),
     re.compile(r"(?i)\b(?:obstacle|collision) avoidance\b"),
+    re.compile(r"(?i)\b(?:in[- ]flight actuation|reconfigurable intelligent surface|wireless beamforming)\b"),
 ]
 EXPLICIT_GEO_OUTPUT_PATTERNS = [
     re.compile(r"(?i)\b(?:geo[- ]?locali[sz]ation|geolocation|cross[- ]view locali[sz]ation)\b"),

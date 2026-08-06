@@ -93,7 +93,7 @@ def fetch_url_with_retry(url: str, retries: int = 6, timeout: int = 90) -> str:
     rate_limit_backoff = [60, 120, 240, 360, 600, 900]
     last_err = None
     proxy_url = build_arxiv_proxy_url(url, CONFIG.arxiv_api_proxy_prefix)
-    active_url = url
+    active_url = proxy_url if proxy_url and CONFIG.arxiv_api_force_proxy else url
     for i in range(retries):
         try:
             req = urllib.request.Request(active_url, headers={"User-Agent": CONFIG.arxiv_user_agent})
