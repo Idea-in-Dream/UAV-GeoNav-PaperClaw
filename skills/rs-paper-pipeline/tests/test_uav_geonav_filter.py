@@ -1,5 +1,6 @@
 from pathlib import Path
-from unittest.mock import patch
+from types import SimpleNamespace
+from unittest.mock import MagicMock, patch
 import json
 import sys
 import unittest
@@ -9,7 +10,12 @@ import urllib.parse
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from clients.arxiv_client import build_arxiv_proxy_url, fetch_recent_candidates, has_remote_sensing_signal
+from clients.arxiv_client import (
+    build_arxiv_proxy_url,
+    fetch_recent_candidates,
+    fetch_url_with_retry,
+    has_remote_sensing_signal,
+)
 from daily_arxiv_cross_filter import has_ai_signal, llm_cross_filter
 from services.issue_index import canonical_arxiv_id
 from services.labels import allowed_paper_labels
@@ -188,6 +194,25 @@ class UAVGeoNavFilterTest(unittest.TestCase):
             proxied,
             "https://api.allorigins.win/raw?url=" + urllib.parse.quote(original, safe=""),
         )
+
+    def test_arxiv_network_failure_switches_to_proxy_without_sleeping(self):
+        response = MagicMock()
+        response.__enter__.return_value.read.return_value = b"<feed/>"
+        config = SimpleNamespace(
+            arxiv_api_proxy_prefix="https://api.allorigins.win/raw?url=",
+            arxiv_user_agent="test-agent",
+        )
+        original = "https://export.arxiv.org/api/query?search_query=cat:cs.CV"
+
+        with patch("clients.arxiv_client.CONFIG", config), patch(
+                "clients.arxiv_client.urllib.request.urlopen",
+                side_effect=[TimeoutError("timed out"), response],
+            ) as urlopen_mock:
+            output = fetch_url_with_retry(original, retries=2, timeout=1)
+
+        self.assertEqual(output, "<feed/>")
+        second_request = urlopen_mock.call_args_list[1].args[0]
+        self.assertTrue(second_request.full_url.startswith(config.arxiv_api_proxy_prefix))
 
     def test_issue_prompt_and_renderer_cover_required_fields(self):
         prompt = (ROOT / "scripts" / "prompts" / "summarize_prompt.md").read_text(encoding="utf-8")

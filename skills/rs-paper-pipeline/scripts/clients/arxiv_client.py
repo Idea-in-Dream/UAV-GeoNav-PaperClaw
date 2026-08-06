@@ -118,6 +118,12 @@ def fetch_url_with_retry(url: str, retries: int = 6, timeout: int = 90) -> str:
             time.sleep(wait_s)
         except Exception as exc:
             last_err = exc
+            if proxy_url and active_url != proxy_url:
+                active_url = proxy_url
+                print(
+                    f"  [arXiv] {exc.__class__.__name__}, switching to configured read-only proxy"
+                )
+                continue
             if i == retries - 1:
                 break
             time.sleep(backoff[min(i, len(backoff) - 1)])
