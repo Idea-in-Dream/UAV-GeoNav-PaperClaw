@@ -2,6 +2,11 @@ name: Deploy GitHub Pages
 
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows:
+      - UAV GeoNav PaperClaw Schedule
+      - UAV GeoNav PaperClaw Backfill
+    types: [completed]
   push:
     branches: [main]
     paths:
@@ -20,12 +25,17 @@ permissions:
 
 jobs:
   deploy:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      # 定时/回填使用 GITHUB_TOKEN 提交日报时不会再触发 push workflow。
+      # workflow_run 完成后显式检出最新 main，确保 Pages 包含新日报。
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

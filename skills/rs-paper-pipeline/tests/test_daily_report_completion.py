@@ -58,6 +58,17 @@ class DailyReportCompletionTest(unittest.TestCase):
 
         self.assertIn(UAV_GEONAV_REPORT_MARKER, report)
 
+    def test_pages_deploy_follows_successful_pipeline_workflows(self):
+        workflow = (ROOT.parents[1] / ".github" / "workflows" / "deploy-pages.yml").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("workflow_run:", workflow)
+        self.assertIn("UAV GeoNav PaperClaw Schedule", workflow)
+        self.assertIn("UAV GeoNav PaperClaw Backfill", workflow)
+        self.assertIn("github.event.workflow_run.conclusion == 'success'", workflow)
+        self.assertIn("ref: main", workflow)
+
     def test_stale_inherited_report_does_not_count_as_completed(self):
         repo = FakeRepo(
             self.issue,

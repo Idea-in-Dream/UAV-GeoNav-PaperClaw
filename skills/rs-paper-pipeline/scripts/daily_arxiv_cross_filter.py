@@ -38,6 +38,13 @@ EXPLICIT_GEO_OUTPUT_PATTERNS = [
     re.compile(r"(?i)\b(?:latitude|longitude|geographic coordinates?)\b"),
     re.compile(r"(?i)\b(?:6[- ]?DoF|camera pose)\b.{0,100}\b(?:map|satellite|georeferenced)\b"),
 ]
+TRADITIONAL_LOCALIZATION_TITLE_PATTERN = re.compile(
+    r"(?i)\b(?:visual[- ]inertial odometry|visual[- ]inertial navigation|VIO|"
+    r"visual odometry|VO|SLAM|simultaneous locali[sz]ation and mapping)\b"
+)
+UAV_PLATFORM_PATTERN = re.compile(
+    r"(?i)\b(?:UAVs?|drones?|quadrotors?|micro aerial vehicles?|MAVs?|aerial|airborne)\b"
+)
 
 
 def has_ai_signal(text: str) -> bool:
@@ -45,7 +52,8 @@ def has_ai_signal(text: str) -> bool:
 
 
 def obvious_common_false_positive(candidate: dict) -> str | None:
-    text = f"{candidate['title']}\n{candidate['abstract']}"
+    title = candidate["title"]
+    text = f"{title}\n{candidate['abstract']}"
     matched_task = None
     for pattern in OBVIOUS_EXCLUSION_PATTERNS:
         matched_task = pattern.search(text)
@@ -54,6 +62,11 @@ def obvious_common_false_positive(candidate: dict) -> str | None:
     if not matched_task:
         return None
     if any(pattern.search(text) for pattern in EXPLICIT_GEO_OUTPUT_PATTERNS):
+        return None
+    # SLAM/VO/VIO 论文常在摘要中描述 feature tracking、detection 或 segmentation
+    # 子模块。标题明确以里程计/建图为主任务且存在空中平台证据时，
+    # 不应被普通检测、分割、跟踪门禁误伤。
+    if TRADITIONAL_LOCALIZATION_TITLE_PATTERN.search(title) and UAV_PLATFORM_PATTERN.search(text):
         return None
     return f"明显属于普通{matched_task.group(0)}，且标题摘要没有地图绝对定位或地理坐标输出证据"
 

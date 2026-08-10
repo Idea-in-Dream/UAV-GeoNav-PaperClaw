@@ -2,7 +2,7 @@
 
 根据论文标题和摘要选择标签。只允许从下列标签中选择：
 
-UAV-Satellite, Orthophoto-Registration, DSM-DEM-TDOM, 3D-Map-Registration, 3DGS-NeRF, Map-Aided-VIO, GNSS-Denied, Cross-View-Retrieval, Fine-Registration, Target-Geolocation, Thermal-Localization, Dataset-Benchmark, Code-Available, Reproducible
+UAV-Satellite, Orthophoto-Registration, DSM-DEM-TDOM, 3D-Map-Registration, 3DGS-NeRF, Map-Aided-VIO, Traditional-SLAM, Visual-Odometry, Visual-Inertial-Odometry, GNSS-Denied, Cross-View-Retrieval, Fine-Registration, Target-Geolocation, Thermal-Localization, Dataset-Benchmark, Code-Available, Reproducible
 
 规则：
 

@@ -20,11 +20,12 @@
 - 正射影像、TDOM、DSM、DEM 和 GIS 地图配准；
 - 三维地理地图、3DGS、NeRF 地图定位；
 - 地图辅助 VIO、SLAM、惯性导航和 GNSS 拒止导航；
+- 无人机、四旋翼和 MAV 的传统 SLAM、视觉里程计（VO）与视觉惯性里程计（VIO）；
 - 无人机自身定位与目标地理定位；
 - 热红外无人机与卫星/地图的跨模态定位；
 - 直接相关的数据集、基准、尺度恢复和复现资源。
 
-普通遥感检测/分割/变化检测、纯 UAV 检测/跟踪/规划、无绝对地图约束的纯 VIO/SLAM，以及仅卫星影像之间的配准会被排除。不确定条目会保留并标记 `Needs-Review`。
+普通遥感检测/分割/变化检测、纯 UAV 检测/跟踪/规划、没有空中平台应用证据的通用 SLAM/VO/VIO，以及仅卫星影像之间的配准会被排除。不确定条目会保留并标记 `Needs-Review`。
 
 ## 输出内容
 
@@ -173,7 +174,7 @@ python3 scripts/cli.py rebuild-index
 5. 创建或更新论文 Issue；
 6. 创建或更新日报 Issue；
 7. 同步 `daily_reports/YYYYMM/YYYYMMDD.md`；
-8. 由 `deploy-pages.yml` 更新 GitHub Pages。
+8. 由 `deploy-pages.yml` 更新 GitHub Pages。定时/回填使用 `GITHUB_TOKEN` 提交日报时，Pages 通过 `workflow_run` 云端触发，不依赖本机在线。
 
 历史区间回填使用 `.github/workflows/rs-pipeline-backfill.yml`。回填与每日定时任务共享写入并发锁，避免同时更新 Issues、索引和日报。本次 2026-07-06 至 2026-08-05 回填会强制按最新筛选规则重新评估，并自动收口旧日期的 Issue 集合。
 
@@ -232,7 +233,7 @@ cd skills/rs-paper-pipeline
 python3 -m unittest discover -s tests -v
 ```
 
-回归集覆盖 GeoVINS、NGPS、PiLoT、PiLoT v2、AeroMap3D、RIM、Bearing-UAV、OffNadirLoc、Altitude-Adaptive Vision-Only Geo-Localization，并包含普通遥感目标检测负例。
+回归集覆盖 GeoVINS、NGPS、PiLoT、PiLoT v2、AeroMap3D、RIM、Bearing-UAV、OffNadirLoc、Altitude-Adaptive Vision-Only Geo-Localization、无人机传统 SLAM/VO/VIO，并包含普通遥感目标检测和非无人机通用 SLAM 负例。
 
 ## 目录结构
 

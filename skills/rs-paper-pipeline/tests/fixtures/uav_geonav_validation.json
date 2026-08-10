@@ -89,6 +89,24 @@
       "arxiv_id": "broad.00006v1",
       "title": "Absolute Pose Estimation of Drones from Overhead Maps",
       "abstract": "Our system establishes visual correspondences between UAV frames and a georeferenced map to solve the six degree-of-freedom camera pose."
+    },
+    {
+      "name": "traditional UAV SLAM",
+      "arxiv_id": "traditional.00001v1",
+      "title": "A Lightweight Feature-Based SLAM System for Autonomous Quadrotors",
+      "abstract": "We present a traditional stereo SLAM pipeline for a quadrotor UAV using geometric feature tracking, local bundle adjustment and loop closure. The system estimates a locally consistent aerial trajectory without a georeferenced map."
+    },
+    {
+      "name": "traditional UAV visual odometry",
+      "arxiv_id": "traditional.00002v1",
+      "title": "Robust Monocular Visual Odometry for Low-Altitude UAV Flight",
+      "abstract": "This visual odometry method estimates the relative motion of a drone camera with handcrafted features and geometric optimization in low-texture aerial scenes."
+    },
+    {
+      "name": "traditional UAV VIO",
+      "arxiv_id": "traditional.00003v1",
+      "title": "Visual-Inertial Odometry for Agile Micro Aerial Vehicles",
+      "abstract": "A tightly coupled VIO estimator fuses monocular images and IMU measurements onboard a micro aerial vehicle for real-time state estimation without GNSS or a global map."
     }
   ],
   "negative": [

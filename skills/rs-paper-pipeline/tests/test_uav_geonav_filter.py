@@ -73,10 +73,10 @@ class UAVGeoNavFilterTest(unittest.TestCase):
 
         selected_ids = {item["arxiv_id"] for item in selected}
         self.assertEqual(selected_ids, {paper["arxiv_id"] for paper in self.cases["positive"]})
-        submitted_prompt = llm_mock.call_args.args[0]
-        self.assertIn(self.cases["positive"][0]["title"], submitted_prompt)
-        self.assertIn(self.cases["positive"][0]["abstract"], submitted_prompt)
-        self.assertEqual(llm_mock.call_args.kwargs["thinking"], "disabled")
+        submitted_prompts = "\n".join(call.args[0] for call in llm_mock.call_args_list)
+        self.assertIn(self.cases["positive"][0]["title"], submitted_prompts)
+        self.assertIn(self.cases["positive"][0]["abstract"], submitted_prompts)
+        self.assertTrue(all(call.kwargs["thinking"] == "disabled" for call in llm_mock.call_args_list))
 
     def test_unclassified_candidate_is_conservatively_marked_for_review(self):
         paper = self.cases["positive"][0]
@@ -142,6 +142,11 @@ class UAVGeoNavFilterTest(unittest.TestCase):
 
         self.assertIsNotNone(obvious_common_false_positive(candidate))
 
+    def test_safety_gate_allows_tracking_as_an_internal_uav_slam_component(self):
+        paper = next(item for item in self.cases["positive"] if item["name"] == "traditional UAV SLAM")
+
+        self.assertIsNone(obvious_common_false_positive(paper))
+
     def test_arxiv_versions_share_one_canonical_id(self):
         self.assertEqual(canonical_arxiv_id("2603.20778v1"), "2603.20778")
         self.assertEqual(canonical_arxiv_id("2603.20778v12"), "2603.20778")
@@ -150,6 +155,7 @@ class UAVGeoNavFilterTest(unittest.TestCase):
         required = {
             "UAV-Satellite", "Orthophoto-Registration", "DSM-DEM-TDOM",
             "3D-Map-Registration", "3DGS-NeRF", "Map-Aided-VIO",
+            "Traditional-SLAM", "Visual-Odometry", "Visual-Inertial-Odometry",
             "GNSS-Denied", "Cross-View-Retrieval", "Fine-Registration",
             "Target-Geolocation", "Thermal-Localization", "Dataset-Benchmark",
             "Code-Available", "Reproducible", "Needs-Review",
@@ -166,13 +172,16 @@ class UAVGeoNavFilterTest(unittest.TestCase):
             "3DGS visual localization UAV", "map aided visual inertial navigation",
             "satellite aided VIO", "GNSS denied UAV localization",
             "UAV target geo-localization", "thermal UAV geo-localization",
+            "UAV SLAM", "drone SLAM", "quadrotor SLAM",
+            "UAV visual odometry", "aerial visual odometry",
+            "UAV VIO", "visual-inertial odometry UAV",
             "geolocation", "visual localization", "visual place recognition",
             "camera relocalization", "absolute pose estimation", "aerial image retrieval",
             "cross-domain localization", "terrain-relative navigation", "georeferenced imagery",
         }
         self.assertTrue(required.issubset(set(config["rs_query_terms"])))
         self.assertTrue(
-            {"UAV", "drone", "remote sensing", "satellite imagery"}.issubset(
+            {"UAV", "drone", "quadrotor", "micro aerial vehicle", "remote sensing", "satellite imagery"}.issubset(
                 set(config["rs_context_query_terms"])
             )
         )
@@ -180,6 +189,22 @@ class UAVGeoNavFilterTest(unittest.TestCase):
             {"cs.CV", "cs.RO", "eess.IV"}.issubset(set(config["arxiv_categories"]))
         )
         self.assertEqual(config["candidate_limit_per_day"], 50)
+
+    def test_filter_prompt_keeps_uav_slam_vo_vio_but_not_generic_robotics(self):
+        prompt = (ROOT / "scripts" / "prompts" / "filter_cross_prompt.md").read_text(encoding="utf-8")
+
+        self.assertIn("传统 SLAM", prompt)
+        self.assertIn("视觉里程计（VO）", prompt)
+        self.assertIn("视觉惯性里程计（VIO）", prompt)
+        self.assertIn("没有 UAV、无人机、四旋翼、MAV 或空中平台应用证据", prompt)
+
+    def test_generic_non_uav_slam_does_not_hit_topic_prefilter(self):
+        text = (
+            "A General-Purpose SLAM Benchmark for Indoor Mobile Robots\n"
+            "We evaluate lidar and camera SLAM on wheeled robots in office buildings."
+        )
+
+        self.assertFalse(has_remote_sensing_signal(text))
 
     def test_candidate_pool_is_capped_per_day(self):
         entries = []

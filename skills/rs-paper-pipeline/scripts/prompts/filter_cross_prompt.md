@@ -8,7 +8,8 @@
 2. 输出 UAV 的绝对位置、航向、尺度、全球重定位结果或 6-DoF 位姿；
 3. 输出 UAV 所观测目标的经纬度或三维地理坐标；
 4. 使用地理地图观测约束 VIO、SLAM、惯性导航或位姿图；
-5. 提供与上述任务直接相关的数据集、基准、检索、粗定位、精配准、尺度恢复或跨模态方法。
+5. 明确面向 UAV、无人机、四旋翼、MAV 或空中平台的传统 SLAM、视觉里程计（VO）或视觉惯性里程计（VIO），即使没有地理地图或绝对定位约束；
+6. 提供与上述任务直接相关的数据集、基准、检索、粗定位、精配准、尺度恢复或跨模态方法。
 
 ## 排除条件
 
@@ -16,7 +17,7 @@
 
 - 纯遥感检测、分割、分类、变化检测或土地覆盖制图；
 - 纯 UAV 目标检测、跟踪、路径规划、避障或视觉语言导航；
-- 纯 VIO/SLAM，但没有地理地图或绝对定位约束；
+- 没有 UAV、无人机、四旋翼、MAV 或空中平台应用证据的通用 SLAM、VO 或 VIO；
 - 仅卫星影像之间的配准；
 - 与 UAV 地图定位没有直接关系的通用遥感论文。
 
@@ -30,7 +31,7 @@
 
 keep 和 needs_review 的 labels 只能从下列标签选择，可多选：
 
-UAV-Satellite, Orthophoto-Registration, DSM-DEM-TDOM, 3D-Map-Registration, 3DGS-NeRF, Map-Aided-VIO, GNSS-Denied, Cross-View-Retrieval, Fine-Registration, Target-Geolocation, Thermal-Localization, Dataset-Benchmark, Code-Available, Reproducible, Needs-Review
+UAV-Satellite, Orthophoto-Registration, DSM-DEM-TDOM, 3D-Map-Registration, 3DGS-NeRF, Map-Aided-VIO, Traditional-SLAM, Visual-Odometry, Visual-Inertial-Odometry, GNSS-Denied, Cross-View-Retrieval, Fine-Registration, Target-Geolocation, Thermal-Localization, Dataset-Benchmark, Code-Available, Reproducible, Needs-Review
 
 ## 输出格式
 
