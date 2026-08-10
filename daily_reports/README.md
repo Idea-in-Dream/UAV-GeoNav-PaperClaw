@@ -2,6 +2,26 @@
 
 最近三天日报（最新在前）：
 
+# [20260808](./202608/20260808.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 0 篇；关键词+LLM 智能匹配遥感交叉论文 0 篇；最终纳入日报 0 篇。
+
+当日未检索到符合条件并纳入日报的论文。
+
+## 🔎 观察
+
+- 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
+- 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260807](./202608/20260807.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -35,38 +55,6 @@ Powered by OpenClaw🦞
 
 - 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
 - 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260805](./202608/20260805.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 9 篇；关键词+LLM 智能匹配遥感交叉论文 0 篇；最终纳入日报 1 篇。
-
-今日研究聚焦无人机视觉导航，提出一种视觉引导的空间推理方法，以解决GNSS拒止环境下的目标定位与到达问题。该方法结合跨视角检索与精细配准，旨在提升无卫星导航场景中的自主飞行能力。研究还涉及数据集与基准构建，为后续评估提供支持。整体趋势显示，视觉导航与地理定位的融合正成为无人机自主性的关键方向。
-
-## ✨ 今日亮点
-
-- 提出视觉引导的空间推理框架，增强GNSS拒止下的导航鲁棒性。
-- 结合跨视角检索与精细配准，提升目标地理定位精度。
-- 构建数据集与基准，推动无人机视觉导航研究标准化。
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260805] Deliberate Before You Fly: Vision-Guided Spatial Deliberation for UAV See-and-Reach Navigation | Xue Fanfu, Yu En, Liu Bohang, Wang Hongjun, Yang Yang, Wang Xindi, Sun Jiande | School of Information Science and Engineering, Shandong University；Faculty of Engineering and Information Technology, University of Technology Sydney；School of Artificial Intelligence, Shandong University；School of Computer Science and Artificial Intelligence, Shandong Normal University；This setting centers on two closely coupled challenges: how The direct mapping paradigm gives rise to two major limto continuously anchor the target and perform appropriate | 提出视觉引导的空间推理方法，解决无人机在GNSS拒止环境下的目标定位与到达问题。 | [#57](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/57) |
-
-## 🔎 观察
-
-- 视觉导航研究正从单一感知向空间推理演进，以应对复杂环境挑战。
-- 数据集与基准的构建成为该领域研究的重要支撑，促进方法对比与验证。
 
 ---
 
