@@ -199,13 +199,19 @@ class UAVGeoNavFilterTest(unittest.TestCase):
             "UAV SLAM", "drone SLAM", "quadrotor SLAM",
             "UAV visual odometry", "aerial visual odometry",
             "UAV VIO", "visual-inertial odometry UAV",
+            "visual SLAM", "visual-inertial SLAM", "SLAM",
+            "visual odometry", "visual-inertial odometry", "VIO",
             "geolocation", "visual localization", "visual place recognition",
             "camera relocalization", "absolute pose estimation", "aerial image retrieval",
             "cross-domain localization", "terrain-relative navigation", "georeferenced imagery",
         }
         self.assertTrue(required.issubset(set(config["rs_query_terms"])))
         self.assertTrue(
-            {"UAV", "drone", "quadrotor", "micro aerial vehicle", "remote sensing", "satellite imagery"}.issubset(
+            {
+                "UAV", "drone", "quadrotor", "micro aerial vehicle",
+                "SLAM", "visual odometry", "visual-inertial odometry",
+                "remote sensing", "satellite imagery",
+            }.issubset(
                 set(config["rs_context_query_terms"])
             )
         )
@@ -214,21 +220,27 @@ class UAVGeoNavFilterTest(unittest.TestCase):
         )
         self.assertEqual(config["candidate_limit_per_day"], 50)
 
-    def test_filter_prompt_keeps_uav_slam_vo_vio_but_not_generic_robotics(self):
+    def test_filter_prompt_keeps_transferable_general_slam_vo_vio(self):
         prompt = (ROOT / "scripts" / "prompts" / "filter_cross_prompt.md").read_text(encoding="utf-8")
 
-        self.assertIn("传统 SLAM", prompt)
+        self.assertIn("传统或通用 SLAM", prompt)
         self.assertIn("视觉里程计（VO）", prompt)
         self.assertIn("视觉惯性里程计（VIO）", prompt)
-        self.assertIn("没有 UAV、无人机、四旋翼、MAV 或空中平台应用证据", prompt)
+        self.assertIn("不再强制要求标题或摘要明确出现 UAV", prompt)
+        self.assertIn("人形机器人关节编码器", prompt)
 
-    def test_generic_non_uav_slam_does_not_hit_topic_prefilter(self):
+    def test_generic_non_uav_slam_hits_broadened_topic_prefilter(self):
         text = (
             "A General-Purpose SLAM Benchmark for Indoor Mobile Robots\n"
             "We evaluate lidar and camera SLAM on wheeled robots in office buildings."
         )
 
-        self.assertFalse(has_remote_sensing_signal(text))
+        self.assertTrue(has_remote_sensing_signal(text))
+
+    def test_platform_specific_humanoid_odometry_is_rejected_by_safety_gate(self):
+        paper = next(item for item in self.cases["negative"] if item["name"] == "humanoid-specific odometry")
+
+        self.assertIsNotNone(obvious_common_false_positive(paper))
 
     def test_candidate_pool_is_capped_per_day(self):
         entries = []

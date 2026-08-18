@@ -45,6 +45,11 @@ TRADITIONAL_LOCALIZATION_TITLE_PATTERN = re.compile(
 UAV_PLATFORM_PATTERN = re.compile(
     r"(?i)\b(?:UAVs?|drones?|quadrotors?|micro aerial vehicles?|MAVs?|aerial|airborne)\b"
 )
+NON_AERIAL_PLATFORM_PATTERN = re.compile(
+    r"(?i)\b(?:humanoid|biped(?:al)?|legged robot|autonomous driv(?:ing|er)|"
+    r"self[- ]driving|road vehicles?|wheel odometry|underwater|AUVs?|"
+    r"marine robots?|endoscop(?:e|ic)|surgical robots?)\b"
+)
 NEGATED_OUTPUT_PREFIX_PATTERN = re.compile(
     r"(?i)(?:(?:does?|do|did|is|are|was|were|can|could|will|would)\s+not|"
     r"rather than|instead of|fails? to)\b.{0,80}$|\bwithout\s*$"
@@ -70,6 +75,9 @@ def has_explicit_geo_output(text: str) -> bool:
 def obvious_common_false_positive(candidate: dict) -> str | None:
     title = candidate["title"]
     text = f"{title}\n{candidate['abstract']}"
+    non_aerial_platform = NON_AERIAL_PLATFORM_PATTERN.search(text)
+    if non_aerial_platform and not UAV_PLATFORM_PATTERN.search(text):
+        return f"明确面向非空中专用平台 {non_aerial_platform.group(0)}，且没有无人机迁移证据"
     matched_task = None
     for pattern in OBVIOUS_EXCLUSION_PATTERNS:
         matched_task = pattern.search(text)
@@ -80,9 +88,9 @@ def obvious_common_false_positive(candidate: dict) -> str | None:
     if has_explicit_geo_output(text):
         return None
     # SLAM/VO/VIO 论文常在摘要中描述 feature tracking、detection 或 segmentation
-    # 子模块。标题明确以里程计/建图为主任务且存在空中平台证据时，
-    # 不应被普通检测、分割、跟踪门禁误伤。
-    if TRADITIONAL_LOCALIZATION_TITLE_PATTERN.search(title) and UAV_PLATFORM_PATTERN.search(text):
+    # 子模块。标题明确以里程计/建图为主任务时，即使未写 UAV，
+    # 也不应被普通检测、分割、跟踪门禁误伤。
+    if TRADITIONAL_LOCALIZATION_TITLE_PATTERN.search(title):
         return None
     return f"明显属于普通{matched_task.group(0)}，且标题摘要没有地图绝对定位或地理坐标输出证据"
 

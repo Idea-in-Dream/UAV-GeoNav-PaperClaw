@@ -107,6 +107,18 @@
       "arxiv_id": "traditional.00003v1",
       "title": "Visual-Inertial Odometry for Agile Micro Aerial Vehicles",
       "abstract": "A tightly coupled VIO estimator fuses monocular images and IMU measurements onboard a micro aerial vehicle for real-time state estimation without GNSS or a global map."
+    },
+    {
+      "name": "general visual-inertial SLAM",
+      "arxiv_id": "traditional.00004v1",
+      "title": "Robust Visual-Inertial SLAM with Online Calibration",
+      "abstract": "We present a general-purpose camera-IMU SLAM system that estimates six-degree-of-freedom pose, trajectory and a sparse map with online spatiotemporal calibration."
+    },
+    {
+      "name": "general visual odometry",
+      "arxiv_id": "traditional.00005v1",
+      "title": "Direct Sparse Visual Odometry in Dynamic Environments",
+      "abstract": "The method estimates camera motion and a locally consistent map from monocular image sequences using robust geometric optimization."
     }
   ],
   "negative": [
@@ -127,6 +139,12 @@
       "arxiv_id": "negative.00003v1",
       "title": "Semantic Segmentation of Buildings in Aerial Imagery",
       "abstract": "A segmentation network predicts building masks in high-resolution overhead images. It performs land-cover mapping rather than camera localization or UAV-to-map registration."
+    },
+    {
+      "name": "humanoid-specific odometry",
+      "arxiv_id": "negative.00004v1",
+      "title": "Kinematic-Inertial-LiDAR-Visual Odometry for Humanoid Robots",
+      "abstract": "This platform-specific estimator tightly depends on humanoid joint encoders, leg kinematics, IMU, LiDAR and cameras for biped locomotion."
     }
   ]
 }
