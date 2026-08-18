@@ -2,6 +2,39 @@
 
 最近三天日报（最新在前）：
 
+# [20260817](./202608/20260817.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 10 篇；关键词+LLM 智能匹配遥感交叉论文 2 篇；最终纳入日报 2 篇。
+
+今日遥感AI研究聚焦于跨平台地理定位与无GNSS环境下的导航校正。两项工作分别提出跨视图视频地理定位的渐进式对齐方法，以及基于标记约束的位姿图校正技术，均强调在卫星与无人机平台间的精细配准，并注重数据集与基准的构建，推动该领域向实用化、可复现方向发展。
+
+## ✨ 今日亮点
+
+- 跨视图视频地理定位实现渐进式对齐，提升定位精度。
+- 无GNSS环境下借助标记约束校正位姿图，增强鲁棒性。
+- 两项研究均提供数据集或基准，促进可复现研究。
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260817] X$^2$Localizer: Cross-grained Alignment for Progressive Cross-view Video Geo-localization | Zeng Zichao, Fan Weijia, Chen Yufan, June Moh Goo, Zheng Junwei, Liu Ruiping, Peng Kunyu, Zhang Jiaming, Stiefelhagen Rainer, Boehm Jan | Hunan University；University of Alberta；Shenzhen University | 提出X²Localizer，通过跨粒度对齐实现渐进式跨视图视频地理定位。 | [#82](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/82) |
+| [20260817] Marker-Constrained Pose-Graph Correction for Cross-Platform Georeferencing in GNSS-Denied Environments | Giberna Marco, Jose Luis Sanchez Lopez, Voos Holger | Automation and Robotics Research Group, Interdisciplinary Centre for Security, Reliability；and Trust (SnT), University of Luxembourg；Faculty of Science, Technology and Medicine, University of Luxembourg, 4365 | 提出标记约束的位姿图校正方法，用于无GNSS环境下的跨平台地理配准。 | [#83](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/83) |
+
+## 🔎 观察
+
+- 跨视图定位研究从图像扩展到视频，注重时序信息利用。
+- 无GNSS场景下的校正方法强调多源约束融合，提升环境适应性。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260816](./202608/20260816.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -48,38 +81,6 @@ Powered by OpenClaw🦞
 
 - SLAM研究趋向多传感器融合，事件相机与激光雷达互补，增强极端场景适应性。
 - 3D高斯泼溅开始应用于SLAM，预示实时高保真建图与定位的融合新方向。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260814](./202608/20260814.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 6 篇；关键词+LLM 智能匹配遥感交叉论文 1 篇；最终纳入日报 1 篇。
-
-今日遥感AI研究聚焦于3D高斯溅射在SLAM中的应用，提出几何感知的在线建图方法，旨在提升视觉惯性里程计在复杂环境下的鲁棒性与精度。该方法结合3DGS与几何约束，有望推动实时定位与建图技术的发展，为无人机导航、自动驾驶等提供新思路。
-
-## ✨ 今日亮点
-
-- 3DGS SLAM引入几何感知，提升建图精度
-- 在线建图策略优化，增强实时性能
-- 视觉惯性融合，应对复杂环境挑战
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260814] Geometry-Aware Online Mapping for 3D Gaussian Splatting SLAM | Luu Thai, Tran Quan, Phan Hieu, Dang Tuan | Cognitive Robotics Lab, Department of Electrical Engineering and；Computer Science, University of Arkansas, USA；Center for AI Research, VinUniversity, Ha Noi, Vietnam | 提出几何感知在线建图方法，用于3D高斯溅射SLAM，提升定位与建图鲁棒性。 | [#79](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/79) |
-
-## 🔎 观察
-
-- 3DGS与SLAM结合成为热点，几何感知是提升性能的关键。
-- 在线建图策略强调实时性，适合动态场景应用。
 
 ---
 
