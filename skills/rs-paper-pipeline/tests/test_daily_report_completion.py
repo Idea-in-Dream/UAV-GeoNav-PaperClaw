@@ -69,6 +69,14 @@ class DailyReportCompletionTest(unittest.TestCase):
         self.assertIn("github.event.workflow_run.conclusion == 'success'", workflow)
         self.assertIn("ref: main", workflow)
 
+    def test_daily_schedule_runs_at_0807_beijing_time(self):
+        workflow = (ROOT.parents[1] / ".github" / "workflows" / "rs-pipeline-schedule.yml").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn('cron: "7 0 * * *"', workflow)
+        self.assertIn("北京时间 08:07", workflow)
+
     def test_stale_inherited_report_does_not_count_as_completed(self):
         repo = FakeRepo(
             self.issue,

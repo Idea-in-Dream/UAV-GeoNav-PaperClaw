@@ -3,8 +3,9 @@ name: UAV GeoNav PaperClaw Schedule
 on:
   workflow_dispatch:
   schedule:
-    # GitHub cron 使用 UTC：00:00 对应北京时间 08:00，每周 7 天运行。
-    - cron: "0 0 * * *"
+    # GitHub cron 使用 UTC：00:07 对应北京时间 08:07，每周 7 天运行。
+    # 避开 UTC 整点高峰，降低 GitHub Actions 排队延迟。
+    - cron: "7 0 * * *"
 
 concurrency:
   group: uav-geonav-paperclaw-writer

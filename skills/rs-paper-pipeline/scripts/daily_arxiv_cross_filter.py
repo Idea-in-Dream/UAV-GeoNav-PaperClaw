@@ -45,10 +45,26 @@ TRADITIONAL_LOCALIZATION_TITLE_PATTERN = re.compile(
 UAV_PLATFORM_PATTERN = re.compile(
     r"(?i)\b(?:UAVs?|drones?|quadrotors?|micro aerial vehicles?|MAVs?|aerial|airborne)\b"
 )
+NEGATED_OUTPUT_PREFIX_PATTERN = re.compile(
+    r"(?i)(?:(?:does?|do|did|is|are|was|were|can|could|will|would)\s+not|"
+    r"rather than|instead of|fails? to)\b.{0,80}$|\bwithout\s*$"
+)
 
 
 def has_ai_signal(text: str) -> bool:
     return any(pattern.search(text) for pattern in AI_MATCH_PATTERNS)
+
+
+def has_explicit_geo_output(text: str) -> bool:
+    """Require positive geo-output evidence instead of negated comparison wording."""
+    for pattern in EXPLICIT_GEO_OUTPUT_PATTERNS:
+        for match in pattern.finditer(text):
+            prefix = text[max(0, match.start() - 100) : match.start()]
+            clause_prefix = re.split(r"[.;\n]", prefix)[-1]
+            if NEGATED_OUTPUT_PREFIX_PATTERN.search(clause_prefix):
+                continue
+            return True
+    return False
 
 
 def obvious_common_false_positive(candidate: dict) -> str | None:
@@ -61,7 +77,7 @@ def obvious_common_false_positive(candidate: dict) -> str | None:
             break
     if not matched_task:
         return None
-    if any(pattern.search(text) for pattern in EXPLICIT_GEO_OUTPUT_PATTERNS):
+    if has_explicit_geo_output(text):
         return None
     # SLAM/VO/VIO 论文常在摘要中描述 feature tracking、detection 或 segmentation
     # 子模块。标题明确以里程计/建图为主任务且存在空中平台证据时，
@@ -77,6 +93,10 @@ def keyword_fallback(candidates, reason: str):
     for candidate in candidates:
         text = f"{candidate['title']}\n{candidate['abstract']}"
         if not (has_remote_sensing_signal(text) and has_ai_signal(text)):
+            continue
+        safety_reason = obvious_common_false_positive(candidate)
+        if safety_reason:
+            print(f"  [安全门禁] 关键词回退排除 {candidate['arxiv_id']}: {safety_reason}")
             continue
         enriched = dict(candidate)
         enriched["filter_status"] = "needs_review"
@@ -164,12 +184,21 @@ def _llm_cross_filter_batch(candidates):
 
     decisions = None
     legacy_array = False
+    last_llm_error = None
     for attempt in range(2):
-        out = call_llm(prompt, max_tokens=5000, timeout=240, thinking="disabled").strip()
+        try:
+            out = call_llm(prompt, max_tokens=5000, timeout=240, thinking="disabled").strip()
+        except Exception as exc:
+            last_llm_error = exc
+            print(f"  [LLM 请求] 第 {attempt + 1} 次失败: {exc}")
+            if attempt == 0:
+                print("  [LLM 请求] 重试中...")
+            continue
         try:
             decisions, legacy_array = _parse_llm_decisions(out)
             break
         except Exception as exc:
+            last_llm_error = exc
             print(f"  [LLM 解析] 第 {attempt + 1} 次失败: {exc}")
             if attempt == 0:
                 print(f"  [LLM 解析] 原始输出: {out[:200]}")
@@ -204,8 +233,8 @@ def _llm_cross_filter_batch(candidates):
         return result
 
     # 两次都失败，降级到关键词交叉筛选
-    print("  [LLM 解析] 两次均失败，降级为关键词交叉筛选")
-    out_items = keyword_fallback(candidates, "LLM 输出解析失败，关键词回退命中，需人工复核")
+    print(f"  [LLM 降级] 两次均失败，改用关键词交叉筛选: {last_llm_error}")
+    out_items = keyword_fallback(candidates, "LLM 请求或输出失败，关键词回退命中，需人工复核")
     print(f"  [关键词降级] 命中 {len(out_items)} 篇")
     return out_items
 

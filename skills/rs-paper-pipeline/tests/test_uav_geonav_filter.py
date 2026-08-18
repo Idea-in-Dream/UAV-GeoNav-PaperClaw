@@ -16,7 +16,12 @@ from clients.arxiv_client import (
     fetch_url_with_retry,
     has_remote_sensing_signal,
 )
-from daily_arxiv_cross_filter import has_ai_signal, llm_cross_filter, obvious_common_false_positive
+from daily_arxiv_cross_filter import (
+    has_ai_signal,
+    keyword_fallback,
+    llm_cross_filter,
+    obvious_common_false_positive,
+)
 from services.issue_index import canonical_arxiv_id
 from services.labels import allowed_paper_labels
 
@@ -95,6 +100,25 @@ class UAVGeoNavFilterTest(unittest.TestCase):
         self.assertEqual(len(selected), 1)
         self.assertEqual(selected[0]["filter_status"], "needs_review")
         self.assertIn("Needs-Review", selected[0]["filter_labels"])
+
+    def test_llm_request_failure_falls_back_to_needs_review(self):
+        positive = next(item for item in self.cases["positive"] if item["name"] == "traditional UAV VIO")
+        negative = next(item for item in self.cases["negative"] if item["name"] == "ordinary UAV tracking")
+
+        with patch("daily_arxiv_cross_filter.call_llm", side_effect=TimeoutError("LLM timed out")):
+            selected = llm_cross_filter([positive, negative])
+
+        self.assertEqual([item["arxiv_id"] for item in selected], [positive["arxiv_id"]])
+        self.assertEqual(selected[0]["filter_status"], "needs_review")
+        self.assertIn("Needs-Review", selected[0]["filter_labels"])
+
+    def test_keyword_fallback_still_excludes_detection_segmentation_and_tracking(self):
+        selected = keyword_fallback(
+            self.cases["positive"][:1] + self.cases["negative"],
+            "LLM unavailable",
+        )
+
+        self.assertEqual([item["arxiv_id"] for item in selected], [self.cases["positive"][0]["arxiv_id"]])
 
     def test_safety_gate_rejects_pure_uav_tracking_even_if_llm_keeps_it(self):
         candidate = {
