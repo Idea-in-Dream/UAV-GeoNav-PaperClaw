@@ -76,6 +76,8 @@ class DailyReportCompletionTest(unittest.TestCase):
 
         self.assertIn('cron: "7 0 * * *"', workflow)
         self.assertIn("北京时间 08:07", workflow)
+        self.assertIn("SCHEDULE_ATTEMPT ${attempt}/2", workflow)
+        self.assertIn("retrying the full run in 60 seconds", workflow)
 
     def test_stale_inherited_report_does_not_count_as_completed(self):
         repo = FakeRepo(
