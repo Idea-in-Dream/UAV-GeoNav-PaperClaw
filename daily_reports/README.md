@@ -2,6 +2,38 @@
 
 最近三天日报（最新在前）：
 
+# [20260818](./202608/20260818.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 7 篇；关键词+LLM 智能匹配遥感交叉论文 1 篇；最终纳入日报 1 篇。
+
+今日遥感AI研究聚焦于单目视觉SLAM的尺度一致性与不确定性建模。相关工作提出了一种名为Scalix的新方法，旨在解决传统单目SLAM系统中尺度漂移的固有问题，并通过显式建模不确定性来提升定位与建图的鲁棒性。该研究由慕尼黑工业大学团队主导，代表了视觉里程计与SLAM领域向更高精度与可靠性发展的趋势。
+
+## ✨ 今日亮点
+
+- 单目SLAM尺度一致性问题获新解
+- 不确定性建模提升视觉定位鲁棒性
+- 慕尼黑工业大学引领SLAM前沿研究
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260818] Scalix: Uncertainty-Aware Scale-Consistent Monocular SLAM | Sebastian Barbas Laina, Zhang Tianyi, Petropoulakis Panagiotis, Schaefer Simon, Boche Simon, Jung Jaehyung, Cedric Le Gentil, Leutenegger Stefan | Technical University of Munich | 提出Scalix方法，在单目SLAM中实现尺度一致并显式量化不确定性，提升定位精度。 | [#85](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/85) |
+
+## 🔎 观察
+
+- 单目SLAM研究正从纯几何优化转向概率建模，以应对真实场景中的尺度模糊。
+- 不确定性量化成为视觉定位系统实用化部署的关键技术，值得持续关注。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260817](./202608/20260817.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -48,39 +80,6 @@ Powered by OpenClaw🦞
 
 - 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
 - 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260815](./202608/20260815.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 11 篇；关键词+LLM 智能匹配遥感交叉论文 2 篇；最终纳入日报 2 篇。
-
-今日遥感AI研究聚焦SLAM技术，共两篇论文。其一结合事件相机与3D高斯泼溅，提出运动模糊鲁棒的SLAM系统，提升动态场景定位精度。其二提出自适应混合ICP的LiDAR SLAM方法，通过分类对应点并平衡残差，增强鲁棒性与效率。整体趋势显示，SLAM正融合多传感器与先进表示，以应对复杂环境挑战。
-
-## ✨ 今日亮点
-
-- 事件相机调制高斯泼溅，攻克运动模糊难题
-- 自适应ICP分类点集，提升LiDAR SLAM鲁棒性
-- SLAM融合多模态，迈向高动态场景应用
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260815] MotionGS-SLAM: Event-Modulated Gaussian Splatting for Motion-Blur Robust SLAM | Hu Zhiqiang, Huang Shouren, Ishikawa Masatoshi | the Research Institute for Science \& Technology, Tokyo University of Science | 提出事件调制高斯泼溅SLAM，利用事件相机应对运动模糊，提升定位鲁棒性。 | [#80](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/80) |
-| [20260815] HP2-SLAM: Adaptive Hybrid ICP for Robust and Efficient LiDAR SLAM | Tran Nam, Tran Thu, Phan Hieu, Luu Thai, Nguyen Toan, William J. Beksi, Dang Tuan | Department of Electrical Engineering and Computer Science, Uni- with local neighborhood size. Correspondences are classified；Department into planar and non-planar sets, and the balance between；of Computer Science, University of Texas at Dallas, Richardson, TX, point-to-plane and point-to-point residuals emerges directly；Robotics Lab, University of Arkansas. ∗ | 提出自适应混合ICP的LiDAR SLAM，分类平面与非平面点，平衡残差提升效率。 | [#81](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/81) |
-
-## 🔎 观察
-
-- SLAM研究趋向多传感器融合，事件相机与激光雷达互补，增强极端场景适应性。
-- 3D高斯泼溅开始应用于SLAM，预示实时高保真建图与定位的融合新方向。
 
 ---
 
