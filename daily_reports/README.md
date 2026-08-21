@@ -2,6 +2,40 @@
 
 最近三天日报（最新在前）：
 
+# [20260820](./202608/20260820.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 5 篇；关键词+LLM 智能匹配遥感交叉论文 3 篇；最终纳入日报 3 篇。
+
+今日遥感AI研究聚焦于视觉定位与特征学习。RIPE++提出仅利用正样本对强化关键点学习，简化训练流程。另一项工作引入重力感知，实现基于仿射或旋转协变特征的绝对位姿估计，提升GNSS拒止环境下的定位鲁棒性。此外，地理隔离的自监督学习策略为大规模遥感数据训练提供新思路。整体趋势显示，结合几何先验与自监督方法正成为提升定位精度和泛化能力的关键。
+
+## ✨ 今日亮点
+
+- 关键点学习仅需正样本对，简化训练
+- 重力先验提升部分标定位姿估计精度
+- 地理隔离自监督学习增强特征泛化
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260820] RIPE++: Reinforced Keypoint Learning from Positive Pairs Only | Künzel Johannes, Eisert Peter, Hilsmann Anna | Fraunhofer Heinrich-Hertz-Institute, HHI, Germany；Humboldt University Berlin, Germany | RIPE++仅用正样本对强化关键点学习，简化训练并提升匹配性能 | [#93](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/93) |
+| [20260820] Gravity-aware partially calibrated absolute pose estimation from affine- or rotation-covariant features | Marcus Valtonen Örnhag, Jaenal Alberto, Adalbjörnsson Stefan | Ericsson Research, Lund, Sweden；University of Zaragoza, Spain | 重力感知方法利用仿射或旋转协变特征，实现部分标定绝对位姿估计 | [#94](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/94) |
+| [20260820] Far from the Crowd: Scalable Self-Supervised Learning via Geographic Isolation | Daniele Rege Cambrin, Rossi Francesco, Varile Mattia | AIKO | 地理隔离自监督学习策略，提升大规模遥感数据特征学习的可扩展性 | [#95](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/95) |
+
+## 🔎 观察
+
+- 几何先验（如重力）与特征学习结合，成为GNSS拒止定位的重要趋势
+- 自监督方法通过数据隔离策略，在减少标注依赖的同时增强模型泛化能力
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260819](./202608/20260819.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -63,39 +97,6 @@ Powered by OpenClaw🦞
 
 - 研究侧重将概率推断融入传统几何SLAM框架，而非端到端学习
 - 尺度一致性与不确定性联合建模成为提升单目视觉定位可靠性的关键路径
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260817](./202608/20260817.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 10 篇；关键词+LLM 智能匹配遥感交叉论文 2 篇；最终纳入日报 2 篇。
-
-今日遥感AI研究聚焦于跨视角地理定位与GNSS拒止环境下的无人机导航。两项工作分别提出跨粒度对齐的跨视角视频定位方法，以及基于标记约束的位姿图校正技术，均强调在无卫星信号条件下的高精度定位，并配套开源数据集与基准，推动该领域可复现研究。
-
-## ✨ 今日亮点
-
-- 跨视角视频定位引入跨粒度对齐，提升检索与配准精度。
-- GNSS拒止下利用标记约束校正位姿图，增强跨平台定位鲁棒性。
-- 两项研究均发布数据集与基准，促进可复现性。
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260817] X$^2$Localizer: Cross-grained Alignment for Progressive Cross-view Video Geo-localization | Zeng Zichao, Fan Weijia, Chen Yufan, June Moh Goo, Zheng Junwei, Liu Ruiping, Peng Kunyu, Zhang Jiaming, Stiefelhagen Rainer, Boehm Jan | Hunan University；University of Alberta；Shenzhen University | 提出X$^2$Localizer，通过跨粒度对齐实现渐进式跨视角视频地理定位，并开源基准。 | [#82](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/82) |
-| [20260817] Marker-Constrained Pose-Graph Correction for Cross-Platform Georeferencing in GNSS-Denied Environments | Giberna Marco, Jose Luis Sanchez Lopez, Voos Holger | Automation and Robotics Research Group, Interdisciplinary Centre for Security, Reliability；and Trust (SnT), University of Luxembourg；Faculty of Science, Technology and Medicine, University of Luxembourg, 4365 | 提出标记约束的位姿图校正方法，解决GNSS拒止环境下跨平台地理配准问题。 | [#83](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/83) |
-
-## 🔎 观察
-
-- 跨视角定位研究趋向于结合粗检索与细配准，以应对视角差异。
-- GNSS拒止环境下的定位方案多依赖视觉与地图先验，强调多源融合。
 
 ---
 
