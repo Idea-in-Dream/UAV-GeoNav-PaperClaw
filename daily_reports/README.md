@@ -2,6 +2,26 @@
 
 最近三天日报（最新在前）：
 
+# [20260821](./202608/20260821.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 0 篇；关键词+LLM 智能匹配遥感交叉论文 0 篇；最终纳入日报 0 篇。
+
+当日未检索到符合条件并纳入日报的论文。
+
+## 🔎 观察
+
+- 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
+- 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260820](./202608/20260820.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -65,38 +85,6 @@ Powered by OpenClaw🦞
 
 - 研究重心从传统几何方法转向学习型跨视图检索与主动感知结合。
 - 基准测试与可复现性成为无人机定位研究的重要关注点。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260818](./202608/20260818.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 7 篇；关键词+LLM 智能匹配遥感交叉论文 1 篇；最终纳入日报 1 篇。
-
-今日遥感AI研究聚焦于单目视觉SLAM的尺度一致性与不确定性建模。相关方法通过引入概率框架提升位姿估计的鲁棒性，在传统SLAM与视觉里程计领域展现出对复杂场景的适应潜力，为无人机自主导航等应用提供技术支撑。
-
-## ✨ 今日亮点
-
-- 单目SLAM尺度一致性问题受关注
-- 不确定性建模提升视觉里程计鲁棒性
-- 概率方法推动传统SLAM精度提升
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260818] Scalix: Uncertainty-Aware Scale-Consistent Monocular SLAM | Sebastian Barbas Laina, Zhang Tianyi, Petropoulakis Panagiotis, Schaefer Simon, Boche Simon, Jung Jaehyung, Cedric Le Gentil, Leutenegger Stefan | Technical University of Munich | 提出Scalix方法，结合不确定性感知实现尺度一致的鲁棒单目SLAM | [#85](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/85) |
-
-## 🔎 观察
-
-- 研究侧重将概率推断融入传统几何SLAM框架，而非端到端学习
-- 尺度一致性与不确定性联合建模成为提升单目视觉定位可靠性的关键路径
 
 ---
 
