@@ -2,6 +2,38 @@
 
 最近三天日报（最新在前）：
 
+# [20260825](./202608/20260825.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 3 篇；关键词+LLM 智能匹配遥感交叉论文 1 篇；最终纳入日报 1 篇。
+
+今日遥感AI领域聚焦于视觉惯性里程计（VIO）的鲁棒性与精度提升。研究提出KLTNet，通过稀疏特征跟踪网络改进单目VIO性能，结合传统几何与深度学习，旨在应对复杂环境下的跟踪丢失问题。该工作体现了将学习型特征与经典SLAM框架融合的趋势，以增强系统在挑战性场景中的适应能力。
+
+## ✨ 今日亮点
+
+- 提出KLTNet稀疏特征跟踪网络，提升VIO鲁棒性。
+- 融合深度学习与经典SLAM，增强复杂环境适应性。
+- 开源代码，促进视觉惯性里程计研究复现。
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260825] KLTNet: Learning Sparse Feature Tracking for Robust and Accurate Monocular Visual-Inertial Odometry | Jin Renbiao, Zou Danping, Yu Wenxian | Shanghai Jiao Tong University, Shanghai, China. ( | KLTNet通过稀疏特征跟踪学习，显著提升单目视觉惯性里程计的鲁棒性和精度。 | [#105](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/105) |
+
+## 🔎 观察
+
+- 学习型特征跟踪正成为VIO领域提升鲁棒性的重要方向。
+- 传统几何与深度学习结合仍是当前遥感定位技术的主流范式。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260824](./202608/20260824.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -47,26 +79,6 @@ Powered by OpenClaw🦞
 ---
 
 # [20260823](./202608/20260823.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 0 篇；关键词+LLM 智能匹配遥感交叉论文 0 篇；最终纳入日报 0 篇。
-
-当日未检索到符合条件并纳入日报的论文。
-
-## 🔎 观察
-
-- 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
-- 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260822](./202608/20260822.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
 ## 📌 今日概况
