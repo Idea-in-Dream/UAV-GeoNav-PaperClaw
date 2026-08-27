@@ -2,6 +2,38 @@
 
 最近三天日报（最新在前）：
 
+# [20260826](./202608/20260826.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 8 篇；关键词+LLM 智能匹配遥感交叉论文 1 篇；最终纳入日报 1 篇。
+
+今日遥感AI领域聚焦跨视角定位技术，一项大规模数据集研究成为亮点。该工作构建了开放、多样且规模庞大的基准，旨在推动细粒度跨视角检索与配准的进展。研究强调数据集的复现性与实用性，为无人机导航、城市感知等应用提供了关键支撑，反映出当前领域对高质量训练数据与标准化评估的迫切需求。
+
+## ✨ 今日亮点
+
+- 发布大规模跨视角定位数据集，强调开放与多样性。
+- 聚焦细粒度检索与配准，推动定位精度提升。
+- 提供可复现基准，促进算法公平对比与验证。
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260826] OpenCVL: An Open, Diverse, and Large-Scale Dataset for Fine-Grained Cross-View Localization | Xia Zimin, Zaffar Mubariz, Fu Junsheng, Alahi Alexandre, Julian F. P. Kooij | Southern University of Science and Technology (SUSTech), China；Delft University of Technology, The Netherlands | 提出OpenCVL数据集，覆盖多场景跨视角图像，支持细粒度定位研究。 | [#107](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/107) |
+
+## 🔎 观察
+
+- 数据集构建成为跨视角定位研究的关键瓶颈，开放基准受重视。
+- 细粒度配准需求上升，预示算法从粗检索向精定位演进。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260825](./202608/20260825.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -71,26 +103,6 @@ Powered by OpenClaw🦞
 
 - 多篇论文强调仿真环境与真实场景的差距，推动高保真模拟器发展
 - 视觉语言模型与SLAM结合，预示多模态导航成为未来方向
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260823](./202608/20260823.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 0 篇；关键词+LLM 智能匹配遥感交叉论文 0 篇；最终纳入日报 0 篇。
-
-当日未检索到符合条件并纳入日报的论文。
-
-## 🔎 观察
-
-- 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
-- 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
 
 ---
 
