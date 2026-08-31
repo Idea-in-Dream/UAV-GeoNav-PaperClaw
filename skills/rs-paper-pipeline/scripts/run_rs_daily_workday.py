@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 """
-每天北京时间 08:07 自动执行：
+周一至周五北京时间 08:07 自动执行：
 1) 抓取并筛选前一个自然日的论文，生成/更新单篇 issue
 2) 生成对应日期的日报 issue
 3) 按配置推送日报通知
@@ -377,7 +377,7 @@ def _run_step(date_str: str, step: str, cmd: list[str], ok_extra: dict | None = 
 def resolve_target_dates(today: datetime | None = None) -> list[str]:
     now = today or datetime.now(BEIJING_TZ)
 
-    # 每周 7 天运行，每次处理前一个自然日，避免周末重复补跑或漏跑。
+    # GitHub 定时任务仅在工作日触发；手动调用仍按前一个自然日解析。
     return [(now - timedelta(days=1)).strftime("%Y%m%d")]
 
 

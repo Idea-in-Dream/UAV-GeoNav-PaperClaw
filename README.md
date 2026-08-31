@@ -162,10 +162,10 @@ python3 scripts/cli.py rebuild-index
 `.github/workflows/rs-pipeline-schedule.yml` 使用：
 
 ```text
-7 0 * * *
+7 0 * * 1-5
 ```
 
-即每周 7 天 UTC 00:07（北京时间 08:07）运行一次，每次处理前一个自然日。避开 UTC 整点高峰可减少 GitHub Actions 排队延迟，但平台仍不保证秒级准时。LLM 请求连续失败时会自动降级为关键词筛选，将可能相关论文标记为 `Needs-Review`，不再直接中断日报。工作流会依次：
+即仅在周一至周五 UTC 00:07（北京时间 08:07）运行，周六、周日不自动更新论文。每次处理前一个自然日。避开 UTC 整点高峰可减少 GitHub Actions 排队延迟，但平台仍不保证秒级准时。LLM 请求连续失败时会自动降级为关键词筛选，将可能相关论文标记为 `Needs-Review`，不再直接中断日报。工作流会依次：
 
 1. 安装 Python 与 Poppler；
 2. 检查环境并初始化标签；

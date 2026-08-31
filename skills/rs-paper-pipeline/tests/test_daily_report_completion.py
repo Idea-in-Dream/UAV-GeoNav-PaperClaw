@@ -69,13 +69,14 @@ class DailyReportCompletionTest(unittest.TestCase):
         self.assertIn("github.event.workflow_run.conclusion == 'success'", workflow)
         self.assertIn("ref: main", workflow)
 
-    def test_daily_schedule_runs_at_0807_beijing_time(self):
+    def test_weekday_schedule_runs_at_0807_beijing_time(self):
         workflow = (ROOT.parents[1] / ".github" / "workflows" / "rs-pipeline-schedule.yml").read_text(
             encoding="utf-8"
         )
 
-        self.assertIn('cron: "7 0 * * *"', workflow)
+        self.assertIn('cron: "7 0 * * 1-5"', workflow)
         self.assertIn("北京时间 08:07", workflow)
+        self.assertIn("仅周一至周五运行", workflow)
         self.assertIn("SCHEDULE_ATTEMPT ${attempt}/2", workflow)
         self.assertIn("retrying the full run in 60 seconds", workflow)
 
