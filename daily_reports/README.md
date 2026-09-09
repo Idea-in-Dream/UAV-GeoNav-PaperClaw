@@ -2,6 +2,39 @@
 
 最近三天日报（最新在前）：
 
+# [20260908](./202609/20260908.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 9 篇；关键词+LLM 智能匹配遥感交叉论文 2 篇；最终纳入日报 2 篇。
+
+今日遥感AI研究聚焦多相机视觉惯性系统与无人机空间认知。MFVINS提出基于多鱼眼相机的视觉惯性系统，旨在提升复杂环境下的鲁棒定位。EgoSIS则构建了无人机推理基准，通过分解视觉自我转换与运动典型空间证据，推动无人机对场景的理解。两者均关注视觉感知与运动估计的深度融合，体现了从传统SLAM向语义化、任务驱动型空间智能演进的趋势。
+
+## ✨ 今日亮点
+
+- 多鱼眼相机融合提升视觉惯性定位鲁棒性。
+- 无人机推理新基准强调运动典型空间证据。
+- 视觉感知与运动估计结合成研究热点。
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260908] MFVINS: Multiple Fisheye Camera-Based Visual Inertial System | Jang Eunseong, Chung YuJin, Sang Jun Lee, Yoon Jihyun, Jo HyungGi | Division of Electronic Engineering, Jeonbuk National University, Jeonju, South Korea | 提出多鱼眼相机视觉惯性系统，增强复杂环境定位稳定性。 | [#128](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/128) |
+| [20260908] EgoSIS: From Factorized Visual Ego-Transitions to Motion-Canonical Spatial Evidence for UAV Reasoning | Yang Jingpu, Ji Fengxian, Cui Mingxuan, Sun Yilin, Zhang Hang, Zhu Jianhua, Wang Yufeng | Beihang University, Beijing, China；Zhongguancun Academy, Beijing, China；Northeastern University, Shenyang, China；Technology and Engineering Center for Space Utilization, Chinese Academy of Sciences | 构建无人机推理基准，利用运动典型空间证据提升场景理解。 | [#129](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/129) |
+
+## 🔎 观察
+
+- 多相机配置成为提升视觉SLAM鲁棒性的重要方向。
+- 无人机研究从定位转向高层推理，需结合语义与运动。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260907](./202609/20260907.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -35,40 +68,6 @@ Powered by OpenClaw🦞
 
 - 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
 - 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260903](./202609/20260903.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 8 篇；关键词+LLM 智能匹配遥感交叉论文 3 篇；最终纳入日报 3 篇。
-
-今日研究聚焦于移动平台感知与三维重建。一方面，探讨移动机器人平台在精密检测中的精度与可重复性，强调平台可靠性；另一方面，利用点云与IMU数据预测地形引起的振动，并引入轻量化方法。此外，针对大规模航空表面重建，提出结构感知正则化的高斯泼溅方法，以提升重建质量。整体趋势显示，研究正从传统几何方法向数据驱动与物理模型结合的方向发展，并注重实际部署中的鲁棒性与效率。
-
-## ✨ 今日亮点
-
-- 移动平台精度与可重复性研究受关注，强调检测可靠性。
-- 轻量化振动预测结合点云与IMU，提升地形适应性。
-- 结构感知高斯泼溅用于大规模航空表面重建，优化质量。
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260903] A comparative study on the accuracy & repeatability of mobile robotic platforms for the delivery of precision NDE measurement | SeyedMohammadAmin Nabi Pour, S. Gareth Pierce, Vithanage Randika, Mohseni Ehsan, Carswell David, Shields Matthew | University of Strathclyde | 对比研究移动机器人平台在精密无损检测中的精度与可重复性表现。 | [#122](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/122) |
-| [20260903] RoughSense: Lightweight Terrain-Induced Rover Vibration Prediction Using Point Clouds and IMU Feedback | Gabriel Manuel Garcia, Aravecchia Stephanie, Miguel Angel Olivares-Mendez | From Anonymous center, Anonymous；From University of Luxembourg, Luxembourg；From IRL Georgia Tech-CNRS, Metz, France | 提出轻量化方法，利用点云和IMU反馈预测地形引起的漫游车振动。 | [#123](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/123) |
-| [20260903] STARS-GS: Structure-Aware Regularized Gaussian Splatting for Large-Scale Aerial Surface Reconstruction | Li Bocheng, Zhang Wenjuan, Jie Pan. Dongxu Han, Ma Xuesong, Yao Yiling, Wang Yaning | State Key Laboratory of Remote Sensing and Digital Earth, Aerospace Information Research Institute, Chinese Academy of Sciences；Aerospace Information Research Institute, Chinese Academy of Sciences；University of Chinese Academy of Sciences | 提出结构感知正则化高斯泼溅，用于大规模航空表面高质量重建。 | [#124](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/124) |
-
-## 🔎 观察
-
-- 研究侧重平台感知与重建，但缺乏多传感器融合的端到端方案。
-- 轻量化与正则化设计表明，计算效率与结构先验正成为关键考量。
 
 ---
 
