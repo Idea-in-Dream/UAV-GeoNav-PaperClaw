@@ -2,6 +2,38 @@
 
 最近三天日报（最新在前）：
 
+# [20260909](./202609/20260909.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 8 篇；关键词+LLM 智能匹配遥感交叉论文 1 篇；最终纳入日报 1 篇。
+
+今日研究趋势聚焦于利用开放地图数据提升定位与里程计鲁棒性。一篇工作提出与里程计无关的漂移校正方法，通过将轨迹段匹配至OpenStreetMap车道中心线，实现无需依赖特定里程计模型的全局校正。该方向融合传统SLAM、视觉里程计与地图辅助定位，强调开放数据在长期导航中的价值，有望降低对高精地图的依赖，推动低成本、可扩展的定位方案发展。
+
+## ✨ 今日亮点
+
+- 利用OSM车道几何实现里程计无关的漂移校正
+- 融合Map-Aided-VIO与传统SLAM、视觉里程计
+- 开放地图数据降低对高精地图的依赖
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260909] Odometer-Agnostic Drift Correction Using OpenStreetMap Lane Geometry | Caballero Joaquin, Garcia-Fidalgo Emilio, Ortiz Alberto, Ralli Jarno | trajectory segments to OpenStreetMap (OSM) lane centerlines；and Computer Science, Institute of Artificial Intelligence, University of | 提出与里程计无关的漂移校正方法，将轨迹段匹配至OSM车道中心线以修正定位误差。 | [#131](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/131) |
+
+## 🔎 观察
+
+- 开放地图数据正成为SLAM漂移校正的轻量级替代方案，减少对高精地图的依赖。
+- 里程计无关设计提升方法通用性，但匹配精度受OSM车道几何质量影响。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260908](./202609/20260908.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -36,26 +68,6 @@ Powered by OpenClaw🦞
 ---
 
 # [20260907](./202609/20260907.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 0 篇；关键词+LLM 智能匹配遥感交叉论文 0 篇；最终纳入日报 0 篇。
-
-当日未检索到符合条件并纳入日报的论文。
-
-## 🔎 观察
-
-- 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
-- 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260904](./202609/20260904.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
 ## 📌 今日概况
