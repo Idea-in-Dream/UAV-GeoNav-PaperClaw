@@ -2,6 +2,38 @@
 
 最近三天日报（最新在前）：
 
+# [20260910](./202609/20260910.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 6 篇；关键词+LLM 智能匹配遥感交叉论文 1 篇；最终纳入日报 1 篇。
+
+今日候选论文聚焦农业机器人视觉定位与建图。该研究面向温室番茄采摘场景，针对被叶片遮挡的隐藏果实检测难题，提出结合分层定位与GLOMAP的视觉SLAM方案。方法融合传统SLAM、视觉里程计与精细配准，旨在为机器人提供稳定位姿估计，从而辅助发现隐蔽目标。整体趋势显示，SLAM技术正从通用导航向特定农业场景的精细感知任务延伸，强调在复杂植被环境下的鲁棒性与实用性。
+
+## ✨ 今日亮点
+
+- 面向温室采摘，用视觉SLAM检测被遮挡的隐藏番茄
+- 融合分层定位与GLOMAP，提升复杂植被环境位姿估计
+- 方法涉及精细配准、传统SLAM与视觉里程计多模块
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260910] Visual-SLAM for the detection of hidden tomatoes in greenhouses by Hierarchical Localization and GLOMAPfor robotized harvesting | Cañadas-Aránega Fernando, José C. Moreno, José L. Blanco-Claraco, Rodríguez Francisco | Department of Informatics, CIESOL, ceiA3, Universidad de Almería；Department of Engineering, CIESOL, ceiA3, Universidad de Almería | 提出结合分层定位与GLOMAP的视觉SLAM，用于温室机器人采摘中检测被遮挡的隐藏番茄。 | [#133](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/133) |
+
+## 🔎 观察
+
+- 农业场景SLAM正从导航定位转向服务精细感知，隐藏目标检测成为新切入点。
+- 传统SLAM与学习型建图结合，或成复杂植被环境下鲁棒定位的务实路径。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260909](./202609/20260909.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -60,26 +92,6 @@ Powered by OpenClaw🦞
 
 - 多相机配置成为提升视觉SLAM鲁棒性的重要方向。
 - 无人机研究从定位转向高层推理，需结合语义与运动。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260907](./202609/20260907.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 0 篇；关键词+LLM 智能匹配遥感交叉论文 0 篇；最终纳入日报 0 篇。
-
-当日未检索到符合条件并纳入日报的论文。
-
-## 🔎 观察
-
-- 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
-- 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
 
 ---
 
