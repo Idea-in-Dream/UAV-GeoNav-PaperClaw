@@ -2,6 +2,41 @@
 
 最近三天日报（最新在前）：
 
+# [20260915](./202609/20260915.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 9 篇；关键词+LLM 智能匹配遥感交叉论文 4 篇；最终纳入日报 4 篇。
+
+今日论文聚焦于SLAM与三维重建的轻量化、语义化与多源融合。PanoGS-SLAM将全景相机与3D高斯泼溅结合，拓展了SLAM的感知视野；HuMemSLAM受人类视觉认知启发，提升语义位置识别的鲁棒性；TIO-Former面向纳米无人机，以超轻量流式因果Transformer实现ToF-惯性里程计；HLC-GS则利用风险图引导的高度层一致性高斯泼溅，从光学卫星影像重建DSM。整体趋势显示，研究者正致力于在资源受限平台上提升定位与建图的精度和鲁棒性。
+
+## ✨ 今日亮点
+
+- 全景3D高斯泼溅SLAM拓展了视觉SLAM的感知范围与重建能力
+- 人类视觉记忆机制被引入语义位置识别以增强鲁棒性
+- 超轻量流式Transformer为纳米无人机提供新型ToF-惯性里程计方案
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260915] PanoGS-SLAM: Panoramic 3D Gaussian Splatting SLAM | Mao Yongqi, Shi Hao, Zhang Yufan, Yi Zhonghua, Guo Xiangfei, Wang Kaiwei | Zhejiang University；National University of Defense Technology | 提出全景3D高斯泼溅SLAM系统，利用全景相机提升建图与定位的视野覆盖。 | [#136](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/136) |
+| [20260915] HuMemSLAM: Efficient Human-Inspired Semantic Place Recognition for Robust Visual SLAM | Adebambo Mayowa, Donnelly Sebastian, Amaritei Armand, Bradley Andrew, Rast Alexander | Research in human visual cognition suggests that recog-；School of Engineering, Computing & Mathematics, Oxford Brookes；University, Oxford, UK；University, Oxford, UK. 2) HuMemSLAM, the integration of HuMem-VPR with | 受人类视觉认知启发，设计高效语义位置识别模块以增强视觉SLAM鲁棒性。 | [#137](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/137) |
+| [20260915] TIO-Former: Ultra-Lightweight 6-Directional ToF-Inertial Odometry for Nano-UAVs via a Streaming Causal Transformer | Liu Yang, He Yifan, Zhao Wenhao, Mo Xiangyu, Xu Yang, Wei Hao, Ma Mingze, Li Huan, Wu Yifan, Dai Zipeng, Zhou Xin, Gao Fei | Zhejiang University, Hangzhou, China | 面向纳米无人机，提出超轻量流式因果Transformer实现6方向ToF-惯性里程计。 | [#138](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/138) |
+| [20260915] HLC-GS: Risk-Map-Guided Height-Layer Consistency Gaussian Splatting for DSM Reconstruction from Optical Satellite Imagery | Yang Jie, Pi Yingdong, Luo Qiyan, Wang Xiaoyu, Wen Lekang, Wang Mi | State Key Laboratory of Information Engineering in Surveying, Mapping and Remote Sensing, Wuhan University；Hubei Luojia Laboratory；School of Computer Science, Wuhan University | 利用风险图引导高度层一致性高斯泼溅，从光学卫星影像重建DSM。 | [#139](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/139) |
+
+## 🔎 观察
+
+- 轻量化与语义化成为SLAM研究主线，纳米无人机与全景感知等新平台推动算法适配。
+- 3D高斯泼溅持续向遥感与SLAM渗透，但跨模态融合与实时性仍是待验证的关键。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260911](./202609/20260911.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -47,38 +82,6 @@ Powered by OpenClaw🦞
 
 - 农业场景SLAM正从导航定位转向服务精细感知，隐藏目标检测成为新切入点。
 - 传统SLAM与学习型建图结合，或成复杂植被环境下鲁棒定位的务实路径。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260909](./202609/20260909.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 8 篇；关键词+LLM 智能匹配遥感交叉论文 1 篇；最终纳入日报 1 篇。
-
-今日研究趋势聚焦于利用开放地图数据提升定位与里程计鲁棒性。一篇工作提出与里程计无关的漂移校正方法，通过将轨迹段匹配至OpenStreetMap车道中心线，实现无需依赖特定里程计模型的全局校正。该方向融合传统SLAM、视觉里程计与地图辅助定位，强调开放数据在长期导航中的价值，有望降低对高精地图的依赖，推动低成本、可扩展的定位方案发展。
-
-## ✨ 今日亮点
-
-- 利用OSM车道几何实现里程计无关的漂移校正
-- 融合Map-Aided-VIO与传统SLAM、视觉里程计
-- 开放地图数据降低对高精地图的依赖
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260909] Odometer-Agnostic Drift Correction Using OpenStreetMap Lane Geometry | Caballero Joaquin, Garcia-Fidalgo Emilio, Ortiz Alberto, Ralli Jarno | trajectory segments to OpenStreetMap (OSM) lane centerlines；and Computer Science, Institute of Artificial Intelligence, University of | 提出与里程计无关的漂移校正方法，将轨迹段匹配至OSM车道中心线以修正定位误差。 | [#131](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/131) |
-
-## 🔎 观察
-
-- 开放地图数据正成为SLAM漂移校正的轻量级替代方案，减少对高精地图的依赖。
-- 里程计无关设计提升方法通用性，但匹配精度受OSM车道几何质量影响。
 
 ---
 
