@@ -2,6 +2,42 @@
 
 最近三天日报（最新在前）：
 
+# [20260921](./202609/20260921.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 11 篇；关键词+LLM 智能匹配遥感交叉论文 5 篇；最终纳入日报 5 篇。
+
+今日论文聚焦于神经渲染与SLAM的深度融合、地理空间隐式表示以及无人机感知的鲁棒性提升。其中，基于3D高斯泼溅的SLAM方法开始引入概率建模以量化不确定性，卫星与无人机影像的高斯泼溅重建则强调可审计性与建筑感知。同时，稀疏优化、可调空间尺度的隐式神经表示以及模拟视频传输下的多视图几何等研究，共同反映出遥感与机器人视觉在精度、可扩展性和现实环境适应性方面的持续探索。
+
+## ✨ 今日亮点
+
+- 概率化3DGS-SLAM提升不确定性感知能力
+- 建筑感知卫星高斯泼溅实现可审计DSM重建
+- 模拟图传下的无人机多视图几何新基准
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260921] BayesianGS-SLAM: Uncertainty-Aware Neural Rendering SLAM via Probabilistic Formulation | Kang Kyeongsu, Ha Seongbo, Lee Sibaek, Yu Hyeonwoo | Department of Intelligent Robotics, Sungkyunkwan University, Suwon, South Korea | 提出贝叶斯GS-SLAM，通过概率公式实现不确定性感知的神经渲染SLAM。 | [#141](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/141) |
+| [20260921] Agentic Building-Aware Satellite Gaussian Splatting for Auditable Urban DSM Reconstruction | Sun Wentao, Xu Zhengsen, Chen Yiping, John S. Zelek, Li Jonathan | University of Waterloo, Department of Systems Design Engineering, Waterloo, Canada；University of Calgary, Department of Geomatics Engineering, Calgary, Canada；Sun Yat-sen University, School of Geospatial Engineering and Science, Zhuhai, China | 面向可审计城市DSM重建，提出代理式建筑感知卫星高斯泼溅方法。 | [#142](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/142) |
+| [20260921] SPARSER: Sparse Variable Projection by Exploiting Separable Structure in Robotic Perception | Nikolas R. Sanderson, Fishberg Andrew, Han Haoyu, Yang Heng, Jonathan P. How, Singh Hanumant, Everett Michael, Papalia Alan | Department of Naval Architecture and Marine Engineering, Unitypically require solving problems to high numerical；Institute of Experiential；accuracy (Triggs et al. 2000); and (iii) problems often Robotics, Northeastern University, Boston, MA, USA；problem sparsity to handle scale (Dellaert et al. 2017), Alan Papalia, Assistant Professor, Department of Naval Architecture and；adopt second-order methods (e.g., Levenberg–Marquardt) Marine Engineering at the University of Michigan | 利用可分离结构实现稀疏变量投影，提升机器人感知优化效率。 | [#143](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/143) |
+| [20260921] MIND THE GAP: A GEOGRAPHIC IMPLICIT NEURAL REPRESENTATION WITH ADJUSTABLE SPATIAL SCALE | Corley Isaac, Rao Arjun, Rolf Esther, Klemmer Konstantin, Shelhamer Evan, Lehmann Nils, Rußwurm Marc, Mai Gengchen, Jacobs Nathan, Kerner Hannah | University of British Columbia；University of Colorado Boulder；University College London；Vector Institute；Technical University of Munich；University of Bonn；University of Texas at Austin；Washington University in Saint Louis；Arizona State University；research.taylorgeospatial.org/mind | 提出可调空间尺度的地理隐式神经表示，弥合多尺度差距。 | [#144](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/144) |
+| [20260921] AnalogDepth: Multi-view Geometry from FPV drones under Analog Video Transmission | Amorim André, Pedro F. Proença | NOVA School of Science of Technology；NOVA School of Science and Technology, NOVA University Lisbon, Caparica, Portugal | 针对模拟视频传输的FPV无人机，构建多视图几何数据集与基准。 | [#145](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/145) |
+
+## 🔎 观察
+
+- 神经渲染与SLAM结合正从纯几何重建转向概率建模，以应对现实不确定性。
+- 遥感与无人机感知研究日益重视可审计性、尺度适应性与传输条件鲁棒性。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260915](./202609/20260915.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -50,38 +86,6 @@ Powered by OpenClaw🦞
 
 - 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
 - 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260910](./202609/20260910.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 6 篇；关键词+LLM 智能匹配遥感交叉论文 1 篇；最终纳入日报 1 篇。
-
-今日候选论文聚焦农业机器人视觉定位与建图。该研究面向温室番茄采摘场景，针对被叶片遮挡的隐藏果实检测难题，提出结合分层定位与GLOMAP的视觉SLAM方案。方法融合传统SLAM、视觉里程计与精细配准，旨在为机器人提供稳定位姿估计，从而辅助发现隐蔽目标。整体趋势显示，SLAM技术正从通用导航向特定农业场景的精细感知任务延伸，强调在复杂植被环境下的鲁棒性与实用性。
-
-## ✨ 今日亮点
-
-- 面向温室采摘，用视觉SLAM检测被遮挡的隐藏番茄
-- 融合分层定位与GLOMAP，提升复杂植被环境位姿估计
-- 方法涉及精细配准、传统SLAM与视觉里程计多模块
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260910] Visual-SLAM for the detection of hidden tomatoes in greenhouses by Hierarchical Localization and GLOMAPfor robotized harvesting | Cañadas-Aránega Fernando, José C. Moreno, José L. Blanco-Claraco, Rodríguez Francisco | Department of Informatics, CIESOL, ceiA3, Universidad de Almería；Department of Engineering, CIESOL, ceiA3, Universidad de Almería | 提出结合分层定位与GLOMAP的视觉SLAM，用于温室机器人采摘中检测被遮挡的隐藏番茄。 | [#133](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/133) |
-
-## 🔎 观察
-
-- 农业场景SLAM正从导航定位转向服务精细感知，隐藏目标检测成为新切入点。
-- 传统SLAM与学习型建图结合，或成复杂植被环境下鲁棒定位的务实路径。
 
 ---
 
