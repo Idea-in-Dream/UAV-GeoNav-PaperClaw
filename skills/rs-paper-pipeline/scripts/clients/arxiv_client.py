@@ -8,6 +8,7 @@ import urllib.request
 import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta
+from html.parser import HTMLParser
 from urllib.error import HTTPError
 from pathlib import Path
 
@@ -35,6 +36,88 @@ ATOM_NAMESPACE = {
     "atom": "http://www.w3.org/2005/Atom",
     "arxiv": "http://arxiv.org/schemas/atom",
 }
+
+
+class _ArxivSearchHTMLParser(HTMLParser):
+    """Extract the metadata exposed by arXiv's advanced-search result page."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.depth = 0
+        self.current: dict[str, object] | None = None
+        self.result_depth: int | None = None
+        self.captures: list[dict[str, object]] = []
+        self.results: list[dict[str, object]] = []
+
+    @staticmethod
+    def _classes(attrs: dict[str, str | None]) -> set[str]:
+        return set((attrs.get("class") or "").split())
+
+    def _start_capture(self, key: str, tag: str) -> None:
+        self.captures.append({"key": key, "tag": tag, "depth": self.depth, "parts": []})
+
+    def handle_starttag(self, tag: str, attrs_list: list[tuple[str, str | None]]) -> None:
+        self.depth += 1
+        attrs = dict(attrs_list)
+        classes = self._classes(attrs)
+
+        if tag == "li" and "arxiv-result" in classes and self.current is None:
+            self.current = {"categories": []}
+            self.result_depth = self.depth
+
+        if self.current is None:
+            return
+
+        if tag == "a" and not self.current.get("base_id"):
+            match = re.search(r"/abs/([^?#]+)", attrs.get("href") or "")
+            if match:
+                self.current["base_id"] = match.group(1).strip("/")
+
+        if tag == "p" and "title" in classes:
+            self._start_capture("title", tag)
+        elif tag == "span" and "abstract-full" in classes:
+            self._start_capture("abstract", tag)
+            version_match = re.fullmatch(r"(.+v\d+)-abstract-full", attrs.get("id") or "")
+            if version_match:
+                self.current["arxiv_id"] = version_match.group(1)
+        elif tag == "p" and "is-size-7" in classes and "comments" not in classes:
+            self._start_capture("submitted_text", tag)
+        elif tag == "span" and {"tag", "is-small"}.issubset(classes):
+            self._start_capture("category", tag)
+
+    def handle_data(self, data: str) -> None:
+        for capture in self.captures:
+            parts = capture["parts"]
+            assert isinstance(parts, list)
+            parts.append(data)
+
+    def handle_endtag(self, tag: str) -> None:
+        if self.current is not None:
+            completed = [
+                capture
+                for capture in self.captures
+                if capture["tag"] == tag and capture["depth"] == self.depth
+            ]
+            for capture in completed:
+                parts = capture["parts"]
+                assert isinstance(parts, list)
+                value = " ".join("".join(parts).split())
+                key = str(capture["key"])
+                if key == "category":
+                    categories = self.current["categories"]
+                    assert isinstance(categories, list)
+                    categories.append(value)
+                else:
+                    self.current[key] = value
+                self.captures.remove(capture)
+
+            if tag == "li" and self.result_depth == self.depth:
+                self.results.append(self.current)
+                self.current = None
+                self.result_depth = None
+                self.captures.clear()
+
+        self.depth -= 1
 
 
 def has_remote_sensing_signal(text: str) -> bool:
@@ -88,23 +171,49 @@ def build_arxiv_proxy_url(url: str, proxy_prefix: str | None) -> str | None:
     return f"{proxy_prefix}{urllib.parse.quote(url, safe='')}"
 
 
+def build_arxiv_direct_fallback_url(url: str) -> str | None:
+    """Switch between the two official arXiv API hostnames."""
+    parsed = urllib.parse.urlsplit(url)
+    hostname = (parsed.hostname or "").lower()
+    if hostname == "export.arxiv.org":
+        fallback_host = "arxiv.org"
+    elif hostname == "arxiv.org":
+        fallback_host = "export.arxiv.org"
+    else:
+        return None
+
+    return urllib.parse.urlunsplit(
+        (parsed.scheme or "https", fallback_host, parsed.path, parsed.query, parsed.fragment)
+    )
+
+
+def _arxiv_fetch_urls(url: str) -> list[str]:
+    proxy_url = build_arxiv_proxy_url(url, CONFIG.arxiv_api_proxy_prefix)
+    if CONFIG.arxiv_api_force_proxy and proxy_url:
+        return [proxy_url]
+
+    urls = [url]
+    direct_fallback = build_arxiv_direct_fallback_url(url)
+    if direct_fallback and direct_fallback not in urls:
+        urls.append(direct_fallback)
+    if proxy_url and proxy_url not in urls:
+        urls.append(proxy_url)
+    return urls
+
+
 def fetch_url_with_retry(url: str, retries: int = 6, timeout: int = 90) -> str:
     backoff = [5, 15, 30, 60, 120, 240]
     rate_limit_backoff = [60, 120, 240, 360, 600, 900]
     last_err = None
-    proxy_url = build_arxiv_proxy_url(url, CONFIG.arxiv_api_proxy_prefix)
-    active_url = proxy_url if proxy_url and CONFIG.arxiv_api_force_proxy else url
+    fetch_urls = _arxiv_fetch_urls(url)
     for i in range(retries):
+        active_url = fetch_urls[i % len(fetch_urls)]
         try:
             req = urllib.request.Request(active_url, headers={"User-Agent": CONFIG.arxiv_user_agent})
             with urllib.request.urlopen(req, timeout=timeout) as response:
                 return response.read().decode("utf-8", errors="ignore")
         except HTTPError as exc:
             last_err = exc
-            if exc.code in (429, 503) and proxy_url and active_url != proxy_url:
-                active_url = proxy_url
-                print(f"  [arXiv] HTTP {exc.code}, switching to configured read-only proxy")
-                continue
             if exc.code in (429, 503):
                 wait_s = max(
                     _retry_after_seconds(exc.headers) or 0,
@@ -112,22 +221,118 @@ def fetch_url_with_retry(url: str, retries: int = 6, timeout: int = 90) -> str:
                 )
             else:
                 wait_s = backoff[min(i, len(backoff) - 1)]
-            if i == retries - 1:
-                break
-            print(f"  [arXiv] HTTP {exc.code}, retry {i+1}/{retries} in {wait_s}s")
-            time.sleep(wait_s)
         except Exception as exc:
             last_err = exc
-            if proxy_url and active_url != proxy_url:
-                active_url = proxy_url
-                print(
-                    f"  [arXiv] {exc.__class__.__name__}, switching to configured read-only proxy"
-                )
-                continue
-            if i == retries - 1:
-                break
-            time.sleep(backoff[min(i, len(backoff) - 1)])
+            wait_s = backoff[min(i, len(backoff) - 1)]
+
+        if i == retries - 1:
+            break
+
+        next_url = fetch_urls[(i + 1) % len(fetch_urls)]
+        if len(fetch_urls) > 1 and (i + 1) % len(fetch_urls) != 0:
+            print(
+                f"  [arXiv] {last_err.__class__.__name__}, switching endpoint to "
+                f"{urllib.parse.urlsplit(next_url).netloc}"
+            )
+            continue
+
+        print(f"  [arXiv] retry {i+1}/{retries} in {wait_s}s")
+        time.sleep(wait_s)
     raise last_err
+
+
+def _build_search_term(terms: list[str]) -> str:
+    return " OR ".join(f'"{term}"' if " " in term else term for term in terms)
+
+
+def _original_submission_date(submitted_text: str) -> datetime | None:
+    match = re.search(r"\bv1 submitted\s+(\d{1,2} [A-Za-z]+, \d{4})", submitted_text)
+    if not match:
+        match = re.search(r"\bSubmitted\s+(\d{1,2} [A-Za-z]+, \d{4})", submitted_text)
+    if not match:
+        return None
+    try:
+        return datetime.strptime(match.group(1), "%d %B, %Y")
+    except ValueError:
+        return None
+
+
+def _fetch_target_date_from_search(
+    target_date: str,
+    max_results: int,
+    per_day_limit: int,
+) -> list[dict[str, str]]:
+    """Use arXiv's search frontend when the legacy Atom API is unavailable."""
+    target_day = datetime.strptime(target_date, "%Y%m%d").date()
+    next_day = target_day + timedelta(days=1)
+    page_size = min(max_results, 200)
+    items: list[dict[str, str]] = []
+    seen: set[str] = set()
+
+    for start in range(0, max_results, page_size):
+        if start > 0:
+            time.sleep(5)
+        params = {
+            "advanced": "1",
+            "terms-0-term": _build_search_term(RS_CONTEXT_QUERY_TERMS),
+            "terms-0-field": "all",
+            "classification-include_cross_list": "include",
+            "date-filter_by": "date_range",
+            "date-from_date": target_day.isoformat(),
+            # The search form rejects an equal start/end date. Results are
+            # filtered back to target_day below.
+            "date-to_date": next_day.isoformat(),
+            "date-date_type": "submitted_date_first",
+            "abstracts": "show",
+            "size": str(page_size),
+            "order": "-submitted_date",
+            "start": str(start),
+        }
+        if any(category.startswith("cs.") for category in ARXIV_CATEGORIES):
+            params["classification-computer_science"] = "y"
+        if any(category.startswith("eess.") for category in ARXIV_CATEGORIES):
+            params["classification-eess"] = "y"
+
+        url = f"https://arxiv.org/search/advanced?{urllib.parse.urlencode(params)}"
+        html_text = fetch_url_with_retry(url, retries=3, timeout=35)
+        parser = _ArxivSearchHTMLParser()
+        parser.feed(html_text)
+        page_results = parser.results
+
+        for result in page_results:
+            base_id = str(result.get("base_id") or "")
+            arxiv_id = str(result.get("arxiv_id") or base_id)
+            title = str(result.get("title") or "")
+            abstract = re.sub(r"\s*[△▲]\s*Less\s*$", "", str(result.get("abstract") or ""))
+            submitted_at = _original_submission_date(str(result.get("submitted_text") or ""))
+            categories = set(result.get("categories") or [])
+
+            if not arxiv_id or not title or not abstract or not submitted_at:
+                continue
+            if submitted_at.date() != target_day:
+                continue
+            if not categories.intersection(ARXIV_CATEGORIES):
+                continue
+            if arxiv_id in seen:
+                continue
+            seen.add(arxiv_id)
+
+            text = f"{title}\n{abstract}"
+            if not has_remote_sensing_signal(text):
+                continue
+            items.append(
+                {
+                    "arxiv_id": arxiv_id,
+                    "title": title,
+                    "abstract": abstract,
+                    "published": target_day.isoformat(),
+                }
+            )
+
+        if len(page_results) < page_size:
+            break
+
+    return limit_candidates_per_day(items, per_day_limit)
 
 
 def fetch_recent_candidates(
@@ -163,7 +368,11 @@ def fetch_recent_candidates(
                 "sortOrder": "descending",
             }
             url = f"{CONFIG.arxiv_api}?{urllib.parse.urlencode(params)}"
-            xml_text = fetch_url_with_retry(url, retries=6, timeout=90)
+            xml_text = fetch_url_with_retry(
+                url,
+                retries=2 if target_date else 4,
+                timeout=20 if target_date else 45,
+            )
 
             root = ET.fromstring(xml_text)
             entries = root.findall("atom:entry", namespace)
@@ -215,7 +424,14 @@ def fetch_recent_candidates(
             f"({category_query}) AND ({context_query}) "
             f"AND submittedDate:[{target_date}0000 TO {target_date}2359]"
         )
-        return run_query(scoped_query, max_scan=max_results, page_size=min(max_results, 200))
+        try:
+            return run_query(scoped_query, max_scan=max_results, page_size=min(max_results, 200))
+        except Exception as exc:
+            print(
+                f"  [arXiv] Atom API failed ({exc.__class__.__name__}: {exc}); "
+                "falling back to advanced search"
+            )
+            return _fetch_target_date_from_search(target_date, max_results, per_day_limit)
 
     return run_query(base_query, max_scan=3000, page_size=min(max_results, 200))
 

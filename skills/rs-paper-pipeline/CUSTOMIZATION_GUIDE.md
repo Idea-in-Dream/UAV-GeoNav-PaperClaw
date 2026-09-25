@@ -178,7 +178,7 @@
 - `ARXIV_API_URL`
   arXiv API 地址
 - `ARXIV_API_PROXY_PREFIX`
-  可选的只读代理前缀，仅当官方 arXiv API 返回 429/503 时切换；GitHub Actions 默认使用 AllOrigins，代理内容只有公开检索参数
+  可选的只读代理前缀。系统先尝试官方 Atom API；API 超时或限流时自动改用带完整摘要的 arXiv 高级搜索页。仅在显式配置时才使用第三方代理
 - `ARXIV_USER_AGENT`
   请求 arXiv 时使用的 User-Agent
 

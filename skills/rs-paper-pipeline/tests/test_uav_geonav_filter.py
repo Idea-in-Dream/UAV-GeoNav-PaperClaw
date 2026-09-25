@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from clients.arxiv_client import (
+    build_arxiv_direct_fallback_url,
     build_arxiv_proxy_url,
     fetch_recent_candidates,
     fetch_url_with_retry,
@@ -293,6 +294,40 @@ class UAVGeoNavFilterTest(unittest.TestCase):
         self.assertEqual(candidates, [])
         self.assertEqual(fetch_mock.call_count, 1)
 
+    def test_arxiv_api_failure_falls_back_to_search_html(self):
+        search_html = """
+        <ol>
+          <li class="arxiv-result">
+            <a href="https://arxiv.org/abs/2608.00001">arXiv:2608.00001</a>
+            <span class="tag is-small is-link">cs.RO</span>
+            <p class="title is-5 mathjax">Robust Visual-Inertial Odometry for UAV Navigation</p>
+            <p class="abstract mathjax">
+              <span class="abstract-full has-text-grey-dark mathjax"
+                    id="2608.00001v1-abstract-full">
+                We present visual-inertial odometry for a quadrotor operating in GNSS-denied scenes.
+                <a>△ Less</a>
+              </span>
+            </p>
+            <p class="is-size-7"><span>Submitted</span> 1 August, 2026;
+              <span>originally announced</span> August 2026.</p>
+          </li>
+        </ol>
+        """
+
+        with patch(
+            "clients.arxiv_client.fetch_url_with_retry",
+            side_effect=[TimeoutError("Atom API timed out"), search_html],
+        ) as fetch_mock:
+            candidates = fetch_recent_candidates(max_results=100, target_date="20260801")
+
+        self.assertEqual(len(candidates), 1)
+        self.assertEqual(candidates[0]["arxiv_id"], "2608.00001v1")
+        self.assertEqual(candidates[0]["published"], "2026-08-01")
+        fallback_url = urllib.parse.unquote(fetch_mock.call_args_list[1].args[0])
+        self.assertIn("/search/advanced", fallback_url)
+        self.assertIn("date-from_date=2026-08-01", fallback_url)
+        self.assertIn("date-to_date=2026-08-02", fallback_url)
+
     def test_arxiv_proxy_url_encodes_the_original_query(self):
         original = "https://export.arxiv.org/api/query?search_query=cat:cs.CV&max_results=10"
         proxied = build_arxiv_proxy_url(original, "https://api.allorigins.win/raw?url=")
@@ -302,7 +337,15 @@ class UAVGeoNavFilterTest(unittest.TestCase):
             "https://api.allorigins.win/raw?url=" + urllib.parse.quote(original, safe=""),
         )
 
-    def test_arxiv_network_failure_switches_to_proxy_without_sleeping(self):
+    def test_arxiv_direct_fallback_switches_official_hostname(self):
+        original = "https://export.arxiv.org/api/query?search_query=cat%3Acs.CV"
+
+        self.assertEqual(
+            build_arxiv_direct_fallback_url(original),
+            "https://arxiv.org/api/query?search_query=cat%3Acs.CV",
+        )
+
+    def test_arxiv_network_failure_tries_direct_mirror_before_proxy(self):
         response = MagicMock()
         response.__enter__.return_value.read.return_value = b"<feed/>"
         config = SimpleNamespace(
@@ -320,7 +363,27 @@ class UAVGeoNavFilterTest(unittest.TestCase):
 
         self.assertEqual(output, "<feed/>")
         second_request = urlopen_mock.call_args_list[1].args[0]
-        self.assertTrue(second_request.full_url.startswith(config.arxiv_api_proxy_prefix))
+        self.assertTrue(second_request.full_url.startswith("https://arxiv.org/api/query"))
+
+    def test_arxiv_direct_endpoints_fail_before_optional_proxy(self):
+        response = MagicMock()
+        response.__enter__.return_value.read.return_value = b"<feed/>"
+        config = SimpleNamespace(
+            arxiv_api_proxy_prefix="https://proxy.example/raw?url=",
+            arxiv_api_force_proxy=False,
+            arxiv_user_agent="test-agent",
+        )
+        original = "https://export.arxiv.org/api/query?search_query=cat:cs.CV"
+
+        with patch("clients.arxiv_client.CONFIG", config), patch(
+                "clients.arxiv_client.urllib.request.urlopen",
+                side_effect=[TimeoutError("export timeout"), TimeoutError("primary timeout"), response],
+            ) as urlopen_mock:
+            output = fetch_url_with_retry(original, retries=3, timeout=1)
+
+        self.assertEqual(output, "<feed/>")
+        third_request = urlopen_mock.call_args_list[2].args[0]
+        self.assertTrue(third_request.full_url.startswith(config.arxiv_api_proxy_prefix))
 
     def test_arxiv_force_proxy_skips_the_official_endpoint(self):
         response = MagicMock()
