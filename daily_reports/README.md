@@ -2,6 +2,38 @@
 
 最近三天日报（最新在前）：
 
+# [20260924](./202609/20260924.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 2 篇；关键词+LLM 智能匹配遥感交叉论文 1 篇；最终纳入日报 1 篇。
+
+今日研究趋势聚焦于GNSS拒止环境下的多传感器融合定位。一篇工作提出FMCW-LIO，利用调频连续波激光雷达的多普勒测速能力，结合惯性测量单元实现激光-惯性里程计。该研究针对传统SLAM在无卫星信号场景中的漂移问题，探索了多普勒观测对运动估计的约束增强。整体来看，研究倾向于挖掘新型传感器特性以提升定位鲁棒性，但当前候选仅一篇，趋势判断需谨慎。
+
+## ✨ 今日亮点
+
+- FMCW激光雷达的多普勒测速被引入LIO框架，增强GNSS拒止下的定位。
+- 研究来自澳门大学，聚焦激光-惯性里程计在无卫星信号场景的应用。
+- 该工作属于传统SLAM与视觉惯性里程计交叉方向，强调传感器融合。
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260924] FMCW-LIO: A Doppler LiDAR-Inertial Odometry | Zhao Mingle, Wang Jiahao, Gao Tianxiao, Xu Chengzhong, Kong Hui | University of Macau | 提出FMCW-LIO，利用调频连续波激光雷达的多普勒测速与IMU融合，实现GNSS拒止环境下的激光-惯性里程计。 | [#159](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/159) |
+
+## 🔎 观察
+
+- 利用FMCW激光雷达的多普勒信息可补充几何观测，有望抑制GNSS拒止下的里程计漂移。
+- 当前仅一篇候选，难以判断领域整体走向，但传感器特性挖掘是提升鲁棒定位的可行方向。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260923](./202609/20260923.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -76,42 +108,6 @@ Powered by OpenClaw🦞
 
 - 点云配准与SLAM跟踪仍是核心，高斯泼溅与距离图代表不同技术路线。
 - 评估规范与基准测试受关注，反映领域对可复现比较的迫切需求。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260921](./202609/20260921.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 11 篇；关键词+LLM 智能匹配遥感交叉论文 5 篇；最终纳入日报 5 篇。
-
-今日论文聚焦于神经渲染与SLAM的深度融合，以及面向遥感与无人机场景的几何感知方法。贝叶斯概率框架被引入3DGS-SLAM以量化不确定性，卫星高斯泼溅结合智能体实现可审计的城市DSM重建。同时，稀疏优化、可调空间尺度的隐式神经表示以及模拟视频传输下的多视图几何等研究，共同推动遥感AI在鲁棒性、可解释性和跨域适应方面的发展。
-
-## ✨ 今日亮点
-
-- 贝叶斯概率建模提升3DGS-SLAM不确定性量化能力
-- 智能体卫星高斯泼溅实现可审计城市DSM重建
-- 模拟视频传输下FPV无人机多视图几何新基准
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260921] BayesianGS-SLAM: Uncertainty-Aware Neural Rendering SLAM via Probabilistic Formulation | Kang Kyeongsu, Ha Seongbo, Lee Sibaek, Yu Hyeonwoo | Department of Intelligent Robotics, Sungkyunkwan University, Suwon, South Korea | 提出贝叶斯GS-SLAM，通过概率公式实现不确定性感知的神经渲染SLAM。 | [#141](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/141) |
-| [20260921] Agentic Building-Aware Satellite Gaussian Splatting for Auditable Urban DSM Reconstruction | Sun Wentao, Xu Zhengsen, Chen Yiping, John S. Zelek, Li Jonathan | University of Waterloo, Department of Systems Design Engineering, Waterloo, Canada；University of Calgary, Department of Geomatics Engineering, Calgary, Canada；Sun Yat-sen University, School of Geospatial Engineering and Science, Zhuhai, China | 利用智能体建筑感知卫星高斯泼溅，实现可审计的城市DSM重建。 | [#142](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/142) |
-| [20260921] SPARSER: Sparse Variable Projection by Exploiting Separable Structure in Robotic Perception | Nikolas R. Sanderson, Fishberg Andrew, Han Haoyu, Yang Heng, Jonathan P. How, Singh Hanumant, Everett Michael, Papalia Alan | Department of Naval Architecture and Marine Engineering, Unitypically require solving problems to high numerical；Institute of Experiential；accuracy (Triggs et al. 2000); and (iii) problems often Robotics, Northeastern University, Boston, MA, USA；problem sparsity to handle scale (Dellaert et al. 2017), Alan Papalia, Assistant Professor, Department of Naval Architecture and；adopt second-order methods (e.g., Levenberg–Marquardt) Marine Engineering at the University of Michigan | 提出SPARSER，利用可分离结构进行稀疏变量投影以加速机器人感知。 | [#143](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/143) |
-| [20260921] MIND THE GAP: A GEOGRAPHIC IMPLICIT NEURAL REPRESENTATION WITH ADJUSTABLE SPATIAL SCALE | Corley Isaac, Rao Arjun, Rolf Esther, Klemmer Konstantin, Shelhamer Evan, Lehmann Nils, Rußwurm Marc, Mai Gengchen, Jacobs Nathan, Kerner Hannah | University of British Columbia；University of Colorado Boulder；University College London；Vector Institute；Technical University of Munich；University of Bonn；University of Texas at Austin；Washington University in Saint Louis；Arizona State University；research.taylorgeospatial.org/mind | 提出地理隐式神经表示，支持可调空间尺度的遥感场景建模。 | [#144](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/144) |
-| [20260921] AnalogDepth: Multi-view Geometry from FPV drones under Analog Video Transmission | Amorim André, Pedro F. Proença | NOVA School of Science of Technology；NOVA School of Science and Technology, NOVA University Lisbon, Caparica, Portugal | 构建模拟视频传输下FPV无人机多视图几何数据集与基准。 | [#145](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/145) |
-
-## 🔎 观察
-
-- 神经渲染与SLAM结合正从静态重建走向概率化与不确定性量化。
-- 遥感与无人机场景推动几何优化和隐式表示向可调尺度与鲁棒性发展。
 
 ---
 
