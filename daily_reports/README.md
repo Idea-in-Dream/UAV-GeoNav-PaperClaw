@@ -2,6 +2,41 @@
 
 最近三天日报（最新在前）：
 
+# [20260923](./202609/20260923.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 10 篇；关键词+LLM 智能匹配遥感交叉论文 4 篇；最终纳入日报 4 篇。
+
+今日论文聚焦GNSS拒止环境下的定位与建图，涵盖无人机大范围几何地图定位、语义运动先验增强的立体视觉SLAM、稠密单目惯性SLAM的前馈初始化与位姿条件建图，以及基于虚幻引擎的卫星立体匹配合成数据集。整体趋势显示，研究者正通过多源先验融合与合成数据生成，提升复杂城市环境中定位与三维重建的鲁棒性和精度。
+
+## ✨ 今日亮点
+
+- 无人机几何地图定位应对GNSS拒止城市环境
+- 语义运动先验提升立体视觉SLAM特征匹配
+- 虚幻引擎合成卫星立体匹配高精度数据集
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260923] Large-Scale Geometric Map-Based Localization of UAVs in GNSS-Denied Urban Environments | Garth J.S. Terlizzi III, Fathian Kaveh | Department of Computer Science, Colorado School of Mines | 面向GNSS拒止城市环境，提出基于大规模几何地图的无人机跨视角检索与精细配准定位方法。 | [#154](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/154) |
+| [20260923] Know-Your-Scene (KYS)-SLAM: Hierarchical Semantic-Motion Priors for Feature Matching in Stereo Visual SLAM | Chatterjee Preeti, Lu Jin, Sun Jin, Suchendra M. Bhandarkar | School of Computing, University of Georgia | 利用层次化语义与运动先验改进立体视觉SLAM特征匹配，提升传统SLAM鲁棒性。 | [#155](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/155) |
+| [20260923] DAVIO: Dense Monocular–Inertial SLAM with Feed-Forward Initialization and Pose-Conditioned Mapping | Mahmoud Jaafar, Movsesyan Arthur, Iumanov Mikhail, Kolyubin Sergey | Robotics (BE2 R) Lab, ITMO University, Saint Petersburg, Russia | 提出稠密单目惯性SLAM，采用前馈初始化与位姿条件建图，应对GNSS拒止场景。 | [#156](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/156) |
+| [20260923] SatUnreal: A High-Precision Synthetic Dataset for Satellite Stereo Matching via Unreal Engine | Kim Han-Gyeol, Park JaeWan, Park Junmin, Kwon Darongsae | To address these issues, research on synthetic data utiliz- | 基于虚幻引擎构建高精度合成数据集，用于卫星立体匹配与DSM/DEM/TDOM基准测试。 | [#157](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/157) |
+
+## 🔎 观察
+
+- GNSS拒止定位与SLAM研究正从单一传感器向多源先验融合演进，语义与运动信息成为提升鲁棒性的关键。
+- 合成数据集开始覆盖卫星立体匹配任务，有望缓解真实标注稀缺问题，但域差距仍需验证。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260922](./202609/20260922.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -77,41 +112,6 @@ Powered by OpenClaw🦞
 
 - 神经渲染与SLAM结合正从静态重建走向概率化与不确定性量化。
 - 遥感与无人机场景推动几何优化和隐式表示向可调尺度与鲁棒性发展。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260915](./202609/20260915.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 9 篇；关键词+LLM 智能匹配遥感交叉论文 4 篇；最终纳入日报 4 篇。
-
-今日论文聚焦于SLAM与三维重建的轻量化、语义化与多源融合。PanoGS-SLAM将全景相机与3D高斯泼溅结合，拓展了SLAM的感知视野；HuMemSLAM受人类视觉认知启发，提升语义位置识别的鲁棒性；TIO-Former面向纳米无人机，以超轻量流式因果Transformer实现ToF-惯性里程计；HLC-GS则利用风险图引导的高度层一致性高斯泼溅，从光学卫星影像重建DSM。整体趋势显示，研究者正致力于在资源受限平台上提升定位与建图的精度和鲁棒性。
-
-## ✨ 今日亮点
-
-- 全景3D高斯泼溅SLAM拓展了视觉SLAM的感知范围与重建能力
-- 人类视觉记忆机制被引入语义位置识别以增强鲁棒性
-- 超轻量流式Transformer为纳米无人机提供新型ToF-惯性里程计方案
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260915] PanoGS-SLAM: Panoramic 3D Gaussian Splatting SLAM | Mao Yongqi, Shi Hao, Zhang Yufan, Yi Zhonghua, Guo Xiangfei, Wang Kaiwei | Zhejiang University；National University of Defense Technology | 提出全景3D高斯泼溅SLAM系统，利用全景相机提升建图与定位的视野覆盖。 | [#136](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/136) |
-| [20260915] HuMemSLAM: Efficient Human-Inspired Semantic Place Recognition for Robust Visual SLAM | Adebambo Mayowa, Donnelly Sebastian, Amaritei Armand, Bradley Andrew, Rast Alexander | Research in human visual cognition suggests that recog-；School of Engineering, Computing & Mathematics, Oxford Brookes；University, Oxford, UK；University, Oxford, UK. 2) HuMemSLAM, the integration of HuMem-VPR with | 受人类视觉认知启发，设计高效语义位置识别模块以增强视觉SLAM鲁棒性。 | [#137](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/137) |
-| [20260915] TIO-Former: Ultra-Lightweight 6-Directional ToF-Inertial Odometry for Nano-UAVs via a Streaming Causal Transformer | Liu Yang, He Yifan, Zhao Wenhao, Mo Xiangyu, Xu Yang, Wei Hao, Ma Mingze, Li Huan, Wu Yifan, Dai Zipeng, Zhou Xin, Gao Fei | Zhejiang University, Hangzhou, China | 面向纳米无人机，提出超轻量流式因果Transformer实现6方向ToF-惯性里程计。 | [#138](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/138) |
-| [20260915] HLC-GS: Risk-Map-Guided Height-Layer Consistency Gaussian Splatting for DSM Reconstruction from Optical Satellite Imagery | Yang Jie, Pi Yingdong, Luo Qiyan, Wang Xiaoyu, Wen Lekang, Wang Mi | State Key Laboratory of Information Engineering in Surveying, Mapping and Remote Sensing, Wuhan University；Hubei Luojia Laboratory；School of Computer Science, Wuhan University | 利用风险图引导高度层一致性高斯泼溅，从光学卫星影像重建DSM。 | [#139](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/139) |
-
-## 🔎 观察
-
-- 轻量化与语义化成为SLAM研究主线，纳米无人机与全景感知等新平台推动算法适配。
-- 3D高斯泼溅持续向遥感与SLAM渗透，但跨模态融合与实时性仍是待验证的关键。
 
 ---
 
