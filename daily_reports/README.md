@@ -9,27 +9,27 @@
 
 今日共检索候选论文 10 篇；关键词+LLM 智能匹配遥感交叉论文 4 篇；最终纳入日报 4 篇。
 
-今日论文聚焦GNSS拒止环境下的定位与建图，涵盖无人机大范围几何地图定位、语义运动先验增强的立体视觉SLAM、稠密单目惯性SLAM的前馈初始化与位姿条件建图，以及基于虚幻引擎的卫星立体匹配合成数据集。整体趋势显示，研究者正通过多源先验融合与合成数据生成，提升复杂城市环境中定位与三维重建的鲁棒性和精度。
+今日论文聚焦GNSS拒止环境下的定位与建图，涵盖无人机大范围几何地图定位、立体视觉SLAM语义运动先验、单目惯性SLAM前馈初始化与位姿条件建图，以及卫星立体匹配合成数据集。研究趋势显示：多源先验融合（语义、运动、几何）成为提升鲁棒性的关键，同时合成数据被用于缓解真实标注稀缺问题。整体上，视觉与惯性、地图与学习的结合正推动拒止环境自主导航向高精度、可扩展方向发展。
 
 ## ✨ 今日亮点
 
-- 无人机几何地图定位应对GNSS拒止城市环境
-- 语义运动先验提升立体视觉SLAM特征匹配
-- 虚幻引擎合成卫星立体匹配高精度数据集
+- 无人机城市定位利用几何地图与跨视角检索实现GNSS拒止下大范围定位
+- SLAM研究引入语义-运动层次先验，提升立体视觉特征匹配鲁棒性
+- 单目惯性SLAM通过前馈初始化与位姿条件建图增强稠密重建能力
 
 ## 🗂 今日文章列表
 
 | 标题 | 作者 | 单位 | 一句话概括 | Issue |
 |---|---|---|---|---|
-| [20260923] Large-Scale Geometric Map-Based Localization of UAVs in GNSS-Denied Urban Environments | Garth J.S. Terlizzi III, Fathian Kaveh | Department of Computer Science, Colorado School of Mines | 面向GNSS拒止城市环境，提出基于大规模几何地图的无人机跨视角检索与精细配准定位方法。 | [#154](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/154) |
-| [20260923] Know-Your-Scene (KYS)-SLAM: Hierarchical Semantic-Motion Priors for Feature Matching in Stereo Visual SLAM | Chatterjee Preeti, Lu Jin, Sun Jin, Suchendra M. Bhandarkar | School of Computing, University of Georgia | 利用层次化语义与运动先验改进立体视觉SLAM特征匹配，提升传统SLAM鲁棒性。 | [#155](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/155) |
-| [20260923] DAVIO: Dense Monocular–Inertial SLAM with Feed-Forward Initialization and Pose-Conditioned Mapping | Mahmoud Jaafar, Movsesyan Arthur, Iumanov Mikhail, Kolyubin Sergey | Robotics (BE2 R) Lab, ITMO University, Saint Petersburg, Russia | 提出稠密单目惯性SLAM，采用前馈初始化与位姿条件建图，应对GNSS拒止场景。 | [#156](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/156) |
-| [20260923] SatUnreal: A High-Precision Synthetic Dataset for Satellite Stereo Matching via Unreal Engine | Kim Han-Gyeol, Park JaeWan, Park Junmin, Kwon Darongsae | To address these issues, research on synthetic data utiliz- | 基于虚幻引擎构建高精度合成数据集，用于卫星立体匹配与DSM/DEM/TDOM基准测试。 | [#157](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/157) |
+| [20260923] Large-Scale Geometric Map-Based Localization of UAVs in GNSS-Denied Urban Environments | Garth J.S. Terlizzi III, Fathian Kaveh | Department of Computer Science, Colorado School of Mines | 面向GNSS拒止城市环境，提出基于大规模几何地图的无人机定位，结合跨视角检索与精细配准实现目标地理定位。 | [#154](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/154) |
+| [20260923] Know-Your-Scene (KYS)-SLAM: Hierarchical Semantic-Motion Priors for Feature Matching in Stereo Visual SLAM | Chatterjee Preeti, Lu Jin, Sun Jin, Suchendra M. Bhandarkar | School of Computing, University of Georgia | 提出KYS-SLAM，利用层次化语义-运动先验改进立体视觉SLAM中的特征匹配，提升传统SLAM鲁棒性。 | [#155](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/155) |
+| [20260923] DAVIO: Dense Monocular–Inertial SLAM with Feed-Forward Initialization and Pose-Conditioned Mapping | Mahmoud Jaafar, Movsesyan Arthur, Iumanov Mikhail, Kolyubin Sergey | Robotics (BE2 R) Lab, ITMO University, Saint Petersburg, Russia | 提出DAVIO，稠密单目惯性SLAM，采用前馈初始化与位姿条件建图，面向GNSS拒止场景。 | [#156](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/156) |
+| [20260923] SatUnreal: A High-Precision Synthetic Dataset for Satellite Stereo Matching via Unreal Engine | Kim Han-Gyeol, Park JaeWan, Park Junmin, Kwon Darongsae | To address these issues, research on synthetic data utiliz- | 发布SatUnreal，基于虚幻引擎的高精度合成数据集，用于卫星立体匹配与DSM/DEM/TDOM基准测试。 | [#157](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/157) |
 
 ## 🔎 观察
 
-- GNSS拒止定位与SLAM研究正从单一传感器向多源先验融合演进，语义与运动信息成为提升鲁棒性的关键。
-- 合成数据集开始覆盖卫星立体匹配任务，有望缓解真实标注稀缺问题，但域差距仍需验证。
+- 多篇工作强调先验知识（语义、运动、几何）与SLAM/定位融合，反映拒止环境下对鲁棒性的迫切需求。
+- 合成数据集与真实场景定位并行推进，显示数据稀缺仍是卫星与无人机视觉任务的关键瓶颈。
 
 ---
 
