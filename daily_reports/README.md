@@ -2,6 +2,40 @@
 
 最近三天日报（最新在前）：
 
+# [20260928](./202609/20260928.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 12 篇；关键词+LLM 智能匹配遥感交叉论文 3 篇；最终纳入日报 3 篇。
+
+今日研究聚焦于复杂环境下的三维感知与定位。稀疏视角三维重建通过深度图渲染提升高斯泼溅的鲁棒性；林下无人机VIO数据集为GNSS拒止场景提供基准；边缘辅助多视角定位则探索任务导向通信与跨视角检索的结合。整体趋势显示，研究者正从单一模态向多源融合、从理想环境向真实复杂场景迁移，并强调可复现的基准建设。
+
+## ✨ 今日亮点
+
+- 稀疏视角3DGS结合深度图渲染，缓解重建退化问题
+- 林下无人机VIO数据集填补GNSS拒止场景基准空白
+- 任务导向通信与跨视角检索协同提升边缘定位精度
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260928] Remote Sensing Sparse-View 3D Gaussian Splatting via Depth Image-Based Rendering | Kang Jiaming, Zou Zhengxia, Shi Zhenwei | Beihang University | 提出基于深度图渲染的稀疏视角3D高斯泼溅方法，提升复杂场景重建质量。 | [#180](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/180) |
+| [20260928] ForVis: An In-Field Dataset and Benchmark for VIO Using Under-Canopy UAV Flights in Forests | Kiani Arman, Ataei Masoud, Gyaase Elvis, Eiyike Jeffrey, Weiskittel Aaron, Chakraborty Prabuddha, Dhiman Vikas | Department of Electrical and Computer Engineering, University of Maine, Orono, ME 04469, USA | 发布林下无人机VIO飞行数据集与基准，面向GNSS拒止环境评估定位算法。 | [#181](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/181) |
+| [20260928] Task-Oriented Communications for Edge-Assisted Multi-View Localization | Fang Zhengru, Lou Huanhuan, Hu Senkang, Tao Yihang, Li Zongdian, Deng Yiqin, Wang Jingjing, Fang Yuguang | Department of Electronic and Computer Engineering, The Hong Kong University of Science and Technology, Hong Kong (；the Hong Kong JC STEM Lab of Smart City and the Department of Computer Science, City University of Hong Kong, Hong Kong (；Zhejiang University, Hangzhou, China (；School of Data Science, Lingnan University, Tuen Mun, Hong Kong, China (；School of Cyber Science and Technology, Beihang University, Beijing, China ( | 研究边缘辅助多视角定位中的任务导向通信，融合跨视角检索与目标地理定位。 | [#182](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/182) |
+
+## 🔎 观察
+
+- 稀疏视角重建与林下VIO均指向真实复杂环境，表明鲁棒感知成为当前研究重点。
+- 边缘辅助定位结合通信与检索，反映多源协同正从感知层向通信与决策层延伸。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260925](./202609/20260925.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -47,41 +81,6 @@ Powered by OpenClaw🦞
 
 - 多普勒测速信息可有效约束LiDAR-惯性里程计中的尺度与漂移误差。
 - 新型FMCW雷达体制正从感知向导航定位延伸，值得持续关注。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260923](./202609/20260923.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 10 篇；关键词+LLM 智能匹配遥感交叉论文 4 篇；最终纳入日报 4 篇。
-
-今日论文聚焦GNSS拒止环境下的定位与建图，涵盖无人机大范围几何地图定位、立体视觉SLAM语义运动先验、单目惯性SLAM前馈初始化与位姿条件建图，以及卫星立体匹配合成数据集。研究趋势显示：多源先验融合（语义、运动、几何）成为提升鲁棒性的关键，同时合成数据被用于缓解真实标注稀缺问题。整体上，视觉与惯性、地图与学习的结合正推动拒止环境自主导航向高精度、可扩展方向发展。
-
-## ✨ 今日亮点
-
-- 无人机城市定位利用几何地图与跨视角检索实现GNSS拒止下大范围定位
-- SLAM研究引入语义-运动层次先验，提升立体视觉特征匹配鲁棒性
-- 单目惯性SLAM通过前馈初始化与位姿条件建图增强稠密重建能力
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260923] Large-Scale Geometric Map-Based Localization of UAVs in GNSS-Denied Urban Environments | Garth J.S. Terlizzi III, Fathian Kaveh | Department of Computer Science, Colorado School of Mines | 面向GNSS拒止城市环境，提出基于大规模几何地图的无人机定位，结合跨视角检索与精细配准实现目标地理定位。 | [#154](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/154) |
-| [20260923] Know-Your-Scene (KYS)-SLAM: Hierarchical Semantic-Motion Priors for Feature Matching in Stereo Visual SLAM | Chatterjee Preeti, Lu Jin, Sun Jin, Suchendra M. Bhandarkar | School of Computing, University of Georgia | 提出KYS-SLAM，利用层次化语义-运动先验改进立体视觉SLAM中的特征匹配，提升传统SLAM鲁棒性。 | [#155](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/155) |
-| [20260923] DAVIO: Dense Monocular–Inertial SLAM with Feed-Forward Initialization and Pose-Conditioned Mapping | Mahmoud Jaafar, Movsesyan Arthur, Iumanov Mikhail, Kolyubin Sergey | Robotics (BE2 R) Lab, ITMO University, Saint Petersburg, Russia | 提出DAVIO，稠密单目惯性SLAM，采用前馈初始化与位姿条件建图，面向GNSS拒止场景。 | [#156](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/156) |
-| [20260923] SatUnreal: A High-Precision Synthetic Dataset for Satellite Stereo Matching via Unreal Engine | Kim Han-Gyeol, Park JaeWan, Park Junmin, Kwon Darongsae | To address these issues, research on synthetic data utiliz- | 发布SatUnreal，基于虚幻引擎的高精度合成数据集，用于卫星立体匹配与DSM/DEM/TDOM基准测试。 | [#157](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/157) |
-
-## 🔎 观察
-
-- 多篇工作强调先验知识（语义、运动、几何）与SLAM/定位融合，反映拒止环境下对鲁棒性的迫切需求。
-- 合成数据集与真实场景定位并行推进，显示数据稀缺仍是卫星与无人机视觉任务的关键瓶颈。
 
 ---
 
