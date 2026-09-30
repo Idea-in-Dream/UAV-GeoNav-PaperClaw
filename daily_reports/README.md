@@ -2,6 +2,34 @@
 
 最近三天日报（最新在前）：
 
+# [20260929](./202609/20260929.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 12 篇；关键词+LLM 智能匹配遥感交叉论文 3 篇；最终纳入日报 3 篇。
+
+今日论文总体呈现出遥感与AI交叉深化趋势。
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20260929] Pow3R-SLAM: Real-Time RGB-D SLAM with 3D Reconstruction Priors | Kolios Christopher, Mehta Ishaan, Janjic Sasa, Bahoo Yeganeh, Saeedi Sajad | Toronto Metropolitan University, Toronto, Canada；University of Windsor, Windsor, Canada；University College London, London, United Kingdom | 聚焦Dataset-Benchmark、Traditional-SLAM，给出可复现的模型与评测方案。 | [#184](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/184) |
+| [20260929] Degeneracy-Orthogonal Geometric Constraints for LiDAR SLAM | Kim Minseo, Kim Yina, Hwang Jinhwa, Alex Junho Lee | Department of Mechanical Systems Engineering, Sookmyung Women's University, 100 Cheongpa-ro 47-gil, Yongsan-gu, Seoul, Republic of Korea | 聚焦GNSS-Denied、Traditional-SLAM，给出可复现的模型与评测方案。 | [#185](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/185) |
+| [20260929] SCCM: Spherically Consistent Coarse Matching for ERP Dense Feature Correspondence | Lee Gyeonggwan, Im Eunsoo, Hong Seunghwan, Suh Junghun | Kakao Mobility Corp., Seongnam, Republic of Korea Korea University, Seoul, Republic of Korea | 聚焦Dataset-Benchmark、Needs-Review，给出可复现的模型与评测方案。 | [#186](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/186) |
+
+## 🔎 观察
+
+- 基础模型与遥感任务结合持续增强，评测与推理能力成为关键。
+- 多数工作关注算法有效性与泛化，而非硬件实现。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20260928](./202609/20260928.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -49,38 +77,6 @@ Powered by OpenClaw🦞
 
 - 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
 - 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260924](./202609/20260924.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 2 篇；关键词+LLM 智能匹配遥感交叉论文 1 篇；最终纳入日报 1 篇。
-
-今日研究聚焦于GNSS拒止环境下的LiDAR-惯性里程计，FMCW多普勒LiDAR与IMU融合成为提升定位鲁棒性的新方向。该工作针对传统SLAM在无卫星信号场景中的漂移问题，利用调频连续波雷达的测速能力增强状态估计。整体趋势显示，多传感器紧耦合与新型测距体制正推动无人系统导航向更高自主性发展。
-
-## ✨ 今日亮点
-
-- FMCW多普勒LiDAR为GNSS拒止导航提供新观测维度
-- LiDAR-惯性紧耦合方案提升位姿估计鲁棒性
-- 澳门大学团队探索新型雷达体制在SLAM中的应用
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260924] FMCW-LIO: A Doppler LiDAR-Inertial Odometry | Zhao Mingle, Wang Jiahao, Gao Tianxiao, Xu Chengzhong, Kong Hui | University of Macau | 提出FMCW-LIO，利用多普勒LiDAR与IMU紧耦合，在GNSS拒止下实现鲁棒里程计。 | [#159](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/159) |
-
-## 🔎 观察
-
-- 多普勒测速信息可有效约束LiDAR-惯性里程计中的尺度与漂移误差。
-- 新型FMCW雷达体制正从感知向导航定位延伸，值得持续关注。
 
 ---
 
