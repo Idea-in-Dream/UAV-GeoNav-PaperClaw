@@ -2,6 +2,26 @@
 
 最近三天日报（最新在前）：
 
+# [20261002](./202610/20261002.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 0 篇；关键词+LLM 智能匹配遥感交叉论文 0 篇；最终纳入日报 0 篇。
+
+当日未检索到符合条件并纳入日报的论文。
+
+## 🔎 观察
+
+- 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
+- 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20261001](./202610/20261001.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -50,34 +70,6 @@ Powered by OpenClaw🦞
 
 - 多源先验与学习约束结合，正成为解决定位歧义与退化问题的关键路径。
 - 视觉不可靠条件下的VIO研究，从单纯滤波转向学习偏差与不确定性建模。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260929](./202609/20260929.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 12 篇；关键词+LLM 智能匹配遥感交叉论文 3 篇；最终纳入日报 3 篇。
-
-今日论文总体呈现出遥感与AI交叉深化趋势。
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260929] Pow3R-SLAM: Real-Time RGB-D SLAM with 3D Reconstruction Priors | Kolios Christopher, Mehta Ishaan, Janjic Sasa, Bahoo Yeganeh, Saeedi Sajad | Toronto Metropolitan University, Toronto, Canada；University of Windsor, Windsor, Canada；University College London, London, United Kingdom | 聚焦Dataset-Benchmark、Traditional-SLAM，给出可复现的模型与评测方案。 | [#184](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/184) |
-| [20260929] Degeneracy-Orthogonal Geometric Constraints for LiDAR SLAM | Kim Minseo, Kim Yina, Hwang Jinhwa, Alex Junho Lee | Department of Mechanical Systems Engineering, Sookmyung Women's University, 100 Cheongpa-ro 47-gil, Yongsan-gu, Seoul, Republic of Korea | 聚焦GNSS-Denied、Traditional-SLAM，给出可复现的模型与评测方案。 | [#185](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/185) |
-| [20260929] SCCM: Spherically Consistent Coarse Matching for ERP Dense Feature Correspondence | Lee Gyeonggwan, Im Eunsoo, Hong Seunghwan, Suh Junghun | Kakao Mobility Corp., Seongnam, Republic of Korea Korea University, Seoul, Republic of Korea | 聚焦Dataset-Benchmark、Needs-Review，给出可复现的模型与评测方案。 | [#186](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/186) |
-
-## 🔎 观察
-
-- 基础模型与遥感任务结合持续增强，评测与推理能力成为关键。
-- 多数工作关注算法有效性与泛化，而非硬件实现。
 
 ---
 
