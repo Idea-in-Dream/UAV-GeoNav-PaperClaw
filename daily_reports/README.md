@@ -2,6 +2,39 @@
 
 最近三天日报（最新在前）：
 
+# [20261005](./202610/20261005.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 5 篇；关键词+LLM 智能匹配遥感交叉论文 2 篇；最终纳入日报 2 篇。
+
+今日两篇论文聚焦视觉SLAM与无人机视觉着陆的可靠性提升。第一篇引入人在回路与神经符号方法进行漂移预判，强调传统SLAM与视觉里程计的鲁棒性；第二篇针对二项结果场景，提出贝叶斯数据增强以改进DNN重训练，服务于GNSS拒止下的无人机着陆。整体趋势显示，研究者正结合符号推理与概率方法，应对视觉导航中的数据稀缺与漂移问题，并注重基准与重训练策略。
+
+## ✨ 今日亮点
+
+- 神经符号与人在回路结合，用于视觉SLAM漂移预判
+- 贝叶斯数据增强提升二项结果下DNN重训练效果
+- 两篇均面向无人机视觉导航的可靠性与鲁棒性
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20261005] Human-in-the-Loop Neuro-Symbolic Drift Anticipation for Reliable Visual SLAM | Nam Junhyun, Jo Wonse | Department of Information and Telecommunication Engineering；Incheon National University, Incheon, South Korea 22012 | 提出人在回路神经符号方法预判视觉SLAM漂移，提升传统SLAM与视觉里程计可靠性。 | [#195](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/195) |
+| [20261005] Bayesian Data Augmentation for DNN Retraining with Binomial Outcomes in Vision-Based UAV Landing | Ashik E Rasul, Yoon Hyung-Jin | Department of Mechanical and Nuclear Engineering；Tennessee Technological University | 针对二项结果场景，用贝叶斯数据增强重训练DNN，改善GNSS拒止下无人机视觉着陆。 | [#196](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/196) |
+
+## 🔎 观察
+
+- 两篇均关注视觉导航在挑战环境下的可靠性，但分别从漂移预判与数据增强切入。
+- 神经符号与贝叶斯方法的应用，反映遥感AI正融合符号推理与概率建模应对数据稀缺。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20261002](./202610/20261002.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -35,41 +68,6 @@ Powered by OpenClaw🦞
 
 - 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
 - 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20260930](./202609/20260930.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 12 篇；关键词+LLM 智能匹配遥感交叉论文 4 篇；最终纳入日报 4 篇。
-
-今日四篇论文聚焦于复杂环境下的定位与导航鲁棒性提升。研究趋势显示，多传感器融合与先验信息结合成为主流，如多相机视觉惯性SLAM引入楼层平面先验，以及几何语义约束的BEV学习缓解卫星地面定位歧义。同时，针对视觉不可靠场景，学习偏差动态与不确定性被用于提升VIO精度。此外，导航世界动作模型探索快速高效决策，反映出对实时性与泛化能力的双重关注。整体上，研究强调在GNSS拒止或视觉退化条件下，通过多模态约束与学习策略增强系统可靠性。
-
-## ✨ 今日亮点
-
-- 多相机视觉惯性SLAM融合楼层平面先验，提升室内定位鲁棒性。
-- 几何语义约束的BEV学习有效缓解卫星地面定位歧义。
-- 学习偏差动态与不确定性，增强视觉不可靠下的VIO性能。
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20260930] MVP-SLAM: Multi-Camera Visual-Inertial Floorplan-Prior SLAM | Bikandi-Noya Asier, Fernandez-Cortizas Miguel, Shaheer Muhammad, Voos Holger, Jose Luis Sanchez-Lopez | with the Automation and Robotics Research Group；Interdisciplinary Centre for Security, Reliability, and Trust (SnT), unexplored. A particular challenge for these systems is to find；associated with the Faculty of Science, Technology, and Medicine；University of Luxembourg, Luxembourg. {asier.bikandi | 提出多相机视觉惯性SLAM系统，利用楼层平面先验在GNSS拒止环境实现鲁棒定位。 | [#188](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/188) |
-| [20260930] How to Reduce Localization Ambiguity? Geometry-Semantic Constrained BEV Representation Learning for Satellite-Ground Localization | Feng Junming, Xia Panwang, Wu Qiong, Lu Xudong, Jiao Zeyu, Lv Kun, Wu Zherong, Wan Yi, Ma Peifeng, Hsu Li-Ta, Zheng Zhi | The Hong Kong Polytechnic University, Hong Kong；Southern University of Science and Technology；Wuhan University, Wuhan, China；The Chinese University of Hong Kong, Hong Kong, China | 通过几何语义约束的BEV表示学习，降低卫星与地面跨视角定位的模糊性。 | [#189](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/189) |
-| [20260930] LBDU-VIO: Learned Bias Dynamics and Uncertainty for Visual-Inertial Odometry with Unreliable Vision | Guo Qizhi, Lyu Junning, Lin Defu, He Shaoming | School of Aerospace Engineering and the Beijing Key Laboratory of UAV Autonomous Control, Beijing Institute of Technology, Beijing, China | 针对视觉不可靠场景，学习偏差动态与不确定性以提升视觉惯性里程计精度。 | [#190](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/190) |
-| [20260930] DiffWAM: A Fast and Efficient Navigation World Action Model | Zhu Mo, Wu Yuze, Huang Xijie, Cui Xiao, Gao Fei, Zhou Xin | Zhejiang University | 提出快速高效的导航世界动作模型，用于视觉里程计与自主导航决策。 | [#191](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/191) |
-
-## 🔎 观察
-
-- 多源先验与学习约束结合，正成为解决定位歧义与退化问题的关键路径。
-- 视觉不可靠条件下的VIO研究，从单纯滤波转向学习偏差与不确定性建模。
 
 ---
 
