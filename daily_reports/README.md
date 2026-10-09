@@ -2,6 +2,39 @@
 
 最近三天日报（最新在前）：
 
+# [20261008](./202610/20261008.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 8 篇；关键词+LLM 智能匹配遥感交叉论文 2 篇；最终纳入日报 2 篇。
+
+今日两篇论文均聚焦无人机与卫星影像的跨视角地理定位，旨在解决GNSS拒止环境下的绝对定位问题。研究趋势显示，从单一检索向检索与精细配准联合优化发展，并强调结构信息与语义信息的协同利用。同时，单张斜视影像的直接定位与跨视角特征学习成为提升鲁棒性的关键方向，数据集与基准的构建也受到重视。
+
+## ✨ 今日亮点
+
+- 两篇工作均面向UAV-Satellite跨视角定位，强调GNSS拒止场景。
+- 研究从跨视角检索延伸至精细配准与目标地理定位一体化。
+- 结构-语义协同学习与单张斜视影像定位成为新探索点。
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20261008] SatFix: Absolute Visual Localization of UAVs in Satellite Maps from a Single Oblique Image | Zeng Jiarui, Shi Kun, Vong Chiman, Zheng Zhedong | Department of Computer and Information Science, Faculty of Information Science and Computing, University of Macau, Macao SAR, China；Institute of Artificial Intelligence and Brain Sciences, University of Macau, Macao SAR, China | 提出SatFix，利用单张斜视影像在卫星地图中实现无人机绝对视觉定位，融合跨视角检索与精细配准。 | [#200](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/200) |
+| [20261008] S$^3$Geo: Structure-Semantic Synergistic Learning for Cross-View Geo-Localization | Mo Ziqian, Zhang Hill, Tan Haosheng, Li Ling, Wei Jiaheng | The Hong Kong University of Science Claremont McKenna College The Hong Kong University of Science；The Hong Kong University of Science The Hong Kong University of Science；ence complexity, validating the effectiveness of jointly modeling School Campus Industrial Zone | 提出S³Geo，通过结构-语义协同学习提升跨视角地理定位性能，兼顾检索与配准任务。 | [#201](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/201) |
+
+## 🔎 观察
+
+- 两篇工作均将检索与配准联合建模，表明单一阶段方法难以满足高精度定位需求。
+- 单张斜视影像与结构语义协同成为提升跨视角鲁棒性的新切入点，但泛化性仍需验证。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20261007](./202610/20261007.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -35,39 +68,6 @@ Powered by OpenClaw🦞
 
 - 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
 - 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20261005](./202610/20261005.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 5 篇；关键词+LLM 智能匹配遥感交叉论文 2 篇；最终纳入日报 2 篇。
-
-今日两篇论文聚焦视觉SLAM与无人机视觉着陆的可靠性提升。第一篇引入人在回路与神经符号方法进行漂移预判，强调传统SLAM与视觉里程计的鲁棒性；第二篇针对二项结果场景，提出贝叶斯数据增强以改进DNN重训练，服务于GNSS拒止下的无人机着陆。整体趋势显示，研究者正结合符号推理与概率方法，应对视觉导航中的数据稀缺与漂移问题，并注重基准与重训练策略。
-
-## ✨ 今日亮点
-
-- 神经符号与人在回路结合，用于视觉SLAM漂移预判
-- 贝叶斯数据增强提升二项结果下DNN重训练效果
-- 两篇均面向无人机视觉导航的可靠性与鲁棒性
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20261005] Human-in-the-Loop Neuro-Symbolic Drift Anticipation for Reliable Visual SLAM | Nam Junhyun, Jo Wonse | Department of Information and Telecommunication Engineering；Incheon National University, Incheon, South Korea 22012 | 提出人在回路神经符号方法预判视觉SLAM漂移，提升传统SLAM与视觉里程计可靠性。 | [#195](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/195) |
-| [20261005] Bayesian Data Augmentation for DNN Retraining with Binomial Outcomes in Vision-Based UAV Landing | Ashik E Rasul, Yoon Hyung-Jin | Department of Mechanical and Nuclear Engineering；Tennessee Technological University | 针对二项结果场景，用贝叶斯数据增强重训练DNN，改善GNSS拒止下无人机视觉着陆。 | [#196](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/196) |
-
-## 🔎 观察
-
-- 两篇均关注视觉导航在挑战环境下的可靠性，但分别从漂移预判与数据增强切入。
-- 神经符号与贝叶斯方法的应用，反映遥感AI正融合符号推理与概率建模应对数据稀缺。
 
 ---
 
