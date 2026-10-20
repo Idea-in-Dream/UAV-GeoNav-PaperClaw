@@ -2,6 +2,47 @@
 
 最近三天日报（最新在前）：
 
+# [20261019](./202610/20261019.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 9 篇；关键词+LLM 智能匹配遥感交叉论文 2 篇；最终纳入日报 1 篇。
+
+今日候选仅一篇，聚焦动态环境下视觉SLAM的鲁棒性。该研究提出类无关的物体感知实时vSLAM系统CAOS-SLAM，面向动态场景中传统SLAM易受移动物体干扰的问题，尝试以不依赖特定类别的方式处理动态物体，提升定位与建图的稳定性。整体趋势上，动态环境SLAM正从语义依赖走向类无关的通用物体感知，强调实时性与部署可行性，机构合作也体现跨实验室与跨国的工程化导向。
+
+## ✨ 今日亮点
+
+- 提出类无关物体感知的实时vSLAM，降低对特定语义类别的依赖
+- 面向动态环境，旨在提升移动物体干扰下的定位与建图鲁棒性
+- 由意大利理工与丹麦奥尔堡大学合作，强调实时与工程可用性
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20261019] CAOS-SLAM: Class-Agnostic Object-Aware Real-Time vSLAM for Dynamic Environments | Borghi Gaia, João Carlos Virgolino Soares, Bratta Angelo, Heshmati-Alamdari Shahab, Semini Claudio | Dynamic Legged Systems Lab (DLS), Istituto Italiano di Tecnologia, Genoa；Section of Automation & Control, Department of Electronic Systems；Aalborg University, Denmark | 提出CAOS-SLAM，类无关物体感知的实时vSLAM，面向动态环境提升鲁棒性。 | [#212](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/212) |
+
+## ⚠️ 未纳入日报的匹配论文
+
+以下论文通过关键词/LLM 筛选，但在处理过程中失败未纳入日报。点击 arXiv 链接可查看原文。
+
+| 标题 | arXiv | 失败原因 |
+|------|-------|----------|
+| AnchorFlow-VIO: Fixed-Template Monocular Visual-Inertial Odometry on LaMAria | [2610.26210v1](https://arxiv.org/abs/2610.26210v1) | 质检未通过: 单位为空或无效 |
+
+
+## 🔎 观察
+
+- 动态SLAM正从语义分割依赖转向类无关物体感知，以降低类别泛化与标注成本。
+- 该工作强调实时性与跨机构工程合作，显示动态SLAM研究更重视实际部署可行性。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20261016](./202610/20261016.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -48,38 +89,6 @@ Powered by OpenClaw🦞
 
 - 视觉与激光SLAM均在向神经与传统方法融合演进，以应对资源受限和拒止环境。
 - 数据集与基准测试成为论文标配，反映领域对可复现和实际部署的重视。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20261014](./202610/20261014.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 3 篇；关键词+LLM 智能匹配遥感交叉论文 1 篇；最终纳入日报 1 篇。
-
-今日候选论文聚焦长时程三维几何中的记忆机制，提出通过“记住、重访、修正”的脚手架式记忆框架，以应对传统SLAM与视觉里程计在长期运行中的漂移与遗忘问题。该工作将记忆管理引入三维建图与配准流程，强调对历史信息的主动复用与动态修正，而非仅依赖局部帧间约束。整体趋势显示，遥感与三维视觉领域正从单纯提升单帧精度转向构建具备长时记忆与自适应修正能力的系统，以增强复杂环境下的几何一致性。
-
-## ✨ 今日亮点
-
-- 提出脚手架记忆框架，用于长时程三维几何的持续修正
-- 结合记忆重访机制，缓解传统SLAM的长期漂移问题
-- 面向三维地图配准与视觉里程计，强调历史信息复用
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20261014] Remember, Revisit, Revise: Scaffold Memory for Long-Horizon 3D Geometry | Sarker Soumick, Zhang Mengmi | Deep NeuroCognition Lab, Nanyang Technological University, Singapore | 提出“记住、重访、修正”脚手架记忆，用于长时程三维几何建图与配准。 | [#206](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/206) |
-
-## 🔎 观察
-
-- 长时程三维几何研究正从局部优化转向记忆驱动的全局一致性维护。
-- 该工作将记忆机制与SLAM/里程计结合，或推动遥感建图向持续学习演进。
 
 ---
 
