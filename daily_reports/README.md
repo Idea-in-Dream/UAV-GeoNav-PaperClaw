@@ -2,6 +2,42 @@
 
 最近三天日报（最新在前）：
 
+# [20261027](./202610/20261027.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 14 篇；关键词+LLM 智能匹配遥感交叉论文 5 篇；最终纳入日报 5 篇。
+
+今日研究聚焦于SLAM与三维重建的鲁棒性与效率提升。LingGS解耦前馈几何预测与相机跟踪以提升高斯SLAM保真度；RAVEN面向 aerial robots 在定位不确定性下的主动视觉探索；HoloRecon实现长距离全景增量重建与全局一致性；GroundControl利用卫星条件多视图扩散实现免重建新视角合成；另有工作探索SAR-光学自监督编码器在x86边缘设备的量化推理。整体呈现从传统SLAM向学习增强、多源条件融合与边缘部署延伸的趋势。
+
+## ✨ 今日亮点
+
+- LingGS将前馈几何预测与相机跟踪解耦，提升高斯SLAM保真度
+- RAVEN统一主动SLAM框架，应对空中机器人定位不确定性
+- HoloRecon实现长距离全景增量重建并保持全局一致性
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20261027] LingGS: Decoupling Feed-Forward Geometry Prediction from Camera Tracking for High-Fidelity Gaussian SLAM | Li Da, Zang Yihan, Viola Ivan, Wang Zeyu, Engel Dominik | King Abdullah University of Science and Technology；The Hong Kong University of Science and Technology (Guangzhou) | LingGS解耦前馈几何预测与相机跟踪，以提升高斯SLAM的高保真重建性能。 | [#220](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/220) |
+| [20261027] RAVEN: A Unified Active SLAM System for Rapid Autonomous Visual Exploration with Aerial Robots under Localization Uncertainty | Chen Xinyi, Zhang Yichen, Jiang Chenxing, Shen Shaojie | toward active SLAM has been producing research advances | RAVEN提出统一主动SLAM系统，支持空中机器人在定位不确定性下快速自主视觉探索。 | [#221](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/221) |
+| [20261027] HoloRecon: Incremental Reconstruction of Long-Range Panoramas with Global Consistency | Li Zhuoxiao, Liu Xinyi, Hou Hongye, OU Jing, Du Kang, Zhang Shuai, Wu Dongli, Wu Taoyu, Feng Siyuan, Zhu Xiaohui, Zhao Wufan | The Hong Kong University of Science and Technology (GuangZhou)；University of Liverpool；Hong Kong Polytechnic University；Xi'an Jiaotong-Liverpool University | HoloRecon实现长距离全景增量重建，并通过全局优化保持多段结果一致性。 | [#222](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/222) |
+| [20261027] GroundControl: Satellite-Conditioned Multi-View Diffusion for Reconstruction-Free Novel View Synthesis | Krishnan Akshay, Turkulainen Matias, Wynn Jamie, Qureshi Zawar, Sayed Mohamed, Garcia-Hernando Guillermo, Vicente Sara, Hays James, Firman Michael, Turmukhambetov Daniyar | Georgia Institute of Technology；Aalto University | GroundControl以卫星图像为条件进行多视图扩散，实现免重建的新视角合成。 | [#223](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/223) |
+| [20261027] Quantized Edge Inference of a Self-Supervised SAR-Optical Encoder on Commodity x86 Hardware | Sanchez-Leon Christian, Chen Dongming | the Software College, Northeastern University, Shenyang, China ( | 该工作将自监督SAR-光学编码器量化部署于商用x86硬件，探索边缘推理可行性。 | [#224](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/224) |
+
+## 🔎 观察
+
+- SLAM研究正从纯几何跟踪转向解耦学习模块与跟踪后端，以兼顾精度与实时性。
+- 多源条件（卫星、SAR-光学）与边缘量化部署表明遥感AI正加速向实际平台落地。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20261026](./202610/20261026.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -35,47 +71,6 @@ Powered by OpenClaw🦞
 
 - 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
 - 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20261022](./202610/20261022.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 4 篇；关键词+LLM 智能匹配遥感交叉论文 2 篇；最终纳入日报 1 篇。
-
-今日候选论文聚焦月球视觉SLAM的前端特征匹配评估，属于数据集与基准测试方向。研究针对月球视觉SLAM中的前端特征匹配环节进行系统评测，涉及传统SLAM与视觉里程计方法。该工作来自斯坦福大学航空航天系，体现了将地面视觉SLAM技术向地外探测场景迁移的验证需求。整体趋势显示，遥感与空间探测领域正加强对基础算法模块在非地球环境下的适用性检验，强调基准测试与可复现评估。
-
-## ✨ 今日亮点
-
-- 评估月球视觉SLAM前端特征匹配性能
-- 面向地外探测场景验证传统SLAM方法
-- 提供数据集与基准测试视角的评测
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20261022] Evaluation of Front-End Feature Matching for Lunar Visual SLAM | Guillem Casadesus Vila, Gao Grace | Department of Aeronautics and Astronautics；Stanford University | 评估月球视觉SLAM前端特征匹配，为地外视觉里程计提供基准测试参考。 | [#216](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/216) |
-
-## ⚠️ 未纳入日报的匹配论文
-
-以下论文通过关键词/LLM 筛选，但在处理过程中失败未纳入日报。点击 arXiv 链接可查看原文。
-
-| 标题 | arXiv | 失败原因 |
-|------|-------|----------|
-| Consistent Distributed Invariant EKF SLAM with Point and Object Features | [2610.31221v1](https://arxiv.org/abs/2610.31221v1) | 质检未通过: 单位为空或无效 |
-
-
-## 🔎 观察
-
-- 月球视觉SLAM研究仍以传统方法评测为主，深度学习前端在月面场景的验证尚不充分。
-- 该工作强调前端匹配评估，反映地外SLAM需针对低纹理、高动态范围等月面特性做专项基准。
 
 ---
 
