@@ -2,6 +2,43 @@
 
 最近三天日报（最新在前）：
 
+# [20261109](./202611/20261109.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 11 篇；关键词+LLM 智能匹配遥感交叉论文 6 篇；最终纳入日报 6 篇。
+
+今日论文聚焦视觉SLAM与跨视角地理定位的鲁棒性提升。V3DSAM与DPGS-SLAM分别从语义-几何回环验证和扩散先验角度增强动态场景下的建图一致性；鱼眼视觉里程计通过球面光束法平差引导无监督深度学习解决尺度问题。跨视角序列定位引入注意力引导特征融合与混合空间度量学习。此外，无人机SAR成像与航空重建诊断评估也拓展了遥感几何处理的应用边界。
+
+## ✨ 今日亮点
+
+- V3DSAM提出语义-几何回环验证与几何锚定持久实例建图，提升前馈稠密SLAM一致性。
+- DPGS-SLAM利用扩散先验与来源感知机制，增强动态场景单目高斯泼溅SLAM鲁棒性。
+- 跨视角序列定位结合注意力引导特征融合与混合空间度量学习，提升检索与配准精度。
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20261109] V3DSAM: Semantic-Geometric Loop Verification and Geometry-Anchored Persistent Instance Mapping for Feed-Forward Dense SLAM | Ye Maolin, Zhao Dongqing, Li Linyang, Xue Shuai, Liu Yuan, Wang Yiyuan, Li Wen | Information Engineering University | V3DSAM为前馈稠密SLAM引入语义-几何回环验证与几何锚定持久实例建图，增强长期一致性。 | [#244](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/244) |
+| [20261109] Attention-Guided Sequence Feature Fusion and Mixed-Space Metric Learning for Cross-View Image Sequence Geo-Localization | Wu Nan, Yang Chunfang, Li Jiangshan, Luo Xiangyang | Information Engineering University, Zhengzhou,, China, and the Henan Key Laboratory of Cyberspace Situation Awareness, Zhengzhou,, China. (；College of Electronic Science and Technology, National University of Defense Technology, Changsha, China. ( | 该文提出注意力引导序列特征融合与混合空间度量学习，用于跨视角图像序列地理定位。 | [#245](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/245) |
+| [20261109] DPGS-SLAM: Diffusion-Prior and Provenance-Aware Monocular Gaussian Splatting SLAM for Dynamic Visual Sensing | Luo Yifan, Matsumaru Takafumi, Dutta Vibekananda, He Xin | the Graduate School of Information, Production and Systems, Waseda University, Kitakyushu, Fukuoka 808-, Japan (；the Faculty of Mechatronics, Warsaw University of Technology, 00-661 Warsaw, Poland ( | DPGS-SLAM结合扩散先验与来源感知，实现动态视觉感知下的单目高斯泼溅SLAM。 | [#246](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/246) |
+| [20261109] Scale-Consistent Monocular Fisheye Visual Odometry via Spherical Bundle Adjustment-Guided Unsupervised Depth Learning | Luo Wanhui, Zhao Hongbo, Zhou Yi, Chen Qijun, Nie Yiming, Fan Rui | Department of Control Science \& Engineering, the College of Electronic \& Information Engineering, Tongji University, Shanghai, China (；the Shanghai Research Institute for Intelligent Autonomous Systems, Tongji University, Shanghai, China (；School of Artificial Intelligence and Robotics, Hunan University,, Changsha, China (；the Unmanned Systems Technology Research Center, Defense Innovation Institute, Academy of Military Science, Beijing, China ( | 该文通过球面光束法平差引导无监督深度学习，实现尺度一致的单目鱼眼视觉里程计。 | [#247](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/247) |
+| [20261109] Bistatic UAV-Based 3D SAR Imaging Using Integrated Sensing and Communications Transceivers | Sneh Akanksha, Ayyagari Krishna, Nawani Vivaswan, Shobha Sundar Ram | the Indraprastha Institute of Information Technology, Delhi, New Delhi India；University College London, United Kingdom | 该文研究基于集成感知与通信收发机的双基地无人机三维SAR成像方法。 | [#248](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/248) |
+| [20261109] GeoPilot: Diagnosis-Guided Interventions and Geometric Evaluation for Aerial Reconstruction | Yin Pengyu, Pan Jie, Tan Junxiang, Fu Mengqi, Cheng Kun, Liu Yifan | the Aerospace Information Research Institute, Chinese Academy of Sciences, Beijing, China (；School of Electronic Engineering, reference support, and artifact identities; it does not introduce a Beijing University of Posts and Telecommunications, Beijing, China ( | GeoPilot提出诊断引导干预与几何评估框架，用于航空重建质量分析与优化。 | [#249](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/249) |
+
+## 🔎 观察
+
+- SLAM研究正从单一几何约束转向语义-几何联合验证与生成先验融合，以应对动态与稀疏场景。
+- 跨视角定位与航空重建均强调序列特征融合与诊断评估，表明遥感几何处理更注重可解释性与鲁棒性。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20261106](./202611/20261106.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -49,49 +86,6 @@ Powered by OpenClaw🦞
 
 - 跨视角地理定位正从二维检索向三维几何重建演进，强调相机中心与场景结构的联合估计。
 - 多传感器融合呈现“解耦设计、紧耦合优化”思路，以降低模态干扰并提升GNSS拒止下的鲁棒性。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20261104](./202611/20261104.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 9 篇；关键词+LLM 智能匹配遥感交叉论文 4 篇；最终纳入日报 3 篇。
-
-今日研究聚焦于视觉SLAM与三维重建中的尺度一致性与鲁棒性问题。三篇论文分别从不同角度切入：基于VGGT的SLAM通过隐式语义与序列一致回环实现尺度锚定；METRIC-GS针对3D高斯泼溅提出选择性度量尺度估计；立体视觉惯性里程计则利用卡尔曼滤波地面高度估计应对反射干扰。整体趋势显示，研究者正致力于在复杂场景下提升几何估计的精度与稳定性，并注重代码开源与可复现性。
-
-## ✨ 今日亮点
-
-- VGGT-SLAM利用隐式语义与序列一致回环解决尺度漂移问题。
-- METRIC-GS为3D高斯泼溅引入选择性度量尺度估计方法。
-- 立体VIO通过卡尔曼滤波地面高度估计增强反射鲁棒性。
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20261104] Scale Anchoring via Implicit Semantics and Sequence-Consistent Loop Closure for VGGT-Based SLAM | Jin Ziyi, Yu Kangjin, Wang Beichen, Jiang Can, Xia Zhongpu, Xu Jie | Anyverse Dynamics | 提出基于VGGT的SLAM系统，通过隐式语义和序列一致回环实现尺度锚定，提升轨迹精度。 | [#235](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/235) |
-| [20261104] METRIC-GS: Selective Metric-Scale Estimation for 3D Gaussian Splatting | Yang Sooyeun, Jongseong Brad Choi | Department of Mechanical Engineering, SUNY Korea；Department of Mechanical Engineering, Stony Brook University；Department of Computer Science, SUNY Korea | 针对3D高斯泼溅提出选择性度量尺度估计方法，改善重建的尺度一致性。 | [#236](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/236) |
-| [20261104] Reflection-Robust Stereo Visual-Inertial Odometry via Kalman-Filtered Ground-Height Estimation | Hwang Uihyun, Shin Sungjae, Kim Dongjae, Myung Hyun | School of Electrical Engineering, Korea Advanced Institute of Science and Technology, Daejeon, 34141, South Korea | 设计反射鲁棒的立体视觉惯性里程计，利用卡尔曼滤波地面高度估计抑制反射干扰。 | [#237](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/237) |
-
-## ⚠️ 未纳入日报的匹配论文
-
-以下论文通过关键词/LLM 筛选，但在处理过程中失败未纳入日报。点击 arXiv 链接可查看原文。
-
-| 标题 | arXiv | 失败原因 |
-|------|-------|----------|
-| When to Ask for Help: Uncertainty-Triggered Aerial Refinement for Off-Road Navigation | [2611.06702v1](https://arxiv.org/abs/2611.06702v1) | 质检未通过: 单位为空或无效 |
-
-
-## 🔎 观察
-
-- 三篇工作均关注尺度或几何一致性，反映SLAM与三维重建对度量精度的持续需求。
-- 方法上呈现多传感器融合与滤波估计结合的趋势，以应对复杂环境中的退化问题。
 
 ---
 
