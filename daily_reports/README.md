@@ -2,6 +2,43 @@
 
 最近三天日报（最新在前）：
 
+# [20261112](./202611/20261112.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 15 篇；关键词+LLM 智能匹配遥感交叉论文 6 篇；最终纳入日报 6 篇。
+
+今日论文聚焦于无人机定位与导航的基准测试与算法优化。多篇工作提出了面向非结构化地形、动态城市场景和语言引导飞行的新基准数据集，强调多模态与边缘计算场景下的评估。同时，传统SLAM与LiDAR惯性里程计方面出现针对边缘设备性能剖析和连续时间因果优化的研究，以及基于SE(3)的贝叶斯运动估计理论探索。整体趋势显示，基准建设与轻量化、鲁棒性算法并重。
+
+## ✨ 今日亮点
+
+- GOOSELoc构建非结构化越野地面到空中多模态定位基准，面向GNSS拒止场景。
+- RGB-D SLAM边缘基准在树莓派5上剖析RTAB-Map与ORB-SLAM3性能。
+- UAV-Flow++提供语言引导无人机飞行的统一基准与学习套件。
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20261112] GOOSELoc: A Multimodal Benchmark for Ground-to-Aerial Localization in Unstructured Off-Road Terrain | Deuser Fabian, Mortimer Peter, Kampa Robin-Nico, Bößendörfer Anna, Mählisch Mirko, Werner Martin, Oswald Norbert | Institute of Distributed Intelligent Systems (ETTI 2), University of the Bundeswehr Munich, Neubiberg, Germany；Institute for Autonomous Driving (LRT 8.1), University of the Bundeswehr Munich, Neubiberg, Germany；Technical University of Munich, Germany; TUM School of Engineering and Design, Department of Aerospace and Geodesy；TUM School of Computation, Information and Technology; Munich Data Science Institute (MDSI) | 提出GOOSELoc多模态基准，用于非结构化越野地形的地面到空中定位，涵盖跨视角检索与正射影像配准。 | [#256](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/256) |
+| [20261112] RGB-D SLAM on the Edge: Benchmarking and Profiling RTAB-Map and ORB-SLAM3 on the Raspberry Pi 5 | Patil Himanshu, Joshi Jaideep, Saluja Rohit, Ramakrishnan Ganesh | Indian Institute of Technology Bombay；Indian Institute of Technology Mandi | 在树莓派5上对RTAB-Map和ORB-SLAM3进行RGB-D SLAM基准测试与性能剖析，关注边缘计算可行性。 | [#257](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/257) |
+| [20261112] Consensus Capture in Reference-Based UAV Video Stabilization: A Benchmark on Dynamic Urban Scenes | Fonod Robert, Geroliminis Nikolas | École Polytechnique Fédérale de Lausanne (EPFL), Urban Transport Systems Laboratory (LUTS) | 针对动态城市场景，基准评估参考式无人机视频稳定中的共识捕获方法。 | [#258](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/258) |
+| [20261112] UAV-Flow++: A Unified Suite for Benchmarking and Learning Language-Guided UAV Flight | Yang Donglin, Wang Xiangyu, Zhong Yantong, Zheng Wenhao, Ding Zihan, Liao Yue, Li Hongsheng, Xu Ke, Liu Si | Beihang University, Beijing, China 100191；National University of Singapore, Singapore 119077；MMLab, The Chinese University of Hong Kong, Shatin, New Territories, Hong Kong, China | 推出UAV-Flow++统一套件，用于语言引导无人机飞行的基准测试与学习，强调可复现性。 | [#259](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/259) |
+| [20261112] CT-SGAL-LIO: Causal Continuous Time Refinement of Discrete LiDAR Inertial Odometry | Tran Nam, Tran Thu, Nguyen Toan, William J Beksi, Dang Tuan | Department of Electrical Engineering and Computer Science, University；Department of；Computer Science, University of Texas at Dallas, Richardson, TX, USA | 提出CT-SGAL-LIO，对离散LiDAR惯性里程计进行因果连续时间细化，提升GNSS拒止下的定位精度。 | [#260](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/260) |
+| [20261112] A Class of Bayesian Conjugate Distributions on $SE_n(3)$ for Motion Estimation | Wang Shijie, Gui Haichao, Zhong Rui | School of Astronautics, Shenyuan Honors College, Beihang University, Beijing, 100191, China；School of Astronautics and the MOE Key Laboratory of Spacecraft Design, Optimization and Dynamic Simulation, Beihang；University, Beijing, 100191, China | 研究SE_n(3)上的一类贝叶斯共轭分布，用于运动估计，为视觉里程计提供理论工具。 | [#261](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/261) |
+
+## 🔎 观察
+
+- 今日多项工作集中于基准数据集建设，反映无人机定位导航领域对标准化评估的迫切需求。
+- 边缘设备SLAM性能剖析与连续时间LiDAR惯性优化并进，显示轻量化与高精度算法同步受关注。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20261111](./202611/20261111.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -49,43 +86,6 @@ Powered by OpenClaw🦞
 
 - 3D高斯泼溅SLAM正从离线建图转向在线重定位，外参校准成为提升长期一致性的必要环节。
 - 毫米波雷达SLAM的检测方法开始借鉴雷达信号处理中的CFAR，表明跨领域方法迁移具有潜力。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20261109](./202611/20261109.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 11 篇；关键词+LLM 智能匹配遥感交叉论文 6 篇；最终纳入日报 6 篇。
-
-今日论文聚焦视觉SLAM与跨视角地理定位的鲁棒性提升。V3DSAM与DPGS-SLAM分别从语义-几何回环验证和扩散先验角度增强动态场景下的建图一致性；鱼眼视觉里程计通过球面光束法平差引导无监督深度学习解决尺度问题。跨视角序列定位引入注意力引导特征融合与混合空间度量学习。此外，无人机SAR成像与航空重建诊断评估也拓展了遥感几何处理的应用边界。
-
-## ✨ 今日亮点
-
-- V3DSAM提出语义-几何回环验证与几何锚定持久实例建图，提升前馈稠密SLAM一致性。
-- DPGS-SLAM利用扩散先验与来源感知机制，增强动态场景单目高斯泼溅SLAM鲁棒性。
-- 跨视角序列定位结合注意力引导特征融合与混合空间度量学习，提升检索与配准精度。
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20261109] V3DSAM: Semantic-Geometric Loop Verification and Geometry-Anchored Persistent Instance Mapping for Feed-Forward Dense SLAM | Ye Maolin, Zhao Dongqing, Li Linyang, Xue Shuai, Liu Yuan, Wang Yiyuan, Li Wen | Information Engineering University | V3DSAM为前馈稠密SLAM引入语义-几何回环验证与几何锚定持久实例建图，增强长期一致性。 | [#244](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/244) |
-| [20261109] Attention-Guided Sequence Feature Fusion and Mixed-Space Metric Learning for Cross-View Image Sequence Geo-Localization | Wu Nan, Yang Chunfang, Li Jiangshan, Luo Xiangyang | Information Engineering University, Zhengzhou,, China, and the Henan Key Laboratory of Cyberspace Situation Awareness, Zhengzhou,, China. (；College of Electronic Science and Technology, National University of Defense Technology, Changsha, China. ( | 该文提出注意力引导序列特征融合与混合空间度量学习，用于跨视角图像序列地理定位。 | [#245](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/245) |
-| [20261109] DPGS-SLAM: Diffusion-Prior and Provenance-Aware Monocular Gaussian Splatting SLAM for Dynamic Visual Sensing | Luo Yifan, Matsumaru Takafumi, Dutta Vibekananda, He Xin | the Graduate School of Information, Production and Systems, Waseda University, Kitakyushu, Fukuoka 808-, Japan (；the Faculty of Mechatronics, Warsaw University of Technology, 00-661 Warsaw, Poland ( | DPGS-SLAM结合扩散先验与来源感知，实现动态视觉感知下的单目高斯泼溅SLAM。 | [#246](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/246) |
-| [20261109] Scale-Consistent Monocular Fisheye Visual Odometry via Spherical Bundle Adjustment-Guided Unsupervised Depth Learning | Luo Wanhui, Zhao Hongbo, Zhou Yi, Chen Qijun, Nie Yiming, Fan Rui | Department of Control Science \& Engineering, the College of Electronic \& Information Engineering, Tongji University, Shanghai, China (；the Shanghai Research Institute for Intelligent Autonomous Systems, Tongji University, Shanghai, China (；School of Artificial Intelligence and Robotics, Hunan University,, Changsha, China (；the Unmanned Systems Technology Research Center, Defense Innovation Institute, Academy of Military Science, Beijing, China ( | 该文通过球面光束法平差引导无监督深度学习，实现尺度一致的单目鱼眼视觉里程计。 | [#247](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/247) |
-| [20261109] Bistatic UAV-Based 3D SAR Imaging Using Integrated Sensing and Communications Transceivers | Sneh Akanksha, Ayyagari Krishna, Nawani Vivaswan, Shobha Sundar Ram | the Indraprastha Institute of Information Technology, Delhi, New Delhi India；University College London, United Kingdom | 该文研究基于集成感知与通信收发机的双基地无人机三维SAR成像方法。 | [#248](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/248) |
-| [20261109] GeoPilot: Diagnosis-Guided Interventions and Geometric Evaluation for Aerial Reconstruction | Yin Pengyu, Pan Jie, Tan Junxiang, Fu Mengqi, Cheng Kun, Liu Yifan | the Aerospace Information Research Institute, Chinese Academy of Sciences, Beijing, China (；School of Electronic Engineering, reference support, and artifact identities; it does not introduce a Beijing University of Posts and Telecommunications, Beijing, China ( | GeoPilot提出诊断引导干预与几何评估框架，用于航空重建质量分析与优化。 | [#249](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/249) |
-
-## 🔎 观察
-
-- SLAM研究正从单一几何约束转向语义-几何联合验证与生成先验融合，以应对动态与稀疏场景。
-- 跨视角定位与航空重建均强调序列特征融合与诊断评估，表明遥感几何处理更注重可解释性与鲁棒性。
 
 ---
 
