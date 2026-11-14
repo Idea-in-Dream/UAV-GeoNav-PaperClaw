@@ -2,6 +2,26 @@
 
 最近三天日报（最新在前）：
 
+# [20261113](./202611/20261113.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 0 篇；关键词+LLM 智能匹配遥感交叉论文 0 篇；最终纳入日报 0 篇。
+
+当日未检索到符合条件并纳入日报的论文。
+
+## 🔎 观察
+
+- 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
+- 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20261112](./202611/20261112.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -52,40 +72,6 @@ Powered by OpenClaw🦞
 
 - 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
 - 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20261110](./202611/20261110.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 20 篇；关键词+LLM 智能匹配遥感交叉论文 3 篇；最终纳入日报 3 篇。
-
-今日论文聚焦SLAM与定位系统的鲁棒性与精度提升，涵盖3D高斯泼溅、毫米波雷达和视觉惯性里程计三个方向。研究趋势显示，多模态融合与在线校准成为提升系统适应性的关键手段，同时针对非理想参考系和稀疏角度地图的检测问题受到关注。整体工作强调在复杂场景下的实时性与可靠性，为遥感与自主导航应用提供技术支撑。
-
-## ✨ 今日亮点
-
-- 3D高斯泼溅SLAM引入全局外参校准与在线重定位，提升建图一致性。
-- 毫米波雷达SLAM利用非相干积分角度图进行CFAR检测，增强稀疏场景感知。
-- 视觉惯性里程计扩展至非惯性参考系，提升跨参考系定位适应性。
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20261110] GEMOR-GS: Global Extrinsic-calibration-refined Mapping and Online Relocalization for 3D Gaussian-Splatting SLAM | Yang Yuchen, Ding Ming, Wu Xinyu, Wang Hesheng | Department of Software Engineering, Nanchang University, Nanchang, China | 提出GEMOR-GS，通过全局外参校准优化3D高斯泼溅SLAM建图，并实现在线重定位。 | [#251](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/251) |
-| [20261110] CFAR Detection on Non-Coherently Integrated Angular Maps for mmWave Radio SLAM | Tosi Paolo, Kaltiokallio Ossi, Henninger Marcus, Mandelli Silvio, Valkama Mikko | Karlsruhe Institute of Technology (KIT)；Tampere University, Tampere, Finland | 针对毫米波雷达SLAM，在非相干积分角度图上应用CFAR检测，改善稀疏角度地图的鲁棒性。 | [#252](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/252) |
-| [20261110] NIF-VIO: Visual--Inertial Odometry Across Inertial and Non-Inertial Reference Frames | Shu Zichao, Li Lijun, Li Zhuochen, Chen Zetao, Wang Jianyu | the Shanghai Institute of Technical Physics, Chinese Academy of Sciences, Shanghai, China；University of Chinese Academy of Sciences, Beijing, China (；the Advanced Display and Sensing Research Center, Yongjiang Laboratory, Ningbo, China；University of Nottingham Ningbo China, Ningbo, China (；the Advanced Display and Sensing Research Center, Yongjiang Laboratory, Ningbo, China ( | 提出NIF-VIO，使视觉惯性里程计能够跨惯性与非惯性参考系工作，扩展应用场景。 | [#253](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/253) |
-
-## 🔎 观察
-
-- 3D高斯泼溅SLAM正从离线建图转向在线重定位，外参校准成为提升长期一致性的必要环节。
-- 毫米波雷达SLAM的检测方法开始借鉴雷达信号处理中的CFAR，表明跨领域方法迁移具有潜力。
 
 ---
 
