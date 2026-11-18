@@ -2,6 +2,41 @@
 
 最近三天日报（最新在前）：
 
+# [20261117](./202611/20261117.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 12 篇；关键词+LLM 智能匹配遥感交叉论文 4 篇；最终纳入日报 4 篇。
+
+今日论文聚焦多模态SLAM与里程计的鲁棒性与资源效率。多智能体全景高斯泼溅SLAM通过球面回环提升大场景建图一致性；气压传感器阵列被用于重力向量估计，拓展了非视觉导航手段；退化隧道场景下的LiDAR-惯性-视觉融合里程计强调退化引导策略；资源感知的LiDAR-惯性里程计则关注计算受限平台。整体趋势显示，研究正从单一传感器向多源融合与场景自适应演进，同时兼顾嵌入式部署可行性。
+
+## ✨ 今日亮点
+
+- 多智能体全景高斯泼溅SLAM引入球面回环，提升跨会话建图精度。
+- 分布式气压传感器阵列实现重力向量估计，为无视觉导航提供新思路。
+- 退化引导的LiDAR-惯性-视觉融合里程计针对隧道场景增强鲁棒性。
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20261117] CoSphere-SLAM: Multi-Agent Panoramic Gaussian Splatting SLAM with Spherical Loop Closure | Shao Qi, Cao Zhihao, Zhai Shuhao, Wu Taoyu, Li Zhuoxiao, Nguyen Anh, Hu Long, Li Xianzhi, Liang Hong, Huang Baoru, Li Liang | Harbin Engineering University, Harbin, China；University of Liverpool, Liverpool, cross-session multi-agent panoramic benchmarks demonstrate UK；the National racy and rendering quality among single-agent and multi-agent University of Singapore, Singapore；University of Macau, Macau, China；University of Liverpool, Liverpool, UK；Xi’an Jiaotong-Liverpool University, Suzhou, China；The Hong Kong University of Science and Technology I；University of Liverpool, Liverpool, Dense 3 D mapping of large indoor environments is essential UK；Imperial College London, London, UK；Huazhong University of Science and Technology, Wuhan, China | 提出多智能体全景高斯泼溅SLAM，利用球面回环实现跨会话大场景稠密建图与高质量渲染。 | [#268](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/268) |
+| [20261117] Pressure Drop: Gravity Vector Estimation from a Distributed Barometric Pressure Sensor Array | Dubois William, Lauzon Nicolas, Laconte Johann, Pomerleau François | essential [1]. Although Simultaneous Localization and Mapping (SLAM) approaches can achieve strong performance [2], Previous research has shown that barometric pressure；Northern Robotics Laboratory, Université Laval, Québec；Université Clermont Auvergne, INRAE, UR TSCF, 63000, Clermont- ‚ An observability and configuration analysis of an array | 基于分布式气压传感器阵列估计重力向量，分析可观测性与配置，为SLAM提供辅助重力约束。 | [#269](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/269) |
+| [20261117] DGV-DLIVO: Degeneracy-Guided Visual Fusion for Direct LiDAR-Inertial-Visual Odometry in Degenerate Tunnel Environments | Zhang Junrui | Department of Electronic and Information Engineering, Tongji University, Shanghai, 200092, China | 针对退化隧道环境，提出退化引导的LiDAR-惯性-视觉直接里程计，融合视觉信息增强定位鲁棒性。 | [#270](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/270) |
+| [20261117] Pelorus: Resource-Aware Lidar-Inertial Odometry | Sieh Charlotte, Porrmann Mario | the Computer Engineering Group, Osnabrück University, Osnabrück, Germany ( | 提出资源感知的LiDAR-惯性里程计，面向计算受限平台优化资源分配与实时性能。 | [#271](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/271) |
+
+## 🔎 观察
+
+- 多智能体与跨会话SLAM成为大场景建图热点，球面回环设计有望解决全景相机视角冗余问题。
+- 非视觉传感器（如气压阵列）与退化引导融合策略表明，研究正重视极端环境下的可观测性分析。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20261116](./202611/20261116.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -49,43 +84,6 @@ Powered by OpenClaw🦞
 
 - 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
 - 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20261112](./202611/20261112.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 15 篇；关键词+LLM 智能匹配遥感交叉论文 6 篇；最终纳入日报 6 篇。
-
-今日论文聚焦于无人机定位与导航的基准测试与算法优化。多篇工作提出了面向非结构化地形、动态城市场景和语言引导飞行的新基准数据集，强调多模态与边缘计算场景下的评估。同时，传统SLAM与LiDAR惯性里程计方面出现针对边缘设备性能剖析和连续时间因果优化的研究，以及基于SE(3)的贝叶斯运动估计理论探索。整体趋势显示，基准建设与轻量化、鲁棒性算法并重。
-
-## ✨ 今日亮点
-
-- GOOSELoc构建非结构化越野地面到空中多模态定位基准，面向GNSS拒止场景。
-- RGB-D SLAM边缘基准在树莓派5上剖析RTAB-Map与ORB-SLAM3性能。
-- UAV-Flow++提供语言引导无人机飞行的统一基准与学习套件。
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20261112] GOOSELoc: A Multimodal Benchmark for Ground-to-Aerial Localization in Unstructured Off-Road Terrain | Deuser Fabian, Mortimer Peter, Kampa Robin-Nico, Bößendörfer Anna, Mählisch Mirko, Werner Martin, Oswald Norbert | Institute of Distributed Intelligent Systems (ETTI 2), University of the Bundeswehr Munich, Neubiberg, Germany；Institute for Autonomous Driving (LRT 8.1), University of the Bundeswehr Munich, Neubiberg, Germany；Technical University of Munich, Germany; TUM School of Engineering and Design, Department of Aerospace and Geodesy；TUM School of Computation, Information and Technology; Munich Data Science Institute (MDSI) | 提出GOOSELoc多模态基准，用于非结构化越野地形的地面到空中定位，涵盖跨视角检索与正射影像配准。 | [#256](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/256) |
-| [20261112] RGB-D SLAM on the Edge: Benchmarking and Profiling RTAB-Map and ORB-SLAM3 on the Raspberry Pi 5 | Patil Himanshu, Joshi Jaideep, Saluja Rohit, Ramakrishnan Ganesh | Indian Institute of Technology Bombay；Indian Institute of Technology Mandi | 在树莓派5上对RTAB-Map和ORB-SLAM3进行RGB-D SLAM基准测试与性能剖析，关注边缘计算可行性。 | [#257](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/257) |
-| [20261112] Consensus Capture in Reference-Based UAV Video Stabilization: A Benchmark on Dynamic Urban Scenes | Fonod Robert, Geroliminis Nikolas | École Polytechnique Fédérale de Lausanne (EPFL), Urban Transport Systems Laboratory (LUTS) | 针对动态城市场景，基准评估参考式无人机视频稳定中的共识捕获方法。 | [#258](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/258) |
-| [20261112] UAV-Flow++: A Unified Suite for Benchmarking and Learning Language-Guided UAV Flight | Yang Donglin, Wang Xiangyu, Zhong Yantong, Zheng Wenhao, Ding Zihan, Liao Yue, Li Hongsheng, Xu Ke, Liu Si | Beihang University, Beijing, China 100191；National University of Singapore, Singapore 119077；MMLab, The Chinese University of Hong Kong, Shatin, New Territories, Hong Kong, China | 推出UAV-Flow++统一套件，用于语言引导无人机飞行的基准测试与学习，强调可复现性。 | [#259](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/259) |
-| [20261112] CT-SGAL-LIO: Causal Continuous Time Refinement of Discrete LiDAR Inertial Odometry | Tran Nam, Tran Thu, Nguyen Toan, William J Beksi, Dang Tuan | Department of Electrical Engineering and Computer Science, University；Department of；Computer Science, University of Texas at Dallas, Richardson, TX, USA | 提出CT-SGAL-LIO，对离散LiDAR惯性里程计进行因果连续时间细化，提升GNSS拒止下的定位精度。 | [#260](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/260) |
-| [20261112] A Class of Bayesian Conjugate Distributions on $SE_n(3)$ for Motion Estimation | Wang Shijie, Gui Haichao, Zhong Rui | School of Astronautics, Shenyuan Honors College, Beihang University, Beijing, 100191, China；School of Astronautics and the MOE Key Laboratory of Spacecraft Design, Optimization and Dynamic Simulation, Beihang；University, Beijing, 100191, China | 研究SE_n(3)上的一类贝叶斯共轭分布，用于运动估计，为视觉里程计提供理论工具。 | [#261](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/261) |
-
-## 🔎 观察
-
-- 今日多项工作集中于基准数据集建设，反映无人机定位导航领域对标准化评估的迫切需求。
-- 边缘设备SLAM性能剖析与连续时间LiDAR惯性优化并进，显示轻量化与高精度算法同步受关注。
 
 ---
 
