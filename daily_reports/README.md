@@ -2,6 +2,41 @@
 
 最近三天日报（最新在前）：
 
+# [20261119](./202611/20261119.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 9 篇；关键词+LLM 智能匹配遥感交叉论文 4 篇；最终纳入日报 4 篇。
+
+今日研究聚焦于视觉惯性里程计与地理定位的鲁棒性与效率提升。AnyVIO提出跨平台前馈流式VIO，强调泛化部署；序列到空间方法利用视觉语言蒸馏构建显式空间信念以支持主动地理定位；立体VO结合几何前馈模型实现密集度量建图；AeroBelief则关注预算约束下的证据引导航空感知验证。整体趋势显示，研究者正从单一模块优化转向跨平台、跨模态的闭环系统设计，并重视实际部署中的资源约束与验证效率。
+
+## ✨ 今日亮点
+
+- AnyVIO实现跨平台前馈流式VIO，提升GNSS拒止环境下的泛化能力。
+- 视觉语言蒸馏构建显式空间信念，推动主动地理定位从序列到空间推理。
+- AeroBelief引入预算化首动作验证，优化证据引导的航空感知决策效率。
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20261119] AnyVIO: Feed-Forward Streaming Visual-Inertial Odometry Across Platforms | Atekha Omoruyi, Greiff Marcus, Zhang Ray, Carlone Luca | MIT；TRI | 提出跨平台前馈流式VIO框架AnyVIO，在GNSS拒止环境下实现无需重训练的泛化部署。 | [#279](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/279) |
+| [20261119] From Sequence to Space: Explicit Spatial Belief with Vision-Language Distillation for Active Geo-Localization | Xu Ziyang, Han Peng, Zhou Hai | National Space Science Center, Chinese Academy of Sciences, Beijing 100190, China；University of Chinese Academy of Sciences, Beijing 101408, China | 利用视觉语言蒸馏构建显式空间信念，将序列观测转化为空间表示以支持主动地理定位。 | [#280](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/280) |
+| [20261119] Stereo Visual Odometry with In-the-Loop Geometric Feed-Forward Models Towards Dense Metric Mapping | Fahira Afzal Maken, Sagun Man Singh Shrestha, Vanderfeen Edward, Lucas Carvalho de Lima, Li Rongxin, Sun Changming, Ramezani Milad | School of Electrical Engineering and Robotics, Queensland University of Technology (QUT), Brisbane, Australia | 将几何前馈模型嵌入立体视觉里程计闭环，面向密集度量建图提升几何一致性。 | [#281](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/281) |
+| [20261119] AeroBelief: Budgeted First-Action Verification for Evidence-Guided Aerial Sensing | Li Tianren, Li Dongbo, Chen Hongkai, Liu Jie, Xing Guoliang | Harbin Institute of Technology China；The Chinese University of Hong Kong China | 提出预算化首动作验证策略，在有限感知预算下证据引导地优化航空目标定位决策。 | [#282](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/282) |
+
+## 🔎 观察
+
+- VIO研究正从精度竞赛转向跨平台泛化与流式部署，强调实际场景中的即插即用能力。
+- 地理定位与航空感知开始引入显式空间信念和预算约束，反映从被动感知向主动决策的范式迁移。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20261118](./202611/20261118.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -66,40 +101,6 @@ Powered by OpenClaw🦞
 
 - 多智能体与跨会话SLAM成为大场景建图热点，球面回环设计有望解决全景相机视角冗余问题。
 - 非视觉传感器（如气压阵列）与退化引导融合策略表明，研究正重视极端环境下的可观测性分析。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20261116](./202611/20261116.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 17 篇；关键词+LLM 智能匹配遥感交叉论文 3 篇；最终纳入日报 3 篇。
-
-今日论文聚焦传统SLAM与视觉惯性里程计的系统优化与基准评测。Polygraph提出基于位姿图的大规模多会话轨迹优化方法，强调跨会话闭环与全局一致性；OrthoMark利用点锚定正交高度标记进行地点识别，探索3D地图配准新表征；sqrtVINS则针对Hilti-Trimble 2026挑战赛构建360视觉惯性SLAM系统，体现赛事驱动下的工程集成与数据集评测趋势。整体看，研究在传统SLAM框架内寻求多会话扩展、轻量表征与鲁棒系统设计。
-
-## ✨ 今日亮点
-
-- Polygraph以位姿图实现大规模多会话轨迹优化，提升全局一致性。
-- OrthoMark提出点锚定正交高度标记，用于地点识别与3D配准。
-- sqrtVINS面向Hilti-Trimble 2026挑战赛，集成360视觉惯性SLAM系统。
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20261116] Polygraph: Large-Scale Multi-Session Trajectory Optimization using Pose Graphs | Lukovic Petar, Tian Yi Lim, Pollefeys Marc, Speciale Pablo, Blum Hermann, Bauer Zuria | against it, as in ORB-SLAM3 Atlas [1], Maplab [2], [3], When a cluster closes, it is matched with every other session；Microsoft Spatial AI Lab, Zurich, Switzerland | 提出Polygraph，基于位姿图进行大规模多会话轨迹优化，通过跨会话匹配提升全局一致性。 | [#264](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/264) |
-| [20261116] OrthoMark: Place Recognition with Point-Anchored Orthographic Height Mark | Li Haichuan | University of Turku | 提出OrthoMark，利用点锚定正交高度标记进行地点识别，服务于3D地图配准。 | [#265](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/265) |
-| [20261116] sqrtVINS-Based 360 Visual-Inertial SLAM Systems: Hilti-Trimble SLAM Challenge 2026 Entry | Lee Jungwoo, Kim Hogyun, Choi Jiwon, Jeong Jinyong, Cho Younggun | Dept. of Electrical and Computer Engineering, Inha University, Incheon, South Korea | 基于sqrtVINS构建360视觉惯性SLAM系统，作为Hilti-Trimble 2026挑战赛参赛方案。 | [#266](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/266) |
-
-## 🔎 观察
-
-- 多会话SLAM正从单次建图转向全局位姿图优化，跨会话闭环与一致性维护成为关键。
-- 赛事基准推动视觉惯性SLAM系统集成与鲁棒性验证，360感知与工程化评测受关注。
 
 ---
 
