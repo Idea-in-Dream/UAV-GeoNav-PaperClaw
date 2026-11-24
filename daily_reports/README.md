@@ -2,6 +2,42 @@
 
 最近三天日报（最新在前）：
 
+# [20261123](./202611/20261123.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 13 篇；关键词+LLM 智能匹配遥感交叉论文 5 篇；最终纳入日报 5 篇。
+
+今日研究聚焦无人机在GNSS拒止环境下的定位与建图鲁棒性。跨视角地理定位方面，RigidAnchor通过迭代平面刚性对齐实现UAV与卫星影像的精细配准；定位评估方面，有工作提出参考位姿的地点重访一致性评测方法。同时，SLAM地图维护引入证据授权修订机制，决策语言模型的空间意识与地理偏差受到关注，热红外引导的低光图像增强也提供了统一基准。整体趋势显示，多源传感器融合与可复现基准建设并重，定位可靠性评估正从单一精度向一致性、可解释性延伸。
+
+## ✨ 今日亮点
+
+- RigidAnchor以迭代平面刚性对齐实现UAV-卫星跨视角精细配准，代码开源。
+- 地点重访一致性评估为参考位姿质量提供可复现的基准测试思路。
+- OmniSLAM提出证据授权修订持久对象地图，增强SLAM地图长期维护能力。
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20261123] RigidAnchor: Cross-View Geo-Localization for UAV via Iterative Planar Rigid Alignment | Wang Bo, Zhu Dekang, Li Jian, Meng Zhipeng, Wang Bo, Hu Dewen | National Innovation Institute of Defense Technology；College of Intelligence Science and Technology, National University of Defense Technology；School of Future Technology, National University of Defense Technology | 提出RigidAnchor，通过迭代平面刚性对齐实现GNSS拒止下UAV与卫星影像的跨视角精细配准，并开源代码。 | [#285](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/285) |
+| [20261123] Place-Revisit Consistency Evaluation of Reference Poses | Huai Jianzhu, Zhang Yujia, Jozkow Grzegorz | State key Lab of Info Engineering in Surveying, Mapping and Remote Sensing (LIESMARS)；School of Instrument Science and Engineering, State Key Laboratory of Comprehensive PNT；Network and Equipment Technology, Southeast University, Nanjing, Jiangsu, China；UK-China Intelligent Mobility Research Centre, Southeast University, Nanjing, Jiangsu, China；Institute of Geodesy and Geoinformatics, Wroclaw University of Environmental and Life | 构建地点重访一致性评估方法，用于检验参考位姿的可靠性，强调可复现的基准测试流程。 | [#286](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/286) |
+| [20261123] OmniSLAM: Evidence-Authorized Revision of Persistent Object Maps | Jie Haoxiang, Yan Yaoyuan, Heng Zhiyou, Li Liang, Li Zhaosong, Liu Lifeng | AI Lab, Country Garden Services；School of Mechanical Science and Engineering, Huazhong University of Science and Technology | 提出OmniSLAM，以证据授权方式修订持久对象地图，提升传统SLAM地图的长期一致性与可维护性。 | [#287](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/287) |
+| [20261123] Seeing Is Locating: Spatial Awareness and Geographic Bias in Decision Language Models | Wongso Wilson, Hada Melino Muhammad, Lin Xiachong, Xue Hao, Flora D. Salim | University of New South Wales, Sydney, NSW, Australia；Hong Kong University of Science and Technology (Guangzhou), Guangzhou, China；com/cruiseresearchgroup/GeoDecisions | 分析决策语言模型的空间意识与地理偏差，揭示其在定位相关决策中的系统性倾向。 | [#288](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/288) |
+| [20261123] Thermal-Guided Low-Light UAV Image Enhancement: A Reliability-Aware Guidance Network and a Unified Benchmark | Zhao Zhicheng, Wang Yu, Xu Jiangong, Xu Lixiang, Li Chenglong, Tang Jin | School of Artificial Intelligence, Anhui University；Anhui Provincial Key Laboratory of Security Artificial Intelligence, Anhui University；Anhui Provincial Key Laboratory of Multimodal Cognitive Computation, Anhui University；School of Computer Science and Technology, Anhui University；School of Artificial Intelligence Engineering, Hefei Institute of Technology；State Key Laboratory of Opto-Electronic Information Acquisition and Protection Technology, Anhui University | 提出可靠性感知的热引导低光UAV图像增强网络，并构建统一基准以评估增强对下游任务的影响。 | [#289](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/289) |
+
+## 🔎 观察
+
+- 跨视角定位研究正从粗检索走向精细配准，刚性对齐与迭代优化成为提升UAV定位精度的可行路径。
+- 多篇工作强调基准与可复现性，表明该领域对评估协议规范化和地图长期一致性的关注正在上升。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20261120](./202611/20261120.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -50,42 +86,6 @@ Powered by OpenClaw🦞
 
 - VIO研究正从精度竞赛转向跨平台泛化与流式部署，强调实际场景中的即插即用能力。
 - 地理定位与航空感知开始引入显式空间信念和预算约束，反映从被动感知向主动决策的范式迁移。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20261118](./202611/20261118.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 13 篇；关键词+LLM 智能匹配遥感交叉论文 5 篇；最终纳入日报 5 篇。
-
-今日论文聚焦空中机器人与视觉导航的交叉方向，涵盖实时SLAM、跨视角检索、视觉语言导航及自改进框架。研究趋势显示，三维重建与多模态大模型正加速融合，面向复杂环境下的自主导航与定位任务。同时，双帧记忆、递归自改进等策略被引入以提升泛化与迭代能力，数据集与基准建设亦受关注。
-
-## ✨ 今日亮点
-
-- Facet-SLAM提出实时三角面片泼溅SLAM，推动三维重建效率。
-- 跨视角检索引入双向槽注意力，聚合结构-细节谱信息。
-- 多篇工作探索视觉语言导航在无人机复杂环境中的落地。
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20261118] Facet-SLAM: Real-Time Triangle Splatting SLAM | Edward Beng Wai Tan, Lam Siew-Kei | College of Computing and Data Science, Nanyang Technological University, Singapore | 提出Facet-SLAM，利用三角面片泼溅实现实时SLAM，兼顾重建质量与效率。 | [#273](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/273) |
-| [20261118] One Affinity, Two Axes: Bidirectional Slot Attention for Iterative Aggregation across the Structure--Detail Spectrum in Visual Retrieval | Wang Zihang, Zhu Wenkai, Kong Lingdong, Yan Teng, Liang Alan, Li Shuyuan, Chen Xieyuanli, Kong Dong, Zong Guanyu | Southeast University；National University of Singapore；The Hong Kong University of Science and Technology (Guangzhou)；Shanghai Innovation Institute；Shandong University of Science and Technology；National University of Defense Technology | 设计双向槽注意力机制，在视觉检索中迭代聚合结构与细节特征。 | [#274](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/274) |
-| [20261118] A Hierarchical Onboard Vision-Language-Navigation Framework for Aerial Robots in Complex Environments | Wu Yuze, Zhu Mo, Li Xingxing, Du Yuheng, Wang Zhaoqi, Fan Yuxin, Li Wenjun, Hoi Kenghou, Han Zhichao, Zhou Xin, Gao Fei | State Key Laboratory of Industrial Control Technology, Zhejiang University, Hangzhou 310027, China | 构建分层机载视觉-语言-导航框架，面向复杂环境下的空中机器人。 | [#275](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/275) |
-| [20261118] Allocentric Memory, Egocentric Acting: A Dual-Frame VLA for Urban Aerial Navigation | Xu Haotian, Hu Yue, Zhu Zhengqiu, Feng Tuo, Wang Wenguan, Yin Quanjun | National Key Laboratory of Digital Intelligent Modeling and Simulation；College of Systems Engineering, National University of Defense Technology；Zhejiang University | 提出双帧VLA框架，结合异中心记忆与自我中心行动用于城市空中导航。 | [#276](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/276) |
-| [20261118] AeroRSI: Recursive Self-Improvement for Aerial Vision-Language Navigation | Wu Shiwei, Pan Yuwen, Li Zhi, Li Yaowen, Zhou Yan, Xu Xuemiao, Liu Yu | SIGS, Tsinghua University；Department of Electronic Engineering, Tsinghua University；Foshan University；South China University of Technology | 提出AeroRSI递归自改进方法，提升空中视觉语言导航的持续学习能力。 | [#277](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/277) |
-
-## 🔎 观察
-
-- 三维泼溅与SLAM结合成为实时重建新方向，但需关注动态场景下的鲁棒性。
-- 视觉语言导航正从地面向空中迁移，双帧记忆与自改进策略或成关键。
 
 ---
 
