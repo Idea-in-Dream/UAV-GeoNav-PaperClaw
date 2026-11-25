@@ -2,6 +2,42 @@
 
 最近三天日报（最新在前）：
 
+# [20261124](./202611/20261124.md)
+<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
+
+## 📌 今日概况
+
+今日共检索候选论文 15 篇；关键词+LLM 智能匹配遥感交叉论文 5 篇；最终纳入日报 5 篇。
+
+今日论文聚焦三维重建与定位导航的交叉领域。SLAM方向出现两项基于3DGS的改进工作，分别面向全向LiDAR-深度融合与在线建图的视角管理。基准评测方面，SpatialArena系统评估几何基础模型的空间能力，填补评测空白。无人机视觉里程计针对低空GNSS拒止场景提出鲁棒旋转估计方案。此外，毫米波雷达世界模型探索异构大语言模型在感知中的解耦应用，显示多模态融合趋势。
+
+## ✨ 今日亮点
+
+- GOLD-SLAM融合高斯泼溅与全向LiDAR-深度，拓展SLAM重建范式。
+- SpatialArena建立几何基础模型空间能力评测基准，推动可复现比较。
+- ROVO面向低空中高度无人机，实现GNSS拒止下鲁棒旋转视觉里程计。
+
+## 🗂 今日文章列表
+
+| 标题 | 作者 | 单位 | 一句话概括 | Issue |
+|---|---|---|---|---|
+| [20261124] GOLD-SLAM: Gaussian-splatting Omnidirectional LiDAR-Depth SLAM | Zhang Weicong, Huang Yuan, Zheng Yu, Chenxiao Lin, Li Yingying, Fan Lilong, Zhuang Liangdong, Chen Yufan, Liu Ruiping, Zheng Junwei, Zhang Jiaming | Hunan University；Tsinghua University；Karlsruhe Institute of Technology；University of Oxford；InSAI Lab | 提出GOLD-SLAM，将高斯泼溅与全向LiDAR-深度结合，实现稠密建图与定位一体化。 | [#291](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/291) |
+| [20261124] View Management with Gaussian Placement and Opacity Regularization for Online 3DGS | Dong Hwi Kim, Sangwon Park, Song Chaehyeon, Kim Ayoung | Seoul National University | 针对在线3DGS，设计高斯放置与不透明度正则化的视角管理策略，提升建图质量。 | [#292](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/292) |
+| [20261124] SpatialArena: Where Do Geometric Foundation Models Stand? | Chen Yu, Yang Haosen, Su Ee Tan, Zhang Zhensong, Song Jifei, Deng Jiankang | MVP Lab \& Imperial College London | 构建SpatialArena基准，系统评测几何基础模型的空间理解与推理能力。 | [#293](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/293) |
+| [20261124] ROVO: Robust Rotation-Only Visual Odometry for UAVs at Low and Moderate Altitudes | Song Xiaokai, Zhang Li, Teng Xichao, Pan Erting, Ye Yibin, Wang Kun, Liu Leqi, Dai Guangcheng | College of Aerospace Science and Engineering, National University of Defense Technology, Changsha 410000, China；Hunan Provincial Key Laboratory of Image Measurement and Vision Navigation；National University of Defense Technology, Changsha 410000, China；Hunan Institute of Advanced Technology, Changsha 410000, China | 提出ROVO，面向低空中高度无人机，在GNSS拒止下实现鲁棒纯旋转视觉里程计。 | [#294](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/294) |
+| [20261124] PhysRF-WorldJEPA: Transforming Heterogeneous Large Language Models into Manifold-Decoupled Millimeter-Wave Radar World Models | Huang Yicheng, Ke Feng, Chen Linhan, Jiang Ziyi, Xiu Yin Zhang | School of Electronic and Information Engineering, South China University of Technology, Guangzhou, China | 将异构大语言模型转化为流形解耦的毫米波雷达世界模型，用于目标地理定位。 | [#295](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/295) |
+
+## 🔎 观察
+
+- 3DGS与SLAM结合持续升温，今日两项工作分别从传感器融合与在线视角管理切入优化。
+- 几何基础模型评测开始体系化，SpatialArena的出现反映社区对可复现基准的迫切需求。
+
+---
+
+Powered by OpenClaw🦞
+
+---
+
 # [20261123](./202611/20261123.md)
 <!-- UAV_GEONAV_PAPERCLAW_REPORT -->
 
@@ -51,41 +87,6 @@ Powered by OpenClaw🦞
 
 - 当日无成功纳入论文，建议优先检查候选筛选结果与失败原因。
 - 若连续出现空日报，应复核 arXiv 日期窗口、关键词配置与 LLM 筛选输出。
-
----
-
-Powered by OpenClaw🦞
-
----
-
-# [20261119](./202611/20261119.md)
-<!-- UAV_GEONAV_PAPERCLAW_REPORT -->
-
-## 📌 今日概况
-
-今日共检索候选论文 9 篇；关键词+LLM 智能匹配遥感交叉论文 4 篇；最终纳入日报 4 篇。
-
-今日研究聚焦于视觉惯性里程计与地理定位的鲁棒性与效率提升。AnyVIO提出跨平台前馈流式VIO，强调泛化部署；序列到空间方法利用视觉语言蒸馏构建显式空间信念以支持主动地理定位；立体VO结合几何前馈模型实现密集度量建图；AeroBelief则关注预算约束下的证据引导航空感知验证。整体趋势显示，研究者正从单一模块优化转向跨平台、跨模态的闭环系统设计，并重视实际部署中的资源约束与验证效率。
-
-## ✨ 今日亮点
-
-- AnyVIO实现跨平台前馈流式VIO，提升GNSS拒止环境下的泛化能力。
-- 视觉语言蒸馏构建显式空间信念，推动主动地理定位从序列到空间推理。
-- AeroBelief引入预算化首动作验证，优化证据引导的航空感知决策效率。
-
-## 🗂 今日文章列表
-
-| 标题 | 作者 | 单位 | 一句话概括 | Issue |
-|---|---|---|---|---|
-| [20261119] AnyVIO: Feed-Forward Streaming Visual-Inertial Odometry Across Platforms | Atekha Omoruyi, Greiff Marcus, Zhang Ray, Carlone Luca | MIT；TRI | 提出跨平台前馈流式VIO框架AnyVIO，在GNSS拒止环境下实现无需重训练的泛化部署。 | [#279](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/279) |
-| [20261119] From Sequence to Space: Explicit Spatial Belief with Vision-Language Distillation for Active Geo-Localization | Xu Ziyang, Han Peng, Zhou Hai | National Space Science Center, Chinese Academy of Sciences, Beijing 100190, China；University of Chinese Academy of Sciences, Beijing 101408, China | 利用视觉语言蒸馏构建显式空间信念，将序列观测转化为空间表示以支持主动地理定位。 | [#280](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/280) |
-| [20261119] Stereo Visual Odometry with In-the-Loop Geometric Feed-Forward Models Towards Dense Metric Mapping | Fahira Afzal Maken, Sagun Man Singh Shrestha, Vanderfeen Edward, Lucas Carvalho de Lima, Li Rongxin, Sun Changming, Ramezani Milad | School of Electrical Engineering and Robotics, Queensland University of Technology (QUT), Brisbane, Australia | 将几何前馈模型嵌入立体视觉里程计闭环，面向密集度量建图提升几何一致性。 | [#281](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/281) |
-| [20261119] AeroBelief: Budgeted First-Action Verification for Evidence-Guided Aerial Sensing | Li Tianren, Li Dongbo, Chen Hongkai, Liu Jie, Xing Guoliang | Harbin Institute of Technology China；The Chinese University of Hong Kong China | 提出预算化首动作验证策略，在有限感知预算下证据引导地优化航空目标定位决策。 | [#282](https://github.com/Idea-in-Dream/UAV-GeoNav-PaperClaw/issues/282) |
-
-## 🔎 观察
-
-- VIO研究正从精度竞赛转向跨平台泛化与流式部署，强调实际场景中的即插即用能力。
-- 地理定位与航空感知开始引入显式空间信念和预算约束，反映从被动感知向主动决策的范式迁移。
 
 ---
 
